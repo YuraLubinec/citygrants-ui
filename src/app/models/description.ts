@@ -31,7 +31,7 @@ export class Description {
         this.theme = theme;
         this.requiredTime = requiredTime;
         this.coordinatorName = coordinatorName;
-        this.coordinatorPhone = coordinatorEmail;
+        this.coordinatorPhone = coordinatorPhone;
         this.coordinatorEmail = coordinatorEmail;
         this.projectMembers = projectMembers;
         this.expirienceDescription = expirienceDescription;

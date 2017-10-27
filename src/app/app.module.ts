@@ -13,7 +13,7 @@ import { RoutingModule } from "./routing/routing.module";
     ClientPageComponent
   ],
   imports: [
-    BrowserModule, RoutingModule, FormsModule, HttpModule
+    BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

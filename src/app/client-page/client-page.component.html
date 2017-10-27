@@ -1,3 +1,174 @@
-<p>
-  client-page works!
-</p>
+<form *ngIf="displayForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+  <div class="form-group">
+    <label class="center-block">Назва проекту:
+      <textarea class="form-control" formControlName="name"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Запитувана сума, грн.:
+      <input class="form-control" formControlName="requestedBudget">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Назва організації або ініціативної групи, що подає проект:
+      <textarea class="form-control" formControlName="organizationName"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Тематичний напрямок, під який підпадає проект:
+      <textarea class="form-control" formControlName="theme"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Термін втілення проекту:
+      <input class="form-control" formControlName="requiredTime">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Координатор/ка проекту:
+      <input class="form-control" formControlName="coordinatorName">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Координатор/ка проекту (моб.тел.):
+      <input class="form-control" formControlName="coordinatorPhone">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Координатор/ка проекту (електронна адреса):
+      <input class="form-control" formControlName="coordinatorEmail">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):
+      <textarea class="form-control" formControlName="projectMembers"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):
+      <textarea class="form-control" formControlName="expirienceDescription"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Адреса організації (якщо є):
+      <textarea class="form-control" formControlName="address"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Веб-сайт, Facebook:
+      <input class="form-control" formControlName="webaddress">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):
+      <textarea class="form-control" formControlName="goal"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):
+      <textarea class="form-control" formControlName="actuality"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у рамках проекту):
+      <textarea class="form-control" formControlName="fullDescription"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):
+      <textarea class="form-control" formControlName="targetGroup"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):
+      <textarea class="form-control" formControlName="expectedResults"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Погодження та дозволи, необхідні для втілення проекту:
+      <textarea class="form-control" formControlName="requiredPermissions"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Партнери та спонсори (якщо є):
+      <textarea class="form-control" formControlName="partners"></textarea>
+    </label>
+  </div>
+  <button type="submit" [disabled]="!appDescForm.valid" class="btn btn-success">Зберегти</button>
+</form>
+
+<table *ngIf="displayDescription">
+  <tr>
+    <th colspan="3">Інформація про проект та заявника</th>
+  </tr>
+  <tr>
+    <td rowspan="2">Назва проекту</td>
+    <td rowspan="2">{{description.name}}</td>
+    <td>Запитувана сума, грн.:</td>
+  </tr>
+  <tr>
+    <td>{{description.requestedBudget}}</td>
+    <tr>
+      <tr>
+        <td>Назва організації або ініціативної групи, що подає проект</td>
+        <td colspan="2">{{description.organizationName}}</td>
+      </tr>
+      <tr>
+        <td>Тематичний напрямок, під який підпадає проект</td>
+        <td colspan="2">{{description.theme}}</td>
+      </tr>
+      <tr>
+        <td>Термін втілення проекту</td>
+        <td colspan="2">{{description.requiredTime}}</td>
+      </tr>
+      <tr>
+        <td>Координатор/ка проекту(моб.тел., електронна адреса)</td>
+        <td colspan="2">{{description.coordinatorName}} моб.: {{description.coordinatorPhone}} пошта: {{description.coordinatorEmail}}</td>
+      </tr>
+      <tr>
+        <td>Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків) </td>
+        <td colspan="2">{{description.projectMembers}}</td>
+      </tr>
+      <tr>
+        <td>Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена
+          команди)</td>
+        <td colspan="2">{{description.expirienceDescription}}</td>
+      </tr>
+      <tr>
+        <td>Адреса організації (якщо є)</td>
+        <td colspan="2">{{description.address}}</td>
+      </tr>
+      <tr>
+        <td>Веб-сайт, Facebook</td>
+        <td colspan="2">{{description.webaddress}}</td>
+      </tr>
+      <tr>
+        <td>Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту)</td>
+        <td colspan="2">{{description.goal}}</td>
+      </tr>
+      <tr>
+        <td>Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів)</td>
+        <td colspan="2">{{description.actuality}}</td>
+      </tr>
+      <tr>
+        <td>Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені
+          у рамках проекту)</td>
+        <td colspan="2">{{description.fullDescription}}</td>
+      </tr>
+      <tr>
+        <td>Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію)</td>
+        <td colspan="2">{{description.targetGroup}}</td>
+      </tr>
+      <tr>
+        <td>Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту)</td>
+        <td colspan="2">{{description.expectedResults}}</td>
+      </tr>
+      <tr>
+        <td>Погодження та дозволи, необхідні для втілення проекту </td>
+        <td colspan="2">{{description.requiredPermissions}}</td>
+      </tr>
+      <tr>
+        <td>Партнери та спонсори (якщо є)</td>
+        <td colspan="2">{{description.partners}}</td>
+      </tr>
+</table>
