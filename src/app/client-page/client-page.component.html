@@ -1,4 +1,4 @@
-<form *ngIf="displayForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+<form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
   <div class="form-group">
     <label class="center-block">Назва проекту:
       <textarea class="form-control" formControlName="name"></textarea>
@@ -172,3 +172,41 @@
         <td colspan="2">{{description.partners}}</td>
       </tr>
 </table>
+
+<form *ngIf="displayCostItemForm" [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
+  <div class="form-group">
+    <label class="center-block">Назва проекту:
+      <textarea class="form-control" formControlName="description"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Вартість з аодиниицю часу/на одну особу, грн.:
+      <input class="form-control" formControlName="cost">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Кількість / затрачений час, грн.:
+      <input class="form-control" formControlName="count">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Витрати з програми, грн.:
+      <input class="form-control" formControlName="consumptionsFromProgram">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Витарти з інших джерел, грн.:
+      <input class="form-control" formControlName="consumptionsFromOtherSources">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Оберіть категорію витрат:
+        <select class="form-control" formControlName="category">
+            <option disabled>Оберіть гру</option>
+            <option *ngFor="let category of costItemCategorys" [value]="category.value">{{category.name}}</option>
+          </select>
+      <input class="form-control" formControlName=" cost">
+    </label>
+  </div>
+  <button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Зберегти</button>
+</form>

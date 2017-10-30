@@ -5,6 +5,7 @@ import { ClientService } from '../services/client.service';
 import { ProjectApplication } from '../models/projectApplication';
 import { Description } from '../models/description';
 import { Budget } from '../models/budget';
+import { CostItemCategory } from '../models/costItemCategory';
 
 @Component({
   selector: 'app-client-page',
@@ -15,23 +16,37 @@ import { Budget } from '../models/budget';
 export class ClientPageComponent implements OnInit {
 
   private appDescForm: FormGroup;
+  private appCostItem: FormGroup;
   private description: Description;
-  private displayForm: boolean = true;
+  private displayDescriptionForm: boolean = true;
   private displayDescription: boolean = false;
+  private displayCostItemForm: boolean = false;
+  private costItemCategorys: Array<CostItemCategory> = [];
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
-
 
   }
 
   ngOnInit() {
-    this.createEmptyForm();
+    this.createEmptyDescriptionForm();
+    this.createEmptyCostItemForm();
   }
 
-  createEmptyForm() {
+  createEmptyCostItemForm() {
+    this.appCostItem = this.fb.group({
+      description: ['', [Validators.required, Validators.maxLength(250)]],
+      cost: ['', [Validators.required, Validators.maxLength(5)]],
+      count: ['', [Validators.required, Validators.maxLength(5)]],
+      consumptionsFromProgram: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
+      consumptionsFromOtherSources: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
+      category: ['', [Validators.required, Validators.maxLength(50)]]
+    })
+  }
+
+  createEmptyDescriptionForm() {
     this.appDescForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(250)]],
-      requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"),Validators.maxLength(20)]],
+      requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(20)]],
       organizationName: ['', [Validators.required, Validators.maxLength(250)]],
       theme: ['', [Validators.required, Validators.maxLength(250)]],
       requiredTime: ['', [Validators.required, Validators.maxLength(100)]],
@@ -64,7 +79,12 @@ export class ClientPageComponent implements OnInit {
       field.partners
     );
     this.appDescForm.reset();
-    this.displayForm = false;
+    this.displayDescriptionForm = false;
     this.displayDescription = true;
+    this.displayCostItemForm = true;
+  }
+
+  submitCostItemForm() {
+
   }
 }
