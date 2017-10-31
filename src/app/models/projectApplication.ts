@@ -3,9 +3,9 @@ import { Description } from './description';
 
 export class ProjectApplication {
 
-    private budget: Budget;
-    private description: Description;
-    private confirmed: boolean;
+    budget: Budget;
+    description: Description;
+    confirmed: boolean;
 
     constructor(budget: Budget, description: Description, confirmed: boolean) {
         this.budget = budget;

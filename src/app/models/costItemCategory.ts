@@ -1,6 +1,6 @@
 export class CostItemCategory {
-    private value: string;
-    private name: string;
+    value: string;
+    name: string;
 
     constructor(value: string, name: string) {
         this.value = value;

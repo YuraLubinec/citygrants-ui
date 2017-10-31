@@ -1,24 +1,24 @@
 export class Description {
 
-    private name: string;
-    private requestedBudget: string;
-    private organizationName: string;
-    private theme: string;
-    private requiredTime: string;
-    private coordinatorName: string;
-    private coordinatorPhone: string;
-    private coordinatorEmail: string;
-    private projectMembers: string;
-    private expirienceDescription: string;
-    private address: string;
-    private webaddress: string;
-    private goal: string;
-    private actuality: string;
-    private fullDescription: string;
-    private targetGroup: string;
-    private expectedResults: string;
-    private requiredPermissions: string;
-    private partners: string;
+    name: string;
+    requestedBudget: string;
+    organizationName: string;
+    theme: string;
+    requiredTime: string;
+    coordinatorName: string;
+    coordinatorPhone: string;
+    coordinatorEmail: string;
+    projectMembers: string;
+    expirienceDescription: string;
+    address: string;
+    webaddress: string;
+    goal: string;
+    actuality: string;
+    fullDescription: string;
+    targetGroup: string;
+    expectedResults: string;
+    requiredPermissions: string;
+    partners: string;
 
     constructor(name: string, requestedBudget: string, organizationName: string, coordinatorName: string, coordinatorPhone: string,
         coordinatorEmail: string, theme: string, requiredTime: string, projectMembers: string, expirienceDescription: string,

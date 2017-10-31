@@ -5,6 +5,7 @@ import { ClientService } from '../services/client.service';
 import { ProjectApplication } from '../models/projectApplication';
 import { Description } from '../models/description';
 import { Budget } from '../models/budget';
+import { CostItem } from '../models/costItem';
 import { CostItemCategory } from '../models/costItemCategory';
 
 @Component({
@@ -17,6 +18,9 @@ export class ClientPageComponent implements OnInit {
 
   private appDescForm: FormGroup;
   private appCostItem: FormGroup;
+  private projectApplication: ProjectApplication;
+  private budget: Budget;
+  private costItem: Cos
   private description: Description;
   private displayDescriptionForm: boolean = true;
   private displayDescription: boolean = false;
@@ -85,6 +89,77 @@ export class ClientPageComponent implements OnInit {
   }
 
   submitCostItemForm() {
+
+    let field = this.appDescForm.value;
+    this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
+      new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
+      switch (field.category) {
+        case this.costItemCategorys[0].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+
+        }
+        case this.costItemCategorys[1].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        case this.costItemCategorys[2].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        case this.costItemCategorys[3].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        case this.costItemCategorys[4].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        case this.costItemCategorys[5].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        case this.costItemCategorys[6].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        case this.costItemCategorys[7].value : {
+          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break;
+
+        }
+        default: { 
+          this.budget.costItems.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+
+          break; 
+       } 
+      }
+
+      
+    new CostItem(field.description, field.cost, field.count,
+      parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources));
 
   }
 }
