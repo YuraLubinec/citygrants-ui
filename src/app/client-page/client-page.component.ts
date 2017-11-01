@@ -7,6 +7,7 @@ import { Description } from '../models/description';
 import { Budget } from '../models/budget';
 import { CostItem } from '../models/costItem';
 import { CostItemCategory } from '../models/costItemCategory';
+import { BudgetCalculations } from '../models/budgetCalculations'
 
 @Component({
   selector: 'app-client-page',
@@ -20,19 +21,18 @@ export class ClientPageComponent implements OnInit {
   private appCostItem: FormGroup;
   private projectApplication: ProjectApplication;
   private budget: Budget;
-  // private costItem: CostItem;
+  private calculations: BudgetCalculations;
   private description: Description;
   private displayDescriptionForm: boolean;
   private displayCostItemForm: boolean;
   private displayDescription: boolean;
-  private displayBudget: boolean;
+  // private displayBudget: boolean;
   private costItemCategories: Array<CostItemCategory>;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
-    this.displayDescriptionForm = false;
+    this.displayDescriptionForm = true;
     this.displayDescription = false;
-    this.displayCostItemForm = true;
-    this.displayBudget = false;
+    this.displayCostItemForm = false;
     this.costItemCategories = [
       new CostItemCategory("FEE", "Гонорари, трудові угоди"), new CostItemCategory("TRANSPORT", "Транспортні витрати"),
       new CostItemCategory("NUTRITION", "Харчування"), new CostItemCategory("RENT", "Оренда"),
@@ -50,9 +50,9 @@ export class ClientPageComponent implements OnInit {
 
   createEmptyCostItemForm() {
     this.appCostItem = this.fb.group({
-      description: ['', [Validators.required, Validators.maxLength(250)]],
-      cost: ['', [Validators.required, Validators.maxLength(5)]],
-      count: ['', [Validators.required, Validators.maxLength(5)]],
+      description: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
+      cost: ['', [Validators.required, Validators.maxLength(5), Validators.pattern("(\\S)+(.)+")]],
+      count: ['', [Validators.required, Validators.maxLength(5), Validators.pattern("(\\S)+(.)+")]],
       consumptionsFromProgram: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
       consumptionsFromOtherSources: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
       category: ['', [Validators.required, Validators.maxLength(50)]]
@@ -61,25 +61,25 @@ export class ClientPageComponent implements OnInit {
 
   createEmptyDescriptionForm() {
     this.appDescForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(250)]],
+      name: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
       requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(20)]],
-      organizationName: ['', [Validators.required, Validators.maxLength(250)]],
-      theme: ['', [Validators.required, Validators.maxLength(250)]],
-      requiredTime: ['', [Validators.required, Validators.maxLength(100)]],
-      coordinatorName: ['', [Validators.required, Validators.maxLength(100)]],
+      organizationName: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
+      theme: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
+      requiredTime: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("(\\S)+(.)+")]],
+      coordinatorName: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("(\\S)+(.)+")]],
       coordinatorPhone: ['', [Validators.required, Validators.pattern("(\\+?38)?([0-9]{10})")]],
       coordinatorEmail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      projectMembers: ['', [Validators.required, Validators.maxLength(1000)]],
-      expirienceDescription: ['', [Validators.required, Validators.maxLength(2000)]],
-      address: ['', [Validators.required, Validators.maxLength(250)]],
-      webaddress: ['', [Validators.required, Validators.maxLength(150)]],
-      goal: ['', [Validators.required, Validators.maxLength(1000)]],
-      actuality: ['', [Validators.required, Validators.maxLength(2000)]],
-      fullDescription: ['', [Validators.required, Validators.maxLength(2000)]],
-      targetGroup: ['', [Validators.required, Validators.maxLength(2000)]],
-      expectedResults: ['', [Validators.required, Validators.maxLength(2000)]],
-      requiredPermissions: ['', [Validators.required, Validators.maxLength(1000)]],
-      partners: ['', [Validators.required, Validators.maxLength(1000)]]
+      projectMembers: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]],
+      expirienceDescription: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
+      address: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
+      webaddress: ['', [Validators.required, Validators.maxLength(150), Validators.pattern("(\\S)+(.)+")]],
+      goal: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]],
+      actuality: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
+      fullDescription: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
+      targetGroup: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
+      expectedResults: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
+      requiredPermissions: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]],
+      partners: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]]
     })
   }
 
@@ -100,16 +100,15 @@ export class ClientPageComponent implements OnInit {
     this.displayCostItemForm = true;
   }
 
-  //need to implement calculations + add to the template
   submitCostItemForm() {
 
     let field = this.appCostItem.value;
     this.addCostItemByCategory(field);
     this.appCostItem.reset();
-    if (!this.displayBudget) {
-      this.displayBudget = true;
-    }
-    console.log(this.budget);
+    this.calculations = this.clientService.calculateBudget(this.budget);
+    // if (!this.displayBudget) {
+    //   this.displayBudget = true;
+    // }
 
   }
 
@@ -139,25 +138,21 @@ export class ClientPageComponent implements OnInit {
         this.budget.costItemsAdministrative.push(new CostItem(field.description, field.cost, field.count,
           parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
         break;
-
       }
       case this.costItemCategories[5].value: {
         this.budget.costItemsAdvertising.push(new CostItem(field.description, field.cost, field.count,
           parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
         break;
-
       }
       case this.costItemCategories[6].value: {
         this.budget.costItemsMaterial.push(new CostItem(field.description, field.cost, field.count,
           parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
         break;
-
       }
       case this.costItemCategories[7].value: {
         this.budget.costItemsOthers.push(new CostItem(field.description, field.cost, field.count,
           parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
         break;
-
       }
       default: {
         this.budget.costItemsOthers.push(new CostItem(field.description, field.cost, field.count,
@@ -213,6 +208,19 @@ export class ClientPageComponent implements OnInit {
         break;
       }
     }
+    this.calculations = this.clientService.calculateBudget(this.budget);
+  }
 
+  confirmProjectApplication() {
+    
+    this.projectApplication = new ProjectApplication(this.budget, this.description, true);
+    console.log(this.projectApplication);
+
+  }
+
+  sentApplicationToReview() {
+   
+    this.projectApplication = new ProjectApplication(this.budget, this.description, false);
+    console.log(this.projectApplication);
   }
 }
