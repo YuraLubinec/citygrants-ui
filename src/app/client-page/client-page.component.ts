@@ -20,15 +20,27 @@ export class ClientPageComponent implements OnInit {
   private appCostItem: FormGroup;
   private projectApplication: ProjectApplication;
   private budget: Budget;
-  private costItem: Cos
+  // private costItem: CostItem;
   private description: Description;
-  private displayDescriptionForm: boolean = true;
-  private displayDescription: boolean = false;
-  private displayCostItemForm: boolean = false;
-  private costItemCategorys: Array<CostItemCategory> = [];
+  private displayDescriptionForm: boolean;
+  private displayCostItemForm: boolean;
+  private displayDescription: boolean;
+  private displayBudget: boolean;
+  private costItemCategories: Array<CostItemCategory>;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
-
+    this.displayDescriptionForm = false;
+    this.displayDescription = false;
+    this.displayCostItemForm = true;
+    this.displayBudget = false;
+    this.costItemCategories = [
+      new CostItemCategory("FEE", "Гонорари, трудові угоди"), new CostItemCategory("TRANSPORT", "Транспортні витрати"),
+      new CostItemCategory("NUTRITION", "Харчування"), new CostItemCategory("RENT", "Оренда"),
+      new CostItemCategory("ADMINISTRATIVE", "Адміністративні витрати"), new CostItemCategory("ADVERTISING", "Публікації, реклама, PR"),
+      new CostItemCategory("MATERIALS", "Придбання (купівля витратних матеріалів, тощо)"), new CostItemCategory("OTHER", "Інші витрати")
+    ];
+    this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
+      new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
   }
 
   ngOnInit() {
@@ -88,78 +100,119 @@ export class ClientPageComponent implements OnInit {
     this.displayCostItemForm = true;
   }
 
+  //need to implement calculations + add to the template
   submitCostItemForm() {
 
-    let field = this.appDescForm.value;
-    this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
-      new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
-      switch (field.category) {
-        case this.costItemCategorys[0].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-          break;
+    let field = this.appCostItem.value;
+    this.addCostItemByCategory(field);
+    this.appCostItem.reset();
+    if (!this.displayBudget) {
+      this.displayBudget = true;
+    }
+    console.log(this.budget);
 
-        }
-        case this.costItemCategorys[1].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+  }
 
-          break;
-
-        }
-        case this.costItemCategorys[2].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break;
-
-        }
-        case this.costItemCategorys[3].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break;
-
-        }
-        case this.costItemCategorys[4].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break;
-
-        }
-        case this.costItemCategorys[5].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break;
-
-        }
-        case this.costItemCategorys[6].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break;
-
-        }
-        case this.costItemCategorys[7].value : {
-          this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break;
-
-        }
-        default: { 
-          this.budget.costItems.push(new CostItem(field.description, field.cost, field.count,
-            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
-
-          break; 
-       } 
+  private addCostItemByCategory(field: any) {
+    switch (field.category) {
+      case this.costItemCategories[0].value: {
+        this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
       }
+      case this.costItemCategories[1].value: {
+        this.budget.costItemsTransport.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break
+      }
+      case this.costItemCategories[2].value: {
+        this.budget.costItemsNutrition.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
+      }
+      case this.costItemCategories[3].value: {
+        this.budget.costItemsRent.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
+      }
+      case this.costItemCategories[4].value: {
+        this.budget.costItemsAdministrative.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
 
-      
-    new CostItem(field.description, field.cost, field.count,
-      parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources));
+      }
+      case this.costItemCategories[5].value: {
+        this.budget.costItemsAdvertising.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
+
+      }
+      case this.costItemCategories[6].value: {
+        this.budget.costItemsMaterial.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
+
+      }
+      case this.costItemCategories[7].value: {
+        this.budget.costItemsOthers.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
+
+      }
+      default: {
+        this.budget.costItemsOthers.push(new CostItem(field.description, field.cost, field.count,
+          parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+        break;
+      }
+    }
+  }
+
+  checkIfNotEmpty(arr: Array<CostItem>): boolean {
+    return arr.length != 0;
+  }
+
+  removeCostItem(i: number, value: string) {
+    switch (value) {
+      case this.costItemCategories[0].value: {
+        this.budget.costItemsFee.splice(i, 1);
+        break;
+      }
+      case this.costItemCategories[1].value: {
+        this.budget.costItemsTransport.splice(i, 1);
+        break
+      }
+      case this.costItemCategories[2].value: {
+        this.budget.costItemsNutrition.splice(i, 1);
+        break;
+      }
+      case this.costItemCategories[3].value: {
+        this.budget.costItemsRent.splice(i, 1);
+        break;
+      }
+      case this.costItemCategories[4].value: {
+        this.budget.costItemsAdministrative.splice(i, 1);
+        break;
+
+      }
+      case this.costItemCategories[5].value: {
+        this.budget.costItemsAdvertising.splice(i, 1);
+        break;
+
+      }
+      case this.costItemCategories[6].value: {
+        this.budget.costItemsMaterial.splice(i, 1);
+        break;
+
+      }
+      case this.costItemCategories[7].value: {
+        this.budget.costItemsOthers.splice(i, 1);
+        break;
+
+      }
+      default: {
+        break;
+      }
+    }
 
   }
 }

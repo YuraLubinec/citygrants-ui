@@ -11,7 +11,7 @@ export class CostItem {
         this.description = description;
         this.cost = cost;
         this.count = count;
-        this.consumptionsFromProgram - consumptionsFromProgram;
+        this.consumptionsFromProgram = consumptionsFromProgram;
         this.consumptionsFromOtherSources = consumptionsFromOtherSources;
     }
 }
