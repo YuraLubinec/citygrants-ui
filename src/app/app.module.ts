@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ClientPageComponent } from './client-page/client-page.component';
+import {JuryPageComponent} from "./jury-page/jury-page.component";
 import { RoutingModule } from "./routing/routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientPageComponent
+    ClientPageComponent,
+    JuryPageComponent,
   ],
   imports: [
     BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpModule
