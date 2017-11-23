@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ClientPageComponent } from './client-page/client-page.component';
-import {JuryPageComponent} from "./jury-page/jury-page.component";
+import { JuryPageComponent } from "./jury-page/jury-page.component";
 import { RoutingModule } from "./routing/routing.module";
 
 @NgModule({
@@ -15,7 +15,7 @@ import { RoutingModule } from "./routing/routing.module";
     JuryPageComponent,
   ],
   imports: [
-    BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpModule
+    BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

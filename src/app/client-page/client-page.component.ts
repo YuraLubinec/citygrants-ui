@@ -215,6 +215,8 @@ export class ClientPageComponent implements OnInit {
     
     this.projectApplication = new ProjectApplication(this.budget, this.description, true);
     console.log(this.projectApplication);
+    this.clientService.saveApplication(this.projectApplication).then(data => console.log(data));
+    console.log("and here")
 
   }
 

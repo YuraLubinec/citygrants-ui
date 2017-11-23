@@ -2,11 +2,45 @@ import { Injectable } from '@angular/core';
 import { Budget } from '../models/budget';
 import { BudgetCalculations } from '../models/budgetCalculations';
 import { CostItem } from '../models/costItem';
+import { ProjectApplication } from '../models/projectApplication';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ClientService {
 
-  constructor() { }
+  private baseUrl: string;
+
+
+  constructor(private http: HttpClient) {
+
+    this.baseUrl = 'http://localhost:8082/citygrants/client/project';
+  }
+
+  saveApplication(projectApplicationForm: ProjectApplication): Promise<any> {
+    console.log("here");
+
+    return this.http.post(this.baseUrl, projectApplicationForm).toPromise().catch(err => this.handleError(err));
+  }
+
+  uploadFiles(projectId: string, images: Array<File>, pdfs: Array<File>): Observable<any> {
+
+    let headers = new HttpHeaders();
+    let formData = new FormData();
+   
+    headers.set('Accept', 'application/json');
+   
+    formData.append('id', projectId);
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images[]', images[i]);
+    }
+    for (let i = 0; i < pdfs.length; i++) {
+      formData.append('pdfDocuments[]', pdfs[i]);
+    }
+
+    return this.http.post(this.baseUrl + "/file", formData, { headers: headers });
+  }
 
   calculateBudget(budget: Budget): BudgetCalculations {
 
@@ -56,5 +90,13 @@ export class ClientService {
     return sum + current.consumptionsFromProgram;
 
   }
+
+  private handleError(err): void {
+
+    alert('Щось пішло не так, повторіть спробу пізніше.' + err.status);
+    console.log(err);
+  }
+
+
 
 }
