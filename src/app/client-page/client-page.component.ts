@@ -28,19 +28,27 @@ export class ClientPageComponent implements OnInit {
   private displayDescription: boolean;
   // private displayBudget: boolean;
   private costItemCategories: Array<CostItemCategory>;
+  private images: Array<File>;
+  private pdfDocs: Array<File>;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
     this.displayDescription = false;
     this.displayCostItemForm = false;
     this.costItemCategories = [
-      new CostItemCategory("FEE", "Гонорари, трудові угоди"), new CostItemCategory("TRANSPORT", "Транспортні витрати"),
-      new CostItemCategory("NUTRITION", "Харчування"), new CostItemCategory("RENT", "Оренда"),
-      new CostItemCategory("ADMINISTRATIVE", "Адміністративні витрати"), new CostItemCategory("ADVERTISING", "Публікації, реклама, PR"),
-      new CostItemCategory("MATERIALS", "Придбання (купівля витратних матеріалів, тощо)"), new CostItemCategory("OTHER", "Інші витрати")
+      new CostItemCategory("FEE", "Гонорари, трудові угоди"),
+      new CostItemCategory("TRANSPORT", "Транспортні витрати"),
+      new CostItemCategory("NUTRITION", "Харчування"),
+      new CostItemCategory("RENT", "Оренда"),
+      new CostItemCategory("ADMINISTRATIVE", "Адміністративні витрати"),
+      new CostItemCategory("ADVERTISING", "Публікації, реклама, PR"),
+      new CostItemCategory("MATERIALS", "Придбання (купівля витратних матеріалів, тощо)"),
+      new CostItemCategory("OTHER", "Інші витрати")
     ];
     this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
       new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
+    this.images = new Array<File>();
+    this.pdfDocs = new Array<File>();
   }
 
   ngOnInit() {
@@ -106,9 +114,6 @@ export class ClientPageComponent implements OnInit {
     this.addCostItemByCategory(field);
     this.appCostItem.reset();
     this.calculations = this.clientService.calculateBudget(this.budget);
-    // if (!this.displayBudget) {
-    //   this.displayBudget = true;
-    // }
 
   }
 
@@ -212,17 +217,41 @@ export class ClientPageComponent implements OnInit {
   }
 
   confirmProjectApplication() {
-    
+
+
     this.projectApplication = new ProjectApplication(this.budget, this.description, true);
-    console.log(this.projectApplication);
-    this.clientService.saveApplication(this.projectApplication).then(data => console.log(data));
-    console.log("and here")
+    this.clientService.saveApplication(this.projectApplication)
+      .then(data => this.clientService.uploadFiles(data.id, this.images, this.pdfDocs).subscribe(data => {
+        alert("uploading was successful");
+        this.images = new Array<File>();
+        this.pdfDocs = new Array<File>();
+      })).catch(err => this.handlePromiseError(err));;
+
 
   }
 
+  saveImagesToUpload(event) {
+    this.images = new Array<File>();
+    for (let image of event.target.files) {
+      this.images.push(image);
+    }
+  }
+
+  savePdfToUpload(event) {
+    this.pdfDocs = new Array<File>();
+    for (let pdf of event.target.files) {
+      this.pdfDocs.push(pdf);
+    }
+  }
+
+
   sentApplicationToReview() {
-   
+
     this.projectApplication = new ProjectApplication(this.budget, this.description, false);
-    console.log(this.projectApplication);
+  }
+
+  private handlePromiseError(err): void {
+
+    alert('Щось пішло не так, повторіть спробу пізніше' + err.status);
   }
 }

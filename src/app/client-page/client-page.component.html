@@ -203,7 +203,7 @@
   <div class="form-group">
     <label class="center-block">Оберіть категорію витрат:
       <select class="form-control" formControlName="category">
-        <option disabled>Оберіть гру</option>
+        <option disabled>Оберіть категорію витра</option>
         <option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</option>
       </select>
     </label>
@@ -318,7 +318,7 @@
         <td>{{costItem.consumptionsFromProgram}}</td>
         <td>{{costItem.consumptionsFromOtherSources}}</td>
         <td>
-          <button (click)="removeCostItem(i,costItemCategories[2].value)">delete</button>/td>
+          <button (click)="removeCostItem(i,costItemCategories[2].value)">delete</button>
       </tr>
       <tr>
         <td></td>
@@ -524,3 +524,11 @@
   <button (click)="confirmProjectApplication()">Відіслати на розгляд журі</button>
   <button (click)="sentApplicationToReview">Відіслати для отримання консультації</button>
 </ng-container>
+<label class="btn btn-primary">
+  <input type="file" style="display: none;" multiple="true" (change)="savePdfToUpload($event)" accept=".jpg, .png">
+  <span>Donwnload images</span>
+</label>
+<label class="btn btn-primary">
+  <input type="file" style="display: none;" multiple="true" (change)="saveImagesToUpload($event)" accept=".pdf">
+  <span>Donwload pdf</span>
+</label>

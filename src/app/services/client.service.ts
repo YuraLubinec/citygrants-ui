@@ -18,28 +18,27 @@ export class ClientService {
     this.baseUrl = 'http://localhost:8082/citygrants/client/project';
   }
 
-  saveApplication(projectApplicationForm: ProjectApplication): Promise<any> {
-    console.log("here");
-
-    return this.http.post(this.baseUrl, projectApplicationForm).toPromise().catch(err => this.handleError(err));
+  saveApplication(projectApplicationForm: ProjectApplication): Promise<any>{
+    return this.http.post(this.baseUrl, projectApplicationForm).toPromise().catch(err => this.handlePromiseError(err));
+  
+    
   }
 
   uploadFiles(projectId: string, images: Array<File>, pdfs: Array<File>): Observable<any> {
 
     let headers = new HttpHeaders();
-    let formData = new FormData();
-   
-    headers.set('Accept', 'application/json');
+    let formData = new FormData();   
+
    
     formData.append('id', projectId);
     for (let i = 0; i < images.length; i++) {
-      formData.append('images[]', images[i]);
+      formData.append('images', images[i]);
     }
     for (let i = 0; i < pdfs.length; i++) {
-      formData.append('pdfDocuments[]', pdfs[i]);
+      formData.append('pdfDocs', pdfs[i]);
     }
 
-    return this.http.post(this.baseUrl + "/file", formData, { headers: headers });
+    return this.http.post(this.baseUrl + "/file", formData, { responseType: 'text' });
   }
 
   calculateBudget(budget: Budget): BudgetCalculations {
@@ -91,10 +90,9 @@ export class ClientService {
 
   }
 
-  private handleError(err): void {
+  private handlePromiseError(err): Promise<any> {
 
-    alert('Щось пішло не так, повторіть спробу пізніше.' + err.status);
-    console.log(err);
+    return Promise.reject(err.message || err);
   }
 
 
