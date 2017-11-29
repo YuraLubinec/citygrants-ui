@@ -58,9 +58,9 @@ export class ClientPageComponent implements OnInit {
 
   createEmptyCostItemForm() {
     this.appCostItem = this.fb.group({
-      description: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
-      cost: ['', [Validators.required, Validators.maxLength(5), Validators.pattern("(\\S)+(.)+")]],
-      count: ['', [Validators.required, Validators.maxLength(5), Validators.pattern("(\\S)+(.)+")]],
+      description: ['', [Validators.required, Validators.maxLength(250)]],
+      cost: ['', [Validators.required, Validators.maxLength(5)]],
+      count: ['', [Validators.required, Validators.maxLength(5)]],
       consumptionsFromProgram: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
       consumptionsFromOtherSources: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
       category: ['', [Validators.required, Validators.maxLength(50)]]
@@ -69,25 +69,25 @@ export class ClientPageComponent implements OnInit {
 
   createEmptyDescriptionForm() {
     this.appDescForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
+      name: ['', [Validators.required, Validators.maxLength(250),]],
       requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(20)]],
-      organizationName: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
-      theme: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
-      requiredTime: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("(\\S)+(.)+")]],
-      coordinatorName: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("(\\S)+(.)+")]],
+      organizationName: ['', [Validators.required, Validators.maxLength(250)]],
+      theme: ['', [Validators.required, Validators.maxLength(250)]],
+      requiredTime: ['', [Validators.required, Validators.maxLength(100)]],
+      coordinatorName: ['', [Validators.required, Validators.maxLength(100)]],
       coordinatorPhone: ['', [Validators.required, Validators.pattern("(\\+?38)?([0-9]{10})")]],
       coordinatorEmail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      projectMembers: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]],
-      expirienceDescription: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
-      address: ['', [Validators.required, Validators.maxLength(250), Validators.pattern("(\\S)+(.)+")]],
-      webaddress: ['', [Validators.required, Validators.maxLength(150), Validators.pattern("(\\S)+(.)+")]],
-      goal: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]],
-      actuality: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
-      fullDescription: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
-      targetGroup: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
-      expectedResults: ['', [Validators.required, Validators.maxLength(2000), Validators.pattern("(\\S)+(.)+")]],
-      requiredPermissions: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]],
-      partners: ['', [Validators.required, Validators.maxLength(1000), Validators.pattern("(\\S)+(.)+")]]
+      projectMembers: ['', [Validators.required, Validators.maxLength(1000)]],
+      expirienceDescription: ['', [Validators.required, Validators.maxLength(2000)]],
+      address: ['', [Validators.required, Validators.maxLength(250)]],
+      webaddress: ['', [Validators.required, Validators.maxLength(150)]],
+      goal: ['', [Validators.required, Validators.maxLength(1000)]],
+      actuality: ['', [Validators.required, Validators.maxLength(2000)]],
+      fullDescription: ['', [Validators.required, Validators.maxLength(2000)]],
+      targetGroup: ['', [Validators.required, Validators.maxLength(2000)]],
+      expectedResults: ['', [Validators.required, Validators.maxLength(2000)]],
+      requiredPermissions: ['', [Validators.required, Validators.maxLength(1000)]],
+      partners: ['', [Validators.required, Validators.maxLength(1000)]]
     })
   }
 
@@ -109,12 +109,10 @@ export class ClientPageComponent implements OnInit {
   }
 
   submitCostItemForm() {
-
     let field = this.appCostItem.value;
     this.addCostItemByCategory(field);
     this.appCostItem.reset();
     this.calculations = this.clientService.calculateBudget(this.budget);
-
   }
 
   private addCostItemByCategory(field: any) {
@@ -192,22 +190,18 @@ export class ClientPageComponent implements OnInit {
       case this.costItemCategories[4].value: {
         this.budget.costItemsAdministrative.splice(i, 1);
         break;
-
       }
       case this.costItemCategories[5].value: {
         this.budget.costItemsAdvertising.splice(i, 1);
         break;
-
       }
       case this.costItemCategories[6].value: {
         this.budget.costItemsMaterial.splice(i, 1);
         break;
-
       }
       case this.costItemCategories[7].value: {
         this.budget.costItemsOthers.splice(i, 1);
         break;
-
       }
       default: {
         break;
@@ -217,41 +211,67 @@ export class ClientPageComponent implements OnInit {
   }
 
   confirmProjectApplication() {
-
-
     this.projectApplication = new ProjectApplication(this.budget, this.description, true);
     this.clientService.saveApplication(this.projectApplication)
-      .then(data => this.clientService.uploadFiles(data.id, this.images, this.pdfDocs).subscribe(data => {
-        alert("uploading was successful");
+      .then(data => {
+        this.uploadAttachments(data.id);
+        this.displayDescriptionForm = true;
+        this.displayDescription = false;
+        this.displayCostItemForm = false;
+        this.projectApplication = null;
+        this.calculations = null;
+        this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
+          new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
+      }).catch(err => this.handlePromiseError(err));
+  }
+
+  private uploadAttachments(id: string): void {
+    if (this.images.length > 0 || this.pdfDocs.length > 0) {
+      this.clientService.uploadFiles(id, this.images, this.pdfDocs).subscribe(data => {
+        alert("Заявку збережено");
         this.images = new Array<File>();
         this.pdfDocs = new Array<File>();
-      })).catch(err => this.handlePromiseError(err));;
-
-
+      }, err => alert(err.status)
+      )
+    }
   }
 
   saveImagesToUpload(event) {
     this.images = new Array<File>();
     for (let image of event.target.files) {
-      this.images.push(image);
+      if (this.images.length > 4) {
+        alert('Дозволено завантаужвати не більше 5 фотографій');
+        break;
+      }
+      if (image.size <= 10240000) {
+        this.images.push(image);
+      } else {
+        alert('Розмір фотографії не повинен перервищувати 10мб, спробуйте ще раз');
+      }
     }
   }
 
   savePdfToUpload(event) {
     this.pdfDocs = new Array<File>();
     for (let pdf of event.target.files) {
-      this.pdfDocs.push(pdf);
+      if (this.pdfDocs.length > 4) {
+        alert('Дозволено завантаужвати не більше 5 документів');
+        break;
+      }
+      if (pdf.size <= 10240000) {
+        this.pdfDocs.push(pdf);
+      } else {
+        alert('Розмір документу не повинен перервищувати 10мб, спробуйте ще раз');
+      }
     }
   }
 
 
   sentApplicationToReview() {
-
     this.projectApplication = new ProjectApplication(this.budget, this.description, false);
   }
 
   private handlePromiseError(err): void {
-
     alert('Щось пішло не так, повторіть спробу пізніше' + err.status);
   }
 }

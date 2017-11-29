@@ -18,26 +18,23 @@ export class ClientService {
     this.baseUrl = 'http://localhost:8082/citygrants/client/project';
   }
 
-  saveApplication(projectApplicationForm: ProjectApplication): Promise<any>{
+  saveApplication(projectApplicationForm: ProjectApplication): Promise<any> {
     return this.http.post(this.baseUrl, projectApplicationForm).toPromise().catch(err => this.handlePromiseError(err));
-  
-    
   }
 
   uploadFiles(projectId: string, images: Array<File>, pdfs: Array<File>): Observable<any> {
 
     let headers = new HttpHeaders();
-    let formData = new FormData();   
+    let formData = new FormData();
 
-   
     formData.append('id', projectId);
+
     for (let i = 0; i < images.length; i++) {
       formData.append('images', images[i]);
     }
     for (let i = 0; i < pdfs.length; i++) {
       formData.append('pdfDocs', pdfs[i]);
     }
-
     return this.http.post(this.baseUrl + "/file", formData, { responseType: 'text' });
   }
 
@@ -92,7 +89,7 @@ export class ClientService {
 
   private handlePromiseError(err): Promise<any> {
 
-    return Promise.reject(err.message || err);
+    return Promise.reject(err);
   }
 
 
