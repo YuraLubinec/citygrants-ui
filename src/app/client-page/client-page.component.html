@@ -525,10 +525,15 @@
   <button (click)="sentApplicationToReview">Відіслати для отримання консультації</button>
 </ng-container>
 <label class="btn btn-primary">
-  <input type="file" style="display: none;" multiple="true" (change)="savePdfToUpload($event)" accept=".jpg, .png">
+  <input type="file" style="display: none;" multiple="true" (change)="saveImagesToUpload($event)" accept=".jpg, .png">
   <span>Donwnload images</span>
 </label>
 <label class="btn btn-primary">
-  <input type="file" style="display: none;" multiple="true" (change)="saveImagesToUpload($event)" accept=".pdf">
+  <input type="file" style="display: none;" multiple="true" (change)="savePdfToUpload($event)" accept=".pdf">
   <span>Donwload pdf</span>
 </label>
+<div *ngIf="images.length > 0 || pdfDocs.length > 0">
+  Завантажені файли:
+  <p *ngFor="let image of images">{{image.name}}</p>
+  <p *ngFor="let pdf of pdfDocs">{{pdf.name}}</p>
+</div>
