@@ -8,6 +8,9 @@ import { ClientPageComponent } from './client-page/client-page.component';
 import { JuryPageComponent } from "./jury-page/jury-page.component";
 import { RoutingModule } from "./routing/routing.module";
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +18,7 @@ import { RoutingModule } from "./routing/routing.module";
     JuryPageComponent,
   ],
   imports: [
-    BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule
+    BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
