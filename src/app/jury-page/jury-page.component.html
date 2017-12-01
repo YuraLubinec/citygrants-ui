@@ -1,6 +1,5 @@
 <div class="jury-table-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
-
         <!-- Name of project Column -->
         <ng-container matColumnDef="nameOfProject">
         <mat-header-cell *matHeaderCellDef> Назва проекту</mat-header-cell>
@@ -34,4 +33,9 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <mat-paginator #paginator
+        [length]="length"    
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
 </div>

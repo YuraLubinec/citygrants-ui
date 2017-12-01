@@ -14,9 +14,7 @@ export class JuryService {
     this.baseUrl = 'http://localhost:8082/citygrants/client/project';
   }
 
-  getAllProjects(): Observable<any> {
-    console.log("service running")
-    return this.http.get(this.baseUrl);
+  getAllProjects(): Observable<any> {return this.http.get(this.baseUrl);
   }
 
   private handlePromiseError(err): Promise<any> {return Promise.reject(err);}
