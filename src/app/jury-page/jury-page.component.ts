@@ -36,6 +36,9 @@ export class JuryPageComponent implements OnInit {
     this.pageSize = 5;
 
     this.dataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Кількість елементів на сторінці';
+    this.paginator._intl.nextPageLabel = 'Наступна сторінка';
+    this.paginator._intl.previousPageLabel = 'Попердня сторінка';
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {
