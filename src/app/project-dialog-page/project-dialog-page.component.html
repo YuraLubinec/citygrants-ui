@@ -1,0 +1,75 @@
+<mat-tab-group>
+    <mat-tab label="Опис">
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Назва">
+                    <p>{{projectDescription.name}}</p>
+                </mat-tab>
+                <mat-tab label="Запитувана сума">
+                    <p>{{projectDescription.requestedBudget}} грн.</p>
+                </mat-tab>
+                <mat-tab label="Назва організації або ініціативної групи">
+                    <p>{{projectDescription.organizationName}}</p>
+                </mat-tab>
+                <mat-tab label="Тематичний напрямок">
+                    <p>{{projectDescription.theme}}</p>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+
+        <mat-card>
+                <mat-tab-group>
+                    <mat-tab label="Координатор/ка проекту">
+                        <p>{{projectDescription.coordinatorName}}</p>
+                    </mat-tab>
+                    <mat-tab label="Координатор/ка проекту (моб.тел.)">
+                        <p>{{projectDescription.coordinatorPhone}}</p>
+                    </mat-tab>
+                    <mat-tab label="Координатор/ка проекту (електронна адреса)">
+                        <p>{{projectDescription.coordinatorEmail}}</p>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+
+        <mat-form-field>
+                <input matInput placeholder="Команда проекту" disabled value={{projectDescription.projectMembers}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Попередній досвід команди проекту" disabled value={{projectDescription.expirienceDescription}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Адреса організації " disabled value={{projectDescription.address}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Мета проекту" disabled value={{projectDescription.goal}}>
+        </mat-form-field>
+
+        <mat-form-field>
+                <input matInput placeholder="Актуальність проекту" disabled value={{projectDescription.actuality}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Опис проекту" disabled value={{projectDescription.fullDescription}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Цільові групи" disabled value={{projectDescription.targetGroup}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Очікувані результати проекту" disabled value={{projectDescription.expectedResults}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Погодження та дозволи, необхідні для втілення проекту" disabled value={{projectDescription.requiredPermissions}}>
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Партнери та спонсори " disabled value={{projectDescription.partners}}>
+        </mat-form-field>
+
+        <mat-form-field>
+                <input matInput placeholder="Термін втілення проекту " disabled value={{projectDescription.requiredTime}}>
+        </mat-form-field>
+
+    </mat-tab>
+    <mat-tab label="Б'юджет">
+      <h1>Some more tab content</h1>
+      <p>...</p>
+    </mat-tab>
+  </mat-tab-group>

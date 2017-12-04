@@ -1,7 +1,8 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
 import { JuryService } from '../services/jury.service';
 import { ProjectApplication } from '../models/projectApplication';
-import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent, MatDialog,MAT_DIALOG_DATA} from '@angular/material';
+import { JuryDialogPageComponent } from '../project-dialog-page/project-dialog-page.component';
 
 @Component({
   selector: 'app-jury-page',
@@ -15,13 +16,12 @@ export class JuryPageComponent implements OnInit {
   private projects : Array<ProjectApplication>;
   private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal'];
   private dataSource : any;
-
   private length : Number;
   private pageSize : Number;
   private pageSizeOptions = [5, 10, 25, 50];
-  pageEvent: PageEvent;
+  private pageEvent: PageEvent;
 
-  constructor(private juryService: JuryService) {
+  constructor(private juryService: JuryService,public dialog:MatDialog) {
     this.juryService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
   }
 
@@ -44,6 +44,20 @@ export class JuryPageComponent implements OnInit {
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
+
+  selectRow(row) {
+    
+    console.log(row);
+
+    const dialogRef = this.dialog.open(JuryDialogPageComponent, {
+      data: row,
+      height: '1000px',
+      width: '1000px',
+      
+    });
+
+  }
+  
 
   private searchErrorHandler(error: any) {
     console.log(error);
