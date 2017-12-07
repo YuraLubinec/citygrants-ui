@@ -80,7 +80,22 @@
         </mat-card>
     </mat-tab>
     <mat-tab label="Б'юджет">
-      <h1>Some more tab content</h1>
-      <p>...</p>
+        
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Комісія за витрати">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalFeeFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalFeeFromOtherSources}} грн.</p>     
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
     </mat-tab>
   </mat-tab-group>

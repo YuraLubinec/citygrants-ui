@@ -14,10 +14,11 @@ export class JuryDialogPageComponent {
 
     private projectDescription:any;
     private projectBudget:any;
-    private projcet:any;
     
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
         this.projectDescription = data.description;
         this.projectBudget = data.budget;
+        console.log(this.projectBudget);
+        console.log(data);
     }
 }
