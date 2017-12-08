@@ -169,4 +169,16 @@
         </ul>    
     </mat-tab>
   </mat-tab-group>
-  <p>asdfasdfasdf</p>
+  <mat-card class="">
+    <mat-card-content>
+      <h4 class="eval-actual">Актуальність</h4>
+      <mat-slider
+            [max]=10
+            [step]=0.5
+            [thumb-label]=true
+            [tick-interval]=2
+            [(ngModel)]="evalActual">
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
+  <p>Коментарі</p>

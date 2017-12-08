@@ -1,4 +1,4 @@
-import { OnInit, Component, Inject } from "@angular/core";
+import { OnInit, Component, Inject, ViewEncapsulation } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material";
 
 
@@ -6,7 +6,8 @@ import { MAT_DIALOG_DATA } from "@angular/material";
     selector: 'app-project-dialog-page',
     templateUrl: './project-dialog-page.component.html',
     styleUrls: ['./project-dialog-page.component.css'],
-    providers: []
+    encapsulation: ViewEncapsulation.None,
+    preserveWhitespaces: false,
   })
 
 
@@ -14,11 +15,11 @@ export class JuryDialogPageComponent {
 
     private projectDescription:any;
     private projectBudget:any;
+
+    private evalActual:Number;
     
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
         this.projectDescription = data.description;
         this.projectBudget = data.budget;
-        console.log(this.projectBudget);
-        console.log(data);
     }
 }
