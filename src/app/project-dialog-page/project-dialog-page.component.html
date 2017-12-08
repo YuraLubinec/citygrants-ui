@@ -95,7 +95,78 @@
                     <p>Загальна сума витрати на програму : {{projectBudget.totalFeeFromProgram}} грн.</p>
                     <p>Загальна сума витрати з інших джерел : {{projectBudget.totalFeeFromOtherSources}} грн.</p>     
                 </mat-tab>
+                <mat-tab label="Tранспортні витрати">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalTransportFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalTransportFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість харчування">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalNutritionFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalNutritionFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість оренди">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalRentFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalRentFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість пунктів адміністрування">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalAdministrativeFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdministrativeFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість елементів реклами">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>     
+                </mat-tab>
             </mat-tab-group>
         </mat-card>
+        <h4>Загальна сума б'юджету</h4>
+        <ul>
+            <li>Загальна кількість матеріалів за програмою : {{projectBudget.totalMaterialsFromProgram}}</li>
+            <li>Загальні матеріали з інших джерел : {{projectBudget.totalMaterialsFromOtherSources}}</li>
+            <li>Вартість інших речей : {{projectBudget.costItemsOthers}}</li>
+            <li>Витарати на інше : {{projectBudget.totalOthersFromProgram}} грн.</li>
+            <li>Загальані витрати з інших джерел : {{projectBudget.totalOthersFromOtherSources}} грн.</li>
+            <li>Загальна кількість інших з інших джерел : {{projectBudget.totalFromOtherSources}} грн.</li>
+            <hr>
+        </ul>    
     </mat-tab>
   </mat-tab-group>
+  <p>asdfasdfasdf</p>
