@@ -169,16 +169,148 @@
         </ul>    
     </mat-tab>
   </mat-tab-group>
-  <mat-card class="">
-    <mat-card-content>
-      <h4 class="eval-actual">Актуальність</h4>
-      <mat-slider
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Актуальність</mat-panel-title>
+        <mat-panel-description>
+            наскільки проект необхідний і важливий для міста в сьогоднішніх умовах
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <mat-slider
             [max]=10
             [step]=0.5
             [thumb-label]=true
             [tick-interval]=2
             [(ngModel)]="evalActual">
-      </mat-slider>
-    </mat-card-content>
-  </mat-card>
+        </mat-slider>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Наступна</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Зрозумілість</mat-panel-title>
+        <mat-panel-description>
+            - чи є чітка механіка реалізації?
+            - чи логічно вибудувана послідовність реалізації проекту?
+            - чіткість визначення показників досягнення результату
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <mat-slider
+            [max]=10
+            [step]=0.5
+            [thumb-label]=true
+            [tick-interval]=2
+            [(ngModel)]="evalIntelligibility">
+        </mat-slider>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Попередня</button>
+        <button mat-button color="primary" (click)="nextStep()">Наступна</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Компетентність</mat-panel-title>
+          <mat-panel-description>
+            - кваліфікація виконавців, загальна адміністративна та технічна спроможність
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-slider
+              [max]=10
+              [step]=0.5
+              [thumb-label]=true
+              [tick-interval]=2
+              [(ngModel)]="evalCompetence">
+          </mat-slider>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Попередня</button>
+          <button mat-button color="primary" (click)="nextStep()">Наступна</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Стійкість</mat-panel-title>
+          <mat-panel-description>
+            - чи наявна модель самопідтримки?
+            - як довго проект працюватиме/існуватиме?            
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-slider
+              [max]=10
+              [step]=0.5
+              [thumb-label]=true
+              [tick-interval]=2
+              [(ngModel)]="evalStability">
+          </mat-slider>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Попередня</button>
+          <button mat-button color="primary" (click)="nextStep()">Наступна</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Витрати/ефективність</mat-panel-title>
+          <mat-panel-description>
+            -  обґрунтованість запланованих витрат та необхідних ресурсів у співвідношенні до очікуваних результатів           
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-slider
+              [max]=10
+              [step]=0.5
+              [thumb-label]=true
+              [tick-interval]=2
+              [(ngModel)]="evalEfficiency">
+          </mat-slider>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Попередня</button>
+          <button mat-button color="primary" (click)="nextStep()">Наступна</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Інноваційність</mat-panel-title>
+          <mat-panel-description>
+            - в чому інноваційність проекту: інновація цінності, технологічна  інновація, нова бізнес модель, і т.д.
+            - чи існують схожі проекти? в чому унікальність проекту?            
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-slider
+              [max]=10
+              [step]=0.5
+              [thumb-label]=true
+              [tick-interval]=2
+              [(ngModel)]="evalInnovation">
+          </mat-slider>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Попередня</button>
+          <button mat-button color="primary" (click)="nextStep()">Наступна</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Залучення</mat-panel-title>
+          <mat-panel-description>
+            - спроможність запланованої діяльності активізувати участь безпосередніх отримувачів корисного ефекту проекту чи громадськості загалом           
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <mat-slider
+              [max]=10
+              [step]=0.5
+              [thumb-label]=true
+              [tick-interval]=2
+              [(ngModel)]="evalAttracting">
+          </mat-slider>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Попередня</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+
   <p>Коментарі</p>

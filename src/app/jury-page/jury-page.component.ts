@@ -51,13 +51,11 @@ export class JuryPageComponent implements OnInit {
 
     const dialogRef = this.dialog.open(JuryDialogPageComponent, {
       data: row,
-
-      
+      height: '1000px'
     });
 
   }
   
-
   private searchErrorHandler(error: any) {
     console.log(error);
     alert("Вході виконання програми виникла помилка, спробуйте пізніше");
