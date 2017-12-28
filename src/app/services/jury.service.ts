@@ -11,10 +11,11 @@ export class JuryService {
 
   constructor(private http: HttpClient) {
 
-    this.baseUrl = 'http://localhost:8082/citygrants/client/project';
+    this.baseUrl = 'http://localhost:8082/citygrants/jury/project';
   }
 
-  getAllProjects(): Observable<any> {return this.http.get(this.baseUrl);
+  getAllProjects(): Observable<any> {
+    return this.http.get(this.baseUrl);
   }
 
   private handlePromiseError(err): Promise<any> {return Promise.reject(err);}
