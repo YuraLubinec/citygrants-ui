@@ -1,5 +1,8 @@
 import { OnInit, Component, Inject, ViewEncapsulation } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material";
+import { Evaluation } from "../models/evaluation";
+import { Description } from "../models/description";
+import { Budget } from "../models/budget";
 
 
 @Component({
@@ -13,34 +16,25 @@ import { MAT_DIALOG_DATA } from "@angular/material";
 
 export class JuryDialogPageComponent {
 
-    private projectDescription:any;
-    private projectBudget:any;
-    private evalActual:Number;
-    private evalIntelligibility:Number;
-    private evalCompetence:Number;
-    private evalStability:Number;
-    private evalEfficiency:Number;
-    private evalInnovation:Number;
-    private evalEvalAttracting:Number;
-    private evalСooperation:Number;
-
+    private projectDescription:Description;
+    private projectBudget:Budget;
+    private evalution:Evaluation;
     private step = 0;
     
     constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
         this.projectDescription = data.description;
         this.projectBudget = data.budget;
+        this.evalution = this.getJuryEvalution(data.evalutions);
+        console.log("constract");
         this.step = 0;
     }
 
-    setStep(index: number) {
-        this.step = index;
-      }
-    
-      nextStep() {
-        this.step++;
-      }
-    
-      prevStep() {
-        this.step--;
-      }
+     getJuryEvalution(evalutions:Array<Evaluation>) {
+      console.log(evalutions);
+      return evalutions == null ? this.getDefaultEvalution():evalutions.find(x => x.juryMemberId == "150"); 
+    }
+
+    getDefaultEvalution(){
+      return new Evaluation("150","Default",5,5,6,2,10,1,5,10)
+    }
 }

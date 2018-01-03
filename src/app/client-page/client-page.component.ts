@@ -8,6 +8,7 @@ import { Budget } from '../models/budget';
 import { CostItem } from '../models/costItem';
 import { CostItemCategory } from '../models/costItemCategory';
 import { BudgetCalculations } from '../models/budgetCalculations'
+import { Evaluation } from '../models/evaluation';
 
 @Component({
   selector: 'app-client-page',
@@ -30,6 +31,7 @@ export class ClientPageComponent implements OnInit {
   private costItemCategories: Array<CostItemCategory>;
   private images: Array<File>;
   private pdfDocs: Array<File>;
+  private evalutions:Array<Evaluation>;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
@@ -211,7 +213,7 @@ export class ClientPageComponent implements OnInit {
   }
 
   confirmProjectApplication() {
-    this.projectApplication = new ProjectApplication(this.budget, this.description, true);
+    this.projectApplication = new ProjectApplication(this.budget, this.description, true, this.evalutions);
     this.clientService.saveApplication(this.projectApplication)
       .then(data => {
         this.uploadAttachments(data.id);
@@ -268,7 +270,7 @@ export class ClientPageComponent implements OnInit {
 
 
   sentApplicationToReview() {
-    this.projectApplication = new ProjectApplication(this.budget, this.description, false);
+    this.projectApplication = new ProjectApplication(this.budget, this.description, false, this.evalutions);
   }
 
   private handlePromiseError(err): void {

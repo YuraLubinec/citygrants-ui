@@ -46,9 +46,6 @@ export class JuryPageComponent implements OnInit {
   }
 
   selectRow(row) {
-    
-    console.log(row);
-
     const dialogRef = this.dialog.open(JuryDialogPageComponent, {
       data: row,
       height: '1000px'
@@ -57,7 +54,6 @@ export class JuryPageComponent implements OnInit {
   }
   
   private searchErrorHandler(error: any) {
-    console.log(error);
     alert("Вході виконання програми виникла помилка, спробуйте пізніше");
   }
   
