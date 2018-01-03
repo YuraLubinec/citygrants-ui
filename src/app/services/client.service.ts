@@ -89,6 +89,8 @@ export class ClientService {
 
   private handlePromiseError(err): Promise<any> {
 
+
+    //TO-DO implement unique name validation error notification
     return Promise.reject(err);
   }
 
