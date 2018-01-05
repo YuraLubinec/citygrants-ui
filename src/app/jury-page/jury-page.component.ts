@@ -22,7 +22,7 @@ export class JuryPageComponent implements OnInit {
   private pageSizeOptions = [5, 10, 25, 50];
   private pageEvent: PageEvent;
 
-  constructor(private juryService: JuryService,public dialog:MatDialog) {
+  constructor(private juryService: JuryService, public dialog:MatDialog) {
     this.juryService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
   }
 
