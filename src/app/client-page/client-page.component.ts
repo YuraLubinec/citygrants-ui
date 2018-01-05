@@ -31,7 +31,6 @@ export class ClientPageComponent implements OnInit {
   private costItemCategories: Array<CostItemCategory>;
   private images: Array<File>;
   private pdfDocs: Array<File>;
-  private evalutions:Array<Evaluation>;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
@@ -213,7 +212,7 @@ export class ClientPageComponent implements OnInit {
   }
 
   confirmProjectApplication() {
-    this.projectApplication = new ProjectApplication(this.budget, this.description, true, this.evalutions);
+    this.projectApplication = new ProjectApplication(this.budget, this.description, true);
     this.clientService.saveApplication(this.projectApplication)
       .then(data => {
         this.uploadAttachments(data.id);
@@ -270,7 +269,7 @@ export class ClientPageComponent implements OnInit {
 
 
   sentApplicationToReview() {
-    this.projectApplication = new ProjectApplication(this.budget, this.description, false, this.evalutions);
+    this.projectApplication = new ProjectApplication(this.budget, this.description, false);
   }
 
   private handlePromiseError(err): void {

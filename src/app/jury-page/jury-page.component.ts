@@ -3,6 +3,7 @@ import { JuryService } from '../services/jury.service';
 import { ProjectApplication } from '../models/projectApplication';
 import {MatPaginator, MatTableDataSource, PageEvent, MatDialog,MAT_DIALOG_DATA} from '@angular/material';
 import { JuryDialogPageComponent } from '../project-dialog-page/project-dialog-page.component';
+import { ProjectApplJury } from '../models/projectApplJury';
 
 @Component({
   selector: 'app-jury-page',
@@ -13,7 +14,7 @@ import { JuryDialogPageComponent } from '../project-dialog-page/project-dialog-p
 
 export class JuryPageComponent implements OnInit {
 
-  private projects : Array<ProjectApplication>;
+  private projects : Array<ProjectApplJury>;
   private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal'];
   private dataSource : any;
   private length : Number;
@@ -30,7 +31,8 @@ export class JuryPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private dataHandler(projects: any){
-    this.projects = projects as Array<ProjectApplication>;
+    this.projects = projects as Array<ProjectApplJury>;
+    console.log(projects);
     this.dataSource = new MatTableDataSource(this.projects);
     this.length = this.projects.length;
     this.pageSize = 5;
