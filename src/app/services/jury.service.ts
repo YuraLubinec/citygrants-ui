@@ -3,14 +3,13 @@ import { ProjectApplication } from '../models/projectApplication';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Evaluation } from '../models/evaluation';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class JuryService {
 
   private baseUrl: string;
   private juryId = '15';
-  private foods:Object;
-
 
   constructor(private http: HttpClient) {
 
@@ -22,8 +21,15 @@ export class JuryService {
   }
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
-    this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise();
+    this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
   }
 
-  private handlePromiseError(err): Promise<any> {return Promise.reject(err);}
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      console.error(error);
+
+      return of(result as T);
+    };
+  }
 }
