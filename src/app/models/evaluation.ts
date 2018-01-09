@@ -9,7 +9,7 @@ export class Evaluation{
     evalEfficiency      :Number;
     evalInnovation      :Number;
     evalAttracting      :Number;
-    evalCooperation     :Number;
+    evalParticipation     :Number;
 
     constructor(
         juryMemberId?        :String, 
@@ -21,7 +21,7 @@ export class Evaluation{
         evalEfficiency?      :Number,
         evalInnovation?      :Number,
         evalEvalAttracting?  :Number,
-        evalCooperation?     :Number){
+        evalParticipation?   :Number){
 
         this.juryMemberId        = juryMemberId;
         this.juryMemberName      = juryMemberName;
@@ -32,6 +32,6 @@ export class Evaluation{
         this.evalEfficiency      = evalStability;
         this.evalInnovation      = evalInnovation;
         this.evalAttracting      = evalEvalAttracting;
-        this.evalCooperation     = evalCooperation;
+        this.evalParticipation   = evalParticipation;
     }
 }

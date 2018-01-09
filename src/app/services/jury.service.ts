@@ -9,6 +9,7 @@ export class JuryService {
 
   private baseUrl: string;
   private juryId = '15';
+  private foods:Object;
 
 
   constructor(private http: HttpClient) {
@@ -20,10 +21,8 @@ export class JuryService {
     return this.http.get(this.baseUrl + this.juryId);
   }
 
-  updateEvaluationOfProject(idProject:String, evaluation: Evaluation): Promise<any> {
-    console.log(idProject);
-    console.log(evaluation);
-    return this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise().catch(err => this.handlePromiseError(err));
+  updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
+    this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise();
   }
 
   private handlePromiseError(err): Promise<any> {return Promise.reject(err);}

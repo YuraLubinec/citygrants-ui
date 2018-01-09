@@ -32,7 +32,6 @@ export class JuryPageComponent implements OnInit {
 
   private dataHandler(projects: any){
     this.projects = projects as Array<ProjectApplJury>;
-    console.log(projects);
     this.dataSource = new MatTableDataSource(this.projects);
     this.length = this.projects.length;
     this.pageSize = 5;
@@ -52,7 +51,6 @@ export class JuryPageComponent implements OnInit {
       data: row,
       height: '1000px'
     });
-
   }
   
   private searchErrorHandler(error: any) {

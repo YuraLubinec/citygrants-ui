@@ -29,12 +29,10 @@ export class JuryDialogPageComponent {
         this.projectBudget      = data.budget;
         this.evaluation         = data.evaluation;
         this.step = 0;
-        console.log(data)
     }
 
     saveEvaluation(){
       this.evaluation.juryMemberId = '15';
-
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
     }
 }
