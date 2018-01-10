@@ -9,7 +9,7 @@ export class Evaluation{
     evalEfficiency      :Number;
     evalInnovation      :Number;
     evalAttracting      :Number;
-    evalParticipation     :Number;
+    evalParticipation   :Number;
 
     constructor(
         juryMemberId?        :String, 

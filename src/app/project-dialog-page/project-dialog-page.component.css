@@ -1,18 +1,14 @@
 .eval-actual {
     margin: 10px;
   }
-  
-  .example-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: 60px;
-  }
-  
-  .example-margin {
-    margin: 10px;
-  }
-  
+
   .mat-slider-horizontal {
-    width: 300px;
+    width: 80%;
   }
+  .evluation-btn {
+    margin-top: 10px;
+  }
+
+.comment-container > * {
+  width: 100%;
+}

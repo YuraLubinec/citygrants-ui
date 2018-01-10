@@ -327,7 +327,14 @@
                     </mat-slider>
                 </mat-card-actions>
             </mat-card>
-            <button (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання</button>
         </mat-accordion>
+        <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання</button>
     </mat-tab>
   </mat-tab-group>
+  <h3><b>Коментарі</b></h3>
+  <div class="comment-container">
+    <mat-form-field>
+        <textarea matInput placeholder="Коментар"></textarea>
+    </mat-form-field>  
+  </div>
+  <button  mat-raised-button color="primary">Відправити</button> 

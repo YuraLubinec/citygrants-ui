@@ -21,6 +21,7 @@ export class JuryDialogPageComponent {
     private projectDescription :Description;
     private projectBudget      :Budget;
     private evaluation         :Evaluation;
+    private comments           :Array<Comment>;
     private step = 0;
     
     constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -28,6 +29,7 @@ export class JuryDialogPageComponent {
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;
         this.evaluation         = data.evaluation;
+        this.comments           = data.comments;
         this.step = 0;
     }
 
