@@ -8,7 +8,10 @@
   .evluation-btn {
     margin-top: 10px;
   }
+  .comment-container{
+    margin-top: 10px;
+  }
 
-.comment-container > * {
+.comment-send-container > * {
   width: 100%;
 }

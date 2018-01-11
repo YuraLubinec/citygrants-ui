@@ -4,7 +4,7 @@ import { Evaluation } from "../models/evaluation";
 import { Description } from "../models/description";
 import { Budget } from "../models/budget";
 import { JuryService } from "../services/jury.service";
-
+import { Comment } from "../models/comment";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -22,19 +22,27 @@ export class JuryDialogPageComponent {
     private projectBudget      :Budget;
     private evaluation         :Evaluation;
     private comments           :Array<Comment>;
-    private step = 0;
+    private comment            :Comment;
+    private step               = 0;
     
     constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any) {
         this.id                 = data.id;
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;
         this.evaluation         = data.evaluation;
-        this.comments           = data.comments;
-        this.step = 0;
+        this.comments           = data.comments.reverse();
+        this.comment            = new Comment('','','');
+        this.step               = 0;
     }
 
     saveEvaluation(){
       this.evaluation.juryMemberId = '15';
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
     }
+
+    saveComment(){
+        this.comment.userId = '150';
+        this.comment.userName = "Dmytro Andrusiv";
+        this.juryService.saveCommentOfProject(this.id, this.comment);
+      }
 }

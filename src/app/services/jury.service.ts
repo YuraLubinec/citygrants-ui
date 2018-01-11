@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProjectApplication } from '../models/projectApplication';
+import { Comment } from "../models/comment";
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Evaluation } from '../models/evaluation';
@@ -22,6 +23,10 @@ export class JuryService {
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
     this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
+  }
+
+  saveCommentOfProject(idProject:String, comment: Comment){
+    this.http.post(this.baseUrl + idProject + "/comment", comment).toPromise().catch(this.handleError);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
