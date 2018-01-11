@@ -334,13 +334,13 @@
   <h3><b>Коментарі</b></h3>
   <div class="comment-send-container">
     <mat-form-field>
-        <textarea [(ngModel)]="comment.text" matInput placeholder="Коментар"></textarea>
+        <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
     </mat-form-field>  
   </div>
   <button (click)="saveComment()"  mat-raised-button color="primary">Відправити</button>
 
   <div class="comment-container">  
-    <mat-card *ngFor="let comment of comments" class="comment-card">
+    <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">
         <mat-card-header>
           <mat-card-subtitle>{{comment.userName}}</mat-card-subtitle>
         </mat-card-header>

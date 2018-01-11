@@ -1,10 +1,11 @@
-import { OnInit, Component, Inject, ViewEncapsulation } from "@angular/core";
+import { OnInit, Component, Inject, ViewEncapsulation, Directive, ViewChildren, QueryList } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material";
 import { Evaluation } from "../models/evaluation";
 import { Description } from "../models/description";
 import { Budget } from "../models/budget";
 import { JuryService } from "../services/jury.service";
 import { Comment } from "../models/comment";
+import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -15,25 +16,32 @@ import { Comment } from "../models/comment";
     preserveWhitespaces: false,
   })
 
-
 export class JuryDialogPageComponent {
+    [x: string]: any;
     private id                 :String;
     private projectDescription :Description;
     private projectBudget      :Budget;
     private evaluation         :Evaluation;
     private comments           :Array<Comment>;
     private comment            :Comment;
+    private commentText        :string;
     private step               = 0;
+
+    @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any) {
         this.id                 = data.id;
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;
         this.evaluation         = data.evaluation;
-        this.comments           = data.comments.reverse();
-        this.comment            = new Comment('','','');
+        this.comments           = data.comments;
+        this.commentText        = "";
         this.step               = 0;
     }
+
+    ngAfterViewInit() {
+        this.arrComments.changes.subscribe(c => {});
+      }
 
     saveEvaluation(){
       this.evaluation.juryMemberId = '15';
@@ -41,8 +49,9 @@ export class JuryDialogPageComponent {
     }
 
     saveComment(){
-        this.comment.userId = '150';
-        this.comment.userName = "Dmytro Andrusiv";
-        this.juryService.saveCommentOfProject(this.id, this.comment);
+        const tempComment = new Comment("145","SomeUser", this.commentText);
+        this.juryService.saveCommentOfProject(this.id, tempComment);
+        this.comments.push(tempComment);
+        this.commentText = "";
       }
 }
