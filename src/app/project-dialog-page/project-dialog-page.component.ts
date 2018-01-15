@@ -37,6 +37,8 @@ export class JuryDialogPageComponent {
         this.comments           = data.comments;
         this.commentText        = "";
         this.step               = 0;
+
+        console.log(data);
     }
 
     ngAfterViewInit() {
@@ -44,12 +46,12 @@ export class JuryDialogPageComponent {
       }
 
     saveEvaluation(){
-      this.evaluation.juryMemberId = '15';
+      this.evaluation.juryMemberId = '19';
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
     }
 
     saveComment(){
-        const tempComment = new Comment("145","SomeUser", this.commentText);
+        const tempComment = new Comment("145","ЯкийсьЮзер", this.commentText);
         this.juryService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";
