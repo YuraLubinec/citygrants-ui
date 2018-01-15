@@ -1,5 +1,4 @@
 export class FileInfo {
-    
     id      : String;
     filename: String;
     

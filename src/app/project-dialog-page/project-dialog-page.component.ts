@@ -6,6 +6,7 @@ import { Budget } from "../models/budget";
 import { JuryService } from "../services/jury.service";
 import { Comment } from "../models/comment";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
+import { FileInfo } from "../models/fileInfo";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -24,6 +25,7 @@ export class JuryDialogPageComponent {
     private evaluation         :Evaluation;
     private comments           :Array<Comment>;
     private comment            :Comment;
+    private filesInfo          :Array<FileInfo>;
     private commentText        :string;
     private step               = 0;
 
@@ -35,6 +37,7 @@ export class JuryDialogPageComponent {
         this.projectBudget      = data.budget;
         this.evaluation         = data.evaluation;
         this.comments           = data.comments;
+        this.filesInfo          = data.filesInfo;
         this.commentText        = "";
         this.step               = 0;
 

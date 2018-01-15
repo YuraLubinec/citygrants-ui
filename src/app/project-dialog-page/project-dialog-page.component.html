@@ -330,6 +330,9 @@
         </mat-accordion>
         <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання</button>
     </mat-tab>
+    <mat-tab label="Прикріплені файли">
+        <mat-card  *ngFor="let fileInfo of filesInfo "  >{{fileInfo.filename}}</mat-card>
+    </mat-tab>
   </mat-tab-group>
   <h3><b>Коментарі</b></h3>
   <div class="comment-send-container">
