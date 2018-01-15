@@ -331,7 +331,9 @@
         <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання</button>
     </mat-tab>
     <mat-tab label="Прикріплені файли">
-        <mat-card  *ngFor="let fileInfo of filesInfo "  >{{fileInfo.filename}}</mat-card>
+        <div class = "attach-doc-container">
+            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="http://localhost:8082/citygrants/jury/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+        </div>
     </mat-tab>
   </mat-tab-group>
   <h3><b>Коментарі</b></h3>

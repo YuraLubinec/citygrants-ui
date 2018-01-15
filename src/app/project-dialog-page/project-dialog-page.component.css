@@ -11,6 +11,9 @@
   .comment-container{
     margin-top: 10px;
   }
+  .attach-doc-container{
+    margin-top: 10px;
+  } 
 
 .comment-send-container > * {
   width: 100%;
