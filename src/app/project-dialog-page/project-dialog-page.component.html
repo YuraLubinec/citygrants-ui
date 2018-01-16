@@ -342,7 +342,7 @@
         <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
     </mat-form-field>  
   </div>
-  <button (click)="saveComment()"  mat-raised-button color="primary">Відправити</button>
+  <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити</button>
 
   <div class="comment-container">  
     <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">

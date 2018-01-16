@@ -40,8 +40,6 @@ export class JuryDialogPageComponent {
         this.filesInfo          = data.filesInfo;
         this.commentText        = "";
         this.step               = 0;
-
-        console.log(data);
     }
 
     ngAfterViewInit() {
@@ -58,5 +56,9 @@ export class JuryDialogPageComponent {
         this.juryService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";
+      }
+
+      isDisableCommentButton(){
+        return this.commentText.length <= 0 ? true:false;
       }
 }
