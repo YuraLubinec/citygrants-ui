@@ -1,4 +1,7 @@
-<mat-card class="demo-card demo-basic">
+<mat-card class="client-cart">
+    <mat-card-header>
+      <mat-card-title>Форма для заповнення заявки</mat-card-title>
+    </mat-card-header>
     <mat-card-content>
       <div class="client-form-container">
         <form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
