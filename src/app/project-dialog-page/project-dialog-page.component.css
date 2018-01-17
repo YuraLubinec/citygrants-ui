@@ -2,18 +2,18 @@
     margin: 10px;
   }
 
-  .mat-slider-horizontal {
-    width: 80%;
-  }
-  .evluation-btn {
-    margin-top: 10px;
-  }
-  .comment-container{
-    margin-top: 10px;
-  }
-  .attach-doc-container{
-    margin-top: 10px;
-  } 
+.mat-slider-horizontal {
+  width: 80%;
+}
+.evluation-btn {
+  margin-top: 10px;
+}
+.comment-container{
+  margin-top: 10px;
+}
+.attach-doc-container{
+  margin-top: 10px;
+} 
 
 .comment-send-container > * {
   width: 100%;
