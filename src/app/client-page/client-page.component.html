@@ -1,102 +1,74 @@
-<form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
-  <div class="form-group">
-    <label class="center-block">Назва проекту:
-      <textarea class="form-control" formControlName="name"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Запитувана сума, грн.:
-      <input class="form-control" formControlName="requestedBudget">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Назва організації або ініціативної групи, що подає проект:
-      <textarea class="form-control" formControlName="organizationName"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Тематичний напрямок, під який підпадає проект:
-      <textarea class="form-control" formControlName="theme"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Термін втілення проекту:
-      <input class="form-control" formControlName="requiredTime">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Координатор/ка проекту:
-      <input class="form-control" formControlName="coordinatorName">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Координатор/ка проекту (моб.тел.):
-      <input class="form-control" formControlName="coordinatorPhone">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Координатор/ка проекту (електронна адреса):
-      <input class="form-control" formControlName="coordinatorEmail">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):
-      <textarea class="form-control" formControlName="projectMembers"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):
-      <textarea class="form-control" formControlName="expirienceDescription"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Адреса організації (якщо є):
-      <textarea class="form-control" formControlName="address"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Веб-сайт, Facebook:
-      <input class="form-control" formControlName="webaddress">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):
-      <textarea class="form-control" formControlName="goal"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):
-      <textarea class="form-control" formControlName="actuality"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у
-      рамках проекту):
-      <textarea class="form-control" formControlName="fullDescription"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):
-      <textarea class="form-control" formControlName="targetGroup"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):
-      <textarea class="form-control" formControlName="expectedResults"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Погодження та дозволи, необхідні для втілення проекту:
-      <textarea class="form-control" formControlName="requiredPermissions"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Партнери та спонсори (якщо є):
-      <textarea class="form-control" formControlName="partners"></textarea>
-    </label>
-  </div>
-  <button type="submit" [disabled]="!appDescForm.valid" class="btn btn-success">Зберегти</button>
-</form>
+<mat-card class="demo-card demo-basic">
+    <mat-card-content>
+      <div class="client-form-container">
+        <form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Назва проекту :" formControlName="name" required></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <input matInput placeholder = "Запитувана сума, грн.:" type="number" formControlName="requestedBudget" required>
+                <span matPrefix>₴&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+              <textarea matInput placeholder="Назва організації або ініціативної групи, що подає проект:"  formControlName="organizationName"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Тематичний напрямок, під який підпадає проект:" formControlName="theme"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+              <input matInput placeholder="Термін втілення проекту:" formControlName="requiredTime">
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <input matInput placeholder="Координатор/ка проекту:" formControlName="coordinatorName">
+            </mat-form-field>
+            <mat-form-field  class="full-width">   
+                <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone" required>
+                <mat-icon matPrefix>phone</mat-icon>
+            </mat-form-field>
+            <mat-form-field  class="full-width">  
+                <input matInput placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail" required>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):" formControlName="projectMembers"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):" formControlName="expirienceDescription"></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Адреса організації (якщо є):" formControlName="address"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Веб-сайт, Facebook:" formControlName="webaddress"></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):" formControlName="goal"></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):" formControlName="actuality"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у
+                рамках проекту):" formControlName="fullDescription"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):" formControlName="targetGroup"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):" formControlName="expectedResults"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Погодження та дозволи, необхідні для втілення проекту:" formControlName="requiredPermissions"></textarea>
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <textarea matInput placeholder="Партнери та спонсори (якщо є):" formControlName="partners"></textarea>
+            </mat-form-field>
+
+            <button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти</button>
+        </form>
+      </div>
+    </mat-card-content>
+</mat-card>
 
 <table *ngIf="displayDescription">
   <tr>

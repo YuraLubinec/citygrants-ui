@@ -1,0 +1,17 @@
+.client-form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .client-form-container > * {
+    width: 100%;
+  }
+  .full-width{
+    width: 100%;
+  }
+
+  .client-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
