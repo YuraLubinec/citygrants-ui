@@ -64,7 +64,9 @@
                 <textarea matInput placeholder="Партнери та спонсори (якщо є):" formControlName="partners"></textarea>
             </mat-form-field>
 
-            <button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти</button>
+            <button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти
+                <mat-icon>done</mat-icon>
+            </button>
         </form>
       </div>
     </mat-card-content>

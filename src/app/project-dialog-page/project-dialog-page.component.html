@@ -328,7 +328,9 @@
                 </mat-card-actions>
             </mat-card>
         </mat-accordion>
-        <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання</button>
+        <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
+                <mat-icon>save</mat-icon>
+        </button>
     </mat-tab>
     <mat-tab label="Прикріплені файли">
         <div class = "attach-doc-container">
@@ -342,7 +344,9 @@
         <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
     </mat-form-field>  
   </div>
-  <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити</button>
+  <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
+        <mat-icon>send</mat-icon>
+  </button>
 
   <div class="comment-container">  
     <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">
