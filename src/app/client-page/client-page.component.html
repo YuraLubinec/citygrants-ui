@@ -1,80 +1,149 @@
-<mat-card class="client-cart">
-    <mat-card-header>
-      <mat-card-title>Форма для заповнення заявки</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="client-form-container">
-        <form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
-            <mat-form-field class="full-width">
-                <textarea matInput placeholder="Назва проекту :" formControlName="name" required></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <input matInput placeholder = "Запитувана сума, грн.:" type="number" formControlName="requestedBudget" required>
-                <span matPrefix>₴&nbsp;</span>
-                <span matSuffix>.00</span>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-              <textarea matInput placeholder="Назва організації або ініціативної групи, що подає проект:"  formControlName="organizationName"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Тематичний напрямок, під який підпадає проект:" formControlName="theme"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-              <input matInput placeholder="Термін втілення проекту:" formControlName="requiredTime">
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <input matInput placeholder="Координатор/ка проекту:" formControlName="coordinatorName">
-            </mat-form-field>
-            <mat-form-field  class="full-width">   
-                <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone" required>
-                <mat-icon matPrefix>phone</mat-icon>
-            </mat-form-field>
-            <mat-form-field  class="full-width">  
-                <input matInput placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail" required>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):" formControlName="projectMembers"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):" formControlName="expirienceDescription"></textarea>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <textarea matInput placeholder="Адреса організації (якщо є):" formControlName="address"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Веб-сайт, Facebook:" formControlName="webaddress"></textarea>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <textarea matInput placeholder="Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):" formControlName="goal"></textarea>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <textarea matInput placeholder="Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):" formControlName="actuality"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у
-                рамках проекту):" formControlName="fullDescription"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):" formControlName="targetGroup"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):" formControlName="expectedResults"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Погодження та дозволи, необхідні для втілення проекту:" formControlName="requiredPermissions"></textarea>
-            </mat-form-field>
-            <mat-form-field  class="full-width">
-                <textarea matInput placeholder="Партнери та спонсори (якщо є):" formControlName="partners"></textarea>
-            </mat-form-field>
 
-            <button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти
-                <mat-icon>done</mat-icon>
-            </button>
-        </form>
+<!-- /////////////////////// TEST /////////////////// -->
+<mat-horizontal-stepper>
+  <mat-step [stepControl]="appDescForm">
+    <form [formGroup]="appDescForm">
+      <ng-template matStepLabel>Заповніть дані про ваш проект</ng-template>
+        <mat-card class="client-cart">
+          <mat-card-header>
+            <mat-card-title>Форма для заповнення заявки</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="client-form-container">
+              <form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+                  <mat-form-field class="full-width">
+                      <textarea matInput placeholder="Назва проекту :" formControlName="name" required></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <input matInput placeholder = "Запитувана сума, грн.:" type="number" formControlName="requestedBudget" required>
+                      <span matPrefix>₴&nbsp;</span>
+                      <span matSuffix>.00</span>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                    <textarea matInput placeholder="Назва організації або ініціативної групи, що подає проект:"  formControlName="organizationName"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Тематичний напрямок, під який підпадає проект:" formControlName="theme"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                    <input matInput placeholder="Термін втілення проекту:" formControlName="requiredTime">
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <input matInput placeholder="Координатор/ка проекту:" formControlName="coordinatorName">
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">   
+                      <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone" required>
+                      <mat-icon matPrefix>phone</mat-icon>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">  
+                      <input matInput placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail" required>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):" formControlName="projectMembers"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):" formControlName="expirienceDescription"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="full-width">
+                      <textarea matInput placeholder="Адреса організації (якщо є):" formControlName="address"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Веб-сайт, Facebook:" formControlName="webaddress"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="full-width">
+                      <textarea matInput placeholder="Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):" formControlName="goal"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="full-width">
+                      <textarea matInput placeholder="Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):" formControlName="actuality"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у
+                      рамках проекту):" formControlName="fullDescription"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):" formControlName="targetGroup"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):" formControlName="expectedResults"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Погодження та дозволи, необхідні для втілення проекту:" formControlName="requiredPermissions"></textarea>
+                  </mat-form-field>
+                  <mat-form-field  class="full-width">
+                      <textarea matInput placeholder="Партнери та спонсори (якщо є):" formControlName="partners"></textarea>
+                  </mat-form-field>
+                <!--
+                  <button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти
+                      <mat-icon>done</mat-icon>
+                  </button>
+                -->
+              </form>
+            </div>
+          </mat-card-content>
+      </mat-card>
+      <div>
+        <button mat-button matStepperNext type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Наступний
+            <mat-icon>done</mat-icon>
+        </button>
+        <!-- <button mat-button matStepperNext>Next</button> -->
       </div>
-    </mat-card-content>
-</mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="appCostItem">
+    <form [formGroup]="appCostItem">
+      <ng-template matStepLabel>Заоповніть кошторис</ng-template>
+          <form [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Пояснення" formControlName="description">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost">
+                </mat-form-field>
+                <mat-form-field class="full-width"> 
+                    <input matInput placeholder="Кількість / затрачений час:" formControlName="count">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Оберіть категорію витрат:" formControlName="category">
+                      <mat-option disabled>Оберіть категорію витра</mat-option>
+                      <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              
+            <!--
+              <div class="form-group">
+                <label class="center-block">Оберіть категорію витрат:
+                  <select class="form-control" formControlName="category">
+                    <option disabled>Оберіть категорію витра</option>
+                    <option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</option>
+                  </select>
+                </label>
+              </div>
+                  
+              <button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Додати</button>--> 
+            </form>
+      <div>
+        <button mat-button matStepperPrevious>Поверниутися</button>
+        <button mat-button matStepperNext type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Наступний</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<!-- /////////////////////// TEST /////////////////// -->
 
+<!--
 <table *ngIf="displayDescription">
   <tr>
     <th colspan="3">Інформація про проект та заявника</th>
@@ -150,7 +219,9 @@
     <td colspan="2">{{description.partners}}</td>
   </tr>
 </table>
+-->
 
+<!--
 <form *ngIf="displayCostItemForm" [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
   <div class="form-group">
     <label class="center-block">Пояснення:
@@ -187,6 +258,7 @@
   </div>
   <button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Додати</button>
 </form>
+-->
 <ng-container *ngIf="calculations">
   <table>
     <tr>
