@@ -10,7 +10,7 @@
           </mat-card-header>
           <mat-card-content>
             <div class="client-form-container">
-              <form *ngIf="displayDescriptionForm" [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+              <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
                   <mat-form-field class="full-width">
                       <textarea matInput placeholder="Назва проекту :" formControlName="name" required></textarea>
                   </mat-form-field>
@@ -72,61 +72,40 @@
                   <mat-form-field  class="full-width">
                       <textarea matInput placeholder="Партнери та спонсори (якщо є):" formControlName="partners"></textarea>
                   </mat-form-field>
-                <!--
-                  <button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти
-                      <mat-icon>done</mat-icon>
-                  </button>
-                -->
               </form>
             </div>
+            <button mat-button matStepperNext type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Наступний
+              <mat-icon>done</mat-icon></button>
           </mat-card-content>
       </mat-card>
-      <div>
-        <button mat-button matStepperNext type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Наступний
-            <mat-icon>done</mat-icon>
-        </button>
-        <!-- <button mat-button matStepperNext>Next</button> -->
-      </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="appCostItem">
     <form [formGroup]="appCostItem">
       <ng-template matStepLabel>Заоповніть кошторис</ng-template>
-          <form [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
-                <mat-form-field class="full-width">
-                  <input matInput placeholder="Пояснення" formControlName="description">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost">
-                </mat-form-field>
-                <mat-form-field class="full-width"> 
-                    <input matInput placeholder="Кількість / затрачений час:" formControlName="count">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-select placeholder="Оберіть категорію витрат:" formControlName="category">
-                      <mat-option disabled>Оберіть категорію витра</mat-option>
-                      <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-              
-            <!--
-              <div class="form-group">
-                <label class="center-block">Оберіть категорію витрат:
-                  <select class="form-control" formControlName="category">
-                    <option disabled>Оберіть категорію витра</option>
-                    <option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</option>
-                  </select>
-                </label>
-              </div>
-                  
-              <button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Додати</button>--> 
-            </form>
+        <form [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Пояснення" formControlName="description">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost">
+          </mat-form-field>
+          <mat-form-field class="full-width"> 
+              <input matInput placeholder="Кількість / затрачений час:" formControlName="count">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Оберіть категорію витрат:" formControlName="category">
+              <mat-option disabled>Оберіть категорію витра</mat-option>
+              <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
       <div>
         <button mat-button matStepperPrevious>Поверниутися</button>
         <button mat-button matStepperNext type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Наступний</button>
