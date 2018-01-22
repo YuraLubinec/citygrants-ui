@@ -24,3 +24,7 @@
   right: 15px;
   color: rgba(0, 0, 0, 0.54);
 }
+.comment-text {
+  overflow: hidden;
+  max-width: 110ch;
+}
