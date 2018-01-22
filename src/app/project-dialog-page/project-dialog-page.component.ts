@@ -58,7 +58,7 @@ export class JuryDialogPageComponent {
     }
 
     saveComment(){
-        const tempComment = new Comment("145","ЯкийсьЮзер", this.commentText);
+        const tempComment = new Comment("145","ЯкийсьЮзер", this.commentText, new Date);
         this.juryService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";

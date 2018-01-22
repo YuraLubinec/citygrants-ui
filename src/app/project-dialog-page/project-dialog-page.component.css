@@ -18,3 +18,9 @@
 .comment-send-container > * {
   width: 100%;
 }
+
+.comment-date {
+  position: absolute;
+  right: 15px;
+  color: rgba(0, 0, 0, 0.54);
+}

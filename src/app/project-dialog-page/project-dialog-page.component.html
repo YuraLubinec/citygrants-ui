@@ -356,5 +356,6 @@
         <mat-card-content>
           <p>{{comment.text}}</p>
         </mat-card-content>
-    </mat-card>
-</div>
+            <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>    
+        </mat-card>
+    </div>
