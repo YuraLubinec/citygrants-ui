@@ -9,6 +9,7 @@ import { CostItem } from '../models/costItem';
 import { CostItemCategory } from '../models/costItemCategory';
 import { BudgetCalculations } from '../models/budgetCalculations'
 import { Evaluation } from '../models/evaluation';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-client-page',
@@ -31,6 +32,9 @@ export class ClientPageComponent implements OnInit {
   private costItemCategories: Array<CostItemCategory>;
   private images: Array<File>;
   private pdfDocs: Array<File>;
+
+  displayedColumnsFees = ['description', 'person', 'rewards', 'workingHours','fromProgram','fromOther','totalFeeFromProgram', 'totalFeeFromOtherSources'];
+  dataSourceFees : any;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
@@ -55,6 +59,10 @@ export class ClientPageComponent implements OnInit {
   ngOnInit() {
     this.createEmptyDescriptionForm();
     this.createEmptyCostItemForm();
+  }
+
+  ngAfterViewInit() {
+    this.dataSourceFees = new MatTableDataSource(this.budget.costItemsFee);
   }
 
   createEmptyCostItemForm() {
