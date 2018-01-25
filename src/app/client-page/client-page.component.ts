@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ClientService } from '../services/client.service';
@@ -32,9 +32,14 @@ export class ClientPageComponent implements OnInit {
   private costItemCategories: Array<CostItemCategory>;
   private images: Array<File>;
   private pdfDocs: Array<File>;
+  private collorGridName     = "#bfbfbf";
+  private collorAmount       = "#9b9999";
+  private collorCategory     = "#ffe6dd";
+  private collorDescription  = "#bfbfbf";
+  private collorGeneral      = "#c8c9c3";
 
-  displayedColumnsFees = ['description', 'person', 'rewards', 'workingHours','fromProgram','fromOther','totalFeeFromProgram', 'totalFeeFromOtherSources'];
-  dataSourceFees : any;
+  private displayedColumnsFees = ['description', 'person', 'rewards', 'workingHours','fromProgram','fromOther','totalFeeFromProgram', 'totalFeeFromOtherSources'];
+  private dataSourceFees : any;
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
@@ -59,10 +64,6 @@ export class ClientPageComponent implements OnInit {
   ngOnInit() {
     this.createEmptyDescriptionForm();
     this.createEmptyCostItemForm();
-  }
-
-  ngAfterViewInit() {
-    this.dataSourceFees = new MatTableDataSource(this.budget.costItemsFee);
   }
 
   createEmptyCostItemForm() {
