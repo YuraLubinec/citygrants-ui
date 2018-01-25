@@ -121,8 +121,8 @@ export class ClientPageComponent implements OnInit {
   submitCostItemForm() {
     let field = this.appCostItem.value;
     this.addCostItemByCategory(field);
-    this.appCostItem.reset();
     this.calculations = this.clientService.calculateBudget(this.budget);
+    this.appCostItem.reset();
   }
 
   private addCostItemByCategory(field: any) {

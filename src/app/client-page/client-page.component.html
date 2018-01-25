@@ -1,10 +1,4 @@
-
-<!-- /////////////////////// TEST /////////////////// -->
-<mat-horizontal-stepper [linear]="false" >
-  <mat-step [stepControl]="appDescForm">
-    <form [formGroup]="appDescForm">
-      <ng-template matStepLabel>Заповніть дані про ваш проект</ng-template>
-        <mat-card class="client-cart">
+        <mat-card *ngIf="displayDescriptionForm" class="client-cart">
           <mat-card-header>
             <mat-card-title>Форма для заповнення заявки</mat-card-title>
           </mat-card-header>
@@ -72,17 +66,17 @@
                   <mat-form-field  class="full-width">
                       <textarea matInput placeholder="Партнери та спонсори (якщо є):" formControlName="partners"></textarea>
                   </mat-form-field>
-                  <button mat-button matStepperNext type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Наступний
+                  <button mat-button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Зберегти
                       <mat-icon>done</mat-icon></button>
               </form>
             </div>
           </mat-card-content>
       </mat-card>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="appCostItem">
-    <form [formGroup]="appCostItem">
-      <ng-template matStepLabel>Заоповніть кошторис</ng-template>
+      <mat-card *ngIf="displayCostItemForm" class="client-cart">
+        <mat-card-header>
+          <mat-card-title>Форма для заповнення кошторису</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
         <form [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
           <mat-form-field class="full-width">
             <input matInput placeholder="Пояснення" formControlName="description">
@@ -107,11 +101,6 @@
           </mat-form-field>
           <button mat-button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Зберегти</button>
         </form>
-      <div>
-        <button mat-button matStepperPrevious>Поверниутися</button>
-        <button mat-button matStepperNext>Наступний</button>
-      </div>
-    </form>
     <div>
       <ng-container *ngIf="calculations">
         <div>
@@ -445,36 +434,5 @@
         </mat-grid-list>
       </ng-container>     
     </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Підтвердження та завантаження документів</ng-template>
-    <div>
-        <label class="btn btn-primary">
-            <input type="file" style="display: none;" multiple="true" (change)="saveImagesToUpload($event)" accept=".jpg, .png">
-            <span>Donwnload images</span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="file" style="display: none;" multiple="true" (change)="savePdfToUpload($event)" accept=".pdf">
-            <span>Donwload pdf</span>
-          </label>
-          <div *ngIf="images.length > 0 || pdfDocs.length > 0">
-            Завантажені файли:
-            <p *ngFor="let image of images">{{image.name}}</p>
-            <p *ngFor="let pdf of pdfDocs">{{pdf.name}}</p>
-          </div>
-      <button (click)="confirmProjectApplication()">Відіслати на розгляд журі</button>
-      <button (click)="sentApplicationToReview">Відіслати для отримання консультації</button>
-    </div>
-    <div>
-      <button mat-button matStepperPrevious>Поверниутися</button>
-      <button mat-button matStepperNext class="btn btn-success">Наступний</button>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+  </mat-card-content>
+  </mat-card>
