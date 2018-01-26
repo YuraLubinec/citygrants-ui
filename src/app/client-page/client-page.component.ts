@@ -64,6 +64,8 @@ export class ClientPageComponent implements OnInit {
   ngOnInit() {
     this.createEmptyDescriptionForm();
     this.createEmptyCostItemForm();
+
+    console.log(this.appDescForm);
   }
 
   createEmptyCostItemForm() {

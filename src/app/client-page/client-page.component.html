@@ -31,6 +31,7 @@
                       <span matPrefix>+38 &nbsp;</span>   
                       <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone" required>
                       <mat-icon matSuffix>phone</mat-icon>
+                      <mat-error *ngIf="appDescForm.value.coordinatorPhone == ''">телефон <strong>обов’язкова</strong> для заповнення.</mat-error>
                   </mat-form-field>
                   <mat-form-field  class="full-width">  
                       <input matInput placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail" required>
