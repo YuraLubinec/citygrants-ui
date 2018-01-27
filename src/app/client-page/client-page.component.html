@@ -6,20 +6,24 @@
             <div class="client-form-container">
               <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
                   <mat-form-field class="full-width">
-                      <textarea matInput #name placeholder="Назва проекту :" formControlName="name" required></textarea>
+                      <textarea matInput maxlength="250" #name placeholder="Назва проекту :" formControlName="name" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                       <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
-                      <mat-error *ngIf="appDescForm">Назва <strong>обов’язкова</strong> для заповнення.</mat-error>
+                      <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
                   </mat-form-field>
                   <mat-form-field  class="full-width">
                       <input matInput placeholder = "Запитувана сума, грн.:" type="number" formControlName="requestedBudget" required>
                       <span matPrefix>₴&nbsp;</span>
                       <span matSuffix>.00</span>
+                      <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
                   </mat-form-field>
                   <mat-form-field  class="full-width">
                     <textarea matInput placeholder="Назва організації або ініціативної групи, що подає проект:"  formControlName="organizationName"></textarea>
                   </mat-form-field>
                   <mat-form-field  class="full-width">
                       <textarea matInput placeholder="Тематичний напрямок, під який підпадає проект:" formControlName="theme" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                      <mat-error *ngIf="appDescForm">
+                        {{getErrorMessage(theme)}}
+                      </mat-error>
                   </mat-form-field>
                   <mat-form-field  class="full-width">
                     <input matInput placeholder="Термін втілення проекту:" formControlName="requiredTime">

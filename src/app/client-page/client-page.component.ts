@@ -37,6 +37,9 @@ export class ClientPageComponent implements OnInit {
   private collorCategory     = "#ffe6dd";
   private collorDescription  = "#bfbfbf";
   private collorGeneral      = "#c8c9c3";
+  private requiredMessage    = "обов'язково для заповнення"
+  private defaultMessage    = "помилка введення";
+  private patternMessage     = "не відповідає параметрам введення"
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
@@ -63,6 +66,18 @@ export class ClientPageComponent implements OnInit {
     this.createEmptyCostItemForm();
 
     console.log(this.appDescForm);
+  }
+
+  getErrorMessage(controlName:String){
+    switch(controlName) {
+      case "name": {
+        return this.appDescForm.controls.name.hasError("required") ? this.requiredMessage : this.defaultMessage;
+      }
+      case "requestedBudget": {
+        return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :
+        this.appDescForm.controls.requestedBudget.hasError("pattern") ? this.patternMessage : this.defaultMessage;
+      }
+    }
   }
 
   createEmptyCostItemForm() {
