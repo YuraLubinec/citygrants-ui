@@ -65,8 +65,6 @@ export class ClientPageComponent implements OnInit {
   ngOnInit() {
     this.createEmptyDescriptionForm();
     this.createEmptyCostItemForm();
-
-    console.log(this.appDescForm);
   }
 
   getErrorMessage(controlName:String){
@@ -148,6 +146,36 @@ export class ClientPageComponent implements OnInit {
                this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
       }
     }
+  }
+
+  getErrorMessageCostForm(controlName:String){
+    switch(controlName) {
+      case "description": {
+        return this.appCostItem.controls.description.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.description.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "cost": {
+        return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.cost.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "count": {
+        return this.appCostItem.controls.count.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.count.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "consumptionsFromProgram": {
+        return this.appCostItem.controls.consumptionsFromProgram.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.consumptionsFromProgram.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "consumptionsFromOtherSources": {
+        return this.appCostItem.controls.consumptionsFromOtherSources.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.consumptionsFromOtherSources.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "category": {
+        return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.category.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+    }
+
   }
 
   createEmptyCostItemForm() {
