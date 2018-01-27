@@ -38,9 +38,6 @@ export class ClientPageComponent implements OnInit {
   private collorDescription  = "#bfbfbf";
   private collorGeneral      = "#c8c9c3";
 
-  private displayedColumnsFees = ['description', 'person', 'rewards', 'workingHours','fromProgram','fromOther','totalFeeFromProgram', 'totalFeeFromOtherSources'];
-  private dataSourceFees : any;
-
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
     this.displayDescription = false;
