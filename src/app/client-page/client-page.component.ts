@@ -38,8 +38,9 @@ export class ClientPageComponent implements OnInit {
   private collorDescription  = "#bfbfbf";
   private collorGeneral      = "#c8c9c3";
   private requiredMessage    = "обов'язково для заповнення"
-  private defaultMessage    = "помилка введення";
-  private patternMessage     = "не відповідає параметрам введення"
+  private defaultMessage     = "помилка введення";
+  private patternMessage     = "не відповідає параметрам введення";
+  private patternEmail       = "не вірний формат електронної пошти"
 
   constructor(private clientService: ClientService, private fb: FormBuilder) {
     this.displayDescriptionForm = true;
@@ -75,7 +76,76 @@ export class ClientPageComponent implements OnInit {
       }
       case "requestedBudget": {
         return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :
-        this.appDescForm.controls.requestedBudget.hasError("pattern") ? this.patternMessage : this.defaultMessage;
+               this.appDescForm.controls.requestedBudget.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "organizationName": {
+        return this.appDescForm.controls.organizationName.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.organizationName.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "theme": {
+        return this.appDescForm.controls.theme.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.theme.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "coordinatorName": {
+        return this.appDescForm.controls.coordinatorName.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.coordinatorName.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "coordinatorPhone": {
+        return this.appDescForm.controls.coordinatorPhone.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.coordinatorPhone.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "coordinatorEmail": {
+        return this.appDescForm.controls.coordinatorEmail.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.coordinatorEmail.hasError("pattern")  ? this.patternMessage  : 
+               this.appDescForm.controls.coordinatorEmail.hasError("email")    ? this.patternEmail    : this.defaultMessage;
+      }
+      case "projectMembers": {
+        return this.appDescForm.controls.projectMembers.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.projectMembers.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "expirienceDescription": {
+        return this.appDescForm.controls.expirienceDescription.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.expirienceDescription.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "address": {
+        return this.appDescForm.controls.address.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.address.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "webaddress": {
+        return this.appDescForm.controls.webaddress.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.webaddress.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "goal": {
+        return this.appDescForm.controls.goal.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.goal.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "actuality": {
+        return this.appDescForm.controls.actuality.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.actuality.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "fullDescription": {
+        return this.appDescForm.controls.fullDescription.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.fullDescription.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "targetGroup": {
+        return this.appDescForm.controls.targetGroup.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.targetGroup.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "expectedResults": {
+        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.expectedResults.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "requiredPermissions": {
+        return this.appDescForm.controls.requiredPermissions.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.requiredPermissions.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "expectedResults": {
+        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.expectedResults.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "partners": {
+        return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
       }
     }
   }
@@ -99,7 +169,7 @@ export class ClientPageComponent implements OnInit {
       theme: ['', [Validators.required, Validators.maxLength(250)]],
       requiredTime: ['', [Validators.required, Validators.maxLength(100)]],
       coordinatorName: ['', [Validators.required, Validators.maxLength(100)]],
-      coordinatorPhone: ['', [Validators.required, Validators.pattern("(\\+?38)?([0-9]{10})")]],
+      coordinatorPhone: ['', [Validators.required, Validators.pattern("(\\d){10}")]],
       coordinatorEmail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
       projectMembers: ['', [Validators.required, Validators.maxLength(1000)]],
       expirienceDescription: ['', [Validators.required, Validators.maxLength(2000)]],
