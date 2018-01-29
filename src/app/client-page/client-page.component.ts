@@ -1,5 +1,5 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 
 import { ClientService } from '../services/client.service';
 import { ProjectApplication } from '../models/projectApplication';
@@ -230,10 +230,11 @@ export class ClientPageComponent implements OnInit {
     this.displayCostItemForm = true;
   }
 
-  submitCostItemForm() {
+  submitCostItemForm(formDirective: FormGroupDirective) {
     let field = this.appCostItem.value;
     this.addCostItemByCategory(field);
     this.calculations = this.clientService.calculateBudget(this.budget);
+    formDirective.resetForm();
     this.appCostItem.reset();
   }
 

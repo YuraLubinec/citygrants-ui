@@ -126,12 +126,12 @@
             </div>
           </mat-card-content>
       </mat-card>
-      <mat-card *ngIf="displayCostItemForm" class="client-cart">
+      <mat-card  class="client-cart"> <!--*ngIf="displayCostItemForm" -->
         <mat-card-header>
           <mat-card-title>Форма для заповнення кошторису</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-        <form [formGroup]="appCostItem" (ngSubmit)="submitCostItemForm()" novalidate>
+        <form [formGroup]="appCostItem" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
           <mat-form-field class="full-width">
             <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
             <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
