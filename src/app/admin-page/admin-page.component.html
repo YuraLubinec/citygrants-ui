@@ -1,3 +1,47 @@
-<p>
-  admin-page works!
-</p>
+<div class="jury-table-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+      <!-- Name of project Column -->
+      <ng-container matColumnDef="nameOfProject">
+      <mat-header-cell *matHeaderCellDef> Назва проекту</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Requested Budget Column -->
+      <ng-container matColumnDef="requestedBudget">
+      <mat-header-cell *matHeaderCellDef> Запитувана сума </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description.requestedBudget}} </mat-cell>
+      </ng-container>
+
+      <!-- Organization name Column -->
+      <ng-container matColumnDef="organizationName">
+      <mat-header-cell *matHeaderCellDef> Назва організації </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description.organizationName}} </mat-cell>
+      </ng-container>
+
+      <!-- Theme Column -->
+      <ng-container matColumnDef="theme">
+      <mat-header-cell *matHeaderCellDef> Тематичний напрямок </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description.theme}} </mat-cell>
+      </ng-container>
+
+      <!-- Goal Column -->
+      <ng-container matColumnDef="goal">
+      <mat-header-cell *matHeaderCellDef> Мета проекту </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description.goal}} </mat-cell>
+      </ng-container>
+
+      <!-- Total eval first stage Column -->
+      <ng-container matColumnDef="totalEvalFirstStage">
+        <mat-header-cell *matHeaderCellDef> Оцінка </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+      [length]="length"    
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions">
+  </mat-paginator>
+</div>

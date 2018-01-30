@@ -14,13 +14,14 @@ import { ProjectApplJury } from '../models/projectApplJury';
 
 export class JuryPageComponent implements OnInit {
 
-  private projects : Array<ProjectApplJury>;
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal'];
+  private projects   : Array<ProjectApplJury>;
   private dataSource : any;
-  private length : Number;
-  private pageSize : Number;
-  private pageSizeOptions = [5, 10, 25, 50];
-  private pageEvent: PageEvent;
+  private length     : Number;
+  private pageSize   : Number;
+  private pageEvent  : PageEvent;
+  private pageSizeOptions  = [5, 10, 25, 50];
+  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal'];
+  
 
   constructor(private juryService: JuryService, public dialog:MatDialog) {
     this.juryService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
@@ -31,10 +32,10 @@ export class JuryPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private dataHandler(projects: any){
-    this.projects = projects as Array<ProjectApplJury>;
+    this.projects   = projects as Array<ProjectApplJury>;
     this.dataSource = new MatTableDataSource(this.projects);
-    this.length = this.projects.length;
-    this.pageSize = 5;
+    this.length     = this.projects.length;
+    this.pageSize   = 5;
 
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Кількість елементів на сторінці';

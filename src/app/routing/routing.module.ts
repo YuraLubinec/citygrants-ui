@@ -9,7 +9,7 @@ const appRoutes: Routes = [
 
   { path: "", component: ClientPageComponent },
   { path: "jury", component: JuryPageComponent },
-  { path: "admin", component: ClientPageComponent },
+  { path: "admin", component: AdminPageComponent },
 
 ]
 
