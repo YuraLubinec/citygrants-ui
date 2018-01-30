@@ -31,8 +31,7 @@ export class JuryDialogPageComponent {
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
-    constructor(private juryService: JuryService, 
-                @Inject(MAT_DIALOG_DATA) public data: any,
+    constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar) {
         this.id                 = data.id;
         this.projectDescription = data.description;

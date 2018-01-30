@@ -360,7 +360,7 @@ export class ClientPageComponent implements OnInit {
   }
 
   callSnackBarMessage(){
-    this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
+    this.snackBar.open('Заявку прийнято !!!','', {
       duration: 2000,
     });
   }
