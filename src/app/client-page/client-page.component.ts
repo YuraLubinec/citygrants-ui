@@ -9,7 +9,7 @@ import { CostItem } from '../models/costItem';
 import { CostItemCategory } from '../models/costItemCategory';
 import { BudgetCalculations } from '../models/budgetCalculations'
 import { Evaluation } from '../models/evaluation';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-client-page',
@@ -42,7 +42,7 @@ export class ClientPageComponent implements OnInit {
   private patternMessage     = "не відповідає параметрам введення";
   private patternEmail       = "не вірний формат електронної пошти"
 
-  constructor(private clientService: ClientService, private fb: FormBuilder) {
+  constructor(private clientService: ClientService, private fb: FormBuilder, public snackBar: MatSnackBar) {
     this.displayDescriptionForm = true;
     this.displayDescription = false;
     this.displayCostItemForm = false;
@@ -351,12 +351,18 @@ export class ClientPageComponent implements OnInit {
   private uploadAttachments(id: string): void {
     if (this.images.length > 0 || this.pdfDocs.length > 0) {
       this.clientService.uploadFiles(id, this.images, this.pdfDocs).subscribe(data => {
-        alert("Заявку збережено");
+        this.callSnackBarMessage();
         this.images = new Array<File>();
         this.pdfDocs = new Array<File>();
       }, err => alert(err.status)
       )
     }
+  }
+
+  callSnackBarMessage(){
+    this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
+      duration: 2000,
+    });
   }
 
   saveImagesToUpload(event) {
