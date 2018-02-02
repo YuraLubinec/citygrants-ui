@@ -1,5 +1,5 @@
 <div class="jury-table-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" matSort>
       <!-- Name of project Column -->
       <ng-container matColumnDef="nameOfProject">
       <mat-header-cell *matHeaderCellDef> Назва проекту</mat-header-cell>
@@ -32,9 +32,9 @@
 
       <!-- Total eval first stage Column -->
       <ng-container matColumnDef="totalEvalFirstStage">
-        <mat-header-cell *matHeaderCellDef> Оцінка </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Оцінка </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
-        </ng-container>
+      </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></mat-row>
