@@ -3,6 +3,7 @@ import { Description } from './description';
 
 export class ProjectAdm {
 
+    id    : string;
     budget: Budget;
     description: Description;
     confirmed: boolean;

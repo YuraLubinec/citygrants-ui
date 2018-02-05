@@ -50,14 +50,17 @@ export class AdminService {
   }
 
   updateProject(project: ProjectAdm) {
-
     this.http.put(this.baseProjectUrl, project).toPromise().catch(this.handleHttpError);
-
   }
 
   delete(id: string) {
-
     this.http.delete(this.baseProjectUrl + "/" + id).toPromise().catch(this.handleHttpError);
+  }
+
+  deleteSelectedProject(args:any) {
+    for (let entry of args) {
+      this.delete(entry.id);
+    }
   }
 
 

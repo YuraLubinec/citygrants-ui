@@ -3,6 +3,7 @@ import { AdminService } from '../services/admin.service'
 import { MatPaginator, PageEvent, MatTableDataSource, MatSort } from '@angular/material';
 import { ProjectAdm } from '../models/projectAdm';
 import {SelectionModel} from '@angular/cdk/collections';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-admin-page',
@@ -41,8 +42,30 @@ export class AdminPageComponent implements OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
-        console.log(this.selection.selected);
   }
+
+  deleteSelectedProject(){
+
+    for(let selProj = 0; selProj < this.selection.selected.length; selProj++){
+      for(let curProj = 0; curProj < this.projects.length; curProj++){
+        if(this.selection.selected[selProj].id === this.projects[curProj].id){
+          this.projects.splice(curProj,1);
+        }
+      }
+    }
+    this.adminService.deleteSelectedProject(this.selection.selected);
+    this.dataHandler(this.projects);
+  }
+
+  showRow(row) {
+    console.log("tra ta ta");
+  }
+
+  selectRow(event,row) {
+      this.selection.toggle(row);
+  }
+
+
 
   ngOnInit() {}
 
