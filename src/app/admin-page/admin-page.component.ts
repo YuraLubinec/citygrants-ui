@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../services/admin.service'
 import { MatPaginator, PageEvent, MatTableDataSource, MatSort } from '@angular/material';
 import { ProjectAdm } from '../models/projectAdm';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-admin-page',
@@ -16,17 +17,35 @@ export class AdminPageComponent implements OnInit {
   private pageSize   : Number;
   private pageEvent  : PageEvent;
   private pageSizeOptions  = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage'];
+  private displayedColumns = ['select', 'nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage'];
+  private selection  : SelectionModel<ProjectAdm>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private adminService: AdminService) {
     adminService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
+    this.selection = new SelectionModel<ProjectAdm>(true, []); 
    }
 
+   /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+        console.log(this.selection.selected);
+  }
+
   ngOnInit() {}
-  
+
   private dataHandler(projects: any){
     this.projects   = projects as Array<ProjectAdm>;
     this.dataSource = new MatTableDataSource(this.projects);

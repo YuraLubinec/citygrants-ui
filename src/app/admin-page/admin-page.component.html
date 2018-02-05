@@ -1,5 +1,22 @@
 <div class="jury-table-container mat-elevation-z8">
+
   <mat-table #table [dataSource]="dataSource" matSort>
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
       <!-- Name of project Column -->
       <ng-container matColumnDef="nameOfProject">
       <mat-header-cell *matHeaderCellDef> Назва проекту</mat-header-cell>
@@ -37,7 +54,7 @@
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"(click)="selection.toggle(row)"></mat-row>
   </mat-table>
   <mat-paginator #paginator
       [length]="length"    
