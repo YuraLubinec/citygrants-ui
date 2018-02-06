@@ -17,6 +17,7 @@ import {
 } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminDialogPageComponent } from './project-dialog-admin-page/project-dialog-admin-page.component';
 
 
 @NgModule({
@@ -24,11 +25,11 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     AppComponent,
     ClientPageComponent,
     JuryDialogPageComponent,
+    AdminDialogPageComponent,
     JuryPageComponent,
     AdminPageComponent,
-
   ],
-  entryComponents: [JuryDialogPageComponent],
+  entryComponents: [JuryDialogPageComponent,AdminDialogPageComponent],
   imports: [
     BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,

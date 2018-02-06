@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../services/admin.service'
-import { MatPaginator, PageEvent, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, PageEvent, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { ProjectAdm } from '../models/projectAdm';
 import {SelectionModel} from '@angular/cdk/collections';
 import { forEach } from '@angular/router/src/utils/collection';
+import { AdminDialogPageComponent } from '../project-dialog-admin-page/project-dialog-admin-page.component';
+
 
 @Component({
   selector: 'app-admin-page',
@@ -24,7 +26,7 @@ export class AdminPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, public dialog:MatDialog) {
     adminService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
     this.selection = new SelectionModel<ProjectAdm>(true, []); 
    }
@@ -58,7 +60,10 @@ export class AdminPageComponent implements OnInit {
   }
 
   showRow(row) {
-    console.log("tra ta ta");
+    const dialogRef = this.dialog.open(AdminDialogPageComponent, {
+      data: row,
+      height: '1000px'
+    });
   }
 
   selectRow(event,row) {
