@@ -1,1 +1,361 @@
-<b>hello</b>
+<mat-tab-group>
+    <mat-tab label="Опис">
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Назва">
+                    <p>{{projectDescription.name}}</p>
+                </mat-tab>
+                <mat-tab label="Запитувана сума">
+                    <p>{{projectDescription.requestedBudget}} грн.</p>
+                </mat-tab>
+                <mat-tab label="Назва організації або ініціативної групи">
+                    <p>{{projectDescription.organizationName}}</p>
+                </mat-tab>
+                <mat-tab label="Тематичний напрямок">
+                    <p>{{projectDescription.theme}}</p>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Координатор/ка проекту">
+                    <p>{{projectDescription.coordinatorName}}</p>
+                </mat-tab>
+                <mat-tab label="Координатор/ка проекту (моб.тел.)">
+                    <p>{{projectDescription.coordinatorPhone}}</p>
+                </mat-tab>
+                <mat-tab label="Координатор/ка проекту (електронна адреса)">
+                    <p>{{projectDescription.coordinatorEmail}}</p>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Попередній досвід команди проекту">
+                    <p>{{projectDescription.expirienceDescription}}</p>
+                </mat-tab>
+                <mat-tab label="Адреса організації">
+                    <p>{{projectDescription.address}}</p>
+                </mat-tab>
+                <mat-tab label="Мета проекту">
+                    <p>{{projectDescription.goal}}</p>
+                </mat-tab>
+                <mat-tab label="Актуальність проекту">
+                        <p>{{projectDescription.actuality}}</p>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Очікувані результати">
+                    <p>{{projectDescription.expectedResults}}</p>
+                </mat-tab>
+                <mat-tab label="Опис проекту">
+                    <p>{{projectDescription.fullDescription}}</p>
+                </mat-tab>
+                <mat-tab label="Цільові групи">
+                    <p>{{projectDescription.targetGroup}}</p>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Команда проекту">
+                    <p>{{projectDescription.projectMembers}}</p>
+                </mat-tab>
+                <mat-tab label="Погодження та дозволи">
+                    <p>{{projectDescription.requiredPermissions}}</p>
+                </mat-tab>
+                <mat-tab label="Партнери та спонсори">
+                    <p>{{projectDescription.partners}}</p>
+                </mat-tab>
+                <mat-tab label="Термін втілення проекту">
+                    <p>{{projectDescription.requiredTime}}</p>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Б'юджет">
+        
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Комісія за витрати">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalFeeFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalFeeFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Tранспортні витрати">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalTransportFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalTransportFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість харчування">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalNutritionFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalNutritionFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість оренди">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalRentFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalRentFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість пунктів адміністрування">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalAdministrativeFromProgram}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdministrativeFromOtherSources}} грн.</p>     
+                </mat-tab>
+                <mat-tab label="Вартість елементів реклами">
+                    <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index">
+                        <li>Опис : {{itemFree.description}}</li>
+                        <li>Вартість : {{itemFree.const}}</li>
+                        <li>Кількість : {{itemFree.count}}</li>
+                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                        <hr>
+                    </ul>
+                    <p>Загальна сума витрати на програму : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>
+                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>     
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+        <h4>Загальна сума б'юджету</h4>
+        <ul>
+            <li>Загальна кількість матеріалів за програмою : {{projectBudget.totalMaterialsFromProgram}}</li>
+            <li>Загальні матеріали з інших джерел : {{projectBudget.totalMaterialsFromOtherSources}}</li>
+            <li>Вартість інших речей : {{projectBudget.costItemsOthers}}</li>
+            <li>Витарати на інше : {{projectBudget.totalOthersFromProgram}} грн.</li>
+            <li>Загальані витрати з інших джерел : {{projectBudget.totalOthersFromOtherSources}} грн.</li>
+            <li>Загальна кількість інших з інших джерел : {{projectBudget.totalFromOtherSources}} грн.</li>
+            <hr>
+        </ul>    
+    </mat-tab>
+    <mat-tab label="Оцінювання">
+        <mat-accordion class="example-headers-align">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Актуальність</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>наскільки проект необхідний і важливий для міста в сьогоднішніх умовах</li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalActual">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Зрозумілість</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <ul>
+                            <li>чи є чітка механіка реалізації?</li>
+                            <li>чи логічно вибудувана послідовність реалізації проекту?</li>
+                            <li>чіткість визначення показників досягнення результату</li>
+                        </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalIntelligibility">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Компетентність</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>кваліфікація виконавців, загальна адміністративна та технічна спроможність</li>
+                    </ul>
+                    <p></p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalCompetence">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Стійкість</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>чи наявна модель самопідтримки?</li>
+                        <li>як довго проект працюватиме/існуватиме?</li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalStability">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Витрати/ефективність</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>обґрунтованість запланованих витрат та необхідних ресурсів у співвідношенні до очікуваних результатів</li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalEfficiency">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Інноваційність</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>в чому інноваційність проекту: інновація цінності, технологічна  інновація, нова бізнес модель, і т.д.</li>
+                        <li>чи існують схожі проекти? В чому унікальність проекту? </li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalInnovation">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Залучення</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>спроможність запланованої діяльності активізувати участь безпосередніх отримувачів корисного ефекту проекту чи громадськості загалом</li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalAttracting">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><b>Співпраця</b></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>наскільки проект сприяє розвитку співпраці між жителями, організаціями, установами</li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-slider
+                        [max]=10
+                        [step]=0.5
+                        [thumb-label]=true
+                        [tick-interval]=2
+                        [(ngModel)]="evaluation.evalParticipation">
+                    </mat-slider>
+                </mat-card-actions>
+            </mat-card>
+        </mat-accordion>
+        <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
+                <mat-icon>save</mat-icon>
+        </button>
+    </mat-tab>
+    <mat-tab label="Прикріплені файли">
+        <div class = "attach-doc-container">
+            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="http://localhost:8082/citygrants/jury/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
+  <h3><b>Коментарі</b></h3>
+  <div class="comment-send-container">
+    <mat-form-field>
+        <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
+    </mat-form-field>  
+  </div>
+  <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
+        <mat-icon>send</mat-icon>
+  </button>
+
+  <div class="comment-container">  
+    <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">
+        <mat-card-header>
+          <mat-card-subtitle>{{comment.userName}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="comment-text" >{{comment.text}}</p>
+        </mat-card-content>
+            <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>    
+        </mat-card>
+    </div>
