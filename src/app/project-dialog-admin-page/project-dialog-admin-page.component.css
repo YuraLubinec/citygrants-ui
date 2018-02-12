@@ -1,0 +1,30 @@
+.eval-actual {
+    margin: 10px;
+  }
+
+.mat-slider-horizontal {
+  width: 80%;
+}
+.evluation-btn {
+  margin-top: 10px;
+}
+.comment-container{
+  margin-top: 10px;
+}
+.attach-doc-container{
+  margin-top: 10px;
+} 
+
+.comment-send-container > * {
+  width: 100%;
+}
+
+.comment-date {
+  position: absolute;
+  right: 15px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.comment-text {
+  overflow: hidden;
+  max-width: 110ch;
+}
