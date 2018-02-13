@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpRequest } from '@angular/common/http/src/request';
 import { User } from '../models/user';
 import { ProjectAdm } from '../models/projectAdm';
+import { Evaluation } from '../models/evaluation';
 
 @Injectable()
 export class AdminService {
@@ -63,7 +64,13 @@ export class AdminService {
     }
   }
 
+  updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
+    this.http.post(this.baseProjectUrl + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
+  }
 
+  saveCommentOfProject(idProject:String, comment: Comment){
+    this.http.post(this.baseProjectUrl + idProject + "/comment", comment).toPromise().catch(this.handleError);
+  }
 
   /**
  * Handle Http operation that failed.
