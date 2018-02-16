@@ -18,6 +18,7 @@ import {
 import { MatTabsModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminDialogPageComponent } from './project-dialog-admin-page/project-dialog-admin-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AdminDialogPageComponent } from './project-dialog-admin-page/project-di
     AdminDialogPageComponent,
     JuryPageComponent,
     AdminPageComponent,
+    LoginPageComponent,
   ],
   entryComponents: [JuryDialogPageComponent,AdminDialogPageComponent],
   imports: [
