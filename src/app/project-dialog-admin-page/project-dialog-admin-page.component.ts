@@ -62,7 +62,12 @@ export class AdminDialogPageComponent {
         this.adminService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";
-      }
+    }
+    deleteComment(id:string){
+      console.log(id);
+      let index = this.comments.findIndex(comment => comment.id === id);
+      this.comments.splice(index, 1);
+    }
 
       isDisableCommentButton(){
         return this.commentText.length <= 0 ? true:false;

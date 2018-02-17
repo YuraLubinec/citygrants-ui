@@ -1,4 +1,5 @@
 export class Comment{
+    id       :String;
     userId   :String;
     userName :String;
     text     :String;
