@@ -333,7 +333,7 @@
     </mat-tab>
     <mat-tab label="Прикріплені файли">
         <div class = "attach-doc-container">
-            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="http://localhost:8082/citygrants/jury/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="http://localhost:8082/citygrants/admin/project/files/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
         </div>
     </mat-tab>
   </mat-tab-group>

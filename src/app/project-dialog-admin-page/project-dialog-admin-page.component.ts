@@ -32,6 +32,8 @@ export class AdminDialogPageComponent {
     
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar) {
+                  console.log(data);
+
         this.id                 = data.id;
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;
