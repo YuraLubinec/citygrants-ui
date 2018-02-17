@@ -59,6 +59,10 @@ export class AdminService {
     this.http.delete(this.baseProjectUrl + "/" + id).toPromise().catch(this.handleHttpError);
   }
 
+  deleteCommentOfProject(idProject:string, idComment:string){
+    this.http.delete(this.baseProjectUrl + "/" + idProject + "/comment/" + idComment).toPromise().catch(this.handleHttpError);
+  }
+
   deleteSelectedProject(args:any) {
     for (let entry of args) {
       this.delete(entry.id);

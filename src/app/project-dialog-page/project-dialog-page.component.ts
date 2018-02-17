@@ -57,7 +57,15 @@ export class JuryDialogPageComponent {
     }
 
     saveComment(){
-        const tempComment = new Comment("145","ЯкийсьЮзер", this.commentText, new Date);
+      const dateNow = new Date();
+      const idComment = 'idComment' + dateNow.getFullYear() 
+                                      + dateNow.getMonth() 
+                                      + dateNow.getDay() 
+                                      + dateNow.getHours()
+                                      + dateNow.getMinutes()
+                                      + dateNow.getSeconds() 
+                                      + dateNow.getMilliseconds();
+        const tempComment = new Comment(idComment,"145","ЯкийсьЮзер", this.commentText, new Date);
         this.juryService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";

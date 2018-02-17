@@ -5,7 +5,8 @@ export class Comment{
     text     :String;
     date     :Date;
 
-    constructor(userId:String, userName:String, text:String, date:Date){
+    constructor(id:String, userId:String, userName:String, text:String, date:Date){
+        this.id       = id;
         this.userId   = userId;
         this.userName = userName;
         this.text     = text;

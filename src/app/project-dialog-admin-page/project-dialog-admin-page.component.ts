@@ -32,7 +32,6 @@ export class AdminDialogPageComponent {
     
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar) {
-                  console.log(data);
 
         this.id                 = data.id;
         this.projectDescription = data.description;
@@ -58,14 +57,23 @@ export class AdminDialogPageComponent {
     }
 
     saveComment(){
-        const tempComment = new Comment("145","ЯкийсьЮзер", this.commentText, new Date);
+        const dateNow = new Date();
+        const idComment = 'idComment' + dateNow.getFullYear() 
+                                      + dateNow.getMonth() 
+                                      + dateNow.getDay() 
+                                      + dateNow.getHours()
+                                      + dateNow.getMinutes() 
+                                      + dateNow.getMilliseconds();
+
+        const tempComment = new Comment(idComment,"145","ЯкийсьЮзер", this.commentText, new Date);
         this.adminService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";
     }
-    deleteComment(id:string){
-      console.log(id);
-      let index = this.comments.findIndex(comment => comment.id === id);
+    deleteComment(id:string, idComment:string){
+      this.adminService.deleteCommentOfProject(id, idComment);
+
+      let index = this.comments.findIndex(comment => comment.id === idComment);
       this.comments.splice(index, 1);
     }
 

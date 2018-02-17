@@ -357,7 +357,7 @@
         </mat-card-content>
             <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
         <mat-card-actions>
-            <button mat-raised-button (click)="deleteComment(comment.id)" color="warn">Видалити</button>
+            <button mat-raised-button (click)="deleteComment(id, comment.id)" color="warn">Видалити</button>
         </mat-card-actions>        
     </mat-card>
   </div>
