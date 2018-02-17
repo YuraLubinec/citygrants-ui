@@ -3,22 +3,21 @@ import { MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
 import { Evaluation } from "../models/evaluation";
 import { Description } from "../models/description";
 import { Budget } from "../models/budget";
-import { JuryService } from "../services/jury.service";
 import { Comment } from "../models/comment";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import { FileInfo } from "../models/fileInfo";
+import { AdminService } from "../services/admin.service";
 
 @Component({
     selector: 'app-project-dialog-admin-page',
     templateUrl: './project-dialog-admin-page.component.html',
     styleUrls: ['./project-dialog-admin-page.component.css'],
-    providers: [JuryService],
+    providers: [AdminService],
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
   })
 
 export class AdminDialogPageComponent {
-    [x: string]: any;
     private id                 :String;
     private projectDescription :Description;
     private projectBudget      :Budget;
@@ -31,7 +30,7 @@ export class AdminDialogPageComponent {
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
-    constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any,
+    constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar) {
         this.id                 = data.id;
         this.projectDescription = data.description;
@@ -49,7 +48,7 @@ export class AdminDialogPageComponent {
 
     saveEvaluation(){
       this.evaluation.juryMemberId = '19';
-      this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
+      this.adminService.updateEvaluationOfProject(this.id, this.evaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
         duration: 1500,
@@ -58,7 +57,7 @@ export class AdminDialogPageComponent {
 
     saveComment(){
         const tempComment = new Comment("145","ЯкийсьЮзер", this.commentText, new Date);
-        this.juryService.saveCommentOfProject(this.id, tempComment);
+        this.adminService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";
       }

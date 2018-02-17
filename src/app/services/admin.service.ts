@@ -7,16 +7,17 @@ import { HttpRequest } from '@angular/common/http/src/request';
 import { User } from '../models/user';
 import { ProjectAdm } from '../models/projectAdm';
 import { Evaluation } from '../models/evaluation';
+import { Comment } from '../models/comment';
 
 @Injectable()
 export class AdminService {
 
-  private baseUserUrl: string;
+  private baseUserUrl   : string;
   private baseProjectUrl: string;
 
   constructor(private http: HttpClient) {
 
-    this.baseUserUrl = 'http://localhost:8082/citygrants/admin/user';
+    this.baseUserUrl    = 'http://localhost:8082/citygrants/admin/user';
     this.baseProjectUrl = 'http://localhost:8082/citygrants/admin/project';
   }
 
@@ -65,11 +66,11 @@ export class AdminService {
   }
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
-    this.http.post(this.baseProjectUrl + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
+    this.http.post(this.baseProjectUrl + "/" + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
   }
 
   saveCommentOfProject(idProject:String, comment: Comment){
-    this.http.post(this.baseProjectUrl + idProject + "/comment", comment).toPromise().catch(this.handleError);
+    this.http.post(this.baseProjectUrl + "/" + idProject + "/comment", comment).toPromise().catch(this.handleError);
   }
 
   /**
