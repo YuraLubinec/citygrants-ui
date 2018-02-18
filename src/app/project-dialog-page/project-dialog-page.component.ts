@@ -18,7 +18,6 @@ import { FileInfo } from "../models/fileInfo";
   })
 
 export class JuryDialogPageComponent {
-    [x: string]: any;
     private id                 :String;
     private projectDescription :Description;
     private projectBudget      :Budget;
