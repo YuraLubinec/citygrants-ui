@@ -10,7 +10,7 @@ import { of } from 'rxjs/observable/of';
 export class JuryService {
 
   private baseUrl: string;
-  private juryId = '15';
+  private juryId = '21';
 
   constructor(private http: HttpClient) {
 

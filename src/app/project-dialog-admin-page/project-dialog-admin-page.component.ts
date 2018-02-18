@@ -21,7 +21,7 @@ export class AdminDialogPageComponent {
     private id                 :String;
     private projectDescription :Description;
     private projectBudget      :Budget;
-    private evaluation         :Evaluation;
+    private evaluations         :Array<Evaluation>;
     private comments           :Array<Comment>;
     private comment            :Comment;
     private filesInfo          :Array<FileInfo>;
@@ -31,12 +31,12 @@ export class AdminDialogPageComponent {
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar) {
+                public snackBar: MatSnackBar) {                 
 
         this.id                 = data.id;
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;
-        this.evaluation         = data.evaluation;
+        this.evaluations        = data.evaluation;
         this.comments           = data.comments;
         this.filesInfo          = data.filesInfo;
         this.commentText        = "";
@@ -48,8 +48,8 @@ export class AdminDialogPageComponent {
       }
 
     saveEvaluation(){
-      this.evaluation.juryMemberId = '19';
-      this.adminService.updateEvaluationOfProject(this.id, this.evaluation);
+      //this.evaluation.juryMemberId = '19';
+      //this.adminService.updateEvaluationOfProject(this.id, this.evaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
         duration: 1500,
@@ -63,6 +63,7 @@ export class AdminDialogPageComponent {
                                       + dateNow.getDay() 
                                       + dateNow.getHours()
                                       + dateNow.getMinutes() 
+                                      + dateNow.getMilliseconds();
                                       + dateNow.getMilliseconds();
 
         const tempComment = new Comment(idComment,"145","ЯкийсьЮзер", this.commentText, new Date);

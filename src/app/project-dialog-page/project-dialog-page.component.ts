@@ -47,7 +47,8 @@ export class JuryDialogPageComponent {
       }
 
     saveEvaluation(){
-      this.evaluation.juryMemberId = '19';
+      this.evaluation.juryMemberId   = '21';
+      this.evaluation.juryMemberName = "Test Name for jury";
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {

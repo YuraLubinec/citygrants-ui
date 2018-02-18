@@ -168,168 +168,184 @@
         </ul>    
     </mat-tab>
     <mat-tab label="Оцінювання">
-        <mat-accordion class="example-headers-align">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Актуальність</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>наскільки проект необхідний і важливий для міста в сьогоднішніх умовах</li>
-                    </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalActual">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Зрозумілість</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                        <ul>
-                            <li>чи є чітка механіка реалізації?</li>
-                            <li>чи логічно вибудувана послідовність реалізації проекту?</li>
-                            <li>чіткість визначення показників досягнення результату</li>
-                        </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalIntelligibility">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Компетентність</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>кваліфікація виконавців, загальна адміністративна та технічна спроможність</li>
-                    </ul>
-                    <p></p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalCompetence">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Стійкість</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>чи наявна модель самопідтримки?</li>
-                        <li>як довго проект працюватиме/існуватиме?</li>
-                    </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalStability">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Витрати/ефективність</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>обґрунтованість запланованих витрат та необхідних ресурсів у співвідношенні до очікуваних результатів</li>
-                    </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalEfficiency">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Інноваційність</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>в чому інноваційність проекту: інновація цінності, технологічна  інновація, нова бізнес модель, і т.д.</li>
-                        <li>чи існують схожі проекти? В чому унікальність проекту? </li>
-                    </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalInnovation">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Залучення</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>спроможність запланованої діяльності активізувати участь безпосередніх отримувачів корисного ефекту проекту чи громадськості загалом</li>
-                    </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalAttracting">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><b>Співпраця</b></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ul>
-                        <li>наскільки проект сприяє розвитку співпраці між жителями, організаціями, установами</li>
-                    </ul>
-                </mat-card-content>
-                <mat-card-actions>
-                    <mat-slider
-                        [max]=10
-                        [step]=0.5
-                        [thumb-label]=true
-                        [tick-interval]=2
-                        [(ngModel)]="evaluation.evalParticipation">
-                    </mat-slider>
-                </mat-card-actions>
-            </mat-card>
-        </mat-accordion>
-        <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
-                <mat-icon>save</mat-icon>
-        </button>
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Перший етап">
+                    <mat-card>
+                        <mat-tab-group>
+                            <mat-tab label="{{evaluation.juryMemberName}}" *ngFor="let evaluation of evaluations; let i = index;">
+                                <mat-accordion class="example-headers-align">
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Актуальність</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>наскільки проект необхідний і важливий для міста в сьогоднішніх умовах</li>
+                                            </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalActual">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Зрозумілість</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                                <ul>
+                                                    <li>чи є чітка механіка реалізації?</li>
+                                                    <li>чи логічно вибудувана послідовність реалізації проекту?</li>
+                                                    <li>чіткість визначення показників досягнення результату</li>
+                                                </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalIntelligibility">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Компетентність</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>кваліфікація виконавців, загальна адміністративна та технічна спроможність</li>
+                                            </ul>
+                                            <p></p>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalCompetence">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Стійкість</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>чи наявна модель самопідтримки?</li>
+                                                <li>як довго проект працюватиме/існуватиме?</li>
+                                            </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalStability">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Витрати/ефективність</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>обґрунтованість запланованих витрат та необхідних ресурсів у співвідношенні до очікуваних результатів</li>
+                                            </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalEfficiency">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Інноваційність</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>в чому інноваційність проекту: інновація цінності, технологічна  інновація, нова бізнес модель, і т.д.</li>
+                                                <li>чи існують схожі проекти? В чому унікальність проекту? </li>
+                                            </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalInnovation">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Залучення</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>спроможність запланованої діяльності активізувати участь безпосередніх отримувачів корисного ефекту проекту чи громадськості загалом</li>
+                                            </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalAttracting">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                    <mat-card>
+                                        <mat-card-header>
+                                            <mat-card-title><b>Співпраця</b></mat-card-title>
+                                        </mat-card-header>
+                                        <mat-card-content>
+                                            <ul>
+                                                <li>наскільки проект сприяє розвитку співпраці між жителями, організаціями, установами</li>
+                                            </ul>
+                                        </mat-card-content>
+                                        <mat-card-actions>
+                                            <mat-slider
+                                                [max]=10
+                                                [step]=0.5
+                                                [thumb-label]=true
+                                                [tick-interval]=2
+                                                [(ngModel)]="evaluation.evalParticipation">
+                                            </mat-slider>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </mat-accordion>
+                                <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
+                                        <mat-icon>save</mat-icon>
+                                </button>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </mat-card>
+                </mat-tab>
+
+                <mat-tab label="Другий етап">
+
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
     </mat-tab>
     <mat-tab label="Прикріплені файли">
         <div class = "attach-doc-container">
