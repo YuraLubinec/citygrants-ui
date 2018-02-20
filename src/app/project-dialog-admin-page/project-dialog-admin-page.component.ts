@@ -60,7 +60,7 @@ export class AdminDialogPageComponent {
       
       this.adminService.updateProject(projectUpdate);
 
-      this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
+      this.snackBar.open('Проект обновлено !!!','', {
         duration: 2000,
       });
     }

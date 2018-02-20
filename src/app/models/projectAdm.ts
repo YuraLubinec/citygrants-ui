@@ -22,6 +22,7 @@ export class ProjectAdm {
     constructor(id:string, budget: Budget, description: Description, confirmed: boolean, approvedToSecondStage : boolean,
                 evaluations : Array<Evaluation>, interviewEvaluations  : Array<InterviewEvaluation> ) {
 
+        this.id                    = id;
         this.budget                = budget;
         this.description           = description;
         this.confirmed             = confirmed;

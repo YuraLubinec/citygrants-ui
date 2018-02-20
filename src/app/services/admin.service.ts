@@ -52,7 +52,7 @@ export class AdminService {
   }
 
   updateProject(project: ProjectAdm) {
-    this.http.put(this.baseProjectUrl, project).toPromise().catch(this.handleHttpError);
+    this.http.put(this.baseProjectUrl, project).toPromise().catch(this.handleError);
   }
 
   delete(id: string) {
