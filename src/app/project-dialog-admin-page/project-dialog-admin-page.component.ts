@@ -7,6 +7,8 @@ import { Comment } from "../models/comment";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import { FileInfo } from "../models/fileInfo";
 import { AdminService } from "../services/admin.service";
+import { ProjectAdm } from "../models/projectAdm";
+import { InterviewEvaluation } from "../models/interviewEvaluation";
 
 @Component({
     selector: 'app-project-dialog-admin-page',
@@ -18,41 +20,48 @@ import { AdminService } from "../services/admin.service";
   })
 
 export class AdminDialogPageComponent {
-    private id                 :String;
-    private projectDescription :Description;
-    private projectBudget      :Budget;
-    private evaluations         :Array<Evaluation>;
-    private comments           :Array<Comment>;
-    private comment            :Comment;
-    private filesInfo          :Array<FileInfo>;
-    private commentText        :string;
-    private step               = 0;
+    private id                   :string;
+    private projectDescription   :Description;
+    private projectBudget        :Budget;
+    private evaluations          :Array<Evaluation>;
+    private interviewEvaluations :Array<InterviewEvaluation>;
+    private comments             :Array<Comment>;
+    private comment              :Comment;
+    private filesInfo            :Array<FileInfo>;
+    private commentText          :string;
+    private approvedToSecondStage: boolean;
+    private step                 = 0;
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar) {                 
+                public snackBar: MatSnackBar) {  
+                  console.log(data)               
 
-        this.id                 = data.id;
-        this.projectDescription = data.description;
-        this.projectBudget      = data.budget;
-        this.evaluations        = data.evaluation;
-        this.comments           = data.comments;
-        this.filesInfo          = data.filesInfo;
-        this.commentText        = "";
-        this.step               = 0;
+        this.id                    = data.id;
+        this.approvedToSecondStage = data.approvedToSecondStage;                
+        this.projectDescription    = data.description;
+        this.projectBudget         = data.budget;
+        this.evaluations           = data.evaluations;
+        this.interviewEvaluations  = data.interviewEvaluations;          
+        this.comments              = data.comments;
+        this.filesInfo             = data.filesInfo;
+        this.commentText           = "";
+        this.step                  = 0;
     }
 
     ngAfterViewInit() {
         this.arrComments.changes.subscribe(c => {});
       }
 
-    saveEvaluation(){
-      //this.evaluation.juryMemberId = '19';
-      //this.adminService.updateEvaluationOfProject(this.id, this.evaluation);
+    saveProject(){
+      const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription, 
+                                    true, false, this.evaluations, this.interviewEvaluations);
+      
+      this.adminService.updateProject(projectUpdate);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
-        duration: 1500,
+        duration: 2000,
       });
     }
 

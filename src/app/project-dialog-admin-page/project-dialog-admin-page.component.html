@@ -333,9 +333,6 @@
                                         </mat-card-actions>
                                     </mat-card>
                                 </mat-accordion>
-                                <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
-                                        <mat-icon>save</mat-icon>
-                                </button>
                             </mat-tab>
                         </mat-tab-group>
                     </mat-card>
@@ -353,6 +350,9 @@
         </div>
     </mat-tab>
   </mat-tab-group>
+  <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Обновити дані
+    <mat-icon>save</mat-icon>
+</button>
   <h3><b>Коментарі</b></h3>
   <div class="comment-send-container">
     <mat-form-field>
