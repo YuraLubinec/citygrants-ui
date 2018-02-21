@@ -1,172 +1,261 @@
 <mat-tab-group>
-    <mat-tab label="Опис">
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Назва">
-                    <input matInput value={{projectDescription.name}}>
-                </mat-tab>
-                <mat-tab label="Запитувана сума">
-                    <input matInput value={{projectDescription.requestedBudget}} грн.>
-                </mat-tab>
-                <mat-tab label="Назва організації або ініціативної групи">
-                    <input matInput value={{projectDescription.organizationName}}>
-                </mat-tab>
-                <mat-tab label="Тематичний напрямок">
-                    <p>{{projectDescription.theme}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Координатор/ка проекту">
-                    <p>{{projectDescription.coordinatorName}}</p>
-                </mat-tab>
-                <mat-tab label="Координатор/ка проекту (моб.тел.)">
-                    <p>{{projectDescription.coordinatorPhone}}</p>
-                </mat-tab>
-                <mat-tab label="Координатор/ка проекту (електронна адреса)">
-                    <p>{{projectDescription.coordinatorEmail}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
+        <mat-tab label="Опис">
+            <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+                <mat-card>
+                    <mat-tab-group>
+                        <mat-tab label="Назва">
+                                <mat-form-field class="full-width">
+                                    <textarea matInput required formControlName="name" [(ngModel)]="projectDescription.name" #name
+                                        required matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8">
+                                    </textarea>
+                                    <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
+                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
+                                </mat-form-field>      
+                        </mat-tab>
+                        <mat-tab label="Запитувана сума">
+                            <mat-form-field  class="full-width">
+                                    <textarea matInput formControlName="requestedBudget" [(ngModel)]="projectDescription.requestedBudget" required></textarea>
+                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Назва організації або ініціативної групи">
+                            <mat-form-field  class="full-width">
+                                    <textarea matInput maxlength="250" #organizationName
+                                        formControlName="organizationName" 
+                                        required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                    <mat-hint align="end">{{organizationName.value.length}} / 250</mat-hint>
+                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Тематичний напрямок">
+                            <mat-form-field  class="full-width">
+                                    <textarea matInput maxlength="250" #theme [(ngModel)]="projectDescription.theme"
+                                    formControlName="theme" 
+                                    required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                    <mat-hint align="end">{{theme.value.length}} / 250</mat-hint>
+                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
+                <mat-card>
+                    <mat-tab-group>
+                        <mat-tab label="Координатор/ка проекту">
+                            <mat-form-field  class="full-width">
+                                <input matInput maxlength="100" #coordinatorName 
+                                formControlName="coordinatorName"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6">
+                                <mat-hint align="end">{{coordinatorName.value.length}} / 100</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Координатор/ка проекту (моб.тел.)">
+                            <mat-form-field  class="full-width"> 
+                                <input matInput formControlName="coordinatorPhone" required>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Координатор/ка проекту (електронна адреса)">
+                            <mat-form-field  class="full-width">  
+                                <input matInput maxlength="50" formControlName="coordinatorEmail" required>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
 
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Попередній досвід команди проекту">
-                    <p>{{projectDescription.expirienceDescription}}</p>
-                </mat-tab>
-                <mat-tab label="Адреса організації">
-                    <p>{{projectDescription.address}}</p>
-                </mat-tab>
-                <mat-tab label="Мета проекту">
-                    <p>{{projectDescription.goal}}</p>
-                </mat-tab>
-                <mat-tab label="Актуальність проекту">
-                        <p>{{projectDescription.actuality}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
+                <mat-card>
+                    <mat-tab-group>
+                        <mat-tab label="Попередній досвід команди проекту">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="2000" #expirienceDescription formControlName="expirienceDescription"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{expirienceDescription.value.length}} / 2000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("expirienceDescription")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Адреса організації">
+                            <mat-form-field class="full-width">
+                                <textarea matInput maxlength="250" #address formControlName="address"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{address.value.length}} / 250</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("address")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Мета проекту">
+                            <mat-form-field class="full-width">
+                                <textarea matInput maxlength="1000" #goal formControlName="goal"  [(ngModel)]="projectDescription.goal"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{goal.value.length}} / 1000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Актуальність проекту">
+                            <mat-form-field class="full-width">
+                                <textarea matInput maxlength="2000" #actuality formControlName="actuality"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{actuality.value.length}} / 2000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("actuality")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
 
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Очікувані результати">
-                    <p>{{projectDescription.expectedResults}}</p>
-                </mat-tab>
-                <mat-tab label="Опис проекту">
-                    <p>{{projectDescription.fullDescription}}</p>
-                </mat-tab>
-                <mat-tab label="Цільові групи">
-                    <p>{{projectDescription.targetGroup}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
+                <mat-card>
+                    <mat-tab-group>
+                        <mat-tab label="Очікувані результати">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="2000" #expectedResults formControlName="expectedResults"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{expectedResults.value.length}} / 2000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("expectedResults")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Опис проекту">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="2000" #fullDescription 
+                                formControlName="fullDescription"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{fullDescription.value.length}} / 2000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Цільові групи">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="2000" #targetGroup formControlName="targetGroup"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{targetGroup.value.length}} / 2000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("targetGroup")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
 
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Команда проекту">
-                    <p>{{projectDescription.projectMembers}}</p>
-                </mat-tab>
-                <mat-tab label="Погодження та дозволи">
-                    <p>{{projectDescription.requiredPermissions}}</p>
-                </mat-tab>
-                <mat-tab label="Партнери та спонсори">
-                    <p>{{projectDescription.partners}}</p>
-                </mat-tab>
-                <mat-tab label="Термін втілення проекту">
-                    <p>{{projectDescription.requiredTime}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Б'юджет">
-        
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Комісія за витрати">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.const}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalFeeFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalFeeFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Tранспортні витрати">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.const}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalTransportFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalTransportFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість харчування">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.const}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalNutritionFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalNutritionFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість оренди">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.const}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalRentFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalRentFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість пунктів адміністрування">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.const}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalAdministrativeFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdministrativeFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість елементів реклами">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.const}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>     
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-        <h4>Загальна сума б'юджету</h4>
-        <ul>
-            <li>Загальна кількість матеріалів за програмою : {{projectBudget.totalMaterialsFromProgram}}</li>
-            <li>Загальні матеріали з інших джерел : {{projectBudget.totalMaterialsFromOtherSources}}</li>
-            <li>Вартість інших речей : {{projectBudget.costItemsOthers}}</li>
-            <li>Витарати на інше : {{projectBudget.totalOthersFromProgram}} грн.</li>
-            <li>Загальані витрати з інших джерел : {{projectBudget.totalOthersFromOtherSources}} грн.</li>
-            <li>Загальна кількість інших з інших джерел : {{projectBudget.totalFromOtherSources}} грн.</li>
-            <hr>
-        </ul>    
-    </mat-tab>
+                <mat-card>
+                    <mat-tab-group>
+                        <mat-tab label="Команда проекту">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="1000" formControlName="projectMembers"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{coordinatorName.value.length}} / 1000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("projectMembers")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Погодження та дозволи">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="1000" #requiredPermissions formControlName="requiredPermissions"
+                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{requiredPermissions.value.length}} / 1000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredPermissions")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Партнери та спонсори">
+                            <mat-form-field  class="full-width">
+                                <textarea matInput maxlength="1000" #partners formControlName="partners"
+                                 matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                                <mat-hint align="end">{{partners.value.length}} / 1000</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("partners")}}</mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+                        <mat-tab label="Термін втілення проекту">
+                            <mat-form-field  class="full-width">
+                                <input matInput  formControlName="requiredTime">
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
+            </form>
+        </mat-tab>
+     
+        <mat-tab label="Б'юджет">
+            
+            <mat-card>
+                <mat-tab-group>
+                    <mat-tab label="Комісія за витрати">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index">
+                            <li>Опис : {{itemFree.description}}</li>
+                            <li>Вартість : {{itemFree.const}}</li>
+                            <li>Кількість : {{itemFree.count}}</li>
+                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <hr>
+                        </ul>
+                        <p>Загальна сума витрати на програму : {{projectBudget.totalFeeFromProgram}} грн.</p>
+                        <p>Загальна сума витрати з інших джерел : {{projectBudget.totalFeeFromOtherSources}} грн.</p>     
+                    </mat-tab>
+                    <mat-tab label="Tранспортні витрати">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index">
+                            <li>Опис : {{itemFree.description}}</li>
+                            <li>Вартість : {{itemFree.const}}</li>
+                            <li>Кількість : {{itemFree.count}}</li>
+                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <hr>
+                        </ul>
+                        <p>Загальна сума витрати на програму : {{projectBudget.totalTransportFromProgram}} грн.</p>
+                        <p>Загальна сума витрати з інших джерел : {{projectBudget.totalTransportFromOtherSources}} грн.</p>     
+                    </mat-tab>
+                    <mat-tab label="Вартість харчування">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index">
+                            <li>Опис : {{itemFree.description}}</li>
+                            <li>Вартість : {{itemFree.const}}</li>
+                            <li>Кількість : {{itemFree.count}}</li>
+                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <hr>
+                        </ul>
+                        <p>Загальна сума витрати на програму : {{projectBudget.totalNutritionFromProgram}} грн.</p>
+                        <p>Загальна сума витрати з інших джерел : {{projectBudget.totalNutritionFromOtherSources}} грн.</p>     
+                    </mat-tab>
+                    <mat-tab label="Вартість оренди">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index">
+                            <li>Опис : {{itemFree.description}}</li>
+                            <li>Вартість : {{itemFree.const}}</li>
+                            <li>Кількість : {{itemFree.count}}</li>
+                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <hr>
+                        </ul>
+                        <p>Загальна сума витрати на програму : {{projectBudget.totalRentFromProgram}} грн.</p>
+                        <p>Загальна сума витрати з інших джерел : {{projectBudget.totalRentFromOtherSources}} грн.</p>     
+                    </mat-tab>
+                    <mat-tab label="Вартість пунктів адміністрування">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index">
+                            <li>Опис : {{itemFree.description}}</li>
+                            <li>Вартість : {{itemFree.const}}</li>
+                            <li>Кількість : {{itemFree.count}}</li>
+                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <hr>
+                        </ul>
+                        <p>Загальна сума витрати на програму : {{projectBudget.totalAdministrativeFromProgram}} грн.</p>
+                        <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdministrativeFromOtherSources}} грн.</p>     
+                    </mat-tab>
+                    <mat-tab label="Вартість елементів реклами">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index">
+                            <li>Опис : {{itemFree.description}}</li>
+                            <li>Вартість : {{itemFree.const}}</li>
+                            <li>Кількість : {{itemFree.count}}</li>
+                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <hr>
+                        </ul>
+                        <p>Загальна сума витрати на програму : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>
+                        <p>Загальна сума витрати з інших джерел : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>     
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+            <h4>Загальна сума б'юджету</h4>
+            <ul>
+                <li>Загальна кількість матеріалів за програмою : {{projectBudget.totalMaterialsFromProgram}}</li>
+                <li>Загальні матеріали з інших джерел : {{projectBudget.totalMaterialsFromOtherSources}}</li>
+                <li>Вартість інших речей : {{projectBudget.costItemsOthers}}</li>
+                <li>Витарати на інше : {{projectBudget.totalOthersFromProgram}} грн.</li>
+                <li>Загальані витрати з інших джерел : {{projectBudget.totalOthersFromOtherSources}} грн.</li>
+                <li>Загальна кількість інших з інших джерел : {{projectBudget.totalFromOtherSources}} грн.</li>
+                <hr>
+            </ul>    
+        </mat-tab> 
     <mat-tab label="Оцінювання">
         <mat-card>
             <mat-tab-group>
@@ -351,7 +440,7 @@
     </mat-tab>
   </mat-tab-group>
 
-  <button class="evluation-btn" (click)="saveProject()" mat-raised-button color="primary">Обновити дані
+  <button class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary">Обновити дані
     <mat-icon>save</mat-icon>
   </button>
 

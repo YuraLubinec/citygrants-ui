@@ -28,3 +28,7 @@
   overflow: hidden;
   max-width: 110ch;
 }
+
+.full-width{
+  width: 100%;
+}
