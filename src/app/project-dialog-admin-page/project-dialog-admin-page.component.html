@@ -168,6 +168,38 @@
         </mat-tab>
      
         <mat-tab label="Б'юджет">
+
+            <form [formGroup]="appCostItem" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
+                <mat-form-field class="full-width">
+                    <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
+                    <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
+                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost" required>
+                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width"> 
+                    <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count" required>
+                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram" type="number" required>
+                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromProgram")}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources"type="number" required>
+                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
+                    <mat-option disabled>Оберіть категорію витрат</mat-option>
+                    <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
+                </mat-form-field>
+                <button mat-button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Зберегти</button>
+            </form>
             
             <mat-card>
                 <mat-tab-group>
@@ -178,6 +210,7 @@
                             <li>Кількість : {{itemFree.count}}</li>
                             <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
                             <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[0].value)" >Видалити</button>
                             <hr>
                         </ul>
                         <p>Загальна сума витрати на програму : {{projectBudget.totalFeeFromProgram}} грн.</p>
@@ -190,6 +223,7 @@
                             <li>Кількість : {{itemFree.count}}</li>
                             <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
                             <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[1].value)" >Видалити</button>
                             <hr>
                         </ul>
                         <p>Загальна сума витрати на програму : {{projectBudget.totalTransportFromProgram}} грн.</p>
@@ -202,6 +236,7 @@
                             <li>Кількість : {{itemFree.count}}</li>
                             <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
                             <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[2].value)" >Видалити</button>
                             <hr>
                         </ul>
                         <p>Загальна сума витрати на програму : {{projectBudget.totalNutritionFromProgram}} грн.</p>
@@ -214,6 +249,7 @@
                             <li>Кількість : {{itemFree.count}}</li>
                             <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
                             <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[3].value)" >Видалити</button>
                             <hr>
                         </ul>
                         <p>Загальна сума витрати на програму : {{projectBudget.totalRentFromProgram}} грн.</p>
@@ -226,6 +262,7 @@
                             <li>Кількість : {{itemFree.count}}</li>
                             <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
                             <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[4].value)" >Видалити</button>
                             <hr>
                         </ul>
                         <p>Загальна сума витрати на програму : {{projectBudget.totalAdministrativeFromProgram}} грн.</p>
@@ -238,6 +275,7 @@
                             <li>Кількість : {{itemFree.count}}</li>
                             <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
                             <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
+                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[5].value)" >Видалити</button>
                             <hr>
                         </ul>
                         <p>Загальна сума витрати на програму : {{projectBudget.totalAdvertisingFromOtherSources}} грн.</p>

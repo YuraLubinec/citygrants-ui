@@ -9,7 +9,10 @@ import { FileInfo } from "../models/fileInfo";
 import { AdminService } from "../services/admin.service";
 import { ProjectAdm } from "../models/projectAdm";
 import { InterviewEvaluation } from "../models/interviewEvaluation";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormGroupDirective } from "@angular/forms";
+import { CostItemCategory } from "../models/costItemCategory";
+import { BudgetCalculations } from "../models/budgetCalculations";
+import { CostItem } from "../models/costItem";
 
 @Component({
     selector: 'app-project-dialog-admin-page',
@@ -32,7 +35,10 @@ export class AdminDialogPageComponent {
     private commentText          :string;
     private approvedToSecondStage: boolean;
     private step                 = 0;
+    private costItemCategories   : Array<CostItemCategory>;
     private appDescForm          : FormGroup;
+    private appCostItem          : FormGroup;
+    private calculations         : BudgetCalculations;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -56,8 +62,90 @@ export class AdminDialogPageComponent {
         this.commentText           = "";
         this.step                  = 0;
 
+        this.costItemCategories = [
+          new CostItemCategory("FEE", "Гонорари, трудові угоди"),
+          new CostItemCategory("TRANSPORT", "Транспортні витрати"),
+          new CostItemCategory("NUTRITION", "Харчування"),
+          new CostItemCategory("RENT", "Оренда"),
+          new CostItemCategory("ADMINISTRATIVE", "Адміністративні витрати"),
+          new CostItemCategory("ADVERTISING", "Публікації, реклама, PR"),
+          new CostItemCategory("MATERIALS", "Придбання (купівля витратних матеріалів, тощо)"),
+          new CostItemCategory("OTHER", "Інші витрати")
+        ];
+
         this.createDescriptionForm(data);
+        this.createEmptyCostItemForm();
     }
+
+    createEmptyCostItemForm() {
+      this.appCostItem = this.fb.group({
+        description: ['', [Validators.required, Validators.maxLength(250)]],
+        cost: ['', [Validators.required, Validators.maxLength(5)]],
+        count: ['', [Validators.required, Validators.maxLength(5)]],
+        consumptionsFromProgram: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
+        consumptionsFromOtherSources: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
+        category: ['', [Validators.required, Validators.maxLength(50)]]
+      })
+    }
+
+    submitCostItemForm(formDirective: FormGroupDirective) {
+      let field = this.appCostItem.value;
+      this.addCostItemByCategory(field);
+      this.calculations = this.adminService.calculateBudget(this.projectBudget);
+      formDirective.resetForm();
+      this.appCostItem.reset();
+    }
+  
+    private addCostItemByCategory(field: any) {
+      switch (field.category) {
+        case this.costItemCategories[0].value: {
+          this.projectBudget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        case this.costItemCategories[1].value: {
+          this.projectBudget.costItemsTransport.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break
+        }
+        case this.costItemCategories[2].value: {
+          this.projectBudget.costItemsNutrition.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        case this.costItemCategories[3].value: {
+          this.projectBudget.costItemsRent.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        case this.costItemCategories[4].value: {
+          this.projectBudget.costItemsAdministrative.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        case this.costItemCategories[5].value: {
+          this.projectBudget.costItemsAdvertising.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        case this.costItemCategories[6].value: {
+          this.projectBudget.costItemsMaterial.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        case this.costItemCategories[7].value: {
+          this.projectBudget.costItemsOthers.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+        default: {
+          this.projectBudget.costItemsOthers.push(new CostItem(field.description, field.cost, field.count,
+            parseInt(field.consumptionsFromProgram), parseInt(field.consumptionsFromOtherSources)));
+          break;
+        }
+      }
+    }
+  
 
 
     createDescriptionForm(data :any) {
@@ -179,6 +267,35 @@ export class AdminDialogPageComponent {
       }
     }
 
+    getErrorMessageCostForm(controlName:String){
+      switch(controlName) {
+        case "description": {
+          return this.appCostItem.controls.description.hasError("required") ? this.requiredMessage : 
+                 this.appCostItem.controls.description.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        }
+        case "cost": {
+          return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage : 
+                 this.appCostItem.controls.cost.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        }
+        case "count": {
+          return this.appCostItem.controls.count.hasError("required") ? this.requiredMessage : 
+                 this.appCostItem.controls.count.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        }
+        case "consumptionsFromProgram": {
+          return this.appCostItem.controls.consumptionsFromProgram.hasError("required") ? this.requiredMessage : 
+                 this.appCostItem.controls.consumptionsFromProgram.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        }
+        case "consumptionsFromOtherSources": {
+          return this.appCostItem.controls.consumptionsFromOtherSources.hasError("required") ? this.requiredMessage : 
+                 this.appCostItem.controls.consumptionsFromOtherSources.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        }
+        case "category": {
+          return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : 
+                 this.appCostItem.controls.category.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        }
+      }
+    }
+
 
     ngAfterViewInit() {
         this.arrComments.changes.subscribe(c => {});
@@ -218,7 +335,48 @@ export class AdminDialogPageComponent {
       this.comments.splice(index, 1);
     }
 
-      isDisableCommentButton(){
-        return this.commentText.length <= 0 ? true:false;
+    removeCostItem(i: number, value: string) {
+      switch (value) {
+        case this.costItemCategories[0].value: {
+          this.projectBudget.costItemsFee.splice(i, 1);
+          break;
+        }
+        case this.costItemCategories[1].value: {
+          this.projectBudget.costItemsTransport.splice(i, 1);
+          break
+        }
+        case this.costItemCategories[2].value: {
+          this.projectBudget.costItemsNutrition.splice(i, 1);
+          break;
+        }
+        case this.costItemCategories[3].value: {
+          this.projectBudget.costItemsRent.splice(i, 1);
+          break;
+        }
+        case this.costItemCategories[4].value: {
+          this.projectBudget.costItemsAdministrative.splice(i, 1);
+          break;
+        }
+        case this.costItemCategories[5].value: {
+          this.projectBudget.costItemsAdvertising.splice(i, 1);
+          break;
+        }
+        case this.costItemCategories[6].value: {
+          this.projectBudget.costItemsMaterial.splice(i, 1);
+          break;
+        }
+        case this.costItemCategories[7].value: {
+          this.projectBudget.costItemsOthers.splice(i, 1);
+          break;
+        }
+        default: {
+          break;
+        }
       }
+      this.calculations = this.adminService.calculateBudget(this.projectBudget);
+    }
+
+    isDisableCommentButton(){
+      return this.commentText.length <= 0 ? true:false;
+    }
 }
