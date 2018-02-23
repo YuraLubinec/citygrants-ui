@@ -73,6 +73,7 @@ export class AdminDialogPageComponent {
           new CostItemCategory("OTHER", "Інші витрати")
         ];
 
+        this.calculations = this.adminService.calculateBudget(this.projectBudget);
         this.createDescriptionForm(data);
         this.createEmptyCostItemForm();
     }
