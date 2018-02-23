@@ -15,6 +15,13 @@
   margin-top: 10px;
 } 
 
+.formBudget{
+  margin-top: 10px;
+}
+.costСategory{
+  margin-top: 10px;
+}
+
 .comment-send-container > * {
   width: 100%;
 }

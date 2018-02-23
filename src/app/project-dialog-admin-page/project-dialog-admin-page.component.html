@@ -169,7 +169,7 @@
      
         <mat-tab label="Б'юджет">
 
-            <form [formGroup]="appCostItem" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
+            <form [formGroup]="appCostItem" class="formBudget" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
                 <mat-form-field class="full-width">
                     <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
                     <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
@@ -204,7 +204,7 @@
             <mat-card>
                 <mat-tab-group>
                     <mat-tab label="Гонорари, трудові угоди">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -217,7 +217,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalFeeFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Tранспортні витрати">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -230,7 +230,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalTransportFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Вартість харчування">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -243,7 +243,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalNutritionFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Вартість оренди">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -256,7 +256,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalRentFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Вартість пунктів адміністрування">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -269,7 +269,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalAdministrativeFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Вартість елементів реклами">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -282,7 +282,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalAdvertisingFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Придбання (купівля витратних матеріалів, тощо)">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsMaterial let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsMaterial let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>
@@ -295,7 +295,7 @@
                         <p>Загальна сума витрати з інших джерел : {{calculations.totalMaterialsFromOtherSources}} грн.</p>     
                     </mat-tab>
                     <mat-tab label="Інші витрати">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsOthers let i = index">
+                        <ul *ngFor="let itemFree of projectBudget.costItemsOthers let i = index" class="costСategory">
                             <li>Опис : {{itemFree.description}}</li>
                             <li>Вартість : {{itemFree.cost}}</li>
                             <li>Кількість : {{itemFree.count}}</li>

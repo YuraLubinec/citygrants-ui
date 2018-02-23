@@ -7,6 +7,7 @@ import { JuryService } from "../services/jury.service";
 import { Comment } from "../models/comment";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import { FileInfo } from "../models/fileInfo";
+import { BudgetCalculations } from "../models/budgetCalculations";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -27,6 +28,7 @@ export class JuryDialogPageComponent {
     private filesInfo          :Array<FileInfo>;
     private commentText        :string;
     private step               = 0;
+    private calculations       : BudgetCalculations;
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
@@ -40,6 +42,8 @@ export class JuryDialogPageComponent {
         this.filesInfo          = data.filesInfo;
         this.commentText        = "";
         this.step               = 0;
+
+        this.calculations = this.juryService.calculateBudget(this.projectBudget);
     }
 
     ngAfterViewInit() {
