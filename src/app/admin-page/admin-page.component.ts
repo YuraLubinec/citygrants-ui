@@ -22,6 +22,11 @@ export class AdminPageComponent implements OnInit {
   private pageSizeOptions  = [5, 10, 25, 50];
   private displayedColumns = ['select', 'nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage'];
   private selection  : SelectionModel<ProjectAdm>;
+  
+  private checked = true;
+  private tour1 ="1-ий тур"
+  private tour2 ="2-ий тур" 
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,6 +34,12 @@ export class AdminPageComponent implements OnInit {
   constructor(private adminService: AdminService, public dialog:MatDialog) {
     adminService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
     this.selection = new SelectionModel<ProjectAdm>(true, []); 
+   }
+
+   changeTourOfProject(row){
+     console.log(row);
+     row.approvedToSecondStage = row.approvedToSecondStage == true ? false : true;
+     this.adminService.updateProject(row);
    }
 
    /** Whether the number of selected elements matches the total number of rows. */

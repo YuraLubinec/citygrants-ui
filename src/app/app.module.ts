@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule,
   MatButtonModule, MatIconModule, MatDialogModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule,
-  MatExpansionModule,MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule
+  MatExpansionModule,MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule,MatSlideToggleModule
 } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -34,7 +34,7 @@ import { AdminDialogPageComponent } from './project-dialog-admin-page/project-di
     BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,
-    MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule,MatCheckboxModule
+    MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule,MatCheckboxModule, MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

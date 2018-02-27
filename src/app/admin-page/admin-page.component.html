@@ -5,17 +5,15 @@
   <mat-table #table [dataSource]="dataSource" matSort>
       <!-- Checkbox Column -->
       <ng-container matColumnDef="select">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()">
-          </mat-checkbox>
-        </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Видалити </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <mat-checkbox (click)="$event.stopPropagation()"
-                        (change)="$event ? selection.toggle(row) : null"
-                        [checked]="selection.isSelected(row)">
-          </mat-checkbox>
+          <button mat-button color="warn">Видалити</button>
+          <mat-slide-toggle
+              [checked]="row.approvedToSecondStage"
+              (change)  = "changeTourOfProject(row)">
+              перевести в 1/2 тур
+          </mat-slide-toggle>
+        
         </mat-cell>
       </ng-container>
 
@@ -56,7 +54,7 @@
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"(click)="selectRow($event,row)" (dblclick)="showRow(row)"></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="showRow(row)"></mat-row>
   </mat-table>
   <mat-paginator #paginator
       [length]="length"    
