@@ -37,7 +37,6 @@ export class AdminPageComponent implements OnInit {
    }
 
    changeTourOfProject(row){
-     console.log(row);
      row.approvedToSecondStage = row.approvedToSecondStage == true ? false : true;
      this.adminService.updateProject(row);
    }
@@ -57,16 +56,17 @@ export class AdminPageComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  deleteSelectedProject(){
+  deleteProject(row){
 
-    for(let selProj = 0; selProj < this.selection.selected.length; selProj++){
+    console.log(row);
+
       for(let curProj = 0; curProj < this.projects.length; curProj++){
-        if(this.selection.selected[selProj].id === this.projects[curProj].id){
+        if(row.id === this.projects[curProj].id){
           this.projects.splice(curProj,1);
         }
       }
-    }
-    this.adminService.deleteSelectedProject(this.selection.selected);
+      
+    this.adminService.delete(row.id);
     this.dataHandler(this.projects);
   }
 

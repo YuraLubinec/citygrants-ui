@@ -1,17 +1,15 @@
-
-<button mat-raised-button (click)="deleteSelectedProject()">Видалити проект</button>
 <div class="jury-table-container mat-elevation-z8">
 
   <mat-table #table [dataSource]="dataSource" matSort>
       <!-- Checkbox Column -->
       <ng-container matColumnDef="select">
-        <mat-header-cell *matHeaderCellDef> Видалити </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Керування проектом </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-button color="warn">Видалити</button>
+          <button mat-raised-button (click)="deleteProject(row)">Видалити</button>
           <mat-slide-toggle
               [checked]="row.approvedToSecondStage"
               (change)  = "changeTourOfProject(row)">
-              перевести в 1/2 тур
+              в 2-ий тур
           </mat-slide-toggle>
         
         </mat-cell>
