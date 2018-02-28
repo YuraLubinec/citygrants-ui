@@ -8,6 +8,7 @@ import { Comment } from "../models/comment";
 import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import { FileInfo } from "../models/fileInfo";
 import { BudgetCalculations } from "../models/budgetCalculations";
+import { InterviewEvaluation } from "../models/interviewEvaluation";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -29,6 +30,8 @@ export class JuryDialogPageComponent {
     private commentText        :string;
     private step               = 0;
     private calculations       : BudgetCalculations;
+    private approvedToSecondStage : boolean;
+    private interviewEvaluation   : InterviewEvaluation;
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
@@ -42,6 +45,10 @@ export class JuryDialogPageComponent {
         this.filesInfo          = data.filesInfo;
         this.commentText        = "";
         this.step               = 0;
+        this.approvedToSecondStage = data.approvedToSecondStage;
+        this.interviewEvaluation   = data.interviewEvaluation;
+
+        console.log(data);
 
         this.calculations = this.juryService.calculateBudget(this.projectBudget);
     }
@@ -54,6 +61,17 @@ export class JuryDialogPageComponent {
       this.evaluation.juryMemberId   = '21';
       this.evaluation.juryMemberName = "Test Name for jury";
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
+
+      this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
+        duration: 1500,
+      });
+    }
+
+    saveInterviewEvaluation(){
+      this.evaluation.juryMemberId   = '21';
+      this.evaluation.juryMemberName = "Test Name for jury";
+      console.log("method is working");
+      this.juryService.updateInterviewEvaluationOfProject(this.id, this.interviewEvaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
         duration: 1500,

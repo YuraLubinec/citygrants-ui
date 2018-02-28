@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 import { CostItem } from '../models/costItem';
 import { BudgetCalculations } from '../models/budgetCalculations';
 import { Budget } from '../models/budget';
+import { InterviewEvaluation } from '../models/interviewEvaluation';
 
 @Injectable()
 export class JuryService {
@@ -26,6 +27,12 @@ export class JuryService {
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
     this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
+  }
+
+  updateInterviewEvaluationOfProject(idProject:String, evaluation: InterviewEvaluation){
+    console.log("service is working : " + this.baseUrl + idProject + "/interviewEvaluation");
+    console.log(evaluation);
+    this.http.post(this.baseUrl + idProject + "/interviewEvaluation", evaluation).toPromise().catch(this.handleError);
   }
 
   saveCommentOfProject(idProject:String, comment: Comment){
