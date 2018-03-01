@@ -1,14 +1,11 @@
 <mat-card class="login-window">
-  <form class="login-form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="login-width">
-      <input matInput placeholder="Login">
+      <input matInput placeholder="логін" autofocus formControlName="login">
     </mat-form-field>
-  
     <mat-form-field class="login-width">
-      <input matInput type="password" placeholder="Password">
+      <input matInput type="password" placeholder="пароль" formControlName="password">
     </mat-form-field>
-  </form>  
+    <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary" class="login-button">Увійти</button>
+  </form>
 </mat-card>
-
-
-

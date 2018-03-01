@@ -1,64 +1,71 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { HttpClient, HttpRequest, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BASEURL, ROLE, LOGIN } from '../constants/projectConstants';
+import { BASEURL, ROLE, LOGIN, AUTH_TOCKEN, AUTH_HEADER } from '../constants/projectConstants';
 import { User } from '../models/user';
+import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators/catchError';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/map';
+import { LocalStorageService } from './locastorage.service';
 
-const URLSUFFIXLOGIN: string = '/login';
-const URLSUFFIXAUTHORIZATION: string = '/authority';
+const URLSUFFIXLOGIN: string = 'login';
+const URLSUFFIXAUTHORIZATION: string = 'authority';
 const HEADERCONTENTTYPE: string = 'Content-Type';
 const HEADERVALUE: string = 'application/x-www-form-urlencoded';
-const BODYUSERNAME: string = 'username=';
+const BODYUSERNAME: string = 'login=';
 const BODYPASSWORD: string = '&password=';
 
 @Injectable()
 export class LoginService {
 
-  constructor(private http: Http, private router: Router) {
+  private authenticated: boolean;
+
+  constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) {
 
   }
 
-  login(login: string, password: string): Promise<void | Response> {
+  login(login: string, password: string): Observable<boolean> {
 
-    let headers = new Headers({ HEADERCONTENTTYPE: HEADERVALUE });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(BASEURL + URLSUFFIXLOGIN, BODYUSERNAME + login + BODYPASSWORD + password, options)
-      .toPromise().
-      then(() => this.persistUser(login)).then(this.moveToHomePage()).
-      catch(this.handleError);
+    this.localStorageService.clearLocalStorage();
+    return this.http.post(BASEURL + URLSUFFIXLOGIN, BODYUSERNAME + login + BODYPASSWORD + password,
+      { headers: new HttpHeaders().append(HEADERCONTENTTYPE, HEADERVALUE), observe: 'response' }).map((response: HttpResponse<any>) => {
+
+        const token = response.headers.get(AUTH_HEADER);
+        if (token) {
+          this.localStorageService.saveTokenToLocalStorage(token);
+          this.persistUser(login).subscribe(data => {
+            this.localStorageService.saveCurrentUsetToLocalStorage(login, data.role);
+            this.moveToHomePage();
+          });
+          return true;
+        }
+        else {
+          return false
+        }
+      })
   }
 
-  private saveCurrentUsetToSessionStorage(login: string, role: string) {
+  logout() {
 
-    sessionStorage.setItem(LOGIN, login);
-    sessionStorage.setItem(ROLE, role);
+    this.localStorageService.clearLocalStorage();
+    this.router.navigate(['/login'])
   }
 
-  private persistUser(login: string): Promise<void | Response> {
+  private persistUser(login: string): Observable<any> {
 
-    return this.http.get(BASEURL + URLSUFFIXAUTHORIZATION)
-      .toPromise().then(data => {
-        this.saveCurrentUsetToSessionStorage(login, data.json().role)
-      }).catch(error => this.handleAuthenticationError(error));
-  }
-
-  private handleAuthenticationError(error: any): void {
-  }
-
-  private handleError(error: any): void {
-
-    if (error.status !== 401) {
-      alert('Unexpected authentication error: ' + error);
-    }
+    return this.http.get(BASEURL + URLSUFFIXAUTHORIZATION);
   }
 
   private moveToHomePage(): any {
-    alert(sessionStorage.getItem(ROLE));
-    throw new Error("Method not implemented.");
+
+    if (localStorage.getItem(ROLE) == 'ADMIN') {
+      this.router.navigate(['/admin'])
+    } else if (localStorage.getItem(ROLE) == 'ADMIN') {
+      this.router.navigate(['/jury'])
+    } else {
+      throw new Error("No such role");
+    }
   }
-
-
-
-
 
 }
