@@ -6,13 +6,16 @@ import { JuryPageComponent } from "../jury-page/jury-page.component";
 import { AdminPageComponent } from "../admin-page/admin-page.component";
 import { LoginPageComponent } from "../login-page/login-page.component";
 import { LoginGuard } from "./guards/loginGuard";
+import { AdminGuard } from "./guards/adminGuard";
+import { JuryGuard } from "./guards/juryGuard";
 
 const appRoutes: Routes = [
 
   { path: "", component: ClientPageComponent },
-  { path: "jury", component: JuryPageComponent },
-  { path: "admin", component: AdminPageComponent },
+  { path: "jury", component: JuryPageComponent, canActivate: [JuryGuard] },
+  { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
+  { path: "**", redirectTo: '', pathMatch: 'full' }
 
 ]
 
@@ -21,7 +24,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule],
-  providers: [LoginGuard],
+  providers: [LoginGuard, AdminGuard, JuryGuard],
   declarations: []
 })
 export class RoutingModule { }

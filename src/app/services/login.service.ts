@@ -29,8 +29,8 @@ export class LoginService {
 
     this.localStorageService.clearLocalStorage();
     return this.http.post(BASEURL + URLSUFFIXLOGIN, BODYUSERNAME + login + BODYPASSWORD + password,
-      { headers: new HttpHeaders().append(HEADERCONTENTTYPE, HEADERVALUE), observe: 'response' }).map((response: HttpResponse<any>) => {
-
+      { headers: new HttpHeaders().append(HEADERCONTENTTYPE, HEADERVALUE), observe: 'response' })
+      .map((response: HttpResponse<any>) => {
         const token = response.headers.get(AUTH_HEADER);
         if (token) {
           this.localStorageService.saveTokenToLocalStorage(token);
