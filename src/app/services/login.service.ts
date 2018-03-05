@@ -61,7 +61,7 @@ export class LoginService {
 
     if (localStorage.getItem(ROLE) == 'ADMIN') {
       this.router.navigate(['/admin'])
-    } else if (localStorage.getItem(ROLE) == 'ADMIN') {
+    } else if (localStorage.getItem(ROLE) == 'JURYMEMBER') {
       this.router.navigate(['/jury'])
     } else {
       throw new Error("No such role");

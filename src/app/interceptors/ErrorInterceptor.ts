@@ -16,11 +16,13 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         return next.handle(req).do(event => { }, err => {
-            this.localStorageService.clearLocalStorage();
+            
             if (err instanceof HttpErrorResponse && err.status == 403) {
+                this.localStorageService.clearLocalStorage();
                 alert("you are not authorized or your permission expired")
             }
             else if (err instanceof HttpErrorResponse && err.status == 401) {
+                this.localStorageService.clearLocalStorage();
                 alert("you are not authenticated to use this service")
             }
             else {
