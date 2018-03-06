@@ -311,6 +311,7 @@ export class AdminDialogPageComponent {
       this.adminService.updateProject(projectUpdate);
 
       document.getElementById("totalEvalFs").innerText = String(this.getTotalEvalFirstStage(this.evaluations));
+      document.getElementById("totalEvalSs").innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
 
       this.snackBar.open('Проект обновлено !!!','', {
         duration: 2000,
@@ -329,6 +330,16 @@ export class AdminDialogPageComponent {
         currentTotal += Number(element.evalIntelligibility);
         currentTotal += Number(element.evalParticipation);
         currentTotal += Number(element.evalStability);
+      });
+
+      return currentTotal;
+      
+    }
+
+    getTotalEvalSecondStage(evaluations:Array<InterviewEvaluation>){
+      let currentTotal= 0;
+      evaluations.forEach(element => {
+        currentTotal += Number(element.evaluation);
       });
 
       return currentTotal;
