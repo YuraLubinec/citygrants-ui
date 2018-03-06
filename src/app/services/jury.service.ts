@@ -9,20 +9,20 @@ import { CostItem } from '../models/costItem';
 import { BudgetCalculations } from '../models/budgetCalculations';
 import { Budget } from '../models/budget';
 import { InterviewEvaluation } from '../models/interviewEvaluation';
+import { BASEURL, LOGIN, ID } from '../constants/projectConstants';
 
 @Injectable()
 export class JuryService {
 
   private baseUrl: string;
-  private juryId = '21';
 
   constructor(private http: HttpClient) {
 
-    this.baseUrl = 'http://localhost:8082/citygrants/jury/project/';
+    this.baseUrl = BASEURL + 'jury/project/';
   }
 
   getAllProjects(): Observable<any> {
-    return this.http.get(this.baseUrl + this.juryId);
+    return this.http.get(this.baseUrl + localStorage.getItem(LOGIN));
   }
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
@@ -30,12 +30,11 @@ export class JuryService {
   }
 
   updateInterviewEvaluationOfProject(idProject:String, evaluation: InterviewEvaluation){
-    console.log("service is working : " + this.baseUrl + idProject + "/interviewEvaluation");
-    console.log(evaluation);
     this.http.post(this.baseUrl + idProject + "/interviewEvaluation", evaluation).toPromise().catch(this.handleError);
   }
 
   saveCommentOfProject(idProject:String, comment: Comment){
+
     this.http.post(this.baseUrl + idProject + "/comment", comment).toPromise().catch(this.handleError);
   }
 

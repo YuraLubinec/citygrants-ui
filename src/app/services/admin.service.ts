@@ -11,6 +11,7 @@ import { Comment } from '../models/comment';
 import { BudgetCalculations } from '../models/budgetCalculations';
 import { Budget } from '../models/budget';
 import { CostItem } from '../models/costItem';
+import { BASEURL } from '../constants/projectConstants';
 
 @Injectable()
 export class AdminService {
@@ -20,8 +21,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) {
 
-    this.baseUserUrl    = 'http://localhost:8082/citygrants/admin/user';
-    this.baseProjectUrl = 'http://localhost:8082/citygrants/admin/project';
+    this.baseUserUrl    = BASEURL + 'admin/user';
+    this.baseProjectUrl = BASEURL + 'admin/project';
   }
 
   getAllUsers(): Observable<User[]> {

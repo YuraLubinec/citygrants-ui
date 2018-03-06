@@ -35,7 +35,7 @@ export class LoginService {
         if (token) {
           this.localStorageService.saveTokenToLocalStorage(token);
           this.persistUser(login).subscribe(data => {
-            this.localStorageService.saveCurrentUsetToLocalStorage(login, data.role);
+            this.localStorageService.saveCurrentUsetToLocalStorage(login, data.role, data.fullName, data.id);
             this.moveToHomePage();
           });
           return true;
