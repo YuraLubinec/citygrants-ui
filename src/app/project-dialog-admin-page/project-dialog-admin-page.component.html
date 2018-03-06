@@ -318,9 +318,15 @@
             </ul>    
         </mat-tab> 
     <mat-tab label="Оцінювання">
+        <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
+                <mat-card-content>
+                    <b>По даному проекту оцінок немає від жодного оцінювача</b>
+                </mat-card-content>
+        </mat-card>
+
         <mat-card>
             <mat-tab-group>
-                <mat-tab label="Перший етап">
+                <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
                     <mat-card>
                         <mat-tab-group>
                             <mat-tab label="{{evaluation.juryMemberName}}" *ngFor="let evaluation of evaluations; let i = index;">
@@ -488,8 +494,32 @@
                     </mat-card>
                 </mat-tab>
 
-                <mat-tab label="Другий етап">
-
+                <mat-tab label="Другий етап" *ngIf="interviewEvaluations.length > 0">
+                    <mat-card>
+                        <mat-tab-group>
+                            <mat-tab label="{{interviewEvaluation.juryMemberName}}" *ngFor="let interviewEvaluation of interviewEvaluations; let i = index;">
+                                <mat-card>
+                                    <mat-card-header>
+                                        <mat-card-title><b>Другий етап оцінювання</b></mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <ul>
+                                            <li>Оцінка після інтрев'ю</li>
+                                        </ul>
+                                    </mat-card-content>
+                                    <mat-card-actions>
+                                        <mat-slider
+                                            [max]=5
+                                            [step]=1
+                                            [thumb-label]=true
+                                            [tick-interval]=2
+                                            [(ngModel)]="interviewEvaluation.evaluation">
+                                        </mat-slider>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </mat-card>
                 </mat-tab>
             </mat-tab-group>
         </mat-card>
