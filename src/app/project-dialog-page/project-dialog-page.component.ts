@@ -9,6 +9,9 @@ import { OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 import { FileInfo } from "../models/fileInfo";
 import { BudgetCalculations } from "../models/budgetCalculations";
 import { InterviewEvaluation } from "../models/interviewEvaluation";
+import { User } from "../models/user";
+import { AdminService } from "../services/admin.service";
+import { LOGIN } from "../constants/projectConstants";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -48,8 +51,6 @@ export class JuryDialogPageComponent {
         this.approvedToSecondStage = data.approvedToSecondStage;
         this.interviewEvaluation   = data.interviewEvaluation;
 
-        console.log(data);
-
         this.calculations = this.juryService.calculateBudget(this.projectBudget);
     }
 
@@ -58,8 +59,8 @@ export class JuryDialogPageComponent {
       }
 
     saveEvaluation(){
-      this.evaluation.juryMemberId   = '21';
-      this.evaluation.juryMemberName = "Test Name for jury";
+
+      this.evaluation.juryMemberName = localStorage.getItem(LOGIN);
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
@@ -68,9 +69,8 @@ export class JuryDialogPageComponent {
     }
 
     saveInterviewEvaluation(){
-      this.evaluation.juryMemberId   = '21';
-      this.evaluation.juryMemberName = "Test Name for jury";
-      console.log("method is working");
+      this.interviewEvaluation.juryMemberName = localStorage.getItem(LOGIN);
+
       this.juryService.updateInterviewEvaluationOfProject(this.id, this.interviewEvaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
@@ -87,7 +87,7 @@ export class JuryDialogPageComponent {
                                       + dateNow.getMinutes()
                                       + dateNow.getSeconds() 
                                       + dateNow.getMilliseconds();
-        const tempComment = new Comment(idComment,"145","ЯкийсьЮзер", this.commentText, new Date);
+        const tempComment = new Comment(idComment,"", localStorage.getItem(LOGIN), this.commentText, new Date);
         this.juryService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";

@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule,
   MatButtonModule, MatIconModule, MatDialogModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule,
-  MatExpansionModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule
+  MatExpansionModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule
 } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -36,7 +36,7 @@ import { LocalStorageService } from './services/locastorage.service';
     BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,
-    MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule
+    MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule
   ],
   providers: [
     {

@@ -20,8 +20,9 @@ export class AdminPageComponent implements OnInit {
   private pageSize   : Number;
   private pageEvent  : PageEvent;
   private pageSizeOptions  = [5, 10, 25, 50];
-  private displayedColumns = ['select', 'nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage'];
+  private displayedColumns = ['select', 'nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage','buttons'];
   private selection  : SelectionModel<ProjectAdm>;
+  private positionTollTip = "above";
   
   private checked = true;
   private tour1 ="1-ий тур"
@@ -38,7 +39,8 @@ export class AdminPageComponent implements OnInit {
 
    changeTourOfProject(row){
      row.approvedToSecondStage = row.approvedToSecondStage == true ? false : true;
-     this.adminService.updateProject(row);
+
+     this.adminService.updateApprovedToSecondStage(row.id, row.approvedToSecondStage);
    }
 
    /** Whether the number of selected elements matches the total number of rows. */
@@ -49,16 +51,7 @@ export class AdminPageComponent implements OnInit {
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
   deleteProject(row){
-
-    console.log(row);
 
       for(let curProj = 0; curProj < this.projects.length; curProj++){
         if(row.id === this.projects[curProj].id){
@@ -73,7 +66,8 @@ export class AdminPageComponent implements OnInit {
   showRow(row) {
     const dialogRef = this.dialog.open(AdminDialogPageComponent, {
       data: row,
-      height: '1000px'
+      height: '90%',
+      width:'70%'
     });
   }
 

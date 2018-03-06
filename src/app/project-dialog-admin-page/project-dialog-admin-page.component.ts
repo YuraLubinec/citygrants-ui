@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormGroupDirective } from "@angular
 import { CostItemCategory } from "../models/costItemCategory";
 import { BudgetCalculations } from "../models/budgetCalculations";
 import { CostItem } from "../models/costItem";
+import { LOGIN } from "../constants/projectConstants";
 
 @Component({
     selector: 'app-project-dialog-admin-page',
@@ -39,6 +40,7 @@ export class AdminDialogPageComponent {
     private appDescForm          : FormGroup;
     private appCostItem          : FormGroup;
     private calculations         : BudgetCalculations;
+    private totalEvalFirstStage  : Number;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -48,8 +50,7 @@ export class AdminDialogPageComponent {
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar, private fb: FormBuilder) {  
-                  console.log(data)               
+                public snackBar: MatSnackBar, private fb: FormBuilder) {          
 
         this.id                    = data.id;
         this.approvedToSecondStage = data.approvedToSecondStage;                
@@ -309,9 +310,29 @@ export class AdminDialogPageComponent {
       
       this.adminService.updateProject(projectUpdate);
 
+      document.getElementById("totalEvalFs").innerText = String(this.getTotalEvalFirstStage(this.evaluations));
+
       this.snackBar.open('Проект обновлено !!!','', {
         duration: 2000,
       });
+    }
+
+    
+    getTotalEvalFirstStage(evaluations:Array<Evaluation>){
+      let currentTotal= 0;
+      evaluations.forEach(element => {
+        currentTotal += Number(element.evalActual);
+        currentTotal += Number(element.evalAttracting);
+        currentTotal += Number(element.evalCompetence);
+        currentTotal += Number(element.evalEfficiency);
+        currentTotal += Number(element.evalInnovation);
+        currentTotal += Number(element.evalIntelligibility);
+        currentTotal += Number(element.evalParticipation);
+        currentTotal += Number(element.evalStability);
+      });
+
+      return currentTotal;
+      
     }
 
     saveComment(){
@@ -324,7 +345,7 @@ export class AdminDialogPageComponent {
                                       + dateNow.getMilliseconds();
                                       + dateNow.getMilliseconds();
 
-        const tempComment = new Comment(idComment,"145","ЯкийсьЮзер", this.commentText, new Date);
+        const tempComment = new Comment(idComment,"", localStorage.getItem(LOGIN), this.commentText, new Date);
         this.adminService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";

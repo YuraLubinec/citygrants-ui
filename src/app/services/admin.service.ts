@@ -11,6 +11,7 @@ import { Comment } from '../models/comment';
 import { BudgetCalculations } from '../models/budgetCalculations';
 import { Budget } from '../models/budget';
 import { CostItem } from '../models/costItem';
+import { BASEURL } from '../constants/projectConstants';
 
 @Injectable()
 export class AdminService {
@@ -20,8 +21,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) {
 
-    this.baseUserUrl    = 'http://localhost:8082/citygrants/admin/user';
-    this.baseProjectUrl = 'http://localhost:8082/citygrants/admin/project';
+    this.baseUserUrl    = BASEURL + 'admin/user';
+    this.baseProjectUrl = BASEURL + 'admin/project';
   }
 
   getAllUsers(): Observable<User[]> {
@@ -58,18 +59,19 @@ export class AdminService {
     this.http.put(this.baseProjectUrl, project).toPromise().catch(this.handleError);
   }
 
+  updateApprovedToSecondStage(id:string, isApproved:boolean){
+    console.log(id);
+    console.log(isApproved);
+
+    this.http.put(this.baseProjectUrl + "/" + id + "/approved/" + isApproved,"").toPromise().catch(this.handleError);
+  }
+
   delete(id: string) {
     this.http.delete(this.baseProjectUrl + "/" + id).toPromise().catch(this.handleHttpError);
   }
 
   deleteCommentOfProject(idProject:string, idComment:string){
     this.http.delete(this.baseProjectUrl + "/" + idProject + "/comment/" + idComment).toPromise().catch(this.handleHttpError);
-  }
-
-  deleteSelectedProject(args:any) {
-    for (let entry of args) {
-      this.delete(entry.id);
-    }
   }
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
