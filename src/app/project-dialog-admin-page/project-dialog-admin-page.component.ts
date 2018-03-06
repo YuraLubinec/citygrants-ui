@@ -39,6 +39,8 @@ export class AdminDialogPageComponent {
     private appDescForm          : FormGroup;
     private appCostItem          : FormGroup;
     private calculations         : BudgetCalculations;
+    private totalEvalFirstStage  : Number;
+    private currentTotalEvalFS   : number;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -59,6 +61,7 @@ export class AdminDialogPageComponent {
         this.interviewEvaluations  = data.interviewEvaluations;          
         this.comments              = data.comments;
         this.filesInfo             = data.filesInfo;
+        this.totalEvalFirstStage   = data.totalEvalFirstStage;
         this.commentText           = "";
         this.step                  = 0;
 
@@ -309,9 +312,31 @@ export class AdminDialogPageComponent {
       
       this.adminService.updateProject(projectUpdate);
 
+      document.getElementById("totalEvalFs").innerText = String(this.getTotalEvalFirstStage(this.evaluations));
+
       this.snackBar.open('Проект обновлено !!!','', {
         duration: 2000,
       });
+    }
+
+    
+    getTotalEvalFirstStage(evaluations:Array<Evaluation>){
+      let currentTotal= 0;
+      evaluations.forEach(element => {
+        currentTotal += Number(element.evalActual);
+        currentTotal += Number(element.evalAttracting);
+        currentTotal += Number(element.evalCompetence);
+        currentTotal += Number(element.evalEfficiency);
+        currentTotal += Number(element.evalInnovation);
+        currentTotal += Number(element.evalIntelligibility);
+        currentTotal += Number(element.evalParticipation);
+        currentTotal += Number(element.evalStability);
+      });
+
+      console.log(currentTotal);
+
+      return currentTotal;
+      
     }
 
     saveComment(){

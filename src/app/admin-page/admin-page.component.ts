@@ -49,16 +49,7 @@ export class AdminPageComponent implements OnInit {
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
   deleteProject(row){
-
-    console.log(row);
 
       for(let curProj = 0; curProj < this.projects.length; curProj++){
         if(row.id === this.projects[curProj].id){

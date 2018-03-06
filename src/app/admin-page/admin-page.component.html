@@ -48,7 +48,7 @@
       <!-- Total eval first stage Column -->
       <ng-container matColumnDef="totalEvalFirstStage">
         <mat-header-cell *matHeaderCellDef mat-sort-header > Оцінка </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
+        <mat-cell id="totalEvalFs" *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
