@@ -64,7 +64,8 @@ export class AdminPageComponent implements OnInit {
   showRow(row) {
     const dialogRef = this.dialog.open(AdminDialogPageComponent, {
       data: row,
-      height: '1000px'
+      height: '90%',
+      width:'70%'
     });
   }
 

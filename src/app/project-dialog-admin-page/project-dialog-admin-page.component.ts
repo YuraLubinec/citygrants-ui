@@ -81,6 +81,10 @@ export class AdminDialogPageComponent {
         this.createEmptyCostItemForm();
     }
 
+    scrollBottom() {
+      document.querySelector('mat-tab-group').scrollBy(0, 10000);
+    }
+
     createEmptyCostItemForm() {
       this.appCostItem = this.fb.group({
         description: ['', [Validators.required, Validators.maxLength(250)]],
@@ -332,8 +336,6 @@ export class AdminDialogPageComponent {
         currentTotal += Number(element.evalParticipation);
         currentTotal += Number(element.evalStability);
       });
-
-      console.log(currentTotal);
 
       return currentTotal;
       
