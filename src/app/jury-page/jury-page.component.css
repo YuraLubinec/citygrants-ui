@@ -11,3 +11,7 @@
     max-height: 500px;
   }
   
+  mat-table{
+    cursor: pointer;
+  }
+  

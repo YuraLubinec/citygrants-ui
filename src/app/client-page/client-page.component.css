@@ -19,3 +19,7 @@
     margin: auto;
     width: 70%;
   }
+
+  mat-table{
+    cursor: pointer;
+  }
