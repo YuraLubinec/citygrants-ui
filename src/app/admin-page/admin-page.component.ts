@@ -22,6 +22,7 @@ export class AdminPageComponent implements OnInit {
   private pageSizeOptions  = [5, 10, 25, 50];
   private displayedColumns = ['select', 'nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage','buttons'];
   private selection  : SelectionModel<ProjectAdm>;
+  private positionTollTip = "above";
   
   private checked = true;
   private tour1 ="1-ий тур"

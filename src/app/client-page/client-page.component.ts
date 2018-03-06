@@ -41,6 +41,7 @@ export class ClientPageComponent implements OnInit {
   private defaultMessage     = "помилка введення";
   private patternMessage     = "не відповідає параметрам введення";
   private patternEmail       = "не вірний формат електронної пошти"
+  private positionTollTip    = "above";
 
   constructor(private clientService: ClientService, private fb: FormBuilder, public snackBar: MatSnackBar) {
     this.displayDescriptionForm = true;
