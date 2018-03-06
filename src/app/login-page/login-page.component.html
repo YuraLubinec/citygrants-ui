@@ -1,10 +1,15 @@
 <mat-card class="login-window">
+  <div class="alert alert-danger" *ngIf="errorOccured">
+    <strong>Направильний логін або пароль</strong>
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="login-width">
       <input matInput placeholder="логін" autofocus formControlName="login">
+      
     </mat-form-field>
     <mat-form-field class="login-width">
       <input matInput type="password" placeholder="пароль" formControlName="password">
+      
     </mat-form-field>
     <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary" class="login-button">Увійти</button>
   </form>
