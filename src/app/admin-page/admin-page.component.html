@@ -5,13 +5,11 @@
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef> Керування проектом </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-raised-button (click)="deleteProject(row)">Видалити</button>
           <mat-slide-toggle
               [checked]="row.approvedToSecondStage"
               (change)  = "changeTourOfProject(row)">
               в 2-ий тур
           </mat-slide-toggle>
-        
         </mat-cell>
       </ng-container>
 
@@ -50,6 +48,15 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header > Оцінка </mat-header-cell>
         <mat-cell id="totalEvalFs" *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="buttons">
+          <mat-header-cell *matHeaderCellDef>Видалення</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-icon-button>
+                <mat-icon aria-label="Видалити проект" (click)="deleteProject(row)" color="warn">remove_circle</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="showRow(row)"></mat-row>

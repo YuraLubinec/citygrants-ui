@@ -41,7 +41,6 @@ export class AdminDialogPageComponent {
     private appCostItem          : FormGroup;
     private calculations         : BudgetCalculations;
     private totalEvalFirstStage  : Number;
-    private currentTotalEvalFS   : number;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -51,8 +50,7 @@ export class AdminDialogPageComponent {
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar, private fb: FormBuilder) {  
-                  console.log(data)               
+                public snackBar: MatSnackBar, private fb: FormBuilder) {          
 
         this.id                    = data.id;
         this.approvedToSecondStage = data.approvedToSecondStage;                
@@ -62,7 +60,6 @@ export class AdminDialogPageComponent {
         this.interviewEvaluations  = data.interviewEvaluations;          
         this.comments              = data.comments;
         this.filesInfo             = data.filesInfo;
-        this.totalEvalFirstStage   = data.totalEvalFirstStage;
         this.commentText           = "";
         this.step                  = 0;
 

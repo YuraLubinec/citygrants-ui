@@ -1,3 +1,7 @@
 .mat-column-select {
     overflow: visible;
   }
+
+mat-table{
+  cursor: pointer;
+}
