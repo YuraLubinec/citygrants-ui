@@ -12,7 +12,6 @@ export class LoginPageComponent implements OnInit {
 
   private loginForm: FormGroup;
   private errorOccured: Boolean;
-  private unexpectedErrorOccured: Boolean;
   private authenticationErrorMessage = 'Неправильний логін або пароль';
   private defaultErrorMessage = 'Сталася невідома помилка, спробуйте пізніше';
 
@@ -33,14 +32,7 @@ export class LoginPageComponent implements OnInit {
   onSubmit() {
 
     this.errorOccured = false;
-    this.unexpectedErrorOccured = false;
-    this.loginService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe(resp => console.log(resp));
-  }
-
-  private authenticationErrorHandler(status: Number) {
-
-    if (status === 401) { this.errorOccured = true }
-    else { console.log('Error occured, status: ' + status), this.unexpectedErrorOccured = true }
+    this.loginService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe(resp => this.errorOccured = !resp);
   }
 
 
