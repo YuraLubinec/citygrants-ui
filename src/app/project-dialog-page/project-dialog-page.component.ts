@@ -69,7 +69,7 @@ export class JuryDialogPageComponent {
     }
 
     saveInterviewEvaluation(){
-      this.evaluation.juryMemberName = localStorage.getItem(LOGIN);
+      this.interviewEvaluation.juryMemberName = localStorage.getItem(LOGIN);
 
       this.juryService.updateInterviewEvaluationOfProject(this.id, this.interviewEvaluation);
 

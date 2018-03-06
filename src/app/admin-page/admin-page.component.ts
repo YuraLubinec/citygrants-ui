@@ -39,7 +39,8 @@ export class AdminPageComponent implements OnInit {
 
    changeTourOfProject(row){
      row.approvedToSecondStage = row.approvedToSecondStage == true ? false : true;
-     this.adminService.updateProject(row);
+
+     this.adminService.updateApprovedToSecondStage(row.id, row.approvedToSecondStage);
    }
 
    /** Whether the number of selected elements matches the total number of rows. */

@@ -30,7 +30,7 @@ export class JuryService {
   }
 
   updateInterviewEvaluationOfProject(idProject:String, evaluation: InterviewEvaluation){
-    this.http.post(this.baseUrl + idProject + "/interviewEvaluation", evaluation).toPromise().catch(this.handleError);
+    this.http.put(this.baseUrl + idProject + "/interviewEvaluation", evaluation).toPromise().catch(this.handleError);
   }
 
   saveCommentOfProject(idProject:String, comment: Comment){

@@ -59,18 +59,19 @@ export class AdminService {
     this.http.put(this.baseProjectUrl, project).toPromise().catch(this.handleError);
   }
 
+  updateApprovedToSecondStage(id:string, isApproved:boolean){
+    console.log(id);
+    console.log(isApproved);
+
+    this.http.put(this.baseProjectUrl + "/" + id + "/approved/" + isApproved,"").toPromise().catch(this.handleError);
+  }
+
   delete(id: string) {
     this.http.delete(this.baseProjectUrl + "/" + id).toPromise().catch(this.handleHttpError);
   }
 
   deleteCommentOfProject(idProject:string, idComment:string){
     this.http.delete(this.baseProjectUrl + "/" + idProject + "/comment/" + idComment).toPromise().catch(this.handleHttpError);
-  }
-
-  deleteSelectedProject(args:any) {
-    for (let entry of args) {
-      this.delete(entry.id);
-    }
   }
 
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
