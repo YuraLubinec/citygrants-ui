@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormGroupDirective } from "@angular
 import { CostItemCategory } from "../models/costItemCategory";
 import { BudgetCalculations } from "../models/budgetCalculations";
 import { CostItem } from "../models/costItem";
+import { LOGIN } from "../constants/projectConstants";
 
 @Component({
     selector: 'app-project-dialog-admin-page',
@@ -79,10 +80,6 @@ export class AdminDialogPageComponent {
         this.calculations = this.adminService.calculateBudget(this.projectBudget);
         this.createDescriptionForm(data);
         this.createEmptyCostItemForm();
-    }
-
-    scrollBottom() {
-      document.querySelector('mat-tab-group').scrollBy(0, 10000);
     }
 
     createEmptyCostItemForm() {
@@ -351,7 +348,7 @@ export class AdminDialogPageComponent {
                                       + dateNow.getMilliseconds();
                                       + dateNow.getMilliseconds();
 
-        const tempComment = new Comment(idComment,"145","ЯкийсьЮзер", this.commentText, new Date);
+        const tempComment = new Comment(idComment,"", localStorage.getItem(LOGIN), this.commentText, new Date);
         this.adminService.saveCommentOfProject(this.id, tempComment);
         this.comments.push(tempComment);
         this.commentText = "";
