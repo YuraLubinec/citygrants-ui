@@ -15,6 +15,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 body {
     font-family: $mat-font-family;
     font-weight: normal;
+    background-image: url("/assets/img/granty_site_backround.jpg");
 }
 
 h1, h2, h3, h4 {

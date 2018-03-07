@@ -2,6 +2,6 @@
     overflow: visible;
   }
 
-mat-table{
+.admin-table-container{
   cursor: pointer;
 }

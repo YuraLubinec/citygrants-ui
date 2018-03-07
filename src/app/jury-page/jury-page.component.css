@@ -11,7 +11,7 @@
     max-height: 500px;
   }
   
-  mat-table{
+  .jury-table-container{
     cursor: pointer;
   }
   

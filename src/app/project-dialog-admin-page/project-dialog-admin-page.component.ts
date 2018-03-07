@@ -299,16 +299,9 @@ export class AdminDialogPageComponent {
       }
     }
 
-
     ngAfterViewInit() {
         this.arrComments.changes.subscribe(c => {});
       }
-
-      getTotalEvaluationForJuryFs(evaluation:string){
-        alert('changed is workign : ' + evaluation);
-      }
-
-
 
     saveProject(){
       const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription, 

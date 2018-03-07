@@ -50,7 +50,8 @@ export class JuryPageComponent implements OnInit {
   selectRow(row) {
     const dialogRef = this.dialog.open(JuryDialogPageComponent, {
       data: row,
-      height: '1000px'
+      height: '90%',
+      width:'70%'
     });
   }
   

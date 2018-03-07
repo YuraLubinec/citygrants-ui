@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group class="admin-project-dialog">
         <mat-tab label="Опис">
             <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
                 <mat-card>
@@ -320,7 +320,7 @@
     <mat-tab label="Оцінювання">
         <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
                 <mat-card-content>
-                    <b>По даному проекту оцінок немає від жодного оцінювача</b>
+                    <b>В даному проекті оцінки відсутні</b>
                 </mat-card-content>
         </mat-card>
 
@@ -528,7 +528,12 @@
     </mat-tab>
     <mat-tab label="Прикріплені файли">
         <div class = "attach-doc-container">
-            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="{{basUrl}}admin/project/files/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+            <div *ngIf="filesInfo.length > 0" >
+                <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="{{basUrl}}admin/project/files/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+            </div>
+            <div *ngIf="filesInfo.length == 0" >
+                    <p>Документи для перегляду відсутні</p>
+            </div>
         </div>
     </mat-tab>
   </mat-tab-group>

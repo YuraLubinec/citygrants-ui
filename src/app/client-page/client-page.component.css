@@ -3,19 +3,23 @@
     flex-direction: column;
   }
   
-  .client-form-container > * {
-    width: 100%;
-  }
-  .full-width{
-    width: 100%;
-  }
+.client-form-container > * {
+  width: 100%;
+}
+.full-width{
+  width: 100%;
+}
 
-  .client-button-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .client-cart{
-    margin: auto;
-    width: 70%;
-  }
+.client-button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.client-cart{
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: auto;
+  width: 70%;
+}
+body{
+  background-color: transparent;
+}
