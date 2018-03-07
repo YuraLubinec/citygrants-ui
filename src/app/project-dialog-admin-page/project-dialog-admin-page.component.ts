@@ -316,8 +316,10 @@ export class AdminDialogPageComponent {
       
       this.adminService.updateProject(projectUpdate);
 
-      document.getElementById("totalEvalFs").innerText = String(this.getTotalEvalFirstStage(this.evaluations));
-      document.getElementById("totalEvalSs").innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
+      document.getElementById("totalEvalFs" + this.id).innerText = String(this.getTotalEvalFirstStage(this.evaluations));
+       
+
+      document.getElementById("totalEvalSs" + this.id).innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
 
       this.snackBar.open('Проект обновлено !!!','', {
         duration: 2000,

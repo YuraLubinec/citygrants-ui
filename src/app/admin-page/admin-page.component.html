@@ -46,13 +46,13 @@
       <!-- Total eval first stage Column -->
       <ng-container matColumnDef="totalEvalFirstStage">
         <mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Оцінка проекту в 1-турі" [matTooltipPosition]="positionTollTip" > 1 тур </mat-header-cell>
-        <mat-cell id="totalEvalFs" *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
+        <mat-cell id="totalEvalFs{{element.id}}" *matCellDef="let element"> {{element.totalEvalFirstStage}} </mat-cell>
       </ng-container>
 
        <!-- Total eval second stage Column -->
        <ng-container matColumnDef="totalEvalSecondStage">
           <mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Оцінка проекту в 2-турі" [matTooltipPosition]="positionTollTip"> 2 тур </mat-header-cell>
-          <mat-cell id="totalEvalSs" *matCellDef="let element"> {{element.totalEvalSecondStage}} </mat-cell>
+          <mat-cell id="totalEvalSs{{element.id}}" *matCellDef="let element"> {{element.totalEvalSecondStage}} </mat-cell>
         </ng-container>
 
       <ng-container matColumnDef="buttons">

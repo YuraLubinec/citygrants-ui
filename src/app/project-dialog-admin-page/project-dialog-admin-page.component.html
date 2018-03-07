@@ -329,7 +329,7 @@
                 <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
                     <mat-card>
                         <mat-tab-group>
-                            <mat-tab label="{{evaluation.juryMemberName}} {{evaluation.evalActual 
+                            <mat-tab label="{{evaluation.juryMemberName}}: {{evaluation.evalActual 
                                 + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
                                 + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}" *ngFor="let evaluation of evaluations; let i = index;">
                                 <mat-accordion class="example-headers-align">
@@ -499,7 +499,7 @@
                 <mat-tab label="Другий етап" *ngIf="interviewEvaluations.length > 0">
                     <mat-card>
                         <mat-tab-group>
-                            <mat-tab label="{{interviewEvaluation.juryMemberName}}" *ngFor="let interviewEvaluation of interviewEvaluations; let i = index;">
+                            <mat-tab label="{{interviewEvaluation.juryMemberName}}: {{interviewEvaluation.evaluation}}" *ngFor="let interviewEvaluation of interviewEvaluations; let i = index;">
                                 <mat-card>
                                     <mat-card-header>
                                         <mat-card-title><b>Другий етап оцінювання</b></mat-card-title>
