@@ -329,7 +329,9 @@
                 <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
                     <mat-card>
                         <mat-tab-group>
-                            <mat-tab label="{{evaluation.juryMemberName}}" *ngFor="let evaluation of evaluations; let i = index;">
+                            <mat-tab label="{{evaluation.juryMemberName}} {{evaluation.evalActual 
+                                + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
+                                + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}" *ngFor="let evaluation of evaluations; let i = index;">
                                 <mat-accordion class="example-headers-align">
                                     <mat-card>
                                         <mat-card-header>
@@ -526,7 +528,7 @@
     </mat-tab>
     <mat-tab label="Прикріплені файли">
         <div class = "attach-doc-container">
-            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="{{basUrl}}admin/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank" href="{{basUrl}}admin/project/files/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
         </div>
     </mat-tab>
   </mat-tab-group>

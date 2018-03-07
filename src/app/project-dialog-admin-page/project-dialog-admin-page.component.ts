@@ -304,6 +304,10 @@ export class AdminDialogPageComponent {
         this.arrComments.changes.subscribe(c => {});
       }
 
+      getTotalEvaluationForJuryFs(evaluation:string){
+        alert('changed is workign : ' + evaluation);
+      }
+
 
 
     saveProject(){
