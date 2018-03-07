@@ -43,14 +43,6 @@ export class AdminPageComponent implements OnInit {
      this.adminService.updateApprovedToSecondStage(row.id, row.approvedToSecondStage);
    }
 
-   /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-
-    return numSelected === numRows;
-  }
-
   deleteProject(row){
 
       for(let curProj = 0; curProj < this.projects.length; curProj++){
@@ -79,12 +71,31 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit() {}
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
   private dataHandler(projects: any){
+
     this.projects   = projects as Array<ProjectAdm>;
     this.dataSource = new MatTableDataSource(this.projects);
     this.length     = this.projects.length;
     this.pageSize   = 5;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.sortingDataAccessor = (data: any, property: string) => {
+      switch (property) {
+        case 'requestedBudget': return +data.description.requestedBudget;
+        case 'totalEvalFirstStage': return +data.totalEvalFirstStage;
+        case 'totalEvalSecondStage': return +data.totalEvalSecondStage;
+        default: return '';
+      }
+    };
+
+    this.dataSource.filterPredicate =
+    (data: any, filter: string) => data.description.name.indexOf(filter) != -1;
 
     this.dataSource.paginator              = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Кількість елементів на сторінці';

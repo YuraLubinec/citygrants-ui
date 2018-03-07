@@ -1,17 +1,23 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.mat-column-select {
+  overflow: visible;
+}
+.jury-table-container{
+  cursor: pointer;
+}
 
-.jury-table-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-  }
-    
-  .mat-table {
-    overflow: auto;
-    max-height: 500px;
-  }
-  
-  .jury-table-container{
-    cursor: pointer;
-  }
-  
+.filter-jury {
+  background-color: rgba(255, 255, 255, 0.8);
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.filter-input{
+  width: 20%;
+}
+
+.jury-table {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.jury-table-paginator {
+  background-color: rgba(255, 255, 255, 0.8);
+}

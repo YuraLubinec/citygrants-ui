@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
 import { JuryService } from '../services/jury.service';
 import { ProjectApplication } from '../models/projectApplication';
-import {MatPaginator, MatTableDataSource, PageEvent, MatDialog,MAT_DIALOG_DATA} from '@angular/material';
+import {MatPaginator, PageEvent, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { JuryDialogPageComponent } from '../project-dialog-page/project-dialog-page.component';
 import { ProjectApplJury } from '../models/projectApplJury';
 
@@ -20,22 +20,55 @@ export class JuryPageComponent implements OnInit {
   private pageSize   : Number;
   private pageEvent  : PageEvent;
   private pageSizeOptions  = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal'];
+  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','evalFirst','evalSecond'];
+  private positionTollTip = "above";
   
 
   constructor(private juryService: JuryService, public dialog:MatDialog) {
+   
+  }
+
+  ngOnInit(): void {
     this.juryService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
   }
 
-  ngOnInit(): void {}
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 
   private dataHandler(projects: any){
-    this.projects   = projects as Array<ProjectApplJury>;
-    this.dataSource = new MatTableDataSource(this.projects);
-    this.length     = this.projects.length;
-    this.pageSize   = 5;
+    this.projects        = projects as Array<ProjectApplJury>;
+    this.dataSource      = new MatTableDataSource(this.projects);
+    this.dataSource.sort = this.sort;
+
+    console.log(this.dataSource);
+
+    this.dataSource.sortingDataAccessor = (data: any, property: string) => {
+      switch (property) {
+        case 'requestedBudget': return +data.description.requestedBudget;
+        case 'evalFirst': return +data.evaluation.evalActual 
+                            + data.evaluation.evalAttracting
+                            + data.evaluation.evalCompetence
+                            + data.evaluation.evalEfficiency
+                            + data.evaluation.evalInnovation
+                            + data.evaluation.evalIntelligibility
+                            + data.evaluation.evalParticipation
+                            + data.evaluation.evalStability;
+        case 'evalSecond': return +data.interviewEvaluation.evaluation;                   
+        default: return '';
+      }
+    };
+
+    this.dataSource.filterPredicate =
+    (data: any, filter: string) => data.description.name.indexOf(filter) != -1;
+
+    this.length          = this.projects.length;
+    this.pageSize        = 5;
 
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Кількість елементів на сторінці';

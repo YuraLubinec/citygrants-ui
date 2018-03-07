@@ -1,6 +1,12 @@
 <div class="admin-table-container mat-elevation-z8">
 
-  <mat-table #table [dataSource]="dataSource" matSort>
+  <div class="filter-admin">
+      <mat-form-field class="filter-input">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фільтр">
+      </mat-form-field>
+    </div>
+
+  <mat-table class="admin-table" #table [dataSource]="dataSource" matSort>
     
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef> Керування проектом </mat-header-cell>
@@ -15,32 +21,32 @@
 
       <!-- Name of project Column -->
       <ng-container matColumnDef="nameOfProject">
-      <mat-header-cell *matHeaderCellDef> Назва проекту</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description.name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Назва проекту</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description.name}} </mat-cell>
       </ng-container>
 
       <!-- Requested Budget Column -->
       <ng-container matColumnDef="requestedBudget">
-      <mat-header-cell *matHeaderCellDef> Запитувана сума </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description.requestedBudget}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Запитувана сума </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description.requestedBudget}} </mat-cell>
       </ng-container>
 
       <!-- Organization name Column -->
       <ng-container matColumnDef="organizationName">
-      <mat-header-cell *matHeaderCellDef> Назва організації </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description.organizationName}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Назва організації </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description.organizationName}} </mat-cell>
       </ng-container>
 
       <!-- Theme Column -->
       <ng-container matColumnDef="theme">
-      <mat-header-cell *matHeaderCellDef> Тематичний напрямок </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description.theme}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Тематичний напрямок </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description.theme}} </mat-cell>
       </ng-container>
 
       <!-- Goal Column -->
       <ng-container matColumnDef="goal">
-      <mat-header-cell *matHeaderCellDef> Мета проекту </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description.goal}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Мета проекту </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description.goal}} </mat-cell>
       </ng-container>
 
       <!-- Total eval first stage Column -->
@@ -67,7 +73,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="showRow(row)"></mat-row>
   </mat-table>
-  <mat-paginator #paginator
+  <mat-paginator class="admin-table-paginator" #paginator
       [length]="length"    
       [pageSize]="pageSize"
       [pageSizeOptions]="pageSizeOptions">

@@ -33,8 +33,7 @@ import { LocalStorageService } from './services/locastorage.service';
   ],
   entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent],
   imports: [
-    BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,
-    MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
+    BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,
     MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule
   ],

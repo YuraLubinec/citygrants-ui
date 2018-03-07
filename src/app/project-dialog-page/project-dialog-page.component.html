@@ -382,8 +382,11 @@
         </button>
     </mat-tab>
     <mat-tab label="Прикріплені файли">
-        <div class = "attach-doc-container">
+        <div *ngIf="filesInfo.length > 0" class = "attach-doc-container">
             <p *ngFor="let fileInfo of filesInfo " ><a target="_blank"  href="{{basUrl}}jury/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+        </div>
+        <div *ngIf="filesInfo.length == 0" >
+                <p>Документи для перегляду відсутні</p>
         </div>
     </mat-tab>
   </mat-tab-group>
