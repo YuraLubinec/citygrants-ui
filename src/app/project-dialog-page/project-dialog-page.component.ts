@@ -11,7 +11,8 @@ import { BudgetCalculations } from "../models/budgetCalculations";
 import { InterviewEvaluation } from "../models/interviewEvaluation";
 import { User } from "../models/user";
 import { AdminService } from "../services/admin.service";
-import { LOGIN } from "../constants/projectConstants";
+import { LOGIN, BASEURL } from "../constants/projectConstants";
+import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'app-project-dialog-page',
@@ -35,6 +36,7 @@ export class JuryDialogPageComponent {
     private calculations       : BudgetCalculations;
     private approvedToSecondStage : boolean;
     private interviewEvaluation   : InterviewEvaluation;
+    private basUrl = BASEURL;
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
@@ -96,4 +98,10 @@ export class JuryDialogPageComponent {
       isDisableCommentButton(){
         return this.commentText.length <= 0 ? true:false;
       }
+
+      getFileInfo(idFile:string){
+        console.log("file info click");
+        console.log(this.juryService.getFileInfo(idFile));
+        //this.juryService.getFileInfo(idFile);
+      }  
 }

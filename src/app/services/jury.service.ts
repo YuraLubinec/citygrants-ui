@@ -25,6 +25,11 @@ export class JuryService {
     return this.http.get(this.baseUrl + localStorage.getItem(LOGIN));
   }
 
+  getFileInfo(idFile:string): Observable<any> {
+    console.log(this.baseUrl + "file/" + idFile);
+    return this.http.get(this.baseUrl + "file/" + idFile);
+  }
+
   updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
     this.http.post(this.baseUrl + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
   }

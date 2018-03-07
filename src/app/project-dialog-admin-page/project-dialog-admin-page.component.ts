@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormGroupDirective } from "@angular
 import { CostItemCategory } from "../models/costItemCategory";
 import { BudgetCalculations } from "../models/budgetCalculations";
 import { CostItem } from "../models/costItem";
-import { LOGIN } from "../constants/projectConstants";
+import { LOGIN, BASEURL } from "../constants/projectConstants";
 
 @Component({
     selector: 'app-project-dialog-admin-page',
@@ -41,6 +41,7 @@ export class AdminDialogPageComponent {
     private appCostItem          : FormGroup;
     private calculations         : BudgetCalculations;
     private totalEvalFirstStage  : Number;
+    private basUrl               = BASEURL;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -303,8 +304,9 @@ export class AdminDialogPageComponent {
         this.arrComments.changes.subscribe(c => {});
       }
 
-    saveProject(){
 
+
+    saveProject(){
       const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription, 
                                     true, false, this.evaluations, this.interviewEvaluations);
       
