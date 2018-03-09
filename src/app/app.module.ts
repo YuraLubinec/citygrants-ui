@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatTableModule, MatSortModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule,
   MatButtonModule, MatIconModule, MatDialogModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule,
-  MatExpansionModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule
+  MatExpansionModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule, MatMenuModule
 } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -21,6 +21,8 @@ import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { ErrorInterceptor } from './interceptors/ErrorInterceptor';
 import { LocalStorageService } from './services/locastorage.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MenuComponent } from './menu/menu.component';
+import { SharedService } from './services/sharedService';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,13 @@ import { HomePageComponent } from './home-page/home-page.component';
     AdminPageComponent,
     LoginPageComponent,
     HomePageComponent,
+    MenuComponent,
   ],
   entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,
-    MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule
+    MatIconModule, MatStepperModule, MatSnackBarModule, MatGridListModule, MatCheckboxModule, MatSlideToggleModule, MatTooltipModule, MatMenuModule
   ],
   providers: [
     {
@@ -50,7 +53,8 @@ import { HomePageComponent } from './home-page/home-page.component';
       useClass: ErrorInterceptor,
       multi: true
     },
-    LocalStorageService
+    LocalStorageService,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })

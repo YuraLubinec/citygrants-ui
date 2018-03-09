@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark    ">
+    <a class="navbar-brand" routerLink="home">Міські Ґранти</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" mat-button routerLink="home">Домашня</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" mat-button routerLink=".">Подати проект</a>
+            </li>
+            <li *ngIf="isLogin && isAdmin"class="nav-item">
+                    <a class="nav-link"  mat-button routerLink="admin">Проекти</a>
+            </li>
+            <li *ngIf="isLogin && !isAdmin"class="nav-item">
+                    <a class="nav-link"  mat-button routerLink="jury">Проекти</a>
+            </li>
+            <li *ngIf="!isLogin"class="nav-item">
+               <a class="nav-link"  mat-button routerLink="/login">Ввійти</a>
+            </li>
+            <li *ngIf="isLogin"class="nav-item">
+                <a class="nav-link" mat-button (click) ='logOut()' >Вийти</a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators/catchError';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import { LocalStorageService } from './locastorage.service';
+import { SharedService } from './sharedService';
 
 const URLSUFFIXLOGIN: string = 'login';
 const URLSUFFIXAUTHORIZATION: string = 'authority';
@@ -18,10 +19,9 @@ const BODYPASSWORD: string = '&password=';
 
 @Injectable()
 export class LoginService {
-
   private authenticated: boolean;
 
-  constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) {
+  constructor(private localStorageService: LocalStorageService, private sharedService:SharedService, private http: HttpClient, private router: Router) {
 
   }
 
@@ -38,6 +38,8 @@ export class LoginService {
             this.localStorageService.saveCurrentUsetToLocalStorage(login, data.role, data.fullName, data.id);
             this.moveToHomePage();
           });
+
+          this.sharedService.IsUserLoggedIn.next(true);
           return true;
         }
         else {
@@ -49,6 +51,7 @@ export class LoginService {
   logout() {
 
     this.localStorageService.clearLocalStorage();
+    this.sharedService.IsUserLoggedIn.next(false);
     this.router.navigate(['/login'])
   }
 
