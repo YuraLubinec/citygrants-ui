@@ -24,6 +24,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { SharedService } from './services/sharedService';
 import { MenegeUserPageComponent } from './meneg-user-page/meneg-user-page.component';
+import { UserDialogAdminPageComponent } from './user-dialog-admin-page/user-dialog-admin-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MenegeUserPageComponent } from './meneg-user-page/meneg-user-page.compo
     ClientPageComponent,
     JuryDialogPageComponent,
     AdminDialogPageComponent,
+    UserDialogAdminPageComponent,
     JuryPageComponent,
     AdminPageComponent,
     LoginPageComponent,
@@ -38,7 +40,7 @@ import { MenegeUserPageComponent } from './meneg-user-page/meneg-user-page.compo
     MenuComponent,
     MenegeUserPageComponent,
   ],
-  entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent],
+  entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent, UserDialogAdminPageComponent],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,

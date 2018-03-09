@@ -1,0 +1,12 @@
+.user-menege-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-menege-container > * {
+    width: 100%;
+  }
+
+  .full-width{
+    width: 100%;
+  }

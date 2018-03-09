@@ -26,10 +26,10 @@ export class AdminService {
   }
 
   getAllUsers(): Observable<User[]> {
-
     return this.http.get<User[]>(this.baseUserUrl).pipe(catchError(this.handleError("getUserByLogin", [])));
 
   }
+
   getUserByLogin(login: string): Observable<User> {
 
     return this.http.get<User>(this.baseUserUrl + "/" + login).pipe(catchError(this.handleError("getUserByLogin", new User())));
@@ -60,9 +60,6 @@ export class AdminService {
   }
 
   updateApprovedToSecondStage(id:string, isApproved:boolean){
-    console.log(id);
-    console.log(isApproved);
-
     this.http.put(this.baseProjectUrl + "/" + id + "/approved/" + isApproved,"").toPromise().catch(this.handleError);
   }
 
