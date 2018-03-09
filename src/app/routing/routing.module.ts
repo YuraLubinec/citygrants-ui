@@ -8,6 +8,7 @@ import { LoginPageComponent } from "../login-page/login-page.component";
 import { LoginGuard } from "./guards/loginGuard";
 import { AdminGuard } from "./guards/adminGuard";
 import { JuryGuard } from "./guards/juryGuard";
+import { HomePageComponent } from '../home-page/home-page.component';
 
 const appRoutes: Routes = [
 
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: "jury", component: JuryPageComponent, canActivate: [JuryGuard] },
   { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
+  { path: "home", component: HomePageComponent },
   { path: "**", redirectTo: '', pathMatch: 'full' }
 
 ]

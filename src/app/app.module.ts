@@ -20,6 +20,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { ErrorInterceptor } from './interceptors/ErrorInterceptor';
 import { LocalStorageService } from './services/locastorage.service';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LocalStorageService } from './services/locastorage.service';
     JuryPageComponent,
     AdminPageComponent,
     LoginPageComponent,
+    HomePageComponent,
   ],
   entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent],
   imports: [
