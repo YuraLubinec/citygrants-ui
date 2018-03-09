@@ -17,6 +17,9 @@
             <li *ngIf="isLogin && !isAdmin"class="nav-item">
                     <a class="nav-link"  mat-button routerLink="jury">Проекти</a>
             </li>
+            <li *ngIf="isLogin && isAdmin"class="nav-item">
+                    <a class="nav-link"  mat-button routerLink="menegeUser">Користувачі</a>
+            </li>
             <li *ngIf="!isLogin"class="nav-item">
                <a class="nav-link"  mat-button routerLink="/login">Ввійти</a>
             </li>

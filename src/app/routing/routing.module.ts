@@ -9,6 +9,7 @@ import { LoginGuard } from "./guards/loginGuard";
 import { AdminGuard } from "./guards/adminGuard";
 import { JuryGuard } from "./guards/juryGuard";
 import { HomePageComponent } from '../home-page/home-page.component';
+import { MenegeUserPageComponent } from '../meneg-user-page/meneg-user-page.component';
 
 const appRoutes: Routes = [
 
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
   { path: "home", component: HomePageComponent },
+  { path: "menegeUser", component: MenegeUserPageComponent },
   { path: "**", redirectTo: '', pathMatch: 'full' }
 
 ]

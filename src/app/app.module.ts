@@ -23,6 +23,7 @@ import { LocalStorageService } from './services/locastorage.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { SharedService } from './services/sharedService';
+import { MenegeUserPageComponent } from './meneg-user-page/meneg-user-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SharedService } from './services/sharedService';
     LoginPageComponent,
     HomePageComponent,
     MenuComponent,
+    MenegeUserPageComponent,
   ],
   entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent],
   imports: [
