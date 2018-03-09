@@ -136,6 +136,13 @@
         <mat-card-content>
         <form [formGroup]="appCostItem" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
           <mat-form-field class="full-width">
+            <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
+              <mat-option disabled>Оберіть категорію витрат</mat-option>
+              <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
             <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
             <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
             <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
@@ -156,26 +163,18 @@
               <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources"type="number" required>
               <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
           </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
-              <mat-option disabled>Оберіть категорію витрат</mat-option>
-              <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
-          </mat-form-field>
-          <button mat-button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Зберегти</button>
+          <button mat-button type="submit" class="save-btn" [disabled]="!appCostItem.valid" mat-raised-button color="primary">Зберегти <mat-icon>done</mat-icon> </button>
         </form>
     <div>
       <ng-container *ngIf="calculations">
         <div>
-          <label class="btn btn-primary">
-            <input type="file" style="display: none;" multiple="true" (change)="saveImagesToUpload($event)" accept=".jpg, .png">
-            <span>Donwnload images</span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="file" style="display: none;" multiple="true" (change)="savePdfToUpload($event)" accept=".pdf">
-            <span>Donwload pdf</span>
-          </label>
+
+          <button mat-raised-button color="primary" (click)="fileImg.click()">Завантажити jpg, png
+              <input #fileImg type="file" multiple="true" (change)="saveImagesToUpload($event)" style="display:none;" accept=".jpg, .png" />
+          </button>
+          <button mat-raised-button color="primary" (click)="filePdf.click()">Завантажити pdf
+              <input #filePdf type="file" multiple="true" (change)="savePdfToUpload($event)" style="display:none;" accept=".pdf" />
+          </button>
           <button  mat-raised-button color="primary" (click)="confirmProjectApplication()">Відіслати на розгляд журі</button>
           <button  mat-raised-button color="primary" (click)="sentApplicationToReview">Відіслати для отримання консультації</button>
 
@@ -199,7 +198,7 @@
         </div>
 
         <mat-grid-list cols="1" rowHeight="50px">
-          <mat-grid-tile>Бюджет</mat-grid-tile>
+          <mat-grid-tile><b>Бюджет</b></mat-grid-tile>
         </mat-grid-list>
         <mat-grid-list cols="6" rowHeight="50px" [style.background]="collorAmount">
           <mat-grid-tile></mat-grid-tile>

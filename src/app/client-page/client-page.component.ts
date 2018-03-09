@@ -32,11 +32,11 @@ export class ClientPageComponent implements OnInit {
   private costItemCategories: Array<CostItemCategory>;
   private images: Array<File>;
   private pdfDocs: Array<File>;
-  private collorGridName     = "#bfbfbf";
-  private collorAmount       = "#9b9999";
-  private collorCategory     = "#ffe6dd";
-  private collorDescription  = "#bfbfbf";
-  private collorGeneral      = "#c8c9c3";
+  private collorGridName     = "#28c3efe3";
+  private collorAmount       = "#03a9f4";
+  private collorCategory     = "#28c3efe3";
+  private collorDescription  = "#28c3efe3";
+  private collorGeneral      = "#03a9f4";
   private requiredMessage    = "обов'язково для заповнення"
   private defaultMessage     = "помилка введення";
   private patternMessage     = "не відповідає параметрам введення";
