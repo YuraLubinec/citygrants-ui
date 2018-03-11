@@ -2,6 +2,10 @@ import { Component, ViewEncapsulation, Inject } from "@angular/core";
 import { AdminService } from "../services/admin.service";
 import { MatSnackBar, MAT_DIALOG_DATA } from "@angular/material";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Roles } from "../models/roles";
+import { forEach } from "@angular/router/src/utils/collection";
+import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import { User } from "../models/user";
 
 @Component({
     selector: 'app-user-dialog-admin-page',
@@ -12,11 +16,14 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
     preserveWhitespaces: false,
   })
 
-export class UserDialogAdminPageComponent {
+export class UserDialogAdminPageComponent implements OnInit {
+
     private idF   :string;
     private loginF:string;
     private roleF :string;
     private userForm : FormGroup;
+    private userRoles :Array<Roles>;
+    private currUserRole:string;
 
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
     public snackBar: MatSnackBar) {
@@ -24,20 +31,44 @@ export class UserDialogAdminPageComponent {
         this.loginF = data.login;
         this.roleF  = data.role;
 
-        this.createDescriptionForm(data);
+        this.userRoles = [
+          new Roles("ADMIN", "адміністратор"),
+          new Roles("JURYMEMBER", "оператор")
+        ];
+
+        this.createUserForm(data);
      }
 
-     createDescriptionForm(data :any) {
+     ngOnInit(): void {
+       this.currUserRole = this.roleF === "адміністратор"?"ADMIN":"JURYMEMBER";
+     }
+     
+     createUserForm(data :any) {
         this.userForm = this.fb.group({
-          login: [data.login, [Validators.required, Validators.email, Validators.maxLength(50)]],
-          password: ["****", [Validators.required]],
+          login: [data.login, [Validators.required, Validators.maxLength(50)]],
+          password: [data.password, [Validators.required]],
           fullName: [data.fullName, [Validators.required]],
           role: [data.role, [Validators.required]],
         })
       }
 
       submitUserForm(){
-          alert("trat tatatat");
+        let field = this.userForm.value;
+
+        let userRole = new Roles("JURYMEMBER", "оператор");
+
+        let user      = new User();
+        user.id       = this.idF;
+        user.login    = field.login;
+        user.password = field.password;
+        user.fullName = field.fullName;
+        user.role     = field.role;
+
+        this.adminService.updateUser(user);
+
+        this.snackBar.open('Дані обновлено !!!','', {
+          duration: 2000,
+        });
       }
     
 }

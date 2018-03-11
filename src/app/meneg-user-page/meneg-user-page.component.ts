@@ -7,6 +7,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { AdminDialogPageComponent } from '../project-dialog-admin-page/project-dialog-admin-page.component';
 import { User } from '../models/user';
 import { UserDialogAdminPageComponent } from '../user-dialog-admin-page/user-dialog-admin-page.component';
+import { Roles } from '../models/roles';
 
 
 @Component({
@@ -26,13 +27,19 @@ export class MenegeUserPageComponent implements OnInit {
     private displayedColumns = ['login', 'fullName', 'role','buttons'];
     private selection  : SelectionModel<User>;
     private positionTollTip = "above";
+    private userRoles: Array<Roles>;
     
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
   
     constructor(private adminService: AdminService, public dialog:MatDialog) {
       this.adminService.getAllUsers().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
-      this.selection = new SelectionModel<User>(true, []); 
+      this.selection = new SelectionModel<User>(true, []);
+      
+      this.userRoles = [
+        new Roles("ADMIN", "адміністратор"),
+        new Roles("JURYMEMBER", "оператор")
+      ];
      }
 
     ngOnInit(): void {}
@@ -77,8 +84,8 @@ export class MenegeUserPageComponent implements OnInit {
     showRow(row) {
         const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
           data: row,
-          height: '90%',
-          width:'70%'
+          height: '60%',
+          width:'65%'
         });
       } 
 
