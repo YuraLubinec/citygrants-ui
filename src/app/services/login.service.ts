@@ -39,10 +39,13 @@ export class LoginService {
             this.moveToHomePage();
           });
 
-          this.sharedService.IsUserLoggedIn.next(true);
           return true;
         }
         else {
+          this.sharedService.IsUserLoggedIn.next(false);
+          this.sharedService.IsUserAdmin.next(false);
+          this.sharedService.IsUserJury.next(false);
+
           return false
         }
       })
@@ -52,6 +55,8 @@ export class LoginService {
 
     this.localStorageService.clearLocalStorage();
     this.sharedService.IsUserLoggedIn.next(false);
+    this.sharedService.IsUserAdmin.next(false);
+    this.sharedService.IsUserJury.next(false);
     this.router.navigate(['/login'])
   }
 
@@ -63,8 +68,18 @@ export class LoginService {
   private moveToHomePage(): any {
 
     if (localStorage.getItem(ROLE) == 'ADMIN') {
+
+      this.sharedService.IsUserLoggedIn.next(true);
+      this.sharedService.IsUserAdmin.next(true);
+      this.sharedService.IsUserJury.next(false);
+
       this.router.navigate(['/admin'])
     } else if (localStorage.getItem(ROLE) == 'JURYMEMBER') {
+
+      this.sharedService.IsUserLoggedIn.next(true);
+      this.sharedService.IsUserAdmin.next(false);
+      this.sharedService.IsUserJury.next(true);
+
       this.router.navigate(['/jury'])
     } else {
       throw new Error("No such role");

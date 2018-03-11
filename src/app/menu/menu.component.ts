@@ -14,14 +14,21 @@ export class MenuComponent implements OnInit {
 
     private isLogin = localStorage.getItem(AUTH_TOCKEN) !== undefined;
     private isAdmin = localStorage.getItem(ROLE)==='ADMIN';
+    private isJury  = localStorage.getItem(ROLE)==='JURYMEMBER';
     
 
     constructor(private sharedService: SharedService, private logService:LoginService) {
+
         this.sharedService.IsUserLoggedIn.subscribe( value => {
             this.isLogin = value;
-            if(this.isLogin && localStorage.getItem(ROLE)==='ADMIN'){
-                this.isAdmin = true;
-            }
+        });
+
+        this.sharedService.IsUserAdmin.subscribe( value => {
+            this.isAdmin = value;
+        });
+
+        this.sharedService.IsUserJury.subscribe( value => {
+            this.isJury = value;
         });
     }
 
