@@ -87,6 +87,13 @@ export class MenegeUserPageComponent implements OnInit {
           height: '60%',
           width:'65%'
         });
-      } 
+      }
+    openDialogUser(){
+    const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
+        data: new User(),
+        height: '60%',
+        width:'65%'
+        });
+    }   
 
 }

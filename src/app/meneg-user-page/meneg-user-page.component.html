@@ -1,5 +1,8 @@
 <div class="admin-table-container mat-elevation-z8">
-        
+    
+    
+    <button mat-raised-button (click)="openDialogUser()">Pick one</button>
+
     <div class="filter-admin">
         <mat-form-field class="filter-input">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фільтр">

@@ -55,16 +55,18 @@ export class UserDialogAdminPageComponent implements OnInit {
       submitUserForm(){
         let field = this.userForm.value;
 
-        let userRole = new Roles("JURYMEMBER", "оператор");
-
         let user      = new User();
-        user.id       = this.idF;
+        user.id       = this.data.id;
         user.login    = field.login;
         user.password = field.password;
         user.fullName = field.fullName;
         user.role     = field.role;
+        console.log(user);
 
-        this.adminService.updateUser(user);
+        if(user.id === undefined){
+          this.adminService.createUser(user);
+        }else{
+        this.adminService.updateUser(user);}
 
         this.snackBar.open('Дані обновлено !!!','', {
           duration: 2000,
