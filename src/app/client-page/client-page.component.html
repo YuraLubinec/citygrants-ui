@@ -3,6 +3,9 @@
             <mat-card-title>Форма для заповнення заявки</mat-card-title>
           </mat-card-header>
           <mat-card-content>
+              <div *ngIf="!uniqueName" class="alert alert-danger">
+                <strong>{{messageErrUniq}}!!!</strong> Назва проекту має бути унікальною
+              </div>
             <div class="client-form-container">
               <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
                   <mat-form-field class="full-width">

@@ -25,6 +25,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.localStorageService.clearLocalStorage();
                 alert("you are not authenticated to use this service")
             }
+            else if (err instanceof HttpErrorResponse && err.status == 400) {
+                return;
+            }
             else {
                 alert("server error, please try again later")
             }

@@ -42,6 +42,8 @@ export class ClientPageComponent implements OnInit {
   private patternMessage     = "не відповідає параметрам введення";
   private patternEmail       = "не вірний формат електронної пошти"
   private positionTollTip    = "above";
+  private uniqueName         = true;
+  private messageErrUniq     :string;
 
   constructor(private clientService: ClientService, private fb: FormBuilder, public snackBar: MatSnackBar) {
     this.displayDescriptionForm = true;
@@ -225,7 +227,7 @@ export class ClientPageComponent implements OnInit {
       field.targetGroup, field.expectedResults, field.requiredPermissions,
       field.partners
     );
-    this.appDescForm.reset();
+    //this.appDescForm.reset();
     this.displayDescriptionForm = false;
     this.displayDescription = true;
     this.displayCostItemForm = true;
@@ -340,19 +342,25 @@ export class ClientPageComponent implements OnInit {
       .then(data => {
         this.uploadAttachments(data.id);
         this.displayDescriptionForm = true;
-        this.displayDescription = false;
+        this.displayDescription  = false;
         this.displayCostItemForm = false;
-        this.projectApplication = null;
-        this.calculations = null;
+        this.projectApplication  = null;
+        this.calculations        = null;
+        this.uniqueName          = true;
+
+        this.appDescForm.reset();
+
         this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
           new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
+
+          this.callSnackBarMessage();
+
       }).catch(err => this.handlePromiseError(err));
   }
 
   private uploadAttachments(id: string): void {
     if (this.images.length > 0 || this.pdfDocs.length > 0) {
       this.clientService.uploadFiles(id, this.images, this.pdfDocs).subscribe(data => {
-        this.callSnackBarMessage();
         this.images = new Array<File>();
         this.pdfDocs = new Array<File>();
       }, err => alert(err.status)
@@ -402,6 +410,16 @@ export class ClientPageComponent implements OnInit {
   }
 
   private handlePromiseError(err): void {
-    alert('Щось пішло не так, повторіть спробу пізніше' + err.status);
+
+    err.status == '400' ? this.checkErrorGetMessage(err): alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
+  }
+
+  private checkErrorGetMessage(err:any){
+    if(err.status == '400'){
+      this.displayDescriptionForm = true;
+      this.displayCostItemForm = false;
+      this.uniqueName = false;
+      this.messageErrUniq = err.error.message;
+    }
   }
 }
