@@ -6,6 +6,7 @@ import { Roles } from "../models/roles";
 import { forEach } from "@angular/router/src/utils/collection";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 import { User } from "../models/user";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-user-dialog-admin-page',
@@ -25,11 +26,13 @@ export class UserDialogAdminPageComponent implements OnInit {
     private userRoles :Array<Roles>;
     private currUserRole:string;
 
+    private requiredMessage    = "обов'язково для заповнення"
+    private defaultMessage     = "помилка введення";
+    private patternMessage     = "не відповідає параметрам введення";
+    private patternEmail       = "не вірний формат електронної пошти";
+
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
     public snackBar: MatSnackBar) {
-        this.idF    = data.id;
-        this.loginF = data.login;
-        this.roleF  = data.role;
 
         this.userRoles = [
           new Roles("ADMIN", "адміністратор"),
@@ -40,15 +43,15 @@ export class UserDialogAdminPageComponent implements OnInit {
      }
 
      ngOnInit(): void {
-       this.currUserRole = this.roleF === "адміністратор"?"ADMIN":"JURYMEMBER";
+       this.currUserRole = this.data.role === "адміністратор"?"адміністратор":"оператор";
      }
      
      createUserForm(data :any) {
         this.userForm = this.fb.group({
-          login: [data.login, [Validators.required, Validators.maxLength(50)]],
+          login   : [data.login, [Validators.required, Validators.maxLength(50)]],
           password: [data.password, [Validators.required]],
           fullName: [data.fullName, [Validators.required]],
-          role: [data.role, [Validators.required]],
+          role    : [data.role, [Validators.required]],
         })
       }
 
@@ -61,16 +64,39 @@ export class UserDialogAdminPageComponent implements OnInit {
         user.password = field.password;
         user.fullName = field.fullName;
         user.role     = field.role;
-        console.log(user);
 
-        if(user.id === undefined){
-          this.adminService.createUser(user);
-        }else{
-        this.adminService.updateUser(user);}
+        
+        this.createOrUpdateUser(user);
 
         this.snackBar.open('Дані обновлено !!!','', {
           duration: 2000,
         });
-      }
     
+      }
+
+      private createOrUpdateUser(user:User){
+        if(user.id === undefined){
+          this.adminService.createUser(user);
+          window.location.reload();
+        }else {
+          this.adminService.updateUser(user);
+        }
+      }
+
+      private getErrorMessage(controlName:String){
+        switch(controlName) {
+          case "login": {
+            return this.userForm.controls.login.hasError("required") ? this.requiredMessage : this.defaultMessage;
+          }
+          case "fullName": {
+            return this.userForm.controls.fullName.hasError("required") ? this.requiredMessage : this.defaultMessage;
+          }
+          case "password": {
+            return this.userForm.controls.password.hasError("required") ? this.requiredMessage : this.defaultMessage;
+          }
+          case "role": {
+            return this.userForm.controls.role.hasError("required") ? this.requiredMessage : this.defaultMessage;
+          }
+        }
+      }
 }

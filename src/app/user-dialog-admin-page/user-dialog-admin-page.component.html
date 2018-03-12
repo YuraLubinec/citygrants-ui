@@ -2,24 +2,28 @@
     <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" novalidate>    
         <mat-form-field class="full-width">
             <input matInput placeholder="Логін" formControlName="login" [(ngModel)]="data.login">
+            <mat-error *ngIf="userForm">{{getErrorMessage("login")}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
                 <input matInput placeholder="Пароль"  formControlName="password" [(ngModel)]="data.password">
+                <mat-error *ngIf="userForm">{{getErrorMessage("password")}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <textarea matInput placeholder="Повне ім'я" formControlName="fullName" [(ngModel)]="data.fullName"></textarea>
+            <mat-error *ngIf="userForm">{{getErrorMessage("fullName")}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-select [(ngModel)]="currUserRole" placeholder="Роль користувача:" formControlName="role" [(ngModel)]="data.role" required>
-                <mat-option *ngFor="let userRole of userRoles" [value]="userRole.value">{{userRole.name}}</mat-option>
+                <mat-option *ngFor="let userRole of userRoles" [value]="userRole.name">{{userRole.name}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="userForm">{{getErrorMessage("role")}}</mat-error>
         </mat-form-field>
             
     </form>    
-    <button class="" [disabled]="!userForm.valid" (click)="submitUserForm()" mat-raised-button color="primary">Обновити дані
+    <button class="" [disabled]="!userForm.valid" (click)="submitUserForm()" mat-raised-button color="primary">Зберегти дані
             <mat-icon>save</mat-icon>
     </button>
 </div>
