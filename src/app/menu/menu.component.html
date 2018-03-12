@@ -6,10 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" mat-button routerLink="home">Домашня</a>
+                <a class="nav-link" mat-button routerLink="/">Домашня</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" mat-button routerLink=".">Подати проект</a>
+                <a class="nav-link" mat-button routerLink="project">Подати проект</a>
             </li>
             <li *ngIf="isLogin && isAdmin"class="nav-item">
                     <a class="nav-link"  mat-button routerLink="admin">Проекти</a>
@@ -21,7 +21,8 @@
                     <a class="nav-link"  mat-button routerLink="menegeUser">Користувачі</a>
             </li>
             <li *ngIf="!isLogin"class="nav-item">
-               <a class="nav-link"  mat-button routerLink="/login">Ввійти</a>
+               <a class="nav-link"  
+                 mat-button routerLink="/login">Ввійти</a>
             </li>
             <li *ngIf="isLogin"class="nav-item">
                 <a class="nav-link" mat-button (click) ='logOut()' >Вийти</a>

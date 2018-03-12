@@ -13,11 +13,11 @@ import { MenegeUserPageComponent } from '../meneg-user-page/meneg-user-page.comp
 
 const appRoutes: Routes = [
 
-  { path: "", component: ClientPageComponent },
+  { path: "project", component: ClientPageComponent },
   { path: "jury", component: JuryPageComponent, canActivate: [JuryGuard] },
   { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
-  { path: "home", component: HomePageComponent },
+  { path: "", component: HomePageComponent },
   { path: "menegeUser", component: MenegeUserPageComponent },
   { path: "**", redirectTo: '', pathMatch: 'full' }
 
