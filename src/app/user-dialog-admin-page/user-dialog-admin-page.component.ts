@@ -19,12 +19,10 @@ import { Router } from "@angular/router";
 
 export class UserDialogAdminPageComponent implements OnInit {
 
-    private idF   :string;
-    private loginF:string;
-    private roleF :string;
-    private userForm : FormGroup;
-    private userRoles :Array<Roles>;
-    private currUserRole:string;
+    private userForm             : FormGroup;
+    private userRoles           : Array<Roles>;
+    private currUserRole        : string;
+    private notUniqEmailMessage : string;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -67,26 +65,48 @@ export class UserDialogAdminPageComponent implements OnInit {
 
         
         this.createOrUpdateUser(user);
-
-        this.snackBar.open('Дані обновлено !!!','', {
-          duration: 2000,
-        });
-    
       }
 
       private createOrUpdateUser(user:User){
         if(user.id === undefined){
-          this.adminService.createUser(user);
-          window.location.reload();
-        }else {
-          this.adminService.updateUser(user);
+        this.adminService.createUser(user).subscribe(
+          response => {
+            this.callSnackBarMessage("Користувач створений");
+            window.location.reload();
+          },
+           error => this.handlePromiseError(error));
+        }else{
+          this.adminService.updateUser(user).subscribe(
+            response => {
+              this.callSnackBarMessage("Дані користувача оновлені");
+            },
+             error => this.handlePromiseError(error));
+        }
+      }
+
+      callSnackBarMessage(message:string){
+        this.snackBar.open(message,'', {
+          duration: 2000,
+        });
+      }
+
+      private handlePromiseError(err): void {
+        
+        err.status == '400' ? this.checkErrorGetMessage(err): alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
+      }
+    
+      private checkErrorGetMessage(err:any){
+        if(err.status == '400'){
+          this.notUniqEmailMessage = err.error.message;
+          this.userForm.controls['login'].setErrors({'notUniqEmail': true});
         }
       }
 
       private getErrorMessage(controlName:String){
         switch(controlName) {
           case "login": {
-            return this.userForm.controls.login.hasError("required") ? this.requiredMessage : this.defaultMessage;
+            return this.userForm.controls.login.hasError("required") ? this.requiredMessage 
+            : this.userForm.controls.login.hasError("notUniqEmail")?this.notUniqEmailMessage:this.defaultMessage
           }
           case "fullName": {
             return this.userForm.controls.fullName.hasError("required") ? this.requiredMessage : this.defaultMessage;

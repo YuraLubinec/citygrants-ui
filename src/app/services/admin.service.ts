@@ -35,14 +35,14 @@ export class AdminService {
     return this.http.get<User>(this.baseUserUrl + "/" + login).pipe(catchError(this.handleError("getUserByLogin", new User())));
   }
 
-  createUser(user: User) {
+  createUser(user: User): Observable<any> {
 
-    this.http.post(this.baseUserUrl, user).toPromise().catch(this.handleHttpError);
+    return this.http.post(this.baseUserUrl, user);
   }
 
-  updateUser(user: User) {
+  updateUser(user: User): Observable<any> {
 
-    this.http.put(this.baseUserUrl, user).toPromise().catch(this.handleHttpError);
+    return this.http.put(this.baseUserUrl, user);
   }
 
   deleteUser(id: string) {
