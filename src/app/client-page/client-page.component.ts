@@ -42,8 +42,7 @@ export class ClientPageComponent implements OnInit {
   private patternMessage     = "не відповідає параметрам введення";
   private patternEmail       = "не вірний формат електронної пошти"
   private positionTollTip    = "above";
-  private uniqueName         = true;
-  private messageErrUniq     :string;
+  private notUniqNamelMessage :string;
 
   constructor(private clientService: ClientService, private fb: FormBuilder, public snackBar: MatSnackBar) {
     this.displayDescriptionForm = true;
@@ -73,7 +72,8 @@ export class ClientPageComponent implements OnInit {
   getErrorMessage(controlName:String){
     switch(controlName) {
       case "name": {
-        return this.appDescForm.controls.name.hasError("required") ? this.requiredMessage : this.defaultMessage;
+        return this.appDescForm.controls.name.hasError("required")    ? this.requiredMessage:
+               this.appDescForm.controls.name.hasError("notUniqName") ? this.notUniqNamelMessage: this.defaultMessage;
       }
       case "requestedBudget": {
         return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :
@@ -227,10 +227,17 @@ export class ClientPageComponent implements OnInit {
       field.targetGroup, field.expectedResults, field.requiredPermissions,
       field.partners
     );
-    //this.appDescForm.reset();
-    this.displayDescriptionForm = false;
-    this.displayDescription = true;
-    this.displayCostItemForm = true;
+
+    this.clientService.isUniqNameProject(field.name).subscribe(
+      response => {
+        this.appDescForm.controls['name'].setErrors({'notUniqName': !response});
+
+        this.displayDescriptionForm = !response
+        this.displayDescription     = response;
+        this.displayCostItemForm    = response;
+        this.notUniqNamelMessage    = "Така назва вже існує"
+      },
+       error => this.handlePromiseError(error));
   }
 
   submitCostItemForm(formDirective: FormGroupDirective) {
@@ -346,7 +353,6 @@ export class ClientPageComponent implements OnInit {
         this.displayCostItemForm = false;
         this.projectApplication  = null;
         this.calculations        = null;
-        this.uniqueName          = true;
 
         this.appDescForm.reset();
 
@@ -418,8 +424,11 @@ export class ClientPageComponent implements OnInit {
     if(err.status == '400'){
       this.displayDescriptionForm = true;
       this.displayCostItemForm = false;
-      this.uniqueName = false;
-      this.messageErrUniq = err.error.message;
+      this.notUniqNamelMessage = err.error.message;
+      this.appDescForm.controls['name'].setErrors({'notUniqName': true});
+
+      console.log( this.appDescForm);
+
       alert("Не унікальна назва проекту!!!");
     }
   }

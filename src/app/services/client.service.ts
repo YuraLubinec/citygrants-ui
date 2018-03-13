@@ -18,6 +18,10 @@ export class ClientService {
     this.baseUrl = 'http://localhost:8082/citygrants/client/project';
   }
 
+  isUniqNameProject(nameOfProject: string): Observable<any> {
+    return this.http.get(this.baseUrl + "/isUniqName/" + nameOfProject);//.toPromise().catch(err => this.handlePromiseError(err));
+  }
+
   saveApplication(projectApplicationForm: ProjectApplication): Promise<any> {
     return this.http.post(this.baseUrl, projectApplicationForm).toPromise().catch(err => this.handlePromiseError(err));
   }
