@@ -43,6 +43,7 @@ export class AdminDialogPageComponent {
     private totalEvalFirstStage  : Number;
     private basUrl               = BASEURL;
     private notUniqNamelMessage  : string;
+    private dataProject          : ProjectAdm;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -51,7 +52,7 @@ export class AdminDialogPageComponent {
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
-    constructor(private adminService: AdminService, public dialogRef: MatDialogRef<AdminDialogPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
+    constructor(private adminService: AdminService, public dialogProject: MatDialogRef<AdminDialogPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar, private fb: FormBuilder) {          
 
         this.id                    = data.id;
@@ -64,6 +65,7 @@ export class AdminDialogPageComponent {
         this.filesInfo             = data.filesInfo;
         this.commentText           = "";
         this.step                  = 0;
+        this.dataProject           = data;
 
         this.costItemCategories = [
           new CostItemCategory("FEE", "Гонорари, трудові угоди"),
@@ -149,8 +151,6 @@ export class AdminDialogPageComponent {
         }
       }
     }
-  
-
 
     createDescriptionForm(data :any) {
       this.appDescForm = this.fb.group({
@@ -308,14 +308,16 @@ export class AdminDialogPageComponent {
 
     saveProject(){
       const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription, 
-                                    true, false, this.evaluations, this.interviewEvaluations);
+                                    this.dataProject.confirmed, this.dataProject.approvedToSecondStage, this.evaluations, this.interviewEvaluations, this.comments ,
+                                    this.dataProject.filesInfo, this.dataProject.totalEvalFirstStage, this.dataProject.totalEvalSecondStage);
       
       this.adminService.updateProject(projectUpdate).subscribe(
         response => {
           this.callSnackBarMessage()
-          document.getElementById("totalEvalFs" + this.id).innerText = String(this.getTotalEvalFirstStage(this.evaluations));
-          document.getElementById("totalEvalSs" + this.id).innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
-          this.dialogRef.close();
+          projectUpdate.totalEvalFirstStage = this.getTotalEvalFirstStage(this.evaluations);
+          projectUpdate.totalEvalSecondStage = this.getTotalEvalSecondStage(this.interviewEvaluations);
+          
+          this.dialogProject.close(projectUpdate);
         },
          error => this.handlePromiseError(error));
 
@@ -385,7 +387,6 @@ export class AdminDialogPageComponent {
     }
     deleteComment(id:string, idComment:string){
       this.adminService.deleteCommentOfProject(id, idComment);
-
       let index = this.comments.findIndex(comment => comment.id === idComment);
       this.comments.splice(index, 1);
     }

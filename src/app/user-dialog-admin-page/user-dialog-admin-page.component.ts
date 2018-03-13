@@ -29,7 +29,7 @@ export class UserDialogAdminPageComponent implements OnInit {
     private patternMessage     = "не відповідає параметрам введення";
     private patternEmail       = "не вірний формат електронної пошти";
 
-    constructor(private adminService: AdminService, public dialogRef: MatDialogRef<UserDialogAdminPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
+    constructor(private adminService: AdminService, public dialogUser: MatDialogRef<UserDialogAdminPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
     public snackBar: MatSnackBar) {
 
       this.userRoles = [
@@ -85,14 +85,14 @@ export class UserDialogAdminPageComponent implements OnInit {
             user.id   = response.id;
             user.role = response.role == this.userRoles[0].value ? this.userRoles[0].name : this.userRoles[1].name;
 
-            this.dialogRef.close(user);
+            this.dialogUser.close(user);
           },
            error => this.handlePromiseError(error));
         }else{
           this.adminService.updateUser(user).subscribe(
             response => {
               user.role = user.role == this.userRoles[0].value ? this.userRoles[0].name : this.userRoles[1].name;
-              this.dialogRef.close(user);
+              this.dialogUser.close(user);
               this.callSnackBarMessage("Дані користувача оновлені");
             },
              error => this.handlePromiseError(error));

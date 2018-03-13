@@ -87,15 +87,15 @@ export class ManageUserPageComponent implements OnInit {
           width:'65%'
         });
         dialogRef.afterClosed().subscribe(result => {
-
-            let index = this.users.findIndex(user => user.id == result.id);
-            this.users.splice(index, 1);
-            this.users.push(result);
-            this.dataHandler(this.users);
+            if(result !== undefined){
+                let index = this.users.findIndex(user => user.id == result.id);
+                this.users.splice(index, 1);
+                this.users.splice(index,0,result);
+                this.dataHandler(this.users);
+            }
         });
-
-
       }
+
     openDialogUser(){
         const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
             data: new User(),
@@ -104,8 +104,10 @@ export class ManageUserPageComponent implements OnInit {
             });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.users.push(result);
-            this.dataHandler(this.users.reverse());
+            if(result !== undefined){
+                this.users.push(result);
+                this.dataHandler(this.users.reverse());
+            }
         });
     } 
     

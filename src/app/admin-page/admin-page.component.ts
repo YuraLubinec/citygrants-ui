@@ -38,6 +38,7 @@ export class AdminPageComponent implements OnInit {
    }
 
    changeTourOfProject(row){
+
      row.approvedToSecondStage = row.approvedToSecondStage == true ? false : true;
 
      this.adminService.updateApprovedToSecondStage(row.id, row.approvedToSecondStage);
@@ -61,13 +62,22 @@ export class AdminPageComponent implements OnInit {
       height: '90%',
       width:'70%'
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result !== undefined){
+        let index = this.projects.findIndex(project => project.id == result.id);
+        this.projects.splice(index, 1);
+        this.projects.splice(index,0,result);
+
+        this.dataHandler(this.projects);
+       }
+    });
+
   }
 
   selectRow(event,row) {
       this.selection.toggle(row);
   }
-
-
 
   ngOnInit() {}
 
@@ -77,7 +87,7 @@ export class AdminPageComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  private dataHandler(projects: any){
+  private dataHandler(projects: Array<ProjectAdm>){
 
     this.projects   = projects as Array<ProjectAdm>;
     this.dataSource = new MatTableDataSource(this.projects);
