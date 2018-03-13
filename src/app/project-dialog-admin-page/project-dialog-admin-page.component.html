@@ -4,16 +4,13 @@
                 <mat-card>
                     <mat-tab-group>
                         <mat-tab label="Назва">
-                                <div *ngIf="!uniqueName" class="alert alert-danger error-message">
-                                    <strong>{{messageErrUniq}}!!!</strong> Назва проекту має бути унікальною
-                                </div>
-                                <mat-form-field class="full-width">
-                                    <textarea matInput required formControlName="name" [(ngModel)]="projectDescription.name" #name
-                                        required matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8">
-                                    </textarea>
-                                    <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
-                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
-                                </mat-form-field>      
+                            <mat-form-field class="full-width">
+                                <textarea matInput required formControlName="name" [(ngModel)]="projectDescription.name" #name
+                                    required matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8">
+                                </textarea>
+                                <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
+                                <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
+                            </mat-form-field>      
                         </mat-tab>
                         <mat-tab label="Запитувана сума">
                             <mat-form-field  class="full-width">

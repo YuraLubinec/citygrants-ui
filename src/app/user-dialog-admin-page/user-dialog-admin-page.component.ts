@@ -19,7 +19,7 @@ import { Router } from "@angular/router";
 
 export class UserDialogAdminPageComponent implements OnInit {
 
-    private userForm             : FormGroup;
+    private userForm            : FormGroup;
     private userRoles           : Array<Roles>;
     private currUserRole        : string;
     private notUniqEmailMessage : string;
@@ -32,12 +32,12 @@ export class UserDialogAdminPageComponent implements OnInit {
     constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
     public snackBar: MatSnackBar) {
 
-        this.userRoles = [
-          new Roles("ADMIN", "адміністратор"),
-          new Roles("JURYMEMBER", "оператор")
-        ];
+      this.userRoles = [
+        new Roles("ADMIN", "адміністратор"),
+        new Roles("JURYMEMBER", "оператор")
+      ];
 
-        this.createUserForm(data);
+      this.createUserForm(data);
      }
 
      ngOnInit(): void {
@@ -63,7 +63,6 @@ export class UserDialogAdminPageComponent implements OnInit {
         user.fullName = field.fullName;
         user.role     = field.role;
 
-        
         this.createOrUpdateUser(user);
       }
 
