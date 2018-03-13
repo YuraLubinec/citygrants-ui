@@ -4,6 +4,9 @@
                 <mat-card>
                     <mat-tab-group>
                         <mat-tab label="Назва">
+                                <div *ngIf="!uniqueName" class="alert alert-danger error-message">
+                                    <strong>{{messageErrUniq}}!!!</strong> Назва проекту має бути унікальною
+                                </div>
                                 <mat-form-field class="full-width">
                                     <textarea matInput required formControlName="name" [(ngModel)]="projectDescription.name" #name
                                         required matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8">
@@ -198,124 +201,192 @@
                     </mat-select>
                     <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
                 </mat-form-field>
-                <button mat-button type="submit" [disabled]="!appCostItem.valid" class="btn btn-success">Зберегти</button>
+
+                <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">Зберегти</button>
             </form>
-            
             <mat-card>
                 <mat-tab-group>
                     <mat-tab label="Гонорари, трудові угоди">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[0].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalFeeFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalFeeFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsFee; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[0].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalFeeFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalFeeFromOtherSources}} грн.</b></p>
+                        </mat-card>
                     </mat-tab>
+
                     <mat-tab label="Tранспортні витрати">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[1].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalTransportFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalTransportFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[1].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalTransportFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalTransportFromOtherSources}} грн.</b></p>
+                        </mat-card>
                     </mat-tab>
+
                     <mat-tab label="Вартість харчування">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[2].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalNutritionFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalNutritionFromOtherSources}} грн.</p>     
+
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[2].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalNutritionFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalNutritionFromOtherSources}} грн.</b></p>
+                        </mat-card>
                     </mat-tab>
+
                     <mat-tab label="Вартість оренди">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[3].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalRentFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalRentFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsRent; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[3].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalRentFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalRentFromOtherSources}} грн.</b></p>
+                        </mat-card>
                     </mat-tab>
+
                     <mat-tab label="Вартість пунктів адміністрування">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[4].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalAdministrativeFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalAdministrativeFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[4].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalAdministrativeFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalAdministrativeFromOtherSources}} грн.</b></p>
+                        </mat-card>
                     </mat-tab>
+
                     <mat-tab label="Вартість елементів реклами">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[5].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalAdvertisingFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalAdvertisingFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[5].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalAdvertisingFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalAdvertisingFromOtherSources}} грн.</b></p>
+                        </mat-card>  
                     </mat-tab>
+
                     <mat-tab label="Придбання (купівля витратних матеріалів, тощо)">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsMaterial let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[6].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalMaterialsFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalMaterialsFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsMaterial; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[6].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalMaterialsFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalMaterialsFromOtherSources}} грн.</b></p>
+                        </mat-card>    
                     </mat-tab>
+
                     <mat-tab label="Інші витрати">
-                        <ul *ngFor="let itemFree of projectBudget.costItemsOthers let i = index" class="costСategory">
-                            <li>Опис : {{itemFree.description}}</li>
-                            <li>Вартість : {{itemFree.cost}}</li>
-                            <li>Кількість : {{itemFree.count}}</li>
-                            <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                            <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                            <button mat-raised-button color="primary" (click)="removeCostItem(i,costItemCategories[7].value)" >Видалити</button>
-                            <hr>
-                        </ul>
-                        <p>Загальна сума витрати на програму : {{calculations.totalOthersFromProgram}} грн.</p>
-                        <p>Загальна сума витрати з інших джерел : {{calculations.totalOthersFromOtherSources}} грн.</p>     
+                        <mat-card *ngFor="let itemFree of projectBudget.costItemsOthers; let i = index" class="costСategory">
+                            <mat-card-header>
+                                <button class="btn-delete-comment" mat-icon-button (click)="removeCostItem(i,costItemCategories[7].value)" color="warn">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <li>Опис : {{itemFree.description}}</li>
+                                <li>Вартість : {{itemFree.cost}}</li>
+                                <li>Кількість : {{itemFree.count}}</li>
+                                <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <p><b>Загальна сума витрати на програму : {{calculations.totalOthersFromProgram}} грн.</b></p>
+                            <p><b>Загальна сума витрати з інших джерел : {{calculations.totalOthersFromOtherSources}} грн.</b></p>
+                        </mat-card>       
                     </mat-tab>
                 </mat-tab-group>
             </mat-card>
-            <h4>Загальна сума б'юджету</h4>
-            <ul>
-                <li>Загальані сума витрат з програми : {{calculations.totalFromProgram}} грн.</li>
-                <li>Загальна сума  витрат інших з інших джерел : {{calculations.totalFromOtherSources}} грн.</li>
-                <li>Загальна сума  : {{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</li>
-                <hr>
-            </ul>    
+
+            <mat-card>
+                <mat-card-header>
+                        <p><b>Загальна сума б'юджету</b></p>
+                </mat-card-header>
+                <mat-card-content>
+                    <li>Загальані сума витрат з програми : {{calculations.totalFromProgram}} грн.</li>
+                    <li>Загальна сума  витрат інших з інших джерел : {{calculations.totalFromOtherSources}} грн.</li>
+                    <li>Загальна сума  : {{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</li>
+                </mat-card-content>
+            </mat-card>
         </mat-tab> 
     <mat-tab label="Оцінювання">
         <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
@@ -538,11 +609,9 @@
     </mat-tab>
   </mat-tab-group>
 
-  <button class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary">Обновити дані
-    <mat-icon>save</mat-icon>
-  </button>
+  <button class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary">Оновити дані</button>
 
-  <h3><b>Коментарі</b></h3>
+  <h4><b>Коментарі</b></h4>
   <div class="comment-send-container">
     <mat-form-field>
         <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
@@ -556,13 +625,13 @@
     <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">
         <mat-card-header>
           <mat-card-subtitle>{{comment.userName}}</mat-card-subtitle>
+            <button class="btn-delete-comment" mat-icon-button (click)="deleteComment(id, comment.id)" color="warn">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
         </mat-card-header>
         <mat-card-content>
             <p class="comment-text" >{{comment.text}}</p>
         </mat-card-content>
             <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
-        <mat-card-actions>
-            <button mat-raised-button (click)="deleteComment(id, comment.id)" color="warn">Видалити</button>
-        </mat-card-actions>        
     </mat-card>
   </div>

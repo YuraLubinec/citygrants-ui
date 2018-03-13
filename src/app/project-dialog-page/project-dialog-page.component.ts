@@ -36,7 +36,7 @@ export class JuryDialogPageComponent {
     private calculations       : BudgetCalculations;
     private approvedToSecondStage : boolean;
     private interviewEvaluation   : InterviewEvaluation;
-    private basUrl = BASEURL;
+    private basUrl                = BASEURL;
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
@@ -100,8 +100,6 @@ export class JuryDialogPageComponent {
       }
 
       getFileInfo(idFile:string){
-        console.log("file info click");
-        console.log(this.juryService.getFileInfo(idFile));
-        //this.juryService.getFileInfo(idFile);
+        this.juryService.getFileInfo(idFile);
       }  
 }

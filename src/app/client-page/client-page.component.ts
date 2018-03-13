@@ -420,6 +420,7 @@ export class ClientPageComponent implements OnInit {
       this.displayCostItemForm = false;
       this.uniqueName = false;
       this.messageErrUniq = err.error.message;
+      alert("Не унікальна назва проекту!!!");
     }
   }
 }

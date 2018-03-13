@@ -55,8 +55,8 @@ export class AdminService {
     return this.http.get<ProjectAdm[]>(this.baseProjectUrl).pipe(catchError(this.handleError("getAllProjects", [])));
   }
 
-  updateProject(project: ProjectAdm) {
-    this.http.put(this.baseProjectUrl, project).toPromise().catch(this.handleError);
+  updateProject(project: ProjectAdm): Observable<any> {
+    return this.http.put(this.baseProjectUrl, project);//.toPromise().catch(this.handleError);
   }
 
   updateApprovedToSecondStage(id:string, isApproved:boolean){

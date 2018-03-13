@@ -42,6 +42,8 @@ export class AdminDialogPageComponent {
     private calculations         : BudgetCalculations;
     private totalEvalFirstStage  : Number;
     private basUrl               = BASEURL;
+    private uniqueName           = true;
+    private messageErrUniq       :string;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -307,17 +309,35 @@ export class AdminDialogPageComponent {
       const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription, 
                                     true, false, this.evaluations, this.interviewEvaluations);
       
-      this.adminService.updateProject(projectUpdate);
+      this.adminService.updateProject(projectUpdate).subscribe(
+        response => {
+          this.callSnackBarMessage()
+          document.getElementById("totalEvalFs" + this.id).innerText = String(this.getTotalEvalFirstStage(this.evaluations));
+          document.getElementById("totalEvalSs" + this.id).innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
+          this.uniqueName = true;
+        },
+         error => this.handlePromiseError(error));
 
-      document.getElementById("totalEvalFs" + this.id).innerText = String(this.getTotalEvalFirstStage(this.evaluations));
-       
+    }
 
-      document.getElementById("totalEvalSs" + this.id).innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
-
-      this.snackBar.open('Проект обновлено !!!','', {
+    callSnackBarMessage(){
+      this.snackBar.open('Дані оновлено !!!','', {
         duration: 2000,
       });
     }
+
+    private handlePromiseError(err): void {
+      
+          err.status == '400' ? this.checkErrorGetMessage(err): alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
+        }
+      
+        private checkErrorGetMessage(err:any){
+          if(err.status == '400'){
+            this.uniqueName = false;
+            this.messageErrUniq = err.error.message;
+            alert("Не унікальна назва проекту!!!");
+          }
+        }
 
     
     getTotalEvalFirstStage(evaluations:Array<Evaluation>){

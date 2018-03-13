@@ -14,7 +14,7 @@
     
         <!-- Login Column -->
         <ng-container matColumnDef="login">
-        <mat-header-cell *matHeaderCellDef> Логін</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Логін</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.login}} </mat-cell>
         </ng-container>
 
@@ -26,7 +26,7 @@
 
         <!-- Role Column -->
         <ng-container matColumnDef="role">
-        <mat-header-cell *matHeaderCellDef> Роль </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Роль </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.role}} </mat-cell>
         </ng-container>
 
@@ -35,7 +35,7 @@
             <mat-header-cell *matHeaderCellDef>Видалення</mat-header-cell>
             <mat-cell *matCellDef="let row">
             <button mat-icon-button matTooltip="Видалити користувача" [matTooltipPosition]="positionTollTip">
-                <mat-icon aria-label="Видалити користувача" (click)="deleteUser(row)" color="warn">remove_circle</mat-icon>
+                <mat-icon aria-label="Видалити користувача" (click)="deleteUser(row)" color="warn">delete_forever</mat-icon>
             </button>
             </mat-cell>
         </ng-container>

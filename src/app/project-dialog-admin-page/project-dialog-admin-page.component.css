@@ -7,6 +7,7 @@
 }
 .evluation-btn {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .comment-container{
   margin-top: 10px;
@@ -31,6 +32,14 @@
   right: 15px;
   color: rgba(0, 0, 0, 0.54);
 }
+.btn-delete-comment{
+  position: absolute;
+  right: 15px;
+}
+.btn-delete{
+  right: 15px;
+  margin-bottom: 20px;
+}
 .comment-text {
   overflow: hidden;
   max-width: 110ch;
@@ -38,4 +47,8 @@
 
 .full-width{
   width: 100%;
+}
+
+.error-message{
+  margin-top: 10px;
 }

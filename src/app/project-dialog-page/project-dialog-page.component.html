@@ -80,115 +80,150 @@
         </mat-card>
     </mat-tab>
     <mat-tab label="Б'юджет">
-        
         <mat-card>
             <mat-tab-group>
-                <mat-tab label="Комісія за витрати">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsFee; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalFeeFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalFeeFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Tранспортні витрати">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalTransportFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalTransportFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість харчування">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalNutritionFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalNutritionFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість оренди">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsRent; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{projectBudget.totalRentFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{projectBudget.totalRentFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість пунктів адміністрування">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalAdministrativeFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalAdministrativeFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Вартість елементів реклами">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalAdvertisingFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalAdvertisingFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Придбання (купівля витратних матеріалів, тощо)">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsMaterial; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalMaterialsFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalMaterialsFromOtherSources}} грн.</p>     
-                </mat-tab>
-                <mat-tab label="Інші витрати">
-                    <ul *ngFor="let itemFree of projectBudget.costItemsOthers; let i = index">
-                        <li>Опис : {{itemFree.description}}</li>
-                        <li>Вартість : {{itemFree.cost}}</li>
-                        <li>Кількість : {{itemFree.count}}</li>
-                        <li>Витрати з програми : {{itemFree.totalOthersFromProgram}} грн.</li>
-                        <li>Витрати з інших джерел : {{itemFree.totalOthersFromOtherSources}} грн.</li>
-                        <hr>
-                    </ul>
-                    <p>Загальна сума витрати на програму : {{calculations.totalMaterialsFromProgram}} грн.</p>
-                    <p>Загальна сума витрати з інших джерел : {{calculations.totalMaterialsFromOtherSources}} грн.</p>     
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-        <h4>Загальна сума б'юджету</h4>
-        <ul>
-            <li>Загальані сума витрат з програми : {{calculations.totalFromProgram}} грн.</li>
-            <li>Загальна сума  витрат інших з інших джерел : {{calculations.totalFromOtherSources}} грн.</li>
-            <li>Загальна сума  : {{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</li>
-            <hr>
-        </ul>    
-    </mat-tab>
+                    <mat-tab label="Гонорари, трудові угоди">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsFee; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalFeeFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalFeeFromOtherSources}} грн.</b></p>
+                            </mat-card>
+                        </mat-tab>
+    
+                        <mat-tab label="Tранспортні витрати">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsTransport; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalTransportFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalTransportFromOtherSources}} грн.</b></p>
+                            </mat-card>
+                        </mat-tab>
+    
+                        <mat-tab label="Вартість харчування">
+    
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsNutrition; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalNutritionFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalNutritionFromOtherSources}} грн.</b></p>
+                            </mat-card>
+                        </mat-tab>
+    
+                        <mat-tab label="Вартість оренди">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsRent; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalRentFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalRentFromOtherSources}} грн.</b></p>
+                            </mat-card>
+                        </mat-tab>
+    
+                        <mat-tab label="Вартість пунктів адміністрування">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsAdministrative; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalAdministrativeFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalAdministrativeFromOtherSources}} грн.</b></p>
+                            </mat-card>
+                        </mat-tab>
+    
+                        <mat-tab label="Вартість елементів реклами">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsAdvertising; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalAdvertisingFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalAdvertisingFromOtherSources}} грн.</b></p>
+                            </mat-card>  
+                        </mat-tab>
+    
+                        <mat-tab label="Придбання (купівля витратних матеріалів, тощо)">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsMaterial; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalMaterialsFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalMaterialsFromOtherSources}} грн.</b></p>
+                            </mat-card>    
+                        </mat-tab>
+    
+                        <mat-tab label="Інші витрати">
+                            <mat-card *ngFor="let itemFree of projectBudget.costItemsOthers; let i = index" class="costСategory">
+                                <mat-card-content>
+                                    <li>Опис : {{itemFree.description}}</li>
+                                    <li>Вартість : {{itemFree.cost}}</li>
+                                    <li>Кількість : {{itemFree.count}}</li>
+                                    <li>Витрати з програми : {{itemFree.consumptionsFromProgram}} грн.</li>
+                                    <li>Витрати з інших джерел : {{itemFree.consumptionsFromOtherSources}} грн.</li>                               
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-card>
+                                <p><b>Загальна сума витрати на програму : {{calculations.totalOthersFromProgram}} грн.</b></p>
+                                <p><b>Загальна сума витрати з інших джерел : {{calculations.totalOthersFromOtherSources}} грн.</b></p>
+                            </mat-card>       
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
+    
+                <mat-card>
+                    <mat-card-header>
+                            <p><b>Загальна сума б'юджету</b></p>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <li>Загальані сума витрат з програми : {{calculations.totalFromProgram}} грн.</li>
+                        <li>Загальна сума  витрат інших з інших джерел : {{calculations.totalFromOtherSources}} грн.</li>
+                        <li>Загальна сума  : {{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</li>
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab> 
     <mat-tab *ngIf="approvedToSecondStage" label="Оцінювання 2 тур">
             <mat-accordion class="example-headers-align">
                 <mat-card>
@@ -213,7 +248,6 @@
             </mat-accordion>
 
             <button class="evluation-btn" (click)="saveInterviewEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
-                    <mat-icon>save</mat-icon>
             </button>
     </mat-tab>
 
@@ -378,7 +412,6 @@
             </mat-card>
         </mat-accordion>
         <button class="evluation-btn" (click)="saveEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
-                <mat-icon>save</mat-icon>
         </button>
     </mat-tab>
     <mat-tab label="Прикріплені файли">
@@ -390,7 +423,7 @@
         </div>
     </mat-tab>
   </mat-tab-group>
-  <h3><b>Коментарі</b></h3>
+  <h4><b>Коментарі</b></h4>
   <div class="comment-send-container">
     <mat-form-field>
         <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
