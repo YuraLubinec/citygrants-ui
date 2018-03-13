@@ -42,8 +42,7 @@ export class AdminDialogPageComponent {
     private calculations         : BudgetCalculations;
     private totalEvalFirstStage  : Number;
     private basUrl               = BASEURL;
-    private uniqueName           = true;
-    private messageErrUniq       :string;
+    private notUniqNamelMessage  : string;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -194,7 +193,8 @@ export class AdminDialogPageComponent {
     getErrorMessage(controlName:String){
       switch(controlName) {
         case "name": {
-          return this.appDescForm.controls.name.hasError("required") ? this.requiredMessage : this.defaultMessage;
+          return this.appDescForm.controls.name.hasError("required")    ? this.requiredMessage:
+                 this.appDescForm.controls.name.hasError("notUniqName") ? this.notUniqNamelMessage: this.defaultMessage;
         }
         case "requestedBudget": {
           return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :
@@ -275,8 +275,9 @@ export class AdminDialogPageComponent {
     getErrorMessageCostForm(controlName:String){
       switch(controlName) {
         case "description": {
-          return this.appCostItem.controls.description.hasError("required") ? this.requiredMessage : 
-                 this.appCostItem.controls.description.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+
+          return this.appCostItem.controls.description.hasError("required")    ? this.requiredMessage : 
+                 this.appCostItem.controls.description.hasError("pattern")     ? this.patternMessage  : this.defaultMessage;
         }
         case "cost": {
           return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage : 
@@ -314,7 +315,6 @@ export class AdminDialogPageComponent {
           this.callSnackBarMessage()
           document.getElementById("totalEvalFs" + this.id).innerText = String(this.getTotalEvalFirstStage(this.evaluations));
           document.getElementById("totalEvalSs" + this.id).innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
-          this.uniqueName = true;
         },
          error => this.handlePromiseError(error));
 
@@ -333,8 +333,8 @@ export class AdminDialogPageComponent {
       
         private checkErrorGetMessage(err:any){
           if(err.status == '400'){
-            this.uniqueName = false;
-            this.messageErrUniq = err.error.message;
+            this.notUniqNamelMessage = err.error.message;
+            this.appDescForm.controls['name'].setErrors({'notUniqName': true});
             alert("Не унікальна назва проекту!!!");
           }
         }
