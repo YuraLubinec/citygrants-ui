@@ -10,7 +10,7 @@ import { AdminGuard } from "./guards/adminGuard";
 import { JuryGuard } from "./guards/juryGuard";
 import { ApplFormGuard } from "./guards/applFormGuard";
 import { HomePageComponent } from '../home-page/home-page.component';
-import { ManageUserPageComponent } from '../manag-user-page/manag-user-page.component';
+import { ManageUserPageComponent } from '../manage-user-page/manage-user-page.component';
 
 const appRoutes: Routes = [
 

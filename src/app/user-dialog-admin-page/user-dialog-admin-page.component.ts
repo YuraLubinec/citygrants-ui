@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Inject } from "@angular/core";
 import { AdminService } from "../services/admin.service";
-import { MatSnackBar, MAT_DIALOG_DATA } from "@angular/material";
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Roles } from "../models/roles";
 import { forEach } from "@angular/router/src/utils/collection";
@@ -29,7 +29,7 @@ export class UserDialogAdminPageComponent implements OnInit {
     private patternMessage     = "не відповідає параметрам введення";
     private patternEmail       = "не вірний формат електронної пошти";
 
-    constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
+    constructor(private adminService: AdminService, public dialogRef: MatDialogRef<UserDialogAdminPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
     public snackBar: MatSnackBar) {
 
       this.userRoles = [
@@ -82,11 +82,14 @@ export class UserDialogAdminPageComponent implements OnInit {
         this.adminService.createUser(user).subscribe(
           response => {
             this.callSnackBarMessage("Користувач створений");
+            this.dialogRef.close(user);
+            this.router.navigate(["manageUser"]);
           },
            error => this.handlePromiseError(error));
         }else{
           this.adminService.updateUser(user).subscribe(
             response => {
+              this.dialogRef.close();
               this.callSnackBarMessage("Дані користувача оновлені");
             },
              error => this.handlePromiseError(error));

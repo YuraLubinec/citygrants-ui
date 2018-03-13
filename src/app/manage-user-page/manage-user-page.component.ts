@@ -11,9 +11,9 @@ import { Roles } from '../models/roles';
 
 
 @Component({
-    selector: 'app-manag-user-page',
-    templateUrl: './manag-user-page.component.html',
-    styleUrls: ['./manag-user-page.component.css'],
+    selector: 'app-manage-user-page',
+    templateUrl: './manage-user-page.component.html',
+    styleUrls: ['./manage-user-page.component.css'],
     providers: [AdminService]
   })
 
@@ -33,16 +33,17 @@ export class ManageUserPageComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
   
     constructor(private adminService: AdminService, public dialog:MatDialog) {
-      this.adminService.getAllUsers().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
-      this.selection = new SelectionModel<User>(true, []);
-      
+     
       this.userRoles = [
         new Roles("ADMIN", "адміністратор"),
         new Roles("JURYMEMBER", "оператор")
       ];
      }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.adminService.getAllUsers().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
+        this.selection = new SelectionModel<User>(true, []);
+    }
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
@@ -57,8 +58,6 @@ export class ManageUserPageComponent implements OnInit {
         this.length     = this.users.length;
         this.pageSize   = 5;
         this.dataSource.sort = this.sort;
-
-        console.log(users);
     
         this.dataSource.paginator              = this.paginator;
         this.paginator._intl.itemsPerPageLabel = 'Кількість елементів на сторінці';
@@ -89,11 +88,18 @@ export class ManageUserPageComponent implements OnInit {
         });
       }
     openDialogUser(){
-    const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
-        data: new User(),
-        height: '60%',
-        width:'65%'
+        const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
+            data: new User(),
+            height: '60%',
+            width:'65%'
+            });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.users.push(result);
+            this.dataHandler(this.users.reverse());
         });
-    }   
+    } 
+    
+
 
 }
