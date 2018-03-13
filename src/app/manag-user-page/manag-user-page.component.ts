@@ -11,13 +11,13 @@ import { Roles } from '../models/roles';
 
 
 @Component({
-    selector: 'app-menge-user-page',
-    templateUrl: './meneg-user-page.component.html',
-    styleUrls: ['./meneg-user-page.component.css'],
+    selector: 'app-manag-user-page',
+    templateUrl: './manag-user-page.component.html',
+    styleUrls: ['./manag-user-page.component.css'],
     providers: [AdminService]
   })
 
-export class MenegeUserPageComponent implements OnInit {
+export class ManageUserPageComponent implements OnInit {
     private users      : Array<User>;
     private dataSource : any;
     private length     : Number;

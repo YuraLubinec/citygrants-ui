@@ -23,7 +23,7 @@ import { LocalStorageService } from './services/locastorage.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { SharedService } from './services/sharedService';
-import { MenegeUserPageComponent } from './meneg-user-page/meneg-user-page.component';
+import { ManageUserPageComponent } from './manag-user-page/manag-user-page.component';
 import { UserDialogAdminPageComponent } from './user-dialog-admin-page/user-dialog-admin-page.component';
 
 @NgModule({
@@ -38,7 +38,7 @@ import { UserDialogAdminPageComponent } from './user-dialog-admin-page/user-dial
     LoginPageComponent,
     HomePageComponent,
     MenuComponent,
-    MenegeUserPageComponent,
+    ManageUserPageComponent,
   ],
   entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent, UserDialogAdminPageComponent],
   imports: [

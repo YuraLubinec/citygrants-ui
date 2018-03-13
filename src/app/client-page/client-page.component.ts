@@ -148,6 +148,10 @@ export class ClientPageComponent implements OnInit {
         return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
                this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
       }
+      case "requiredTime": {
+        return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
     }
   }
 
@@ -174,8 +178,7 @@ export class ClientPageComponent implements OnInit {
                this.appCostItem.controls.consumptionsFromOtherSources.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
       }
       case "category": {
-        return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : 
-               this.appCostItem.controls.category.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+        return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : this.defaultMessage;
       }
     }
 

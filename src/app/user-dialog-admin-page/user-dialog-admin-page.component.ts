@@ -29,7 +29,7 @@ export class UserDialogAdminPageComponent implements OnInit {
     private patternMessage     = "не відповідає параметрам введення";
     private patternEmail       = "не вірний формат електронної пошти";
 
-    constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
+    constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
     public snackBar: MatSnackBar) {
 
       this.userRoles = [
@@ -41,16 +41,27 @@ export class UserDialogAdminPageComponent implements OnInit {
      }
 
      ngOnInit(): void {
-       this.currUserRole = this.data.role === "адміністратор"?"адміністратор":"оператор";
+       this.currUserRole = this.data.role == this.userRoles[0].name ? this.userRoles[0].value : this.userRoles[1].value;
+       console.log(this.data.role);
      }
      
      createUserForm(data :any) {
+        
+      if(data.id === undefined){
         this.userForm = this.fb.group({
           login   : [data.login, [Validators.required, Validators.maxLength(50)]],
-          password: [data.password, [Validators.required]],
+          password: [data.password,[Validators.required]],
           fullName: [data.fullName, [Validators.required]],
           role    : [data.role, [Validators.required]],
         })
+      }else{
+        this.userForm = this.fb.group({
+          login   : [data.login, [Validators.required, Validators.maxLength(50)]],
+          password: [''],
+          fullName: [data.fullName, [Validators.required]],
+          role    : [data.role, [Validators.required]],
+        })
+      }
       }
 
       submitUserForm(){
@@ -71,7 +82,6 @@ export class UserDialogAdminPageComponent implements OnInit {
         this.adminService.createUser(user).subscribe(
           response => {
             this.callSnackBarMessage("Користувач створений");
-            window.location.reload();
           },
            error => this.handlePromiseError(error));
         }else{

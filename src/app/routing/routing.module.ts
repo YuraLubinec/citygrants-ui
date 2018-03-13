@@ -10,7 +10,7 @@ import { AdminGuard } from "./guards/adminGuard";
 import { JuryGuard } from "./guards/juryGuard";
 import { ApplFormGuard } from "./guards/applFormGuard";
 import { HomePageComponent } from '../home-page/home-page.component';
-import { MenegeUserPageComponent } from '../meneg-user-page/meneg-user-page.component';
+import { ManageUserPageComponent } from '../manag-user-page/manag-user-page.component';
 
 const appRoutes: Routes = [
 
@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: "jury", component: JuryPageComponent, canActivate: [JuryGuard] },
   { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
-  { path: "menegeUser", component: MenegeUserPageComponent, canActivate: [AdminGuard] },
+  { path: "manageUser", component: ManageUserPageComponent, canActivate: [AdminGuard] },
   { path: "", component: HomePageComponent},
   { path: "**", redirectTo: '', pathMatch: 'full' }
 
