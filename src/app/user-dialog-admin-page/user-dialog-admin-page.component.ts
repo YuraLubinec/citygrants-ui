@@ -42,7 +42,6 @@ export class UserDialogAdminPageComponent implements OnInit {
 
      ngOnInit(): void {
        this.currUserRole = this.data.role == this.userRoles[0].name ? this.userRoles[0].value : this.userRoles[1].value;
-       console.log(this.data.role);
      }
      
      createUserForm(data :any) {
@@ -82,8 +81,11 @@ export class UserDialogAdminPageComponent implements OnInit {
         this.adminService.createUser(user).subscribe(
           response => {
             this.callSnackBarMessage("Користувач створений");
+            
+            user.id   = response.id;
+            user.role = response.role == this.userRoles[0].value ? this.userRoles[0].name : this.userRoles[1].name;
+
             this.dialogRef.close(user);
-            this.router.navigate(["manageUser"]);
           },
            error => this.handlePromiseError(error));
         }else{
