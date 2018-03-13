@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
   { path: "manageUser", component: ManageUserPageComponent, canActivate: [AdminGuard] },
-  { path: "", component: HomePageComponent},
+  { path: "", component: HomePageComponent, canActivate: [ApplFormGuard]},
   { path: "**", redirectTo: '', pathMatch: 'full' }
 
 ]

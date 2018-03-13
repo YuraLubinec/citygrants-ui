@@ -34,7 +34,7 @@ export class UserDialogAdminPageComponent implements OnInit {
 
       this.userRoles = [
         new Roles("ADMIN", "адміністратор"),
-        new Roles("JURYMEMBER", "оператор")
+        new Roles("JURYMEMBER", "член жюрі")
       ];
 
       this.createUserForm(data);
