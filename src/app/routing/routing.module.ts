@@ -8,17 +8,18 @@ import { LoginPageComponent } from "../login-page/login-page.component";
 import { LoginGuard } from "./guards/loginGuard";
 import { AdminGuard } from "./guards/adminGuard";
 import { JuryGuard } from "./guards/juryGuard";
+import { ApplFormGuard } from "./guards/applFormGuard";
 import { HomePageComponent } from '../home-page/home-page.component';
 import { MenegeUserPageComponent } from '../meneg-user-page/meneg-user-page.component';
 
 const appRoutes: Routes = [
 
-  { path: "project", component: ClientPageComponent },
+  { path: "project", component: ClientPageComponent, canActivate: [ApplFormGuard] },
   { path: "jury", component: JuryPageComponent, canActivate: [JuryGuard] },
   { path: "admin", component: AdminPageComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginPageComponent, canActivate: [LoginGuard] },
-  { path: "", component: HomePageComponent },
   { path: "menegeUser", component: MenegeUserPageComponent, canActivate: [AdminGuard] },
+  { path: "", component: HomePageComponent},
   { path: "**", redirectTo: '', pathMatch: 'full' }
 
 ]
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule],
-  providers: [LoginGuard, AdminGuard, JuryGuard],
+  providers: [LoginGuard, AdminGuard, JuryGuard, ApplFormGuard],
   declarations: []
 })
 export class RoutingModule { }
