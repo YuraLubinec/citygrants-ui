@@ -1,5 +1,5 @@
 import { OnInit, Component, Inject, ViewEncapsulation, Directive, ViewChildren, QueryList } from "@angular/core";
-import { MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
+import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from "@angular/material";
 import { Evaluation } from "../models/evaluation";
 import { Description } from "../models/description";
 import { Budget } from "../models/budget";
@@ -51,7 +51,7 @@ export class AdminDialogPageComponent {
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
-    constructor(private adminService: AdminService, @Inject(MAT_DIALOG_DATA) public data: any,
+    constructor(private adminService: AdminService, public dialogRef: MatDialogRef<AdminDialogPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar, private fb: FormBuilder) {          
 
         this.id                    = data.id;
@@ -315,6 +315,7 @@ export class AdminDialogPageComponent {
           this.callSnackBarMessage()
           document.getElementById("totalEvalFs" + this.id).innerText = String(this.getTotalEvalFirstStage(this.evaluations));
           document.getElementById("totalEvalSs" + this.id).innerText = String(this.getTotalEvalSecondStage(this.interviewEvaluations));
+          this.dialogRef.close();
         },
          error => this.handlePromiseError(error));
 

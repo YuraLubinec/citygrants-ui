@@ -81,7 +81,7 @@ export class UserDialogAdminPageComponent implements OnInit {
         this.adminService.createUser(user).subscribe(
           response => {
             this.callSnackBarMessage("Користувач створений");
-            
+
             user.id   = response.id;
             user.role = response.role == this.userRoles[0].value ? this.userRoles[0].name : this.userRoles[1].name;
 
@@ -91,7 +91,8 @@ export class UserDialogAdminPageComponent implements OnInit {
         }else{
           this.adminService.updateUser(user).subscribe(
             response => {
-              this.dialogRef.close();
+              user.role = user.role == this.userRoles[0].value ? this.userRoles[0].name : this.userRoles[1].name;
+              this.dialogRef.close(user);
               this.callSnackBarMessage("Дані користувача оновлені");
             },
              error => this.handlePromiseError(error));

@@ -5,7 +5,7 @@
                     <mat-tab-group>
                         <mat-tab label="Назва">
                             <mat-form-field class="full-width">
-                                <textarea matInput required formControlName="name" [(ngModel)]="projectDescription.name" #name
+                                <textarea matInput required formControlName="name" #name
                                     required matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8">
                                 </textarea>
                                 <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
@@ -14,7 +14,7 @@
                         </mat-tab>
                         <mat-tab label="Запитувана сума">
                             <mat-form-field  class="full-width">
-                                    <textarea matInput formControlName="requestedBudget" [(ngModel)]="projectDescription.requestedBudget" required></textarea>
+                                    <textarea matInput formControlName="requestedBudget" required></textarea>
                                     <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
                             </mat-form-field>
                         </mat-tab>
@@ -29,7 +29,7 @@
                         </mat-tab>
                         <mat-tab label="Тематичний напрямок">
                             <mat-form-field  class="full-width">
-                                    <textarea matInput maxlength="250" #theme [(ngModel)]="projectDescription.theme"
+                                    <textarea matInput maxlength="250" #theme
                                     formControlName="theme" 
                                     required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                                     <mat-hint align="end">{{theme.value.length}} / 250</mat-hint>
@@ -84,7 +84,7 @@
                         </mat-tab>
                         <mat-tab label="Мета проекту">
                             <mat-form-field class="full-width">
-                                <textarea matInput maxlength="1000" #goal formControlName="goal"  [(ngModel)]="projectDescription.goal"
+                                <textarea matInput maxlength="1000" #goal formControlName="goal"
                                 required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                                 <mat-hint align="end">{{goal.value.length}} / 1000</mat-hint>
                                 <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>

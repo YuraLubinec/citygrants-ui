@@ -86,6 +86,15 @@ export class ManageUserPageComponent implements OnInit {
           height: '60%',
           width:'65%'
         });
+        dialogRef.afterClosed().subscribe(result => {
+
+            let index = this.users.findIndex(user => user.id == result.id);
+            this.users.splice(index, 1);
+            this.users.push(result);
+            this.dataHandler(this.users);
+        });
+
+
       }
     openDialogUser(){
         const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
