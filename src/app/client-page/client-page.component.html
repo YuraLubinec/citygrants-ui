@@ -13,10 +13,10 @@
                       <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
                   </mat-form-field>
                   <mat-form-field  class="full-width">
-                      <input matInput placeholder = "Запитувана сума, грн.:" type="number"
-                       formControlName="requestedBudget" required>
+                      <input matInput maxlength="7" placeholder = "Запитувана сума, грн.:"
+                       formControlName="requestedBudget" #requestedBudget required>
+                       <mat-hint align="end">{{requestedBudget.value.length}} / 7</mat-hint>
                       <span matPrefix>₴&nbsp;</span>
-                      <span matSuffix>.00</span>
                       <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
                   </mat-form-field>
                   <mat-form-field  class="full-width" matTooltip="Назва організації або ініціативної групи, що подає проект" [matTooltipPosition]="positionTollTip">

@@ -195,7 +195,7 @@ export class ClientPageComponent implements OnInit {
   createEmptyDescriptionForm() {
     this.appDescForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(250),]],
-      requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(20)]],
+      requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
       organizationName: ['', [Validators.required, Validators.maxLength(250)]],
       theme: ['', [Validators.required, Validators.maxLength(250)]],
       requiredTime: ['', [Validators.required, Validators.maxLength(100)]],
@@ -429,7 +429,7 @@ export class ClientPageComponent implements OnInit {
 
       console.log( this.appDescForm);
 
-      alert("Не унікальна назва проекту!!!");
+      alert("Виникла помилка введення даних!!!");
     }
   }
 }
