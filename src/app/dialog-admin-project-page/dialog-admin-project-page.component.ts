@@ -16,15 +16,15 @@ import { CostItem } from "../models/costItem";
 import { LOGIN, BASEURL } from "../constants/projectConstants";
 
 @Component({
-    selector: 'app-project-dialog-admin-page',
-    templateUrl: './project-dialog-admin-page.component.html',
-    styleUrls: ['./project-dialog-admin-page.component.css'],
+    selector: 'app-dialog-admin-project-page',
+    templateUrl: './dialog-admin-project-page.component.html',
+    styleUrls: ['./dialog-admin-project-page.component.css'],
     providers: [AdminService],
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
   })
 
-export class AdminDialogPageComponent {
+export class DialogAdminProjectPageComponent {
     private id                   :string;
     private projectDescription   :Description;
     private projectBudget        :Budget;
@@ -52,7 +52,7 @@ export class AdminDialogPageComponent {
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
-    constructor(private adminService: AdminService, public dialogProject: MatDialogRef<AdminDialogPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
+    constructor(private adminService: AdminService, public dialogProject: MatDialogRef<DialogAdminProjectPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
                 public snackBar: MatSnackBar, private fb: FormBuilder) {          
 
         this.id                    = data.id;

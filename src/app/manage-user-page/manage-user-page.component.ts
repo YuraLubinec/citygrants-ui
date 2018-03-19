@@ -4,7 +4,7 @@ import { MatPaginator, PageEvent, MatTableDataSource, MatSort, MatDialog } from 
 import { ProjectAdm } from '../models/projectAdm';
 import {SelectionModel} from '@angular/cdk/collections';
 import { forEach } from '@angular/router/src/utils/collection';
-import { AdminDialogPageComponent } from '../project-dialog-admin-page/project-dialog-admin-page.component';
+import { DialogAdminProjectPageComponent } from '../dialog-admin-project-page/dialog-admin-project-page.component';
 import { User } from '../models/user';
 import { DialogAdminUserPageComponent } from '../dialog-admin-user-page/dialog-admin-user-page.component';
 import { Roles } from '../models/roles';

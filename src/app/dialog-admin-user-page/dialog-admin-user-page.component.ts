@@ -29,7 +29,7 @@ export class DialogAdminUserPageComponent implements OnInit {
     private patternMessage     = "не відповідає параметрам введення";
     private patternEmail       = "не вірний формат електронної пошти";
 
-    constructor(private adminService: AdminService, public dialogUser: MatDialogRef<UserDialogAdminPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
+    constructor(private adminService: AdminService, public dialogUser: MatDialogRef<DialogAdminUserPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router:Router,
     public snackBar: MatSnackBar) {
 
       this.userRoles = [

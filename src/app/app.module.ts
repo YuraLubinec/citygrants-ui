@@ -15,7 +15,7 @@ import {
 } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { AdminDialogPageComponent } from './project-dialog-admin-page/project-dialog-admin-page.component';
+import { DialogAdminProjectPageComponent } from './dialog-admin-project-page/dialog-admin-project-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { ErrorInterceptor } from './interceptors/ErrorInterceptor';
@@ -31,7 +31,7 @@ import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-ad
     AppComponent,
     ClientPageComponent,
     JuryDialogPageComponent,
-    AdminDialogPageComponent,
+    DialogAdminProjectPageComponent,
     DialogAdminUserPageComponent,
     JuryPageComponent,
     AdminPageComponent,
@@ -40,7 +40,7 @@ import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-ad
     MenuComponent,
     ManageUserPageComponent,
   ],
-  entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent, DialogAdminUserPageComponent],
+  entryComponents: [JuryDialogPageComponent, DialogAdminProjectPageComponent, DialogAdminUserPageComponent],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,
