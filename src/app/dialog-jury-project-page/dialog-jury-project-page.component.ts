@@ -15,15 +15,15 @@ import { LOGIN, BASEURL } from "../constants/projectConstants";
 import { Observable } from "rxjs/Observable";
 
 @Component({
-    selector: 'app-project-dialog-page',
-    templateUrl: './project-dialog-page.component.html',
-    styleUrls: ['./project-dialog-page.component.css'],
+    selector: 'app-dialog-jury-project-page',
+    templateUrl: './dialog-jury-project-page.component.html',
+    styleUrls: ['./dialog-jury-project-page.component.css'],
     providers: [JuryService],
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
   })
 
-export class JuryDialogPageComponent {
+export class DialogJuryProjectPageComponent {
     private id                 :String;
     private projectDescription :Description;
     private projectBudget      :Budget;
@@ -41,7 +41,7 @@ export class JuryDialogPageComponent {
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar, public dialogProject: MatDialogRef<JuryDialogPageComponent>,) {
+                public snackBar: MatSnackBar, public dialogProject: MatDialogRef<DialogJuryProjectPageComponent>,) {
         this.id                 = data.id;
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;

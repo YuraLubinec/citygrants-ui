@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { JuryPageComponent } from "./jury-page/jury-page.component";
-import { JuryDialogPageComponent } from './project-dialog-page/project-dialog-page.component';
+import { DialogJuryProjectPageComponent } from './dialog-jury-project-page/dialog-jury-project-page.component';
 import { RoutingModule } from "./routing/routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -30,7 +30,7 @@ import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-ad
   declarations: [
     AppComponent,
     ClientPageComponent,
-    JuryDialogPageComponent,
+    DialogJuryProjectPageComponent,
     DialogAdminProjectPageComponent,
     DialogAdminUserPageComponent,
     JuryPageComponent,
@@ -40,7 +40,7 @@ import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-ad
     MenuComponent,
     ManageUserPageComponent,
   ],
-  entryComponents: [JuryDialogPageComponent, DialogAdminProjectPageComponent, DialogAdminUserPageComponent],
+  entryComponents: [DialogJuryProjectPageComponent, DialogAdminProjectPageComponent, DialogAdminUserPageComponent],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,

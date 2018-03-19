@@ -6,6 +6,7 @@ import { ProjectApplication } from '../models/projectApplication';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { BASEURL } from '../constants/projectConstants';
 
 @Injectable()
 export class ClientService {
@@ -15,7 +16,7 @@ export class ClientService {
 
   constructor(private http: HttpClient) {
 
-    this.baseUrl = 'http://localhost:8082/citygrants/client/project';
+    this.baseUrl = BASEURL + 'client/project';
   }
 
   isUniqNameProject(nameOfProject: string): Observable<any> {

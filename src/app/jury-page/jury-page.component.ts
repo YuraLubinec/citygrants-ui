@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild} from '@angular/core';
 import { JuryService } from '../services/jury.service';
 import { ProjectApplication } from '../models/projectApplication';
 import {MatPaginator, PageEvent, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
-import { JuryDialogPageComponent } from '../project-dialog-page/project-dialog-page.component';
+import { DialogJuryProjectPageComponent } from '../dialog-jury-project-page/dialog-jury-project-page.component';
 import { ProjectApplJury } from '../models/projectApplJury';
 
 @Component({
@@ -81,7 +81,7 @@ export class JuryPageComponent implements OnInit {
   }
 
   selectRow(row) {
-    const dialogRef = this.dialog.open(JuryDialogPageComponent, {
+    const dialogRef = this.dialog.open(DialogJuryProjectPageComponent, {
       data: row,
       height: '90%',
       width:'70%'
