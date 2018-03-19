@@ -1,22 +1,19 @@
 .login-window {
-    min-width: 400px;
-    max-width: 450px;
-    margin: auto;
-    margin-top: 300px;
-    width: 40%;
+  background-color: rgba(255, 255, 255, 0.8);
+  min-width: 400px;
+  max-width: 450px;
+  margin: auto;
+  margin-top: 300px;
+  width: 40%;
 }
 
-/* .login-form { 
-    width: 100%;
-} */
-  
 .login-width {
-    width: 100%;
-    margin: auto;
+  width: 100%;
+  margin: auto;
 }
 
 .login-button {
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-} 
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
