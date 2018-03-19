@@ -6,7 +6,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 import { forEach } from '@angular/router/src/utils/collection';
 import { AdminDialogPageComponent } from '../project-dialog-admin-page/project-dialog-admin-page.component';
 import { User } from '../models/user';
-import { UserDialogAdminPageComponent } from '../user-dialog-admin-page/user-dialog-admin-page.component';
+import { DialogAdminUserPageComponent } from '../dialog-admin-user-page/dialog-admin-user-page.component';
 import { Roles } from '../models/roles';
 
 
@@ -81,7 +81,7 @@ export class ManageUserPageComponent implements OnInit {
     }
 
     showRow(row) {
-        const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
+        const dialogRef = this.dialog.open(DialogAdminUserPageComponent, {
           data: row,
           height: '60%',
           width:'65%'
@@ -97,7 +97,7 @@ export class ManageUserPageComponent implements OnInit {
       }
 
     openDialogUser(){
-        const dialogRef = this.dialog.open(UserDialogAdminPageComponent, {
+        const dialogRef = this.dialog.open(DialogAdminUserPageComponent, {
             data: new User(),
             height: '60%',
             width:'65%'

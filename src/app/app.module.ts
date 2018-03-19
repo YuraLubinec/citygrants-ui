@@ -24,7 +24,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { SharedService } from './services/sharedService';
 import { ManageUserPageComponent } from './manage-user-page/manage-user-page.component';
-import { UserDialogAdminPageComponent } from './user-dialog-admin-page/user-dialog-admin-page.component';
+import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-admin-user-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { UserDialogAdminPageComponent } from './user-dialog-admin-page/user-dial
     ClientPageComponent,
     JuryDialogPageComponent,
     AdminDialogPageComponent,
-    UserDialogAdminPageComponent,
+    DialogAdminUserPageComponent,
     JuryPageComponent,
     AdminPageComponent,
     LoginPageComponent,
@@ -40,7 +40,7 @@ import { UserDialogAdminPageComponent } from './user-dialog-admin-page/user-dial
     MenuComponent,
     ManageUserPageComponent,
   ],
-  entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent, UserDialogAdminPageComponent],
+  entryComponents: [JuryDialogPageComponent, AdminDialogPageComponent, DialogAdminUserPageComponent],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,

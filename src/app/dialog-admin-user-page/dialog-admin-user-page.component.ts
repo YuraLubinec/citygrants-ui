@@ -9,15 +9,15 @@ import { User } from "../models/user";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: 'app-user-dialog-admin-page',
-    templateUrl: './user-dialog-admin-page.component.html',
-    styleUrls: ['./user-dialog-admin-page.component.css'],
+    selector: 'app-dialog-admin-user-page',
+    templateUrl: './dialog-admin-user-page.component.html',
+    styleUrls: ['./dialog-admin-user-page.component.css'],
     providers: [AdminService],
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
   })
 
-export class UserDialogAdminPageComponent implements OnInit {
+export class DialogAdminUserPageComponent implements OnInit {
 
     private userForm            : FormGroup;
     private userRoles           : Array<Roles>;

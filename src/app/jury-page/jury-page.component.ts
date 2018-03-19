@@ -67,8 +67,8 @@ export class JuryPageComponent implements OnInit {
     this.dataSource.filterPredicate =
     (data: any, filter: string) => data.description.name.indexOf(filter) != -1;
 
-    this.length          = this.projects.length;
-    this.pageSize        = 5;
+    this.length   = this.projects.length;
+    this.pageSize = 5;
 
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Кількість елементів на сторінці';

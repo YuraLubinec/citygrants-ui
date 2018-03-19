@@ -1,5 +1,5 @@
 import { OnInit, Component, Inject, ViewEncapsulation, Directive, ViewChildren, QueryList } from "@angular/core";
-import { MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
+import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from "@angular/material";
 import { Evaluation } from "../models/evaluation";
 import { Description } from "../models/description";
 import { Budget } from "../models/budget";
@@ -41,7 +41,7 @@ export class JuryDialogPageComponent {
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
     constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar) {
+                public snackBar: MatSnackBar, public dialogProject: MatDialogRef<JuryDialogPageComponent>,) {
         this.id                 = data.id;
         this.projectDescription = data.description;
         this.projectBudget      = data.budget;
@@ -68,6 +68,8 @@ export class JuryDialogPageComponent {
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
         duration: 1500,
       });
+
+      this.dialogProject.close();
     }
 
     saveInterviewEvaluation(){
@@ -78,6 +80,8 @@ export class JuryDialogPageComponent {
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {
         duration: 1500,
       });
+
+      this.dialogProject.close();
     }
 
     saveComment(){
