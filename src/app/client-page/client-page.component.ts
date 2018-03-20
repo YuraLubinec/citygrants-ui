@@ -28,7 +28,6 @@ export class ClientPageComponent implements OnInit {
   private displayDescriptionForm: boolean;
   private displayCostItemForm: boolean;
   private displayDescription: boolean;
-  // private displayBudget: boolean;
   private costItemCategories: Array<CostItemCategory>;
   private images: Array<File>;
   private pdfDocs: Array<File>;
@@ -231,14 +230,14 @@ export class ClientPageComponent implements OnInit {
       field.partners
     );
 
+    console.log( this.appDescForm);
+
     this.clientService.isUniqNameProject(field.name).subscribe(
       response => {
-        this.appDescForm.controls['name'].setErrors({'notUniqName': !response});
-
-        this.displayDescriptionForm = !response
-        this.displayDescription     = response;
-        this.displayCostItemForm    = response;
-        this.notUniqNamelMessage    = "Така назва вже існує"
+        if(response){
+          this.appDescForm.controls['name'].setErrors({'notUniqName': response});
+          this.notUniqNamelMessage    = "Така назва вже існує";
+        }
       },
        error => this.handlePromiseError(error));
   }
@@ -351,9 +350,9 @@ export class ClientPageComponent implements OnInit {
     this.clientService.saveApplication(this.projectApplication)
       .then(data => {
         this.uploadAttachments(data.id);
-        this.displayDescriptionForm = true;
-        this.displayDescription  = false;
-        this.displayCostItemForm = false;
+        //this.displayDescriptionForm = true;
+        //this.displayDescription  = false;
+       // this.displayCostItemForm = false;
         this.projectApplication  = null;
         this.calculations        = null;
 

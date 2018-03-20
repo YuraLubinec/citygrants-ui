@@ -15,11 +15,12 @@
   align-items: center;
   justify-content: space-around;
 }
-.client-cart{
+.horisontal-stepper{
   background-color: rgba(255, 255, 255, 0.8);
   margin: auto;
-  width: 70%;
+  width: 80%;
 }
+
 body{
   background-color: transparent;
 }
