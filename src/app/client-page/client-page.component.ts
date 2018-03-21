@@ -196,26 +196,28 @@ export class ClientPageComponent implements OnInit {
 
   createEmptyDescriptionForm() {
     this.appDescForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(250),]],
-      requestedBudget: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
-      organizationName: ['', [Validators.required, Validators.maxLength(250)]],
-      theme: ['', [Validators.required, Validators.maxLength(250)]],
-      requiredTime: ['', [Validators.required, Validators.maxLength(100)]],
-      coordinatorName: ['', [Validators.required, Validators.maxLength(100)]],
-      coordinatorPhone: ['', [Validators.required, Validators.pattern("(\\d){10}")]],
-      coordinatorEmail: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      projectMembers: ['', [Validators.required, Validators.maxLength(1000)]],
-      expirienceDescription: ['', [Validators.required, Validators.maxLength(2000)]],
-      address: ['', [Validators.required, Validators.maxLength(250)]],
-      webaddress: ['', [Validators.required, Validators.maxLength(150)]],
-      goal: ['', [Validators.required, Validators.maxLength(1000)]],
-      actuality: ['', [Validators.required, Validators.maxLength(2000)]],
-      fullDescription: ['', [Validators.required, Validators.maxLength(2000)]],
-      targetGroup: ['', [Validators.required, Validators.maxLength(2000)]],
-      expectedResults: ['', [Validators.required, Validators.maxLength(2000)]],
-      requiredPermissions: ['', [Validators.required, Validators.maxLength(1000)]],
-      partners: ['', [Validators.required, Validators.maxLength(1000)]]
-    })
+      name:                   [''],
+      requestedBudget:        [''],
+      organizationName:       [''],
+      theme:                  [''],
+      requiredTime:           [''],
+      coordinatorName:        [''],
+      coordinatorPhone:       [''],
+      coordinatorEmail:       [''],
+      projectMembers:         [''],
+      expirienceDescription:  [''],
+      address:                [''],
+      webaddress:             [''],
+      goal:                   [''],
+      actuality:              [''],
+      fullDescription:        [''],
+      targetGroup:            [''],
+      expectedResults:        [''],
+      requiredPermissions:    [''],
+      partners:               ['']
+    });
+    
+    this.appDescForm.markAsUntouched(); 
   }
 
   submitDescriptionForm() {
@@ -229,17 +231,49 @@ export class ClientPageComponent implements OnInit {
       field.targetGroup, field.expectedResults, field.requiredPermissions,
       field.partners
     );
+    this.checkUniqNameProject(field.name);
+    this.validDescriptionForm();
+  }
 
-    console.log( this.appDescForm);
+  
+  private checkUniqNameProject(name:string){
+    if(name){
+      this.clientService.isUniqNameProject(name).subscribe(
+        response => {
+          if(!response){
+            this.appDescForm.controls['name'].setErrors({'notUniqName': response});
+            this.notUniqNamelMessage    = "Така назва вже існує";
+          }
+        },
+         error => this.handlePromiseError(error))}
+  }
 
-    this.clientService.isUniqNameProject(field.name).subscribe(
-      response => {
-        if(response){
-          this.appDescForm.controls['name'].setErrors({'notUniqName': response});
-          this.notUniqNamelMessage    = "Така назва вже існує";
-        }
-      },
-       error => this.handlePromiseError(error));
+  private validDescriptionForm(){
+    let field = this.appDescForm.value;
+
+    this.appDescForm = this.fb.group({
+      name:                   [field.name, [Validators.required, Validators.maxLength(250),]],
+      requestedBudget:        [field.requestedBudget, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
+      organizationName:       [field.organizationName, [Validators.required, Validators.maxLength(250)]],
+      theme:                  [field.theme, [Validators.required, Validators.maxLength(250)]],
+      requiredTime:           [field.requiredTime, [Validators.required, Validators.maxLength(100)]],
+      coordinatorName:        [field.coordinatorName, [Validators.required, Validators.maxLength(100)]],
+      coordinatorPhone:       [field.coordinatorPhone, [Validators.required, Validators.pattern("(\\d){10}")]],
+      coordinatorEmail:       [field.coordinatorEmail, [Validators.required, Validators.email, Validators.maxLength(50)]],
+      projectMembers:         [field.projectMembers, [Validators.required, Validators.maxLength(1000)]],
+      expirienceDescription:  [field.expirienceDescription, [Validators.required, Validators.maxLength(2000)]],
+      address:                [field.address, [Validators.required, Validators.maxLength(250)]],
+      webaddress:             [field.webaddress, [Validators.required, Validators.maxLength(150)]],
+      goal:                   [field.goal, [Validators.required, Validators.maxLength(1000)]],
+      actuality:              [field.actuality, [Validators.required, Validators.maxLength(2000)]],
+      fullDescription:        [field.fullDescription, [Validators.required, Validators.maxLength(2000)]],
+      targetGroup:            [field.targetGroup, [Validators.required, Validators.maxLength(2000)]],
+      expectedResults:        [field.expectedResults, [Validators.required, Validators.maxLength(2000)]],
+      requiredPermissions:    [field.requiredPermissions, [Validators.required, Validators.maxLength(1000)]],
+      partners:               [field.partners, [Validators.required, Validators.maxLength(1000)]]
+    });
+
+    this.appDescForm.markAsTouched();  
   }
 
   submitCostItemForm(formDirective: FormGroupDirective) {

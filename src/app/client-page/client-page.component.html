@@ -4,22 +4,22 @@
             <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
               <ng-template matStepLabel>Заповни форму</ng-template>
               <mat-form-field class="full-width">
-                <textarea matInput maxlength="250" #name placeholder="Назва проекту :" formControlName="name" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="250" #name placeholder="Назва проекту :" formControlName="name" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <input matInput placeholder="Запитувана сума, грн.:" type="number" formControlName="requestedBudget" required>
+                <input matInput placeholder="Запитувана сума, грн.:" type="number" formControlName="requestedBudget">
                 <span matPrefix>₴&nbsp;</span>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Назва організації або ініціативної групи, що подає проект" [matTooltipPosition]="positionTollTip">
-                <textarea matInput maxlength="250" #organizationName placeholder="Назва організації або ініціативної групи, що подає проект:" formControlName="organizationName" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="250" #organizationName placeholder="Назва організації або ініціативної групи, що подає проект:" formControlName="organizationName"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{organizationName.value.length}} / 250</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <textarea matInput maxlength="250" #theme placeholder="Тематичний напрямок, під який підпадає проект:" formControlName="theme" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="250" #theme placeholder="Тематичний напрямок, під який підпадає проект:" formControlName="theme"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{theme.value.length}} / 250</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
               </mat-form-field>
@@ -29,77 +29,77 @@
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredTime")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <input matInput maxlength="100" #coordinatorName placeholder="Координатор/ка проекту:" formControlName="coordinatorName" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6">
+                <input matInput maxlength="100" #coordinatorName placeholder="Координатор/ка проекту:" formControlName="coordinatorName" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6">
                 <mat-hint align="end">{{coordinatorName.value.length}} / 100</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
                 <span matPrefix>+38 &nbsp;</span>
-                <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone" required>
+                <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone">
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <input matInput maxlength="50" placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail" required>
+                <input matInput maxlength="50" placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail">
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків)" [matTooltipPosition]="positionTollTip">
-                <textarea matInput maxlength="1000" placeholder="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):" formControlName="projectMembers" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="1000" placeholder="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків):" formControlName="projectMembers" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{coordinatorName.value.length}} / 1000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("projectMembers")}}</mat-error>
               </mat-form-field>
               <mat-form-field matTooltip="Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди)" [matTooltipPosition]="positionTollTip" class="full-width">
-                <textarea matInput maxlength="2000" #expirienceDescription placeholder="Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):" formControlName="expirienceDescription" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="2000" #expirienceDescription placeholder="Попередній досвід команди проекту у громадській діяльності або волонтерстві (не більше 5 рядків про кожного члена команди):" formControlName="expirienceDescription" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{expirienceDescription.value.length}} / 2000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("expirienceDescription")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <textarea matInput maxlength="250" #address placeholder="Адреса організації (якщо є):" formControlName="address" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="250" #address placeholder="Адреса організації (якщо є):" formControlName="address"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{address.value.length}} / 250</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("address")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <textarea matInput maxlength="150" #webaddress placeholder="Веб-сайт, Facebook:" formControlName="webaddress" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="150" #webaddress placeholder="Веб-сайт, Facebook:" formControlName="webaddress"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{webaddress.value.length}} / 150</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("webaddress")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту)" [matTooltipPosition]="positionTollTip">
-                <textarea matInput maxlength="1000" #goal placeholder="Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):" formControlName="goal" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="1000" #goal placeholder="Мета проекту (одним реченням, що саме і яким чином плануєте досягти внаслідок реалізації проекту):" formControlName="goal"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{goal.value.length}} / 1000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів)" [matTooltipPosition]="positionTollTip">
-                <textarea matInput maxlength="2000" #actuality placeholder="Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):" formControlName="actuality" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="2000" #actuality placeholder="Актуальність проекту (чому запропонована у проекті діяльність є важливою, максимум 100 слів):" formControlName="actuality"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{actuality.value.length}} / 2000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("actuality")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у
                     рамках проекту)" [matTooltipPosition]="positionTollTip">
                 <textarea matInput maxlength="2000" #fullDescription placeholder="Опис проекту (розгорнуто, не більше як 300 слів, потрібно описати, що відбуватиметься, які заходи будуть здійснені у
-                        рамках проекту):" formControlName="fullDescription" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                        рамках проекту):" formControlName="fullDescription" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{fullDescription.value.length}} / 2000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію)" [matTooltipPosition]="positionTollTip">
-                <textarea matInput maxlength="2000" #targetGroup placeholder="Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):" formControlName="targetGroup" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="2000" #targetGroup placeholder="Цільові групи (на чиї потреби чи на кого спрямована дія проекту, як Ви плануєте запрошувати/залучати цю аудиторію):" formControlName="targetGroup"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{targetGroup.value.length}} / 2000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("targetGroup")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width" matTooltip="Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту)" [matTooltipPosition]="positionTollTip">
-                <textarea matInput maxlength="2000" #expectedResults placeholder="Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):" formControlName="expectedResults" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="2000" #expectedResults placeholder="Очікувані результати проекту (кількісні та якісні, короткострокові та довгострококові показники успішності проекту):" formControlName="expectedResults"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{expectedResults.value.length}} / 2000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("expectedResults")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <textarea matInput maxlength="1000" #requiredPermissions placeholder="Погодження та дозволи, необхідні для втілення проекту:" formControlName="requiredPermissions" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="1000" #requiredPermissions placeholder="Погодження та дозволи, необхідні для втілення проекту:" formControlName="requiredPermissions" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{requiredPermissions.value.length}} / 1000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredPermissions")}}</mat-error>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <textarea matInput maxlength="1000" #partners placeholder="Партнери та спонсори (якщо є):" formControlName="partners" required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
+                <textarea matInput maxlength="1000" #partners placeholder="Партнери та спонсори (якщо є):" formControlName="partners"  matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
                 <mat-hint align="end">{{partners.value.length}} / 1000</mat-hint>
                 <mat-error *ngIf="appDescForm">{{getErrorMessage("partners")}}</mat-error>
               </mat-form-field>
-              <button mat-button matStepperNext type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Далі
+              <button mat-button type="submit" [disabled]="!appDescForm.valid" mat-raised-button color="primary">Далі
                         <mat-icon>done</mat-icon></button>
             </form>
           </div>
