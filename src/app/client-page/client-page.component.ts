@@ -9,7 +9,7 @@ import { CostItem } from '../models/costItem';
 import { CostItemCategory } from '../models/costItemCategory';
 import { BudgetCalculations } from '../models/budgetCalculations'
 import { Evaluation } from '../models/evaluation';
-import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSnackBar, MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-client-page',
@@ -68,121 +68,6 @@ export class ClientPageComponent implements OnInit {
     this.createEmptyCostItemForm();
   }
 
-  getErrorMessage(controlName:String){
-    switch(controlName) {
-      case "name": {
-        return this.appDescForm.controls.name.hasError("required")    ? this.requiredMessage:
-               this.appDescForm.controls.name.hasError("notUniqName") ? this.notUniqNamelMessage: this.defaultMessage;
-      }
-      case "requestedBudget": {
-        return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.requestedBudget.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "organizationName": {
-        return this.appDescForm.controls.organizationName.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.organizationName.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "theme": {
-        return this.appDescForm.controls.theme.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.theme.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "coordinatorName": {
-        return this.appDescForm.controls.coordinatorName.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.coordinatorName.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "coordinatorPhone": {
-        return this.appDescForm.controls.coordinatorPhone.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.coordinatorPhone.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "coordinatorEmail": {
-        return this.appDescForm.controls.coordinatorEmail.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.coordinatorEmail.hasError("pattern")  ? this.patternMessage  : 
-               this.appDescForm.controls.coordinatorEmail.hasError("email")    ? this.patternEmail    : this.defaultMessage;
-      }
-      case "projectMembers": {
-        return this.appDescForm.controls.projectMembers.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.projectMembers.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "expirienceDescription": {
-        return this.appDescForm.controls.expirienceDescription.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.expirienceDescription.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "address": {
-        return this.appDescForm.controls.address.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.address.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "webaddress": {
-        return this.appDescForm.controls.webaddress.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.webaddress.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "goal": {
-        return this.appDescForm.controls.goal.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.goal.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "actuality": {
-        return this.appDescForm.controls.actuality.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.actuality.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "fullDescription": {
-        return this.appDescForm.controls.fullDescription.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.fullDescription.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "targetGroup": {
-        return this.appDescForm.controls.targetGroup.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.targetGroup.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "expectedResults": {
-        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.expectedResults.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "requiredPermissions": {
-        return this.appDescForm.controls.requiredPermissions.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.requiredPermissions.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "expectedResults": {
-        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.expectedResults.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "partners": {
-        return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "requiredTime": {
-        return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
-               this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-    }
-  }
-
-  getErrorMessageCostForm(controlName:String){
-    switch(controlName) {
-      case "description": {
-        return this.appCostItem.controls.description.hasError("required") ? this.requiredMessage : 
-               this.appCostItem.controls.description.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "cost": {
-        return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage : 
-               this.appCostItem.controls.cost.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "count": {
-        return this.appCostItem.controls.count.hasError("required") ? this.requiredMessage : 
-               this.appCostItem.controls.count.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "consumptionsFromProgram": {
-        return this.appCostItem.controls.consumptionsFromProgram.hasError("required") ? this.requiredMessage : 
-               this.appCostItem.controls.consumptionsFromProgram.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "consumptionsFromOtherSources": {
-        return this.appCostItem.controls.consumptionsFromOtherSources.hasError("required") ? this.requiredMessage : 
-               this.appCostItem.controls.consumptionsFromOtherSources.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
-      }
-      case "category": {
-        return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : this.defaultMessage;
-      }
-    }
-
-  }
-
   createEmptyCostItemForm() {
     this.appCostItem = this.fb.group({
       description: ['', [Validators.required, Validators.maxLength(250)]],
@@ -216,11 +101,9 @@ export class ClientPageComponent implements OnInit {
       requiredPermissions:    [''],
       partners:               ['']
     });
-    
-    this.appDescForm.markAsUntouched(); 
   }
 
-  submitDescriptionForm() {
+  submitDescriptionForm(stepper: MatStepper) {
     let field = this.appDescForm.value;
     this.description = new Description(
       field.name, field.requestedBudget, field.organizationName,
@@ -233,6 +116,15 @@ export class ClientPageComponent implements OnInit {
     );
     this.checkUniqNameProject(field.name);
     this.validDescriptionForm();
+    this.goForward(stepper, this.appDescForm);
+  }
+
+  goBack(stepper: MatStepper){
+    stepper.previous();
+  }
+
+  goForward(stepper: MatStepper, form:FormGroup){
+    this.appDescForm.valid ? stepper.next():'doNothing';
   }
 
   
@@ -384,9 +276,6 @@ export class ClientPageComponent implements OnInit {
     this.clientService.saveApplication(this.projectApplication)
       .then(data => {
         this.uploadAttachments(data.id);
-        //this.displayDescriptionForm = true;
-        //this.displayDescription  = false;
-       // this.displayCostItemForm = false;
         this.projectApplication  = null;
         this.calculations        = null;
 
@@ -452,20 +341,129 @@ export class ClientPageComponent implements OnInit {
   }
 
   private handlePromiseError(err): void {
-
     err.status == '400' ? this.checkErrorGetMessage(err): alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
   }
 
   private checkErrorGetMessage(err:any){
     if(err.status == '400'){
-      this.displayDescriptionForm = true;
-      this.displayCostItemForm = false;
       this.notUniqNamelMessage = err.error.message;
       this.appDescForm.controls['name'].setErrors({'notUniqName': true});
 
-      console.log( this.appDescForm);
-
       alert("Виникла помилка введення даних!!!");
+    }
+  }
+
+  getErrorMessage(controlName:String){
+    switch(controlName) {
+      case "name": {
+        return this.appDescForm.controls.name.hasError("required")    ? this.requiredMessage:
+               this.appDescForm.controls.name.hasError("notUniqName") ? this.notUniqNamelMessage: this.defaultMessage;
+      }
+      case "requestedBudget": {
+        return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.requestedBudget.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "organizationName": {
+        return this.appDescForm.controls.organizationName.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.organizationName.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "theme": {
+        return this.appDescForm.controls.theme.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.theme.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "coordinatorName": {
+        return this.appDescForm.controls.coordinatorName.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.coordinatorName.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "coordinatorPhone": {
+        return this.appDescForm.controls.coordinatorPhone.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.coordinatorPhone.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "coordinatorEmail": {
+        return this.appDescForm.controls.coordinatorEmail.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.coordinatorEmail.hasError("pattern")  ? this.patternMessage  : 
+               this.appDescForm.controls.coordinatorEmail.hasError("email")    ? this.patternEmail    : this.defaultMessage;
+      }
+      case "projectMembers": {
+        return this.appDescForm.controls.projectMembers.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.projectMembers.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "expirienceDescription": {
+        return this.appDescForm.controls.expirienceDescription.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.expirienceDescription.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "address": {
+        return this.appDescForm.controls.address.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.address.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "webaddress": {
+        return this.appDescForm.controls.webaddress.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.webaddress.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "goal": {
+        return this.appDescForm.controls.goal.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.goal.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "actuality": {
+        return this.appDescForm.controls.actuality.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.actuality.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "fullDescription": {
+        return this.appDescForm.controls.fullDescription.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.fullDescription.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "targetGroup": {
+        return this.appDescForm.controls.targetGroup.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.targetGroup.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "expectedResults": {
+        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.expectedResults.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "requiredPermissions": {
+        return this.appDescForm.controls.requiredPermissions.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.requiredPermissions.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "expectedResults": {
+        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.expectedResults.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "partners": {
+        return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "requiredTime": {
+        return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
+               this.appDescForm.controls.partners.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+    }
+  }
+
+  getErrorMessageCostForm(controlName:String){
+    switch(controlName) {
+      case "description": {
+        return this.appCostItem.controls.description.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.description.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "cost": {
+        return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.cost.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "count": {
+        return this.appCostItem.controls.count.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.count.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "consumptionsFromProgram": {
+        return this.appCostItem.controls.consumptionsFromProgram.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.consumptionsFromProgram.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "consumptionsFromOtherSources": {
+        return this.appCostItem.controls.consumptionsFromOtherSources.hasError("required") ? this.requiredMessage : 
+               this.appCostItem.controls.consumptionsFromOtherSources.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
+      }
+      case "category": {
+        return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : this.defaultMessage;
+      }
     }
   }
 }
