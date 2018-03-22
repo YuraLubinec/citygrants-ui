@@ -41,7 +41,8 @@ export class ClientPageComponent implements OnInit {
   private patternMessage     = "не відповідає параметрам введення";
   private patternEmail       = "не вірний формат електронної пошти"
   private positionTollTip    = "above";
-  private notUniqNamelMessage :string;
+  private notUniqNameMessage :string;
+  private isSavedValidDescForm  = false;
 
   constructor(private clientService: ClientService, private fb: FormBuilder, public snackBar: MatSnackBar) {
     this.displayDescriptionForm = true;
@@ -114,8 +115,8 @@ export class ClientPageComponent implements OnInit {
       field.targetGroup, field.expectedResults, field.requiredPermissions,
       field.partners
     );
-    this.checkUniqNameProject(field.name);
     this.validDescriptionForm();
+    this.checkUniqNameProject(field.name);
     this.goForward(stepper, this.appDescForm);
   }
 
@@ -131,8 +132,34 @@ export class ClientPageComponent implements OnInit {
     }
   }
 
-  goBack(stepper: MatStepper){
-    stepper.previous();
+  confirmProjectApplication(stepper: MatStepper) {
+    let moveToDescription = 0;
+    let moveToBudjet      = 1;
+    if(this.description && !this.isSavedValidDescForm){
+      stepper.selectedIndex = moveToDescription;
+      this.callSnackBarMessage("Збережіть форму для розгляду !");
+    }else if(!this.description || !this.appDescForm.valid){
+      stepper.selectedIndex = moveToDescription;
+      this.callSnackBarMessage("Не вірно заповнена форма !");
+    }else if(!this.calculations || !this.appCostItem.valid || this.calculations.totalFromProgram == 0 ){
+      stepper.selectedIndex = moveToBudjet;
+      this.callSnackBarMessage("Не вірно заповнені дані по кошторису !");
+    }else{
+      this.projectApplication = new ProjectApplication(this.budget, this.description, true);
+      this.clientService.saveApplication(this.projectApplication)
+        .then(data => {
+          this.uploadAttachments(data.id);
+          this.projectApplication  = null;
+          this.calculations        = null;
+  
+          this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
+            new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
+            this.createEmptyDescriptionForm();
+            stepper.selectedIndex = moveToDescription;
+            this.callSnackBarMessage("Заявку прийнято !!!");
+  
+        }).catch(err => this.handlePromiseError(err));
+    }
   }
 
   goForward(stepper: MatStepper, form:FormGroup){
@@ -145,8 +172,8 @@ export class ClientPageComponent implements OnInit {
       this.clientService.isUniqNameProject(name).subscribe(
         response => {
           if(!response){
-            this.appDescForm.controls['name'].setErrors({'notUniqName': response});
-            this.notUniqNamelMessage    = "Така назва вже існує";
+            this.appDescForm.controls['name'].setErrors({'notUniqName': !response});
+            this.notUniqNameMessage    = "Така назва вже існує";
           }
         },
          error => this.handlePromiseError(error))}
@@ -176,8 +203,8 @@ export class ClientPageComponent implements OnInit {
       requiredPermissions:    [field.requiredPermissions, [Validators.required, Validators.maxLength(1000)]],
       partners:               [field.partners, [Validators.required, Validators.maxLength(1000)]]
     });
-
     this.appDescForm.markAsTouched();  
+    this.isSavedValidDescForm = this.appDescForm.valid;
   }
 
   private validCostItemForm() {
@@ -290,24 +317,6 @@ export class ClientPageComponent implements OnInit {
     this.calculations = this.clientService.calculateBudget(this.budget);
   }
 
-  confirmProjectApplication() {
-    this.projectApplication = new ProjectApplication(this.budget, this.description, true);
-    this.clientService.saveApplication(this.projectApplication)
-      .then(data => {
-        this.uploadAttachments(data.id);
-        this.projectApplication  = null;
-        this.calculations        = null;
-
-        this.appDescForm.reset();
-
-        this.budget = new Budget(new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(),
-          new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>(), new Array<CostItem>());
-
-          this.callSnackBarMessage();
-
-      }).catch(err => this.handlePromiseError(err));
-  }
-
   private uploadAttachments(id: string): void {
     if (this.images.length > 0 || this.pdfDocs.length > 0) {
       this.clientService.uploadFiles(id, this.images, this.pdfDocs).subscribe(data => {
@@ -318,8 +327,8 @@ export class ClientPageComponent implements OnInit {
     }
   }
 
-  callSnackBarMessage(){
-    this.snackBar.open('Заявку прийнято !!!','', {
+  callSnackBarMessage(message : string){
+    this.snackBar.open(message,'', {
       duration: 2000,
     });
   }
@@ -365,7 +374,7 @@ export class ClientPageComponent implements OnInit {
 
   private checkErrorGetMessage(err:any){
     if(err.status == '400'){
-      this.notUniqNamelMessage = err.error.message;
+      this.notUniqNameMessage = err.error.message;
       this.appDescForm.controls['name'].setErrors({'notUniqName': true});
 
       alert("Виникла помилка введення даних!!!");
@@ -376,7 +385,7 @@ export class ClientPageComponent implements OnInit {
     switch(controlName) {
       case "name": {
         return this.appDescForm.controls.name.hasError("required")    ? this.requiredMessage:
-               this.appDescForm.controls.name.hasError("notUniqName") ? this.notUniqNamelMessage: this.defaultMessage;
+               this.appDescForm.controls.name.hasError("notUniqName") ? this.notUniqNameMessage: this.defaultMessage;
       }
       case "requestedBudget": {
         return this.appDescForm.controls.requestedBudget.hasError("required") ? this.requiredMessage :

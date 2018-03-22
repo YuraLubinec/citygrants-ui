@@ -456,6 +456,10 @@
             <button mat-raised-button color="primary" (click)="filePdf.click()">pdf <mat-icon>file_download</mat-icon>
                 <input #filePdf type="file" multiple="true" (change)="savePdfToUpload($event)" style="display:none;" accept=".pdf" />
             </button>
+          </div>  
+          <div class="button-row">
+            <button mat-button matStepperPrevious mat-raised-button color="primary"><mat-icon>navigate_before</mat-icon>Повернутися</button>
+            <button mat-button matStepperNext mat-raised-button color="primary">Далі <mat-icon>navigate_next</mat-icon></button>
           </div>
           <div *ngIf="images.length > 0 || pdfDocs.length > 0">
             <mat-card>
@@ -479,6 +483,6 @@
 
       <mat-step>
           <ng-template matStepLabel>Відіслати заявку</ng-template>
-          <button  mat-raised-button color="primary" [disabled]='appDescForm||appCostItem'  (click)="confirmProjectApplication()">Відіслати для розгляду</button>
+          <button mat-button matStepperNext mat-raised-button color="primary" (click)="confirmProjectApplication(stepper)">Відіслати для розгляду <mat-icon>mail_outline</mat-icon></button>
       </mat-step>
 </mat-horizontal-stepper>
