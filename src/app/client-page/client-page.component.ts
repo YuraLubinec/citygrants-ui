@@ -116,8 +116,7 @@ export class ClientPageComponent implements OnInit {
       field.partners
     );
     this.validDescriptionForm();
-    this.checkUniqNameProject(field.name);
-    this.goForward(stepper, this.appDescForm);
+    this.checkIsNotUniqNameProject(field.name, stepper);
   }
 
   submitCostItemForm() {
@@ -135,12 +134,13 @@ export class ClientPageComponent implements OnInit {
   confirmProjectApplication(stepper: MatStepper) {
     let moveToDescription = 0;
     let moveToBudjet      = 1;
-    if(this.description && !this.isSavedValidDescForm){
+
+   // if(this.description && !this.isSavedValidDescForm){
+     // stepper.selectedIndex = moveToDescription;
+      //this.callSnackBarMessage("Збережіть форму для розгляду !");
+    if(!this.description || !this.appDescForm.valid || !this.isSavedValidDescForm){
       stepper.selectedIndex = moveToDescription;
-      this.callSnackBarMessage("Збережіть форму для розгляду !");
-    }else if(!this.description || !this.appDescForm.valid){
-      stepper.selectedIndex = moveToDescription;
-      this.callSnackBarMessage("Не вірно заповнена форма !");
+      this.callSnackBarMessage("Не вірно заповнена/збережена форма !");
     }else if(!this.calculations || !this.appCostItem.valid || this.calculations.totalFromProgram == 0 ){
       stepper.selectedIndex = moveToBudjet;
       this.callSnackBarMessage("Не вірно заповнені дані по кошторису !");
@@ -167,16 +167,19 @@ export class ClientPageComponent implements OnInit {
   }
 
   
-  private checkUniqNameProject(name:string){
+  private checkIsNotUniqNameProject(name:string, stepper: MatStepper){
     if(name){
       this.clientService.isUniqNameProject(name).subscribe(
         response => {
           if(!response){
             this.appDescForm.controls['name'].setErrors({'notUniqName': !response});
             this.notUniqNameMessage    = "Така назва вже існує";
-          }
+            this.isSavedValidDescForm = response;
+          }else{
+            this.goForward(stepper, this.appDescForm);
+          }    
         },
-         error => this.handlePromiseError(error))}
+         error => this.handlePromiseError(error))};
   }
 
   private validDescriptionForm(){
