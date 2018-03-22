@@ -20,6 +20,9 @@
   margin: auto;
   width: 80%;
 }
+.button-row{
+  margin-bottom: 10px;
+}
 
 body{
   background-color: transparent;

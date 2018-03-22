@@ -70,12 +70,12 @@ export class ClientPageComponent implements OnInit {
 
   createEmptyCostItemForm() {
     this.appCostItem = this.fb.group({
-      description: ['', [Validators.required, Validators.maxLength(250)]],
-      cost: ['', [Validators.required, Validators.maxLength(5)]],
-      count: ['', [Validators.required, Validators.maxLength(5)]],
-      consumptionsFromProgram: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
-      consumptionsFromOtherSources: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
-      category: ['', [Validators.required, Validators.maxLength(50)]]
+      description:                  [''],
+      cost:                         [''],
+      count:                        [''],
+      consumptionsFromProgram:      [''],
+      consumptionsFromOtherSources: [''],
+      category:                     ['']
     })
   }
 
@@ -117,6 +117,18 @@ export class ClientPageComponent implements OnInit {
     this.checkUniqNameProject(field.name);
     this.validDescriptionForm();
     this.goForward(stepper, this.appDescForm);
+  }
+
+  submitCostItemForm() {
+    this.validCostItemForm();
+
+    if(this.appCostItem.valid){
+      let field = this.appCostItem.value;
+      this.addCostItemByCategory(field);
+      this.calculations = this.clientService.calculateBudget(this.budget);
+
+      this.createEmptyCostItemForm();
+    }
   }
 
   goBack(stepper: MatStepper){
@@ -168,12 +180,19 @@ export class ClientPageComponent implements OnInit {
     this.appDescForm.markAsTouched();  
   }
 
-  submitCostItemForm(formDirective: FormGroupDirective) {
+  private validCostItemForm() {
     let field = this.appCostItem.value;
-    this.addCostItemByCategory(field);
-    this.calculations = this.clientService.calculateBudget(this.budget);
-    formDirective.resetForm();
-    this.appCostItem.reset();
+
+    this.appCostItem = this.fb.group({
+      description: [field.description, [Validators.required, Validators.maxLength(250)]],
+      cost: [field.cost, [Validators.required, Validators.maxLength(5)]],
+      count: [field.count, [Validators.required, Validators.maxLength(5)]],
+      consumptionsFromProgram: [field.consumptionsFromProgram, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
+      consumptionsFromOtherSources: [field.consumptionsFromOtherSources, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
+      category: [field.category, [Validators.required, Validators.maxLength(50)]]
+    });
+
+    this.appCostItem.markAsTouched();  
   }
 
   private addCostItemByCategory(field: any) {
