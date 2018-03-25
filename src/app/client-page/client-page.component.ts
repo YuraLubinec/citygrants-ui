@@ -117,6 +117,9 @@ export class ClientPageComponent implements OnInit {
     );
     this.validDescriptionForm();
     this.checkIsNotUniqNameProject(field.name, stepper);
+    if(!this.appDescForm.valid){
+      this.callSnackBarMessage("Помилка введення даних !!!");
+    }
   }
 
   submitCostItemForm() {
@@ -135,16 +138,20 @@ export class ClientPageComponent implements OnInit {
     let moveToDescription = 0;
     let moveToBudjet      = 1;
 
-   // if(this.description && !this.isSavedValidDescForm){
-     // stepper.selectedIndex = moveToDescription;
-      //this.callSnackBarMessage("Збережіть форму для розгляду !");
-    if(!this.description || !this.appDescForm.valid || !this.isSavedValidDescForm){
+    if(!this.description && !this.appDescForm.dirty){
       stepper.selectedIndex = moveToDescription;
-      this.callSnackBarMessage("Не вірно заповнена/збережена форма !");
+      this.callSnackBarMessage("Ви не заповнили форму!");
+    }else if(!this.appDescForm.valid){
+      stepper.selectedIndex = moveToDescription;
+      this.callSnackBarMessage("Не вірно заповнена форма!");
+    }else if(!this.isSavedValidDescForm ||!this.description && this.appDescForm.dirty){
+      stepper.selectedIndex = moveToDescription;
+      this.callSnackBarMessage("Збережіть форму!");
     }else if(!this.calculations || !this.appCostItem.valid || this.calculations.totalFromProgram == 0 ){
       stepper.selectedIndex = moveToBudjet;
       this.callSnackBarMessage("Не вірно заповнені дані по кошторису !");
     }else{
+      this.submitDescriptionForm(stepper);
       this.projectApplication = new ProjectApplication(this.budget, this.description, true);
       this.clientService.saveApplication(this.projectApplication)
         .then(data => {
@@ -157,6 +164,9 @@ export class ClientPageComponent implements OnInit {
             this.createEmptyDescriptionForm();
             stepper.selectedIndex = moveToDescription;
             this.callSnackBarMessage("Заявку прийнято !!!");
+
+            this.appDescForm.controls['name'].setErrors({'notUniqName': false});
+            this.createEmptyCostItemForm();
   
         }).catch(err => this.handlePromiseError(err));
     }
@@ -187,7 +197,7 @@ export class ClientPageComponent implements OnInit {
 
     this.appDescForm = this.fb.group({
       name:                   [field.name, [Validators.required, Validators.maxLength(250),]],
-      requestedBudget:        [field.requestedBudget, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
+      requestedBudget:        [field.requestedBudget, [Validators.required, Validators.pattern("^[1-9][0-9]*$"), Validators.maxLength(6)]],
       organizationName:       [field.organizationName, [Validators.required, Validators.maxLength(250)]],
       theme:                  [field.theme, [Validators.required, Validators.maxLength(250)]],
       requiredTime:           [field.requiredTime, [Validators.required, Validators.maxLength(100)]],
@@ -218,7 +228,7 @@ export class ClientPageComponent implements OnInit {
       cost: [field.cost, [Validators.required, Validators.maxLength(5)]],
       count: [field.count, [Validators.required, Validators.maxLength(5)]],
       consumptionsFromProgram: [field.consumptionsFromProgram, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(5)]],
-      consumptionsFromOtherSources: [field.consumptionsFromOtherSources, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
+      consumptionsFromOtherSources: [field.consumptionsFromOtherSources, [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(6)]],
       category: [field.category, [Validators.required, Validators.maxLength(50)]]
     });
 

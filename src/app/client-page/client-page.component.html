@@ -9,8 +9,9 @@
             <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Запитувана сума, грн.:" type="number" formControlName="requestedBudget">
+            <input matInput maxlength="6" #requestedBudget placeholder="Запитувана сума, грн.:" formControlName="requestedBudget">
             <span matPrefix>₴&nbsp;</span>
+            <mat-hint align="end">{{requestedBudget.value.length}} / 6</mat-hint>
             <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width" matTooltip="Назва організації або ініціативної групи, що подає проект" [matTooltipPosition]="positionTollTip">
@@ -35,11 +36,13 @@
           </mat-form-field>
           <mat-form-field class="full-width">
             <span matPrefix>+38 &nbsp;</span>
-            <input matInput placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone">
+            <input matInput maxlength="10" #coordinatorPhone placeholder="Координатор/ка проекту (моб.тел.):" formControlName="coordinatorPhone">
+            <mat-hint align="end">{{coordinatorPhone.value.length}} / 10</mat-hint>
             <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput maxlength="50" placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail">
+            <input matInput maxlength="50" #coordinatorEmail placeholder="Координатор/ка проекту (електронна адреса):" formControlName="coordinatorEmail">
+            <mat-hint align="end">{{coordinatorEmail.value.length}} / 50</mat-hint>
             <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width" matTooltip="Команда проекту (не менш як 2 особи, з контактами (моб.тел., електронна адреса) та розподілом обов’язків)" [matTooltipPosition]="positionTollTip">
@@ -121,19 +124,23 @@
             <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost">
+            <input matInput maxlength="5" #cost placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost">
+            <mat-hint align="end">{{cost.value.length}} / 5</mat-hint>
             <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count">
+            <input matInput maxlength="5" #count placeholder="Кількість / затрачений час:" formControlName="count">
+            <mat-hint align="end">{{count.value.length}} / 5</mat-hint>
             <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram" type="number">
+            <input matInput maxlength="5" #consumptionsFromProgram placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram">
+            <mat-hint align="end">{{consumptionsFromProgram.value.length}} / 5</mat-hint>
             <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromProgram")}}</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources" type="number">
+            <input matInput maxlength="6" #consumptionsFromOtherSources placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources">
+            <mat-hint align="end">{{consumptionsFromOtherSources.value.length}} / 6</mat-hint>
             <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
           </mat-form-field>
           <button mat-button type="submit" class="save-btn" [disabled]="!appCostItem.valid" mat-raised-button color="primary">Зберегти <mat-icon>done</mat-icon> </button>
