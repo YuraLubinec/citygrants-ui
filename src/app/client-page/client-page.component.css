@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
   }
-  
+
 .client-form-container > * {
   width: 100%;
 }
@@ -15,20 +15,27 @@
   align-items: center;
   justify-content: space-around;
 }
-.horisontal-stepper{
+.horisontal-stepper {
   background-color: rgba(255, 255, 255, 0.8);
   margin: auto;
   width: 80%;
 }
-.button-row{
+.button-row {
   margin-bottom: 10px;
 }
 
-body{
+body {
   background-color: transparent;
 }
-.save-btn{
+.save-btn {
   margin-bottom: 10px;
+}
+
+.category {
+  background-color: #c0e5f7;
+}
+.general {
+  background-color: #e5e7e8;
 }
 
 .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
