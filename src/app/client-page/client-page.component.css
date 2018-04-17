@@ -38,6 +38,12 @@ body {
 .general {
   background-color: #e5e7e8;
 }
+.rightSide{
+  float: right;
+}
 
+.leftSide{
+  float: left;
+}
 .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
 .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}

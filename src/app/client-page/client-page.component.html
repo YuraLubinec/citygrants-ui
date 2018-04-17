@@ -422,7 +422,7 @@
                   <div class="col-sm-2"></div>
                   <div class="col-sm-2">Сума :</div>
                   <div class="col-sm-2">{{calculations.totalOthersFromProgram}}</div>
-                  <div class="col-sm-2">{{costItem.consumptionsFromOtherSources}}</div>
+                  <div class="col-sm-2">{{calculations.totalOthersFromOtherSources}}</div>
                   <div class="col-sm-1"></div>
                 </div>
               </ng-container>
@@ -457,26 +457,27 @@
                 <input #filePdf type="file" multiple="true" (change)="savePdfToUpload($event)" style="display:none;" accept=".pdf" />
             </button>
           </div>
+          <!--
           <div class="button-row">
             <button mat-button matStepperPrevious mat-raised-button color="primary"><mat-icon>navigate_before</mat-icon>Повернутися</button>
             <button mat-button matStepperNext mat-raised-button color="primary">Далі <mat-icon>navigate_next</mat-icon></button>
-          </div>
+          </div> -->
           <div *ngIf="images.length > 0 || pdfDocs.length > 0">
-            <mat-card>
-              <mat-card-header>
-                <mat-card-title><b>Завантажені файли:</b></mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                <mat-list *ngFor="let image of images">
-                  <mat-list-item>{{image.name}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                </mat-list>
-                <mat-list *ngFor="let pdf of pdfDocs">
-                  <mat-list-item>{{pdf.name}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                </mat-list>
-              </mat-card-content>
-            </mat-card>
+            <mat-list>
+              <h3 *ngIf="images.length > 0" mat-subheader>Документи формату JPG</h3>
+              <mat-list-item *ngFor="let image of images; index as i">
+                <button mat-icon-button color="warn" (click)="removeJPGDoc(i)"><mat-icon>delete_forever</mat-icon></button>
+                <mat-icon mat-list-icon>note</mat-icon>
+                <p mat-line>{{image.name}}</p>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <h3 *ngIf="pdfDocs.length > 0" mat-subheader>Документи формату PDF</h3>
+              <mat-list-item *ngFor="let pdf of pdfDocs">
+                <button mat-icon-button color="warn" (click)="removePDFDoc(i)"><mat-icon>delete_forever</mat-icon></button>
+                <mat-icon mat-list-icon>note</mat-icon>
+                <p mat-line> {{pdf.name}} </p>
+              </mat-list-item>
+            </mat-list>
           </div>
         </div>
       </mat-step>

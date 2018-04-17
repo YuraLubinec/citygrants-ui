@@ -356,6 +356,14 @@ export class ClientPageComponent implements OnInit {
     }
   }
 
+  removeJPGDoc(index:number){
+    index !== -1 ? this.images.splice(index, 1):'';
+  }
+
+  removePDFDoc(index:number){
+    index !== -1 ? this.pdfDocs.splice(index, 1):'';
+  }
+
   savePdfToUpload(event) {
     this.pdfDocs = new Array<File>();
     for (let pdf of event.target.files) {
