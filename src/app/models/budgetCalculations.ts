@@ -1,6 +1,5 @@
 export class BudgetCalculations {
 
-
     totalFeeFromProgram: number;
     totalFeeFromOtherSources: number;
 
