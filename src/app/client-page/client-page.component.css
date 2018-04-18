@@ -20,6 +20,7 @@
   background-color: rgba(255, 255, 255, 0.8);
   margin: auto;
   width: 80%;
+  height: 100%
 }
 .button-row {
   margin-bottom: 10px;
@@ -32,11 +33,13 @@ body {
   margin-bottom: 10px;
 }
 
+/*
 .category {
-  background-color: #c0e5f7;
+  background-color: rgba(229, 231, 232, 0.8);
 }
+*/
 .general {
-  background-color: #e5e7e8;
+  background-color: rgba(229, 231, 232, 0.7);
 }
 .rightSide{
   float: right;
@@ -44,6 +47,11 @@ body {
 
 .leftSide{
   float: left;
+} 
+.col-sm-2,
+.col-sm-3 {
+  margin: auto;
 }
+
 .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
 .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}

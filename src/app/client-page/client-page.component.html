@@ -155,18 +155,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsFee)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[0].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">з програми</div>
-                <div class="col-sm-2">з інших джерел</div>
-                <div class="col-sm-1"></div>
-              </div>
-              <div class="row category">
-                <div class="col-sm-3">Особа, виконувані функції</div>
                 <div class="col-sm-2">Розмір винагороди за місяць</div>
                 <div class="col-sm-2">Затрачений робочий час</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
+                <div class="col-sm-2">з програми грн.</div>
+                <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
               <div class="row" *ngFor="let costItem of budget.costItemsFee; let i = index">
@@ -189,20 +181,13 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsTransport)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[1].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
+                <div class="col-sm-2">Вартість на одну особу / день</div>
+                <div class="col-sm-2">К-сть осіб</div>
                 <div class="col-sm-2">з програми</div>
                 <div class="col-sm-2">з інших джерел</div>
                 <div class="col-sm-1"></div>
               </div>
-              <div class="row category">
-                <div class="col-sm-3">Пояснення</div>
-                <div class="col-sm-2">Вартість на одну особу / день</div>
-                <div class="col-sm-2">К-сть осіб</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-1"></div>
-              </div>
+              
               <div class="row" *ngFor="let costItem of budget.costItemsTransport; let i = index">
                 <div class="col-sm-3">{{costItem.description}}</div>
                 <div class="col-sm-2">{{costItem.cost}}</div>
@@ -223,18 +208,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsNutrition)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[2].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">з програми</div>
-                <div class="col-sm-2">з інших джерел</div>
-                <div class="col-sm-1"></div>
-              </div>
-              <div class="row category">
-                <div class="col-sm-3">Пояснення</div>
                 <div class="col-sm-2">Вартість на одну особу / день</div>
                 <div class="col-sm-2">К-сть осіб</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
+                <div class="col-sm-2">з програми грн.</div>
+                <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
               <div class="row" *ngFor="let costItem of budget.costItemsNutrition; let i = index">
@@ -257,18 +234,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsRent)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[3].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">з програми</div>
-                <div class="col-sm-2">з інших джерел</div>
-                <div class="col-sm-1"></div>
-              </div>
-              <div class="row category">
-                <div class="col-sm-3">Пояснення</div>
                 <div class="col-sm-2">Вартість на одну особу / день</div>
                 <div class="col-sm-2">К-сть осіб</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
+                <div class="col-sm-2">з програми грн.</div>
+                <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
               <div class="row" *ngFor="let costItem of budget.costItemsRent; let i = index">
@@ -291,18 +260,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsAdministrative)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[4].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">з програми</div>
-                <div class="col-sm-2">з інших джерел</div>
-                <div class="col-sm-1"></div>
-              </div>
-              <div class="row category">
-                <div class="col-sm-3">Пояснення</div>
                 <div class="col-sm-2">Вартість на одну особу / день</div>
                 <div class="col-sm-2">К-сть осіб</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
+                <div class="col-sm-2">з програми грн.</div>
+                <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
               <div class="row" *ngFor="let costItem of budget.costItemsAdministrative; let i = index">
@@ -325,18 +286,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsAdvertising)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[5].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">з програми</div>
-                <div class="col-sm-2">з інших джерел</div>
-                <div class="col-sm-1"></div>
-              </div>
-              <div class="row category">
-                <div class="col-sm-3">Пояснення</div>
                 <div class="col-sm-2">Вартість на одну особу / день</div>
                 <div class="col-sm-2">К-сть осіб</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
+                <div class="col-sm-2">з програми грн.</div>
+                <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
               <div class="row" *ngFor="let costItem of budget.costItemsAdvertising; let i = index">
@@ -359,18 +312,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsMaterial)">
               <div class="row general">
                 <div class="col-sm-3">{{costItemCategories[6].name}}</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">з програми</div>
-                <div class="col-sm-2">з інших джерел</div>
-                <div class="col-sm-1"></div>
-              </div>
-              <div class="row category">
-                <div class="col-sm-3">Пояснення</div>
                 <div class="col-sm-2">Вартість на одну особу / день</div>
                 <div class="col-sm-2">К-сть осіб</div>
-                <div class="col-sm-2">грн</div>
-                <div class="col-sm-2">грн</div>
+                <div class="col-sm-2">з програми грн.</div>
+                <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
               <div class="row" *ngFor="let costItem of budget.costItemsMaterial; let i = index">
@@ -393,18 +338,10 @@
             <ng-container *ngIf="checkIfNotEmpty(budget.costItemsOthers)">
                 <div class="row general">
                   <div class="col-sm-3">{{costItemCategories[7].name}}</div>
-                  <div class="col-sm-2"></div>
-                  <div class="col-sm-2"></div>
-                  <div class="col-sm-2">з програми</div>
-                  <div class="col-sm-2">з інших джерел</div>
-                  <div class="col-sm-1"></div>
-                </div>
-                <div class="row category">
-                  <div class="col-sm-3">Пояснення</div>
                   <div class="col-sm-2">Вартість на одну особу / день</div>
                   <div class="col-sm-2">К-сть осіб</div>
-                  <div class="col-sm-2">грн</div>
-                  <div class="col-sm-2">грн</div>
+                  <div class="col-sm-2">з програми грн.</div>
+                  <div class="col-sm-2">з інших джерел грн.</div>
                   <div class="col-sm-1"></div>
                 </div>
                 <div class="row" *ngFor="let costItem of budget.costItemsOthers; let i = index">
@@ -431,7 +368,7 @@
               <div class="col-sm-2"><b>Загальна сума: </b></div>
               <div class="col-sm-2">{{calculations.totalFromProgram}} грн.</div>
               <div class="col-sm-2">{{calculations.totalFromOtherSources}} грн.</div>
-              <div class="col-sm-2"></div>
+              <div class="col-sm-1"></div>
             </div>
             <div class="row general">
               <div class="col-sm-3"></div>
@@ -448,6 +385,9 @@
         <ng-template matStepLabel>Завантажити файли</ng-template>
         <div>
           <div class="button-row">
+            Завантажте файли проекту, які будуть розглянуті членами жюрі. <br>
+            <b>10 файлів </b> - максимальна кількість яку Ви можете надіслати. <br><br>
+
             <button mat-raised-button color="primary" (click)="fileImg.click()">jpg, png <mat-icon>file_download</mat-icon>
                 <input #fileImg type="file" multiple="true" (change)="saveImagesToUpload($event)" style="display:none;" accept=".jpg, .png" />
             </button>
