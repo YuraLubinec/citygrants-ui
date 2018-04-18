@@ -197,7 +197,7 @@ export class ClientPageComponent implements OnInit {
       theme:                  [field.theme, [Validators.required, Validators.maxLength(250)]],
       requiredTime:           [field.requiredTime, [Validators.required, Validators.maxLength(100)]],
       coordinatorName:        [field.coordinatorName, [Validators.required, Validators.maxLength(100)]],
-      coordinatorPhone:       [field.coordinatorPhone, [Validators.required, Validators.pattern("(\\d){10}")]],
+      coordinatorPhone:       [field.coordinatorPhone, [Validators.required, Validators.pattern("(\\+?38)?([0-9]{10})")]],
       coordinatorEmail:       [field.coordinatorEmail, [Validators.required, Validators.email, Validators.maxLength(50)]],
       projectMembers:         [field.projectMembers, [Validators.required, Validators.maxLength(1000)]],
       expirienceDescription:  [field.expirienceDescription, [Validators.required, Validators.maxLength(2000)]],
