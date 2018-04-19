@@ -20,7 +20,7 @@ export class JuryPageComponent implements OnInit {
   private pageSize   : Number;
   private pageEvent  : PageEvent;
   private pageSizeOptions  = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','evalFirst','evalSecond'];
+  private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme','evalFirst','evalSecond'];
   private positionTollTip = "above";
   
 
