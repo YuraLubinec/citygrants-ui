@@ -20,7 +20,7 @@ export class JuryPageComponent implements OnInit {
   private pageSize   : Number;
   private pageEvent  : PageEvent;
   private pageSizeOptions  = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme','evalFirst','evalSecond'];
+  private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme','evalFirst','status'];
   private positionTollTip = "above";
   
 
@@ -58,8 +58,7 @@ export class JuryPageComponent implements OnInit {
                             + data.evaluation.evalInnovation
                             + data.evaluation.evalIntelligibility
                             + data.evaluation.evalParticipation
-                            + data.evaluation.evalStability;
-        case 'evalSecond': return +data.interviewEvaluation.evaluation;                   
+                            + data.evaluation.evalStability;                
         default: return '';
       }
     };

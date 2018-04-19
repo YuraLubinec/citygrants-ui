@@ -51,9 +51,14 @@
         </ng-container>
 
         <!-- Total Evaluation for jury -->
-        <ng-container matColumnDef="evalSecond">
-            <mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Оцінка проекту в 2-турі" [matTooltipPosition]="positionTollTip"> 2 тур </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.interviewEvaluation.evaluation}} </mat-cell>
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef matTooltip="Статус" [matTooltipPosition]="positionTollTip">Переведений в 2 тур</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-icon *ngIf="element.approvedToSecondStage; else notApprove">check_box</mat-icon>
+                <ng-template #notApprove>
+                        <mat-icon>check_box_outline_blank</mat-icon>
+                </ng-template>
+            </mat-cell>
         </ng-container>
     
 
