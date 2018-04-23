@@ -1,83 +1,113 @@
 <mat-tab-group>
     <mat-tab label="Опис">
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Назва">
-                    <p>{{projectDescription.name}}</p>
-                </mat-tab>
-                <mat-tab label="Запитувана сума">
-                    <p>{{projectDescription.requestedBudget}} грн.</p>
-                </mat-tab>
-                <mat-tab label="Назва організації або ініціативної групи">
-                    <p>{{projectDescription.organizationName}}</p>
-                </mat-tab>
-                <mat-tab label="Тематичний напрямок">
-                    <p>{{projectDescription.theme}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Координатор/ка проекту">
-                    <p>{{projectDescription.coordinatorName}}</p>
-                </mat-tab>
-                <mat-tab label="Координатор/ка проекту (моб.тел.)">
-                    <p>{{projectDescription.coordinatorPhone}}</p>
-                </mat-tab>
-                <mat-tab label="Координатор/ка проекту (електронна адреса)">
-                    <p>{{projectDescription.coordinatorEmail}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Попередній досвід команди проекту">
-                    <p>{{projectDescription.expirienceDescription}}</p>
-                </mat-tab>
-                <mat-tab label="Адреса організації">
-                    <p>{{projectDescription.address}}</p>
-                </mat-tab>
-                <mat-tab label="Мета проекту">
-                    <p>{{projectDescription.goal}}</p>
-                </mat-tab>
-                <mat-tab label="Актуальність проекту">
-                        <p>{{projectDescription.actuality}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Очікувані результати">
-                    <p>{{projectDescription.expectedResults}}</p>
-                </mat-tab>
-                <mat-tab label="Опис проекту">
-                    <p>{{projectDescription.fullDescription}}</p>
-                </mat-tab>
-                <mat-tab label="Цільові групи">
-                    <p>{{projectDescription.targetGroup}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-
-        <mat-card>
-            <mat-tab-group>
-                <mat-tab label="Команда проекту">
-                    <p>{{projectDescription.projectMembers}}</p>
-                </mat-tab>
-                <mat-tab label="Погодження та дозволи">
-                    <p>{{projectDescription.requiredPermissions}}</p>
-                </mat-tab>
-                <mat-tab label="Партнери та спонсори">
-                    <p>{{projectDescription.partners}}</p>
-                </mat-tab>
-                <mat-tab label="Термін втілення проекту">
-                    <p>{{projectDescription.requiredTime}}</p>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
+        <div class="row general">
+            <div class="col-sm-12"><b>Назва</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.name}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Запитувана сума</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.requestedBudget}} грн.</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Назва організації або ініціативної групи</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.organizationName}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Тематичний напрямок</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.theme}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Координатор/ка проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.coordinatorName}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Координатор/ка проекту (моб.тел.)</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.coordinatorPhone}}</div>
+        </div>     
+        <div class="row general">
+            <div class="col-sm-12"><b>Координатор/ка проекту (електронна адреса)</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.coordinatorEmail}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Попередній досвід команди проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.expirienceDescription}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Адреса організації</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.address}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Мета проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.goal}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Актуальність проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.actuality}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Очікувані результати</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.expectedResults}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Опис проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.fullDescription}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Цільові групи</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.targetGroup}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Команда проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.projectMembers}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Погодження та дозволи</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.requiredPermissions}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Партнери та спонсори</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.partners}}</div>
+        </div>
+        <div class="row general">
+            <div class="col-sm-12"><b>Термін втілення проекту</b></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">{{projectDescription.requiredTime}}</div>
+        </div>
     </mat-tab>
     <mat-tab label="Б'юджет">
         <mat-card>
