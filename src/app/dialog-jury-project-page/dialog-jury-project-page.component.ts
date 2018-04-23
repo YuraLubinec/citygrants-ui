@@ -100,7 +100,7 @@ export class DialogJuryProjectPageComponent {
       }
 
       isDisableCommentButton(){
-        return this.commentText.length <= 0 ? true:false;
+        return this.commentText.length <= 0;
       }
 
       getFileInfo(idFile:string){

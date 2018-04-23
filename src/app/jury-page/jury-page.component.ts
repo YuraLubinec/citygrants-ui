@@ -83,7 +83,7 @@ export class JuryPageComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogJuryProjectPageComponent, {
       data: row,
       height: '90%',
-      width:'70%'
+      width:'80%'
     });
   }
   
