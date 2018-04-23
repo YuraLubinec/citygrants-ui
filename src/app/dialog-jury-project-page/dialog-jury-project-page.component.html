@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">{{projectDescription.coordinatorPhone}}</div>
-        </div>     
+        </div>
         <div class="row general">
             <div class="col-sm-12"><b>Координатор/ка проекту (електронна адреса)</b></div>
         </div>
@@ -118,7 +118,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsFee;  let i = index">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -142,7 +142,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsTransport; let i = index ">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -166,7 +166,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsNutrition; let i = index">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -190,7 +190,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsRent; let i = index">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -214,7 +214,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsAdministrative; let i = index">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -230,7 +230,7 @@
                 <div class="col-sm-2">{{calculations.totalAdministrativeFromOtherSources}}</div>
             </div>
         </div>
-        <div *ngIf="projectBudget.costItemsAdministrative.length > 0">
+        <div *ngIf="projectBudget.costItemsAdvertising.length > 0">
             <div class="row general">
                 <div class="col-sm-4">Вартість елементів реклами</div>
                 <div class="col-sm-2">Вартість на одну особу/день</div>
@@ -238,8 +238,8 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
-            <div class="row" *ngFor="let item of projectBudget.costItemsAdministrative; let i = index">
+
+            <div class="row" *ngFor="let item of projectBudget.costItemsAdvertising;">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
                 <div class="col-sm-2">{{item.count}}</div>
@@ -262,7 +262,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsMaterial; let i = index">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -286,7 +286,7 @@
                 <div class="col-sm-2">з програми грн.</div>
                 <div class="col-sm-2">з інших джерел грн.</div>
             </div>
-                
+
             <div class="row" *ngFor="let item of projectBudget.costItemsOthers; let i = index">
                 <div class="col-sm-4">{{item.description}}</div>
                 <div class="col-sm-2">{{item.cost}}</div>
@@ -302,7 +302,7 @@
                 <div class="col-sm-2">{{calculations.totalOthersFromOtherSources}}</div>
             </div>
         </div>
-        <div>
+        <div *ngIf="calculations.totalFromProgram > 0; else notBudjet">
             <div class="row general">
                 <div class="col-sm-4"><b>Загальна сума :</b></div>
                 <div class="col-sm-2"></div>
@@ -311,7 +311,8 @@
                 <div class="col-sm-2">{{calculations.totalFromOtherSources}}</div>
             </div>
         </div>
-    </mat-tab> 
+        <ng-template #notBudjet>Б`юджет відсутній</ng-template>
+    </mat-tab>
 
     <mat-tab *ngIf="approvedToSecondStage" label="Оцінювання 2 тур">
             <mat-accordion class="example-headers-align">
@@ -516,20 +517,18 @@
   <div class="comment-send-container">
     <mat-form-field>
         <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
-    </mat-form-field>  
+    </mat-form-field>
   </div>
   <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
         <mat-icon>send</mat-icon>
   </button>
 
-  <div class="comment-container">  
-    <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">
-        <mat-card-header>
-          <mat-card-subtitle>{{comment.userName}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p class="comment-text" >{{comment.text}}</p>
-        </mat-card-content>
-            <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>    
-        </mat-card>
+  <div allArrComments *ngFor="let comment of comments.reverse()" class="comment-container">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{comment.userName}}</h6>
+        <p class="card-text">{{comment.text}}</p>
+      </div>
+      <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
     </div>
+  </div>
