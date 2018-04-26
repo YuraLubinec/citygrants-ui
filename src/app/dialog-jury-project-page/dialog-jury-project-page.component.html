@@ -313,7 +313,7 @@
         </div>
         <ng-template #notBudjet>Б`юджет відсутній</ng-template>
     </mat-tab>
-
+<!--
     <mat-tab *ngIf="approvedToSecondStage" label="Оцінювання 2 тур">
             <mat-accordion class="example-headers-align">
                 <mat-card>
@@ -339,9 +339,9 @@
 
             <button class="evluation-btn" (click)="saveInterviewEvaluation()" mat-raised-button color="primary">Зберегти оцінювання
             </button>
-    </mat-tab>
+    </mat-tab> -->
 
-    <mat-tab *ngIf="!approvedToSecondStage" label="Оцінювання 1 тур">
+    <mat-tab label="Оцінювання 1 тур">
         <mat-accordion class="example-headers-align">
             <mat-card>
                 <mat-card-header>
