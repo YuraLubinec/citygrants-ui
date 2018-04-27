@@ -1,7 +1,7 @@
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CanActivate } from '@angular/router';
-import { ROLE, AUTH_TOCKEN } from '../../constants/projectConstants';
+import { ROLE, AUTH_TOKEN } from '../../constants/projectConstants';
 
 @Injectable()
 export class ApplFormGuard implements CanActivate {
@@ -11,7 +11,7 @@ export class ApplFormGuard implements CanActivate {
 
     canActivate() {
 
-        if (!localStorage.getItem(AUTH_TOCKEN)) {
+        if (!localStorage.getItem(AUTH_TOKEN)) {
             return true;
         } else if (localStorage.getItem(ROLE) == 'ADMIN') {
             this.router.navigate(['/admin']);

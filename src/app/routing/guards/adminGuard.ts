@@ -1,7 +1,7 @@
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CanActivate } from '@angular/router';
-import { ROLE, LOGIN, AUTH_TOCKEN } from '../../constants/projectConstants';
+import { ROLE, LOGIN } from '../../constants/projectConstants';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

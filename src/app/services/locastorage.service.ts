@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BASEURL, ROLE, LOGIN, AUTH_TOCKEN, AUTH_HEADER, FULLNAME, ID } from '../constants/projectConstants';
+import { BASEURL, ROLE, LOGIN, AUTH_TOKEN, AUTH_HEADER, FULLNAME, ID } from '../constants/projectConstants';
 
 @Injectable()
 export class LocalStorageService {
 
     saveTokenToLocalStorage(token: string) {
 
-        localStorage.setItem(AUTH_TOCKEN, token);
+        localStorage.setItem(AUTH_TOKEN, token);
     }
 
     saveCurrentUsetToLocalStorage(login: string, role: string, fullName: string, id: string) {
@@ -21,7 +21,7 @@ export class LocalStorageService {
 
         localStorage.removeItem(LOGIN);
         localStorage.removeItem(ROLE);
-        localStorage.removeItem(AUTH_TOCKEN);
+        localStorage.removeItem(AUTH_TOKEN);
     }
 
 }
