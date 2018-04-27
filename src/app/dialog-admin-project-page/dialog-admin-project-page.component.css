@@ -42,7 +42,7 @@
 }
 .comment-text {
   overflow: hidden;
-  max-width: 110ch;
+  font-size: 13px;
 }
 
 .full-width{

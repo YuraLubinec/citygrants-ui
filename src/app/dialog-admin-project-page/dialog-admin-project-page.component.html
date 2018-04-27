@@ -660,28 +660,23 @@
   </mat-tab-group>
 
   <button  class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary"><mat-icon>cached</mat-icon> Оновити дані</button>
-
-  <h4><b>Коментарі</b></h4>
+ 
   <div class="comment-send-container">
     <mat-form-field>
-        <textarea [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
-    </mat-form-field>  
-  </div>
-  <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
+        <textarea matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6" [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
+    </mat-form-field>
+    </div>
+    <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
         <mat-icon>send</mat-icon>
-  </button>
+    </button>
 
-  <div class="comment-container">  
-    <mat-card allArrComments *ngFor="let comment of comments.reverse()"  class="comment-card">
-        <mat-card-header>
-          <mat-card-subtitle>{{comment.userName}}</mat-card-subtitle>
-            <button class="btn-delete-comment" mat-icon-button (click)="deleteComment(id, comment.id)" color="warn">
-                <mat-icon>delete_forever</mat-icon>
-            </button>
-        </mat-card-header>
-        <mat-card-content>
-            <p class="comment-text" >{{comment.text}}</p>
-        </mat-card-content>
+    <div allArrComments *ngFor="let comment of comments.reverse()" class="comment-container">
+    <div class="card">
+        <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted comment-text">
+            <b>{{comment.userName}}</b>&nbsp;&nbsp;
+            {{comment.text}}
             <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
-    </mat-card>
-  </div>
+        </h6>
+        </div>
+    </div>
