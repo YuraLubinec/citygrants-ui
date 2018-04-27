@@ -23,12 +23,13 @@
 
 .comment-date {
   position: absolute;
+  margin-top: 5px;
   right: 15px;
   color: rgba(0, 0, 0, 0.54);
 }
 .comment-text {
   overflow: hidden;
-  max-width: 110ch;
+  font-size: 13px;
 }
 .general{
   background-color: rgba(229, 231, 232, 0.7);

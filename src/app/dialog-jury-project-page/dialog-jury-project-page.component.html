@@ -505,8 +505,15 @@
         </button>
     </mat-tab>
     <mat-tab label="Прикріплені файли">
-        <div *ngIf="filesInfo.length > 0" class = "attach-doc-container">
-            <p *ngFor="let fileInfo of filesInfo " ><a target="_blank"  href="{{basUrl}}jury/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+        <div *ngIf="filesInfo.length > 0">
+            <mat-list>
+                <h3  mat-subheader>Документи для пеергляду</h3>
+                <mat-list-item *ngFor="let fileInfo of filesInfo ">
+                <mat-icon mat-list-icon>note</mat-icon>
+                <p mat-line><a target="_blank"  href="{{basUrl}}jury/project/file/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
         </div>
         <div *ngIf="filesInfo.length == 0" >
                 <p>Документи для перегляду відсутні</p>
@@ -526,9 +533,12 @@
   <div allArrComments *ngFor="let comment of comments.reverse()" class="comment-container">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted">{{comment.userName}}</h6>
-        <p class="card-text">{{comment.text}}</p>
+        <h6 class="card-subtitle mb-2 text-muted comment-text">
+            <b>{{comment.userName}}</b>&nbsp;&nbsp;
+            {{comment.text}}
+            <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
+        </h6>
       </div>
-      <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
+      
     </div>
   </div>

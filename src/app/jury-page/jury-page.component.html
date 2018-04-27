@@ -52,11 +52,13 @@
 
         <!-- Total Evaluation for jury -->
         <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef matTooltip="Статус" [matTooltipPosition]="positionTollTip">Переведений в 2 тур</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef matTooltip="Статус" [matTooltipPosition]="positionTollTip">Статус</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <mat-icon *ngIf="element.approvedToSecondStage; else notApprove">check_box</mat-icon>
+                <div *ngIf="element.approvedToSecondStage; else notApprove">
+                    <b>2-й тур</b>
+                </div>
                 <ng-template #notApprove>
-                        <mat-icon>check_box_outline_blank</mat-icon>
+                        1-й тур
                 </ng-template>
             </mat-cell>
         </ng-container>
