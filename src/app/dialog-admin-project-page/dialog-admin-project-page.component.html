@@ -1,169 +1,222 @@
 <mat-tab-group class="admin-project-dialog">
         <mat-tab label="Опис">
             <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
-                <mat-card>
-                    <mat-tab-group>
-                        <mat-tab label="Назва">
-                            <mat-form-field class="full-width">
-                                <textarea matInput required formControlName="name" #name
-                                    required matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8">
-                                </textarea>
-                                <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
-                            </mat-form-field>      
-                        </mat-tab>
-                        <mat-tab label="Запитувана сума">
-                            <mat-form-field  class="full-width">
-                                    <textarea matInput formControlName="requestedBudget" required></textarea>
-                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Назва організації або ініціативної групи">
-                            <mat-form-field  class="full-width">
-                                    <textarea matInput maxlength="250" #organizationName
-                                        formControlName="organizationName" 
-                                        required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                    <mat-hint align="end">{{organizationName.value.length}} / 250</mat-hint>
-                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Тематичний напрямок">
-                            <mat-form-field  class="full-width">
-                                    <textarea matInput maxlength="250" #theme
-                                    formControlName="theme" 
-                                    required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                    <mat-hint align="end">{{theme.value.length}} / 250</mat-hint>
-                                    <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
-                <mat-card>
-                    <mat-tab-group>
-                        <mat-tab label="Координатор/ка проекту">
-                            <mat-form-field  class="full-width">
-                                <input matInput maxlength="100" #coordinatorName 
-                                formControlName="coordinatorName"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6">
-                                <mat-hint align="end">{{coordinatorName.value.length}} / 100</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Координатор/ка проекту (моб.тел.)">
-                            <mat-form-field  class="full-width"> 
-                                <input matInput formControlName="coordinatorPhone" required>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Координатор/ка проекту (електронна адреса)">
-                            <mat-form-field  class="full-width">  
-                                <input matInput maxlength="50" formControlName="coordinatorEmail" required>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
-
-                <mat-card>
-                    <mat-tab-group>
-                        <mat-tab label="Попередній досвід команди проекту">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="2000" #expirienceDescription formControlName="expirienceDescription"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{expirienceDescription.value.length}} / 2000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("expirienceDescription")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Адреса організації">
-                            <mat-form-field class="full-width">
-                                <textarea matInput maxlength="250" #address formControlName="address"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{address.value.length}} / 250</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("address")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Мета проекту">
-                            <mat-form-field class="full-width">
-                                <textarea matInput maxlength="1000" #goal formControlName="goal"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{goal.value.length}} / 1000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Актуальність проекту">
-                            <mat-form-field class="full-width">
-                                <textarea matInput maxlength="2000" #actuality formControlName="actuality"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{actuality.value.length}} / 2000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("actuality")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
-
-                <mat-card>
-                    <mat-tab-group>
-                        <mat-tab label="Очікувані результати">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="2000" #expectedResults formControlName="expectedResults"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{expectedResults.value.length}} / 2000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("expectedResults")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Опис проекту">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="2000" #fullDescription 
-                                formControlName="fullDescription"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{fullDescription.value.length}} / 2000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Цільові групи">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="2000" #targetGroup formControlName="targetGroup"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{targetGroup.value.length}} / 2000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("targetGroup")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
-
-                <mat-card>
-                    <mat-tab-group>
-                        <mat-tab label="Команда проекту">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="1000" formControlName="projectMembers"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{coordinatorName.value.length}} / 1000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("projectMembers")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Погодження та дозволи">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="1000" #requiredPermissions formControlName="requiredPermissions"
-                                required matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{requiredPermissions.value.length}} / 1000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredPermissions")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Партнери та спонсори">
-                            <mat-form-field  class="full-width">
-                                <textarea matInput maxlength="1000" #partners formControlName="partners"
-                                 matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
-                                <mat-hint align="end">{{partners.value.length}} / 1000</mat-hint>
-                                <mat-error *ngIf="appDescForm">{{getErrorMessage("partners")}}</mat-error>
-                            </mat-form-field>
-                        </mat-tab>
-                        <mat-tab label="Термін втілення проекту">
-                            <mat-form-field  class="full-width">
-                                <input matInput  formControlName="requiredTime">
-                            </mat-form-field>
-                        </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Назва</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field class="full-width">
+                            <textarea matInput maxlength="250" required formControlName="name" #name
+                                required matTextareaAutosize matAutosizeMaxRows>
+                            </textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
+                        </mat-form-field>  
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Запитувана сума</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput formControlName="requestedBudget" required></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Назва організації або ініціативної групи</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="250" #organizationName
+                                formControlName="organizationName" 
+                                required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Тематичний напрямок</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="250" #theme
+                            formControlName="theme" 
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Координатор/ка проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <input matInput maxlength="100" #coordinatorName 
+                            formControlName="coordinatorName"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Координатор/ка проекту (моб.тел.)</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width"> 
+                            <input matInput formControlName="coordinatorPhone" required>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Координатор/ка проекту (електронна адреса)</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">  
+                            <input matInput maxlength="50" formControlName="coordinatorEmail" required>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Попередній досвід команди проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="2000" #expirienceDescription formControlName="expirienceDescription"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("expirienceDescription")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Адреса організації</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field class="full-width">
+                            <textarea matInput maxlength="250" #address formControlName="address"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("address")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Мета проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field class="full-width">
+                            <textarea matInput maxlength="1000" #goal formControlName="goal"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Актуальність проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field class="full-width">
+                            <textarea matInput maxlength="2000" #actuality formControlName="actuality"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("actuality")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>"Очікувані результати</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="2000" #expectedResults formControlName="expectedResults"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("expectedResults")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Опис проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="2000" #fullDescription 
+                            formControlName="fullDescription"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Цільові групи</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="2000" #targetGroup formControlName="targetGroup"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("targetGroup")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Команда проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="1000"  #projectMembers formControlName="projectMembers"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("projectMembers")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Погодження та дозволи</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="1000" #requiredPermissions formControlName="requiredPermissions"
+                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredPermissions")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Партнери та спонсори</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <textarea matInput maxlength="1000" #partners formControlName="partners"
+                                matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+                            <mat-error *ngIf="appDescForm">{{getErrorMessage("partners")}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row general">
+                    <div class="col-sm-12"><b>Термін втілення проекту</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field  class="full-width">
+                            <input matInput  formControlName="requiredTime">
+                        </mat-form-field>
+                    </div>
+                </div>
             </form>
         </mat-tab>
      
@@ -606,7 +659,7 @@
     </mat-tab>
   </mat-tab-group>
 
-  <button class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary">Оновити дані</button>
+  <button  class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary"><mat-icon>cached</mat-icon> Оновити дані</button>
 
   <h4><b>Коментарі</b></h4>
   <div class="comment-send-container">
