@@ -1,5 +1,5 @@
 import { OnInit, Component } from "@angular/core";
-import { AUTH_TOCKEN, ROLE } from "../constants/projectConstants";
+import { AUTH_TOKEN, ROLE } from "../constants/projectConstants";
 import { SharedService } from "../services/sharedService";
 import { LoginService } from "../services/login.service";
 
@@ -12,7 +12,7 @@ import { LoginService } from "../services/login.service";
 
 export class MenuComponent implements OnInit {
 
-    private isLogin = localStorage.getItem(AUTH_TOCKEN) !== undefined;
+    private isLogin = localStorage.getItem(AUTH_TOKEN) !== undefined;
     private isAdmin = localStorage.getItem(ROLE)==='ADMIN';
     private isJury  = localStorage.getItem(ROLE)==='JURYMEMBER';
     

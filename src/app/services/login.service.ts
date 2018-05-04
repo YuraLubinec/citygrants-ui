@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BASEURL, ROLE, LOGIN, AUTH_TOCKEN, AUTH_HEADER } from '../constants/projectConstants';
+import { BASEURL, ROLE, LOGIN, AUTH_HEADER } from '../constants/projectConstants';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators/catchError';
