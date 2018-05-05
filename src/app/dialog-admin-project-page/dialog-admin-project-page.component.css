@@ -14,7 +14,7 @@
 }
 .attach-doc-container{
   margin-top: 10px;
-} 
+}
 
 .formBudget{
   margin-top: 10px;
@@ -61,7 +61,12 @@
   overflow: hidden !important;
 }
 
+.col-sm-1,
 .col-sm-2,
 .col-sm-3 {
   margin: auto;
+}
+
+.head-table {
+  font-size: 10px;
 }

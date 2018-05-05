@@ -11,7 +11,7 @@
                                 required matTextareaAutosize matAutosizeMaxRows>
                             </textarea>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
-                        </mat-form-field>  
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="row general">
@@ -32,7 +32,7 @@
                     <div class="col-sm-12">
                         <mat-form-field  class="full-width">
                             <textarea matInput maxlength="250" #organizationName
-                                formControlName="organizationName" 
+                                formControlName="organizationName"
                                 required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
                         </mat-form-field>
@@ -45,7 +45,7 @@
                     <div class="col-sm-12">
                         <mat-form-field  class="full-width">
                             <textarea matInput maxlength="250" #theme
-                            formControlName="theme" 
+                            formControlName="theme"
                             required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
                         </mat-form-field>
@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <mat-form-field  class="full-width">
-                            <input matInput maxlength="100" #coordinatorName 
+                            <input matInput maxlength="100" #coordinatorName
                             formControlName="coordinatorName"
                             required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <mat-form-field  class="full-width"> 
+                        <mat-form-field  class="full-width">
                             <input matInput formControlName="coordinatorPhone" required>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
                         </mat-form-field>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <mat-form-field  class="full-width">  
+                        <mat-form-field  class="full-width">
                             <input matInput maxlength="50" formControlName="coordinatorEmail" required>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
                         </mat-form-field>
@@ -152,7 +152,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="2000" #fullDescription 
+                            <textarea matInput maxlength="2000" #fullDescription
                             formControlName="fullDescription"
                             required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
                             <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
@@ -219,7 +219,7 @@
                 </div>
             </form>
         </mat-tab>
-     
+
         <mat-tab label="Б'юджет">
             <form [formGroup]="appCostItem" class="formBudget" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
                 <mat-form-field class="full-width">
@@ -231,7 +231,7 @@
                     <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost" required>
                     <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
                 </mat-form-field>
-                <mat-form-field class="full-width"> 
+                <mat-form-field class="full-width">
                     <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count" required>
                     <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
                 </mat-form-field>
@@ -253,7 +253,7 @@
 
                 <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">Зберегти</button>
             </form>
-            
+
             <div *ngIf="projectBudget.costItemsFee.length > 0">
                 <div class="row general">
                     <div class="col-sm-3">Гонорари, трудові угоди</div>
@@ -474,12 +474,12 @@
             <div class="row general">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-2"></div>
-                <div class="col-sm-2"><b>Загальний бюджет проекту:</b></div>
+                <div class="col-sm-2"><b>Бюджет:</b></div>
                 <div class="col-sm-2">{{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</div>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-1"></div>
             </div>
-        </mat-tab> 
+        </mat-tab>
     <mat-tab label="Оцінювання">
         <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
                 <mat-card-content>
@@ -490,9 +490,40 @@
         <mat-card>
             <mat-tab-group>
                 <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
+
+                  <div class="row general">
+                    <div class="col-sm-2 head-table">Ім'я</div>
+                    <div class="col-sm-1 head-table">Актуальність</div>
+                    <div class="col-sm-1 head-table">Зрозумілість</div>
+                    <div class="col-sm-1 head-table">Компетентність</div>
+                    <div class="col-sm-1 head-table">Стійкість</div>
+                    <div class="col-sm-1 head-table">Витрати/ефективність</div>
+                    <div class="col-sm-1 head-table">Інноваційність</div>
+                    <div class="col-sm-1 head-table">Залучення</div>
+                    <div class="col-sm-1 head-table">Співпраця</div>
+                    <div class="col-sm-1 head-table">Сума</div>
+                    <div class="col-sm-1 head-table"></div>
+                  </div>
+                  <div class="row" *ngFor="let evaluation of evaluations; let i = index;">
+                    <div class="col-sm-2">{{evaluation.juryMemberName}}</div>
+                    <div class="col-sm-1">{{evaluation.evalActual}}</div>
+                    <div class="col-sm-1">{{evaluation.evalIntelligibility}}</div>
+                    <div class="col-sm-1">{{evaluation.evalCompetence}}</div>
+                    <div class="col-sm-1">{{evaluation.evalStability}}</div>
+                    <div class="col-sm-1">{{evaluation.evalEfficiency}}</div>
+                    <div class="col-sm-1">{{evaluation.evalInnovation}}</div>
+                    <div class="col-sm-1">{{evaluation.evalAttracting}}</div>
+                    <div class="col-sm-1">{{evaluation.evalParticipation}}</div>
+                    <div class="col-sm-1">{{evaluation.evalActual
+                      + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
+                      + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}</div>
+                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[7].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                  </div>
+
+
                     <mat-card>
                         <mat-tab-group>
-                            <mat-tab label="{{evaluation.juryMemberName}}: {{evaluation.evalActual 
+                            <mat-tab label="{{evaluation.juryMemberName}}: {{evaluation.evalActual
                                 + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
                                 + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}" *ngFor="let evaluation of evaluations; let i = index;">
                                 <mat-accordion class="example-headers-align">
@@ -702,7 +733,7 @@
   </mat-tab-group>
 
   <button  class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary"><mat-icon>cached</mat-icon> Оновити дані</button>
- 
+
   <div class="comment-send-container">
     <mat-form-field>
         <textarea matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6" [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
