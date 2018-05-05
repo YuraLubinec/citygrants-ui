@@ -51,16 +51,16 @@ export class DialogAdminProjectPageComponent {
     private patternEmail       = "не вірний формат електронної пошти";
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
-    
+
     constructor(private adminService: AdminService, public dialogProject: MatDialogRef<DialogAdminProjectPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-                public snackBar: MatSnackBar, private fb: FormBuilder) {          
+                public snackBar: MatSnackBar, private fb: FormBuilder) {
 
         this.id                    = data.id;
-        this.approvedToSecondStage = data.approvedToSecondStage;                
+        this.approvedToSecondStage = data.approvedToSecondStage;
         this.projectDescription    = data.description;
         this.projectBudget         = data.budget;
         this.evaluations           = data.evaluations;
-        this.interviewEvaluations  = data.interviewEvaluations;          
+        this.interviewEvaluations  = data.interviewEvaluations;
         this.comments              = data.comments;
         this.filesInfo             = data.filesInfo;
         this.commentText           = "";
@@ -101,7 +101,7 @@ export class DialogAdminProjectPageComponent {
       formDirective.resetForm();
       this.appCostItem.reset();
     }
-  
+
     private addCostItemByCategory(field: any) {
       switch (field.category) {
         case this.costItemCategories[0].value: {
@@ -218,7 +218,7 @@ export class DialogAdminProjectPageComponent {
         }
         case "coordinatorEmail": {
           return this.appDescForm.controls.coordinatorEmail.hasError("required") ? this.requiredMessage :
-                 this.appDescForm.controls.coordinatorEmail.hasError("pattern")  ? this.patternMessage  : 
+                 this.appDescForm.controls.coordinatorEmail.hasError("pattern")  ? this.patternMessage  :
                  this.appDescForm.controls.coordinatorEmail.hasError("email")    ? this.patternEmail    : this.defaultMessage;
         }
         case "projectMembers": {
@@ -276,27 +276,27 @@ export class DialogAdminProjectPageComponent {
       switch(controlName) {
         case "description": {
 
-          return this.appCostItem.controls.description.hasError("required")    ? this.requiredMessage : 
+          return this.appCostItem.controls.description.hasError("required")    ? this.requiredMessage :
                  this.appCostItem.controls.description.hasError("pattern")     ? this.patternMessage  : this.defaultMessage;
         }
         case "cost": {
-          return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage : 
+          return this.appCostItem.controls.cost.hasError("required") ? this.requiredMessage :
                  this.appCostItem.controls.cost.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
         }
         case "count": {
-          return this.appCostItem.controls.count.hasError("required") ? this.requiredMessage : 
+          return this.appCostItem.controls.count.hasError("required") ? this.requiredMessage :
                  this.appCostItem.controls.count.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
         }
         case "consumptionsFromProgram": {
-          return this.appCostItem.controls.consumptionsFromProgram.hasError("required") ? this.requiredMessage : 
+          return this.appCostItem.controls.consumptionsFromProgram.hasError("required") ? this.requiredMessage :
                  this.appCostItem.controls.consumptionsFromProgram.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
         }
         case "consumptionsFromOtherSources": {
-          return this.appCostItem.controls.consumptionsFromOtherSources.hasError("required") ? this.requiredMessage : 
+          return this.appCostItem.controls.consumptionsFromOtherSources.hasError("required") ? this.requiredMessage :
                  this.appCostItem.controls.consumptionsFromOtherSources.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
         }
         case "category": {
-          return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage : 
+          return this.appCostItem.controls.category.hasError("required") ? this.requiredMessage :
                  this.appCostItem.controls.category.hasError("pattern")  ? this.patternMessage  : this.defaultMessage;
         }
       }
@@ -307,16 +307,16 @@ export class DialogAdminProjectPageComponent {
       }
 
     saveProject(){
-      const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription, 
+      const projectUpdate = new ProjectAdm(this.id, this.projectBudget, this.projectDescription,
                                     this.dataProject.confirmed, this.dataProject.approvedToSecondStage, this.evaluations, this.interviewEvaluations, this.comments ,
                                     this.dataProject.filesInfo, this.dataProject.totalEvalFirstStage, this.dataProject.totalEvalSecondStage);
-      
+
       this.adminService.updateProject(projectUpdate).subscribe(
         response => {
           this.callSnackBarMessage()
           projectUpdate.totalEvalFirstStage = this.getTotalEvalFirstStage(this.evaluations);
           projectUpdate.totalEvalSecondStage = this.getTotalEvalSecondStage(this.interviewEvaluations);
-          
+
           this.dialogProject.close(projectUpdate);
         },
          error => this.handlePromiseError(error));
@@ -330,10 +330,10 @@ export class DialogAdminProjectPageComponent {
     }
 
     private handlePromiseError(err): void {
-      
+
           err.status == '400' ? this.checkErrorGetMessage(err): alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
         }
-      
+
         private checkErrorGetMessage(err:any){
           if(err.status == '400'){
             this.notUniqNamelMessage = err.error.message;
@@ -342,7 +342,7 @@ export class DialogAdminProjectPageComponent {
           }
         }
 
-    
+
     getTotalEvalFirstStage(evaluations:Array<Evaluation>){
       let currentTotal= 0;
       evaluations.forEach(element => {
@@ -357,8 +357,82 @@ export class DialogAdminProjectPageComponent {
       });
 
       return currentTotal;
-      
+
     }
+
+    getEvalTotalActual(evaluations:Array<Evaluation>){
+      let currentTotal= 0;
+      evaluations.forEach(element => {
+        currentTotal += Number(element.evalActual);
+      });
+
+      return currentTotal;
+    }
+    getEvalTotalIntelligibility(evaluations:Array<Evaluation>){
+      let currentTotal= 0;
+      evaluations.forEach(element => {
+        currentTotal += Number(element.evalIntelligibility);
+      });
+
+      return currentTotal;
+    }
+
+   getEvalTotalCompetence(evaluations:Array<Evaluation>) {
+     let currentTotal = 0;
+     evaluations.forEach(element => {
+       currentTotal += Number(element.evalCompetence);
+     });
+
+     return currentTotal;
+    }
+
+   getEvalTotalStability(evaluations:Array<Evaluation>) {
+    let currentTotal = 0;
+    evaluations.forEach(element => {
+      currentTotal += Number(element.evalStability);
+    });
+
+    return currentTotal;
+   }
+
+   getEvalTotalEfficiency(evaluations:Array<Evaluation>) {
+    let currentTotal = 0;
+    evaluations.forEach(element => {
+      currentTotal += Number(element.evalEfficiency);
+    });
+
+    return currentTotal;
+   }
+
+  getEvalTotalInnovation(evaluations:Array<Evaluation>) {
+    let currentTotal = 0;
+    evaluations.forEach(element => {
+      currentTotal += Number(element.evalInnovation);
+    });
+
+    return currentTotal;
+  }
+
+  getEvalTotalAttracting(evaluations:Array<Evaluation>) {
+    let currentTotal = 0;
+    evaluations.forEach(element => {
+      currentTotal += Number(element.evalAttracting);
+    });
+
+    return currentTotal;
+  }
+
+  getEvalTotalParticipation(evaluations:Array<Evaluation>) {
+    let currentTotal = 0;
+    evaluations.forEach(element => {
+      currentTotal += Number(element.evalParticipation);
+    });
+
+    return currentTotal;
+  }
+
+
+
 
     getTotalEvalSecondStage(evaluations:Array<InterviewEvaluation>){
       let currentTotal= 0;
@@ -367,16 +441,16 @@ export class DialogAdminProjectPageComponent {
       });
 
       return currentTotal;
-      
+
     }
 
     saveComment(){
         const dateNow = new Date();
-        const idComment = 'idComment' + dateNow.getFullYear() 
-                                      + dateNow.getMonth() 
-                                      + dateNow.getDay() 
+        const idComment = 'idComment' + dateNow.getFullYear()
+                                      + dateNow.getMonth()
+                                      + dateNow.getDay()
                                       + dateNow.getHours()
-                                      + dateNow.getMinutes() 
+                                      + dateNow.getMinutes()
                                       + dateNow.getMilliseconds();
                                       + dateNow.getMilliseconds();
 
@@ -385,6 +459,7 @@ export class DialogAdminProjectPageComponent {
         this.comments.push(tempComment);
         this.commentText = "";
     }
+
     deleteComment(id:string, idComment:string){
       this.adminService.deleteCommentOfProject(id, idComment);
       let index = this.comments.findIndex(comment => comment.id === idComment);

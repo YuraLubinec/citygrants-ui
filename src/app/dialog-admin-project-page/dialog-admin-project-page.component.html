@@ -502,7 +502,6 @@
                     <div class="col-sm-1 head-table">Залучення</div>
                     <div class="col-sm-1 head-table">Співпраця</div>
                     <div class="col-sm-1 head-table">Сума</div>
-                    <div class="col-sm-1 head-table"></div>
                   </div>
                   <div class="row" *ngFor="let evaluation of evaluations; let i = index;">
                     <div class="col-sm-2">{{evaluation.juryMemberName}}</div>
@@ -517,10 +516,22 @@
                     <div class="col-sm-1">{{evaluation.evalActual
                       + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
                       + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[7].value)"><mat-icon>delete_forever</mat-icon></button></div>
                   </div>
 
+                  <div class="row general">
+                    <div class="col-sm-2 head-table">Підсумок</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalActual(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalIntelligibility(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalCompetence(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalStability(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalEfficiency(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalInnovation(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalAttracting(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalParticipation(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getTotalEvalFirstStage(evaluations)}}</div>
+                  </div>
 
+<!--
                     <mat-card>
                         <mat-tab-group>
                             <mat-tab label="{{evaluation.juryMemberName}}: {{evaluation.evalActual
@@ -688,8 +699,8 @@
                             </mat-tab>
                         </mat-tab-group>
                     </mat-card>
+-->
                 </mat-tab>
-
                 <mat-tab label="Другий етап" *ngIf="interviewEvaluations.length > 0">
                     <mat-card>
                         <mat-tab-group>
