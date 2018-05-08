@@ -2,6 +2,10 @@
     margin: 10px;
   }
 
+  .admin-project-dialog{
+    min-width: 1104px;
+  }
+
 .mat-slider-horizontal {
   width: 80%;
 }

@@ -136,6 +136,20 @@ export class DialogAdminProjectPageComponent {
       }
     }
 
+    getTotalInterviewEvaluation(){
+      let total = 0;
+      this.interviewEvaluations.forEach(e =>{
+        total += Number(e.evaluation);
+      });
+
+      return total;
+    }
+
+    removeInterviewEvaluation(index:number){
+      this.interviewEvaluations.splice(index, 1);
+      //let index = this.interviewEvaluations.findIndex(e => e.juryMemberId === evaluation.juryMemberId);
+    }
+
     submitCostItemForm(formDirective: FormGroupDirective) {
       let field = this.appCostItem.value;
       this.addCostItemByCategory(field);
