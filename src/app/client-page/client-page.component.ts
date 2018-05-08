@@ -19,8 +19,9 @@ import { MatTableDataSource, MatSnackBar, MatStepper } from '@angular/material';
 })
 export class ClientPageComponent implements OnInit {
 
-  private appDescForm: FormGroup;
-  private appCostItem: FormGroup;
+  private appDescForm         : FormGroup;
+  private appCostItem         : FormGroup;
+  private evalSecondStageForm : FormGroup;
   private projectApplication: ProjectApplication;
   private budget: Budget;
   private calculations: BudgetCalculations;

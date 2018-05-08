@@ -14,6 +14,7 @@ import { CostItemCategory } from "../models/costItemCategory";
 import { BudgetCalculations } from "../models/budgetCalculations";
 import { CostItem } from "../models/costItem";
 import { LOGIN, BASEURL } from "../constants/projectConstants";
+import { User } from "../models/user";
 
 @Component({
     selector: 'app-dialog-admin-project-page',
@@ -31,6 +32,7 @@ export class DialogAdminProjectPageComponent {
     private evaluations          :Array<Evaluation>;
     private interviewEvaluations :Array<InterviewEvaluation>;
     private comments             :Array<Comment>;
+    private listUsers            :Array<User>;
     private comment              :Comment;
     private filesInfo            :Array<FileInfo>;
     private commentText          :string;
@@ -39,16 +41,20 @@ export class DialogAdminProjectPageComponent {
     private costItemCategories   : Array<CostItemCategory>;
     private appDescForm          : FormGroup;
     private appCostItem          : FormGroup;
+    private evalSecondStageForm  : FormGroup;
     private calculations         : BudgetCalculations;
     private totalEvalFirstStage  : Number;
     private basUrl               = BASEURL;
     private notUniqNamelMessage  : string;
     private dataProject          : ProjectAdm;
+    private selectedUser         : User;
+    private selectedValue        : Number;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
     private patternMessage     = "не відповідає параметрам введення";
     private patternEmail       = "не вірний формат електронної пошти";
+    private listValues         = [1,2,3,4,5];
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
 
@@ -81,6 +87,8 @@ export class DialogAdminProjectPageComponent {
         this.calculations = this.adminService.calculateBudget(this.projectBudget);
         this.createDescriptionForm(data);
         this.createEmptyCostItemForm();
+        this.createEmptyEvalForm();
+        this.getAllUsers();
     }
 
     createEmptyCostItemForm() {
@@ -92,6 +100,40 @@ export class DialogAdminProjectPageComponent {
         consumptionsFromOtherSources: ['', [Validators.required, Validators.pattern("(\\d)+"), Validators.maxLength(7)]],
         category: ['', [Validators.required, Validators.maxLength(50)]]
       })
+    }
+
+    createEmptyEvalForm(){
+      this.evalSecondStageForm = this.fb.group({
+        user: [''],
+        evaluation: [''],
+      })
+    }
+
+    getAllUsers() {
+      this.adminService.getAllUsers().subscribe(users => {
+        this.listUsers = users as Array<User>;
+      })
+    }
+
+    saveEvalSecondStage(){
+      let field = this.evalSecondStageForm.value;
+      var e = new InterviewEvaluation();
+      e.juryMemberId = field.user.id;
+      e.juryMemberName = field.user.fullName;
+      e.evaluation = field.evaluation;
+
+      this.addEvaluationToList(e);
+    }
+
+    addEvaluationToList(evaluation:InterviewEvaluation) {
+      let index = this.interviewEvaluations.findIndex(e => e.juryMemberId === evaluation.juryMemberId);
+
+      if(index != -1){
+        this.interviewEvaluations.splice(index, 1);
+        this.interviewEvaluations.splice(index,0,evaluation);
+      }else{
+        this.interviewEvaluations.push(evaluation);
+      }
     }
 
     submitCostItemForm(formDirective: FormGroupDirective) {
