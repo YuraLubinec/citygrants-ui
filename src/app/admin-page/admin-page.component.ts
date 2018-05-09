@@ -23,18 +23,18 @@ export class AdminPageComponent implements OnInit {
   private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage','totalEvalSecondStage','select','buttons'];
   private selection  : SelectionModel<ProjectAdm>;
   private positionTollTip = "above";
-  
+
   private checked = true;
   private tour1 ="1-ий тур"
-  private tour2 ="2-ий тур" 
-  
+  private tour2 ="2-ий тур"
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private adminService: AdminService, public dialog:MatDialog) {
     adminService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
-    this.selection = new SelectionModel<ProjectAdm>(true, []); 
+    this.selection = new SelectionModel<ProjectAdm>(true, []);
    }
 
    changeTourOfProject(row){
@@ -51,7 +51,7 @@ export class AdminPageComponent implements OnInit {
           this.projects.splice(curProj,1);
         }
       }
-      
+
     this.adminService.delete(row.id);
     this.dataHandler(this.projects);
   }
@@ -60,7 +60,7 @@ export class AdminPageComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAdminProjectPageComponent, {
       data: row,
       height: '90%',
-      width:'70%'
+      width:'90%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

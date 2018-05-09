@@ -3,13 +3,15 @@
   }
 
   .admin-project-dialog{
-    min-width: 1104px;
+    min-width: 1024px;
   }
 
 .mat-slider-horizontal {
   width: 80%;
+  min-width: 1024px;
 }
-.evluation-btn {
+
+.evaluation-btn {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -23,12 +25,17 @@
 .formBudget{
   margin-top: 10px;
 }
-.costСategory{
+.cost-Сategory{
   margin-top: 10px;
 }
-
-.comment-send-container > * {
+.comment-container {
   width: 100%;
+  min-width: 1024px;
+}
+.comment-send-container > * {
+  margin-top: 10px;
+  width: 100%;
+  min-width: 1024px;
 }
 
 .comment-date {
@@ -65,6 +72,7 @@
   overflow: hidden !important;
 }
 
+.col,
 .col-sm-1,
 .col-sm-2,
 .col-sm-3 {
@@ -72,5 +80,8 @@
 }
 
 .head-table {
-  font-size: 10px;
+  font-size: 12px;
+}
+.top-margin{
+  margin-top: 10px;
 }

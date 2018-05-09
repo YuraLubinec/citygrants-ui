@@ -251,234 +251,236 @@
                     <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
                 </mat-form-field>
 
-                <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">Зберегти</button>
+                <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">Додати</button>
             </form>
+          <div class="top-margin">
 
             <div *ngIf="projectBudget.costItemsFee.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Гонорари, трудові угоди</div>
-                    <div class="col-sm-2">Розмір винагороди за місяць</div>
-                    <div class="col-sm-2">Затрачений робочий час</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Гонорари, трудові угоди</div>
+                    <div class="col-sm-2 head-table">Розмір винагороди</div>
+                    <div class="col-sm-2 head-table">Затрачений робочий час</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsFee; let i=index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[0].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[0].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalFeeFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalFeeFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalFeeFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalFeeFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsTransport.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Tранспортні витрати</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Tранспортні витрати</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsTransport; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[1].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[1].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalTransportFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalTransportFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalTransportFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalTransportFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsNutrition.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Вартість харчування</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Вартість харчування</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsNutrition; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[2].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[2].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalNutritionFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalNutritionFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalNutritionFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalNutritionFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsRent.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Вартість оренди</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Вартість оренди</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsRent; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[3].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[3].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalRentFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalRentFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalRentFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalRentFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsAdministrative.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Вартість пунктів адміністрування</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Вартість пунктів адміністрування</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsAdministrative; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[4].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[4].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalAdministrativeFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalAdministrativeFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalAdministrativeFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalAdministrativeFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsAdvertising.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Вартість пунктів адміністрування</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Вартість пунктів адміністрування</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsAdvertising; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[5].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[5].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalAdvertisingFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalAdvertisingFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalAdvertisingFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalAdvertisingFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsMaterial.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Придбання (купівля витратних матеріалів, тощо)</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Придбання (купівля витратних матеріалів, тощо)</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsMaterial; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[6].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[6].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalMaterialsFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalMaterialsFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalMaterialsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalMaterialsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
             <div *ngIf="projectBudget.costItemsOthers.length > 0">
                 <div class="row general">
-                    <div class="col-sm-3">Придбання (купівля витратних матеріалів, тощо)</div>
-                    <div class="col-sm-2">Вартість на одну особу / день</div>
-                    <div class="col-sm-2">К-сть осіб</div>
-                    <div class="col-sm-2">з програми грн.</div>
-                    <div class="col-sm-2">з інших джерел грн.</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table">Придбання (купівля витратних матеріалів, тощо)</div>
+                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+                    <div class="col-sm-2 head-table">К-сть осіб</div>
+                    <div class="col-sm-2 head-table">з програми грн.</div>
+                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
                 <div class="row" *ngFor="let item of projectBudget.costItemsOthers; let i = index">
-                    <div class="col-sm-3">{{item.description}}</div>
-                    <div class="col-sm-2">{{item.cost}}</div>
-                    <div class="col-sm-2">{{item.count}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[7].value)"><mat-icon>delete_forever</mat-icon></button></div>
+                    <div class="col-sm-3 head-table">{{item.description}}</div>
+                    <div class="col-sm-2 head-table">{{item.cost}}</div>
+                    <div class="col-sm-2 head-table">{{item.count}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[7].value)"><mat-icon>delete_forever</mat-icon></button></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"><b>Сума :</b></div>
-                    <div class="col-sm-2">{{calculations.totalOthersFromProgram}}</div>
-                    <div class="col-sm-2">{{calculations.totalOthersFromOtherSources}}</div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 head-table"></div>
+                    <div class="col-sm-2 head-table"></div>
+                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
+                    <div class="col-sm-2 head-table">{{calculations.totalOthersFromProgram}}</div>
+                    <div class="col-sm-2 head-table">{{calculations.totalOthersFromOtherSources}}</div>
+                    <div class="col-sm-1 head-table"></div>
                 </div>
             </div>
 
             <div class="row general">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"><b>Загальна сума: </b></div>
-                <div class="col-sm-2">{{calculations.totalFromProgram}} грн.</div>
-                <div class="col-sm-2">{{calculations.totalFromOtherSources}} грн.</div>
-                <div class="col-sm-1"></div>
+                <div class="col-sm-3 head-table"></div>
+                <div class="col-sm-2 head-table"></div>
+                <div class="col-sm-2 head-table"><b>Загальна сума: </b></div>
+                <div class="col-sm-2 head-table">{{calculations.totalFromProgram}} грн.</div>
+                <div class="col-sm-2 head-table">{{calculations.totalFromOtherSources}} грн.</div>
+                <div class="col-sm-1 head-table"></div>
             </div>
             <div class="row general">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"><b>Бюджет:</b></div>
-                <div class="col-sm-2">{{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-1"></div>
+                <div class="col-sm-3 head-table"></div>
+                <div class="col-sm-2 head-table"></div>
+                <div class="col-sm-2 head-table"><b>Бюджет:</b></div>
+                <div class="col-sm-2 head-table">{{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</div>
+                <div class="col-sm-2 head-table"></div>
+                <div class="col-sm-1 head-table"></div>
             </div>
+          </div>
         </mat-tab>
     <mat-tab label="Оцінювання">
         <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
@@ -491,44 +493,44 @@
             <mat-tab-group>
                 <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
 
-                  <div class="row general">
-                    <div class="col">Ім'я</div>
-                    <div class="col">Актуальність</div>
-                    <div class="col">Зрозумілість</div>
-                    <div class="col">Компетентність</div>
-                    <div class="col">Стійкість</div>
-                    <div class="col">Витрати</div>
-                    <div class="col">Інноваційність</div>
-                    <div class="col">Залучення</div>
-                    <div class="col">Співпраця</div>
-                    <div class="col">Сума</div>
+                  <div class="row general top-margin">
+                    <div class="col-sm-3 head-table">Ім'я</div>
+                    <div class="col-sm-1 head-table">Актуальність</div>
+                    <div class="col-sm-1 head-table ">Зрозумілість</div>
+                    <div class="col-sm-1 head-table ">Компетент.</div>
+                    <div class="col-sm-1 head-table ">Стійкість</div>
+                    <div class="col-sm-1 head-table ">Витрати</div>
+                    <div class="col-sm-1 head-table ">Інноваційність</div>
+                    <div class="col-sm-1 head-table ">Залучення</div>
+                    <div class="col-sm-1 head-table ">Співпраця</div>
+                    <div class="col-sm-1 head-table ">Сума</div>
                   </div>
                   <div class="row" *ngFor="let evaluation of evaluations; let i = index;">
-                    <div class="col">{{evaluation.juryMemberName}}</div>
-                    <div class="col">{{evaluation.evalActual}}</div>
-                    <div class="col">{{evaluation.evalIntelligibility}}</div>
-                    <div class="col">{{evaluation.evalCompetence}}</div>
-                    <div class="col">{{evaluation.evalStability}}</div>
-                    <div class="col">{{evaluation.evalEfficiency}}</div>
-                    <div class="col">{{evaluation.evalInnovation}}</div>
-                    <div class="col">{{evaluation.evalAttracting}}</div>
-                    <div class="col">{{evaluation.evalParticipation}}</div>
-                    <div class="col">{{evaluation.evalActual
+                    <div class="col-sm-3 head-table">{{evaluation.juryMemberName}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalActual}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalIntelligibility}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalCompetence}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalStability}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalEfficiency}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalInnovation}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalAttracting}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalParticipation}}</div>
+                    <div class="col-sm-1 head-table">{{evaluation.evalActual
                       + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
                       + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}</div>
                   </div>
 
                   <div class="row general">
-                    <div class="col">Підсумок</div>
-                    <div class="col">{{getEvalTotalActual(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalIntelligibility(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalCompetence(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalStability(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalEfficiency(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalInnovation(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalAttracting(evaluations)}}</div>
-                    <div class="col">{{getEvalTotalParticipation(evaluations)}}</div>
-                    <div class="col">{{getTotalEvalFirstStage(evaluations)}}</div>
+                    <div class="col-sm-3 head-table">Підсумок</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalActual(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalIntelligibility(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalCompetence(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalStability(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalEfficiency(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalInnovation(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalAttracting(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalTotalParticipation(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getTotalEvalFirstStage(evaluations)}}</div>
                   </div>
 
 <!--
@@ -702,38 +704,45 @@
 -->
                 </mat-tab>
                 <mat-tab label="Другий етап">
-                <form [formGroup]="evalSecondStageForm">
-                    <mat-form-field>
-                        <mat-select placeholder="Жюрі" [(ngModel)]="selectedUser" name="user" formControlName="user">
-                        <mat-option *ngFor="let user of listUsers" [value]="user">
-                            {{user.fullName}}
-                        </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-select placeholder="Оцінка" [(ngModel)]="selectedValue" name="value" formControlName="evaluation">
-                        <mat-option *ngFor="let value of listValues" [value]="value">
-                            {{value}}
-                        </mat-option>
-                        </mat-select>
-                    </mat-form-field>  
-                    
-                    <button mat-raised-button color="primary" (click)="saveEvalSecondStage()">Добавити оцінку</button>
-                </form>
+                  <div class="interview-eval-container top-margin">
+                    <form [formGroup]="evalSecondStageForm">
+                        <mat-form-field class="full-width">
+                            <mat-select placeholder="Жюрі" [(ngModel)]="selectedUser" name="user" formControlName="user">
+                            <mat-option *ngFor="let user of listUsers" [value]="user">
+                                {{user.fullName}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-select placeholder="Оцінка" [(ngModel)]="selectedValue" name="value" formControlName="evaluation">
+                            <mat-option *ngFor="let value of listValues" [value]="value">
+                                {{value}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-                <div class="row general">
-                    <div class="col">Ім'я</div>
-                    <div class="col">Оцінка</div>
+                        <button mat-raised-button color="primary" (click)="saveEvalSecondStage()">Добавити оцінку</button>
+                    </form>
+                  </div>
+
+                 <div class="top-margin">
+                  <div class="row general">
+                      <div class="col head-table">Ім'я</div>
+                      <div class="col head-table">Оцінка</div>
+                      <div class="col head-table"></div>
+                  </div>
+                  <div class="row" *ngFor="let evaluation of interviewEvaluations; let i = index;">
+                      <div class="col head-table">{{evaluation.juryMemberName}}</div>
+                      <div class="col head-table">{{evaluation.evaluation}}</div>
+                      <div class="col head-table"><button mat-icon-button color="warn" (click)="removeInterviewEvaluation(i)"><mat-icon>delete_forever</mat-icon></button></div>
+                  </div>
+                  <div class="row general">
+                      <div class="col head-table">Підсумок</div>
+                      <div class="col head-table">{{getTotalInterviewEvaluation()}}</div>
+                      <div class="col head-table"></div>
+                  </div>
                 </div>
-                <div class="row" *ngFor="let evaluation of interviewEvaluations; let i = index;">
-                    <div class="col">{{evaluation.juryMemberName}}</div>
-                    <div class="col">{{evaluation.evaluation}} <button mat-icon-button color="warn" (click)="removeInterviewEvaluation(i)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row general">
-                    <div class="col">Підсумок</div>
-                    <div class="col">{{getTotalInterviewEvaluation()}}</div>
-                </div>
-                    
+
 <!--
 
                     <mat-card>
@@ -777,7 +786,7 @@
     </mat-tab>
   </mat-tab-group>
 
-  <button  class="evluation-btn" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary"><mat-icon>cached</mat-icon> Оновити дані</button>
+  <button  class="evluation-btn top-margin" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary"><mat-icon>cached</mat-icon> Оновити дані</button>
 
   <div class="comment-send-container">
     <mat-form-field>
@@ -789,12 +798,13 @@
     </button>
 
     <div allArrComments *ngFor="let comment of comments.reverse()" class="comment-container">
-    <div class="card">
-        <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted comment-text">
-            <b>{{comment.userName}}</b>&nbsp;&nbsp;
-            {{comment.text}}
-            <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
-        </h6>
-        </div>
+      <div class="card">
+          <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted comment-text">
+              <b>{{comment.userName}}</b>&nbsp;&nbsp;
+              {{comment.text}}
+              <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
+          </h6>
+          </div>
+      </div>
     </div>
