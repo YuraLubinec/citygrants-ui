@@ -489,7 +489,7 @@
                 </mat-card-content>
         </mat-card>
 
-        <mat-card>
+        <mat-card class="card-evaluation">
             <mat-tab-group>
                 <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
 
@@ -506,16 +506,16 @@
                     <div class="col-sm-1 head-table ">Сума</div>
                   </div>
                   <div class="row" *ngFor="let evaluation of evaluations; let i = index;">
-                    <div class="col-sm-3 head-table">{{evaluation.juryMemberName}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalActual}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalIntelligibility}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalCompetence}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalStability}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalEfficiency}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalInnovation}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalAttracting}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalParticipation}}</div>
-                    <div class="col-sm-1 head-table">{{evaluation.evalActual
+                    <div class="col-border col-sm-3 head-table">{{evaluation.juryMemberName}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalActual}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalIntelligibility}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalCompetence}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalStability}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalEfficiency}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalInnovation}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalAttracting}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalParticipation}}</div>
+                    <div class="col-border col-sm-1 head-table">{{evaluation.evalActual
                       + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
                       + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}</div>
                   </div>
@@ -531,6 +531,18 @@
                     <div class="col-sm-1 head-table">{{getEvalTotalAttracting(evaluations)}}</div>
                     <div class="col-sm-1 head-table">{{getEvalTotalParticipation(evaluations)}}</div>
                     <div class="col-sm-1 head-table">{{getTotalEvalFirstStage(evaluations)}}</div>
+                  </div>
+                  <div class="row general-bottom">
+                    <div class="col-sm-3 head-table">Середній показник</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageActual(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageIntelligibility(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageCompetence(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageStability(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageEfficiency(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageInnovation(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageAttracting(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getEvalAverageParticipation(evaluations)}}</div>
+                    <div class="col-sm-1 head-table">{{getAverageEvalFirstStage(evaluations)}}</div>
                   </div>
 
 <!--

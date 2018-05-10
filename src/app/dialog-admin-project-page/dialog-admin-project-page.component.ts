@@ -145,6 +145,8 @@ export class DialogAdminProjectPageComponent {
       return total;
     }
 
+
+
     removeInterviewEvaluation(index:number){
       this.interviewEvaluations.splice(index, 1);
       //let index = this.interviewEvaluations.findIndex(e => e.juryMemberId === evaluation.juryMemberId);
@@ -416,6 +418,12 @@ export class DialogAdminProjectPageComponent {
 
     }
 
+    getAverageEvalFirstStage(evaluations:Array<Evaluation>){
+      let currentTotal = this.getTotalEvalFirstStage(evaluations);
+
+      return Number(currentTotal / evaluations.length).toFixed(2);
+    }
+
     getEvalTotalActual(evaluations:Array<Evaluation>){
       let currentTotal= 0;
       evaluations.forEach(element => {
@@ -424,6 +432,13 @@ export class DialogAdminProjectPageComponent {
 
       return currentTotal;
     }
+
+    getEvalAverageActual(evaluations:Array<Evaluation>){
+      let total = this.getEvalTotalActual(evaluations);
+
+      return total / evaluations.length;
+    }
+
     getEvalTotalIntelligibility(evaluations:Array<Evaluation>){
       let currentTotal= 0;
       evaluations.forEach(element => {
@@ -431,6 +446,12 @@ export class DialogAdminProjectPageComponent {
       });
 
       return currentTotal;
+    }
+
+    getEvalAverageIntelligibility(evaluations:Array<Evaluation>){
+      let currentTotal= this.getEvalTotalIntelligibility(evaluations);
+
+      return Number(currentTotal / evaluations.length).toFixed(2);
     }
 
    getEvalTotalCompetence(evaluations:Array<Evaluation>) {
@@ -442,6 +463,12 @@ export class DialogAdminProjectPageComponent {
      return currentTotal;
     }
 
+    getEvalAverageCompetence(evaluations:Array<Evaluation>){
+      let currentTotal = this.getEvalTotalCompetence(evaluations);
+
+      return Number(currentTotal / evaluations.length).toFixed(2)
+    }
+
    getEvalTotalStability(evaluations:Array<Evaluation>) {
     let currentTotal = 0;
     evaluations.forEach(element => {
@@ -449,6 +476,12 @@ export class DialogAdminProjectPageComponent {
     });
 
     return currentTotal;
+   }
+
+   getEvalAverageStability(evaluations:Array<Evaluation>){
+    let currentTotal = this.getEvalTotalStability(evaluations);
+
+    return Number(currentTotal / evaluations.length).toFixed(2)
    }
 
    getEvalTotalEfficiency(evaluations:Array<Evaluation>) {
@@ -460,6 +493,12 @@ export class DialogAdminProjectPageComponent {
     return currentTotal;
    }
 
+   getEvalAverageEfficiency(evaluations:Array<Evaluation>){
+    let currentTotal = this.getEvalTotalEfficiency(evaluations);
+
+    return Number(currentTotal / evaluations.length).toFixed(2);
+   }
+
   getEvalTotalInnovation(evaluations:Array<Evaluation>) {
     let currentTotal = 0;
     evaluations.forEach(element => {
@@ -468,6 +507,12 @@ export class DialogAdminProjectPageComponent {
 
     return currentTotal;
   }
+
+  getEvalAverageInnovation(evaluations:Array<Evaluation>){
+    let currentTotal = this.getEvalTotalInnovation(evaluations);
+
+    return Number(currentTotal / evaluations.length).toFixed(2);
+   }
 
   getEvalTotalAttracting(evaluations:Array<Evaluation>) {
     let currentTotal = 0;
@@ -478,6 +523,12 @@ export class DialogAdminProjectPageComponent {
     return currentTotal;
   }
 
+  getEvalAverageAttracting(evaluations:Array<Evaluation>){
+    let currentTotal = this.getEvalTotalAttracting(evaluations);
+
+    return Number(currentTotal / evaluations.length).toFixed(2);
+   }
+
   getEvalTotalParticipation(evaluations:Array<Evaluation>) {
     let currentTotal = 0;
     evaluations.forEach(element => {
@@ -487,18 +538,21 @@ export class DialogAdminProjectPageComponent {
     return currentTotal;
   }
 
+  getEvalAverageParticipation(evaluations:Array<Evaluation>){
+    let currentTotal = this.getEvalTotalParticipation(evaluations);
 
+    return Number(currentTotal / evaluations.length).toFixed(2);
+   }
 
+  getTotalEvalSecondStage(evaluations:Array<InterviewEvaluation>){
+    let currentTotal= 0;
+    evaluations.forEach(element => {
+      currentTotal += Number(element.evaluation);
+    });
 
-    getTotalEvalSecondStage(evaluations:Array<InterviewEvaluation>){
-      let currentTotal= 0;
-      evaluations.forEach(element => {
-        currentTotal += Number(element.evaluation);
-      });
+    return currentTotal;
 
-      return currentTotal;
-
-    }
+  }
 
     saveComment(){
         const dateNow = new Date();

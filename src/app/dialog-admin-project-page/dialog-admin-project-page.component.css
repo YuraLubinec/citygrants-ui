@@ -67,6 +67,13 @@
 .general{
   background-color: rgba(229, 231, 232, 0.7);
 }
+.general-bottom{
+  background-color: rgba(126, 127, 128, 0.644);
+}
+
+.card-evaluation{
+  padding:0px !important;
+}
 
 .mat-tab-body-content {
   overflow: hidden !important;
@@ -80,8 +87,12 @@
 }
 
 .head-table {
-  font-size: 12px;
+  font-size: 14px;
 }
 .top-margin{
   margin-top: 10px;
+}
+
+.col-border{
+  border-bottom:groove;
 }
