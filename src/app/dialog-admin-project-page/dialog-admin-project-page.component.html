@@ -253,8 +253,7 @@
 
                 <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">Додати</button>
             </form>
-          <div class="top-margin">
-
+          <div class="top-margin" *ngIf="calculations.totalFromProgram + calculations.totalFromOtherSources > 0">
             <div *ngIf="projectBudget.costItemsFee.length > 0">
                 <div class="row general">
                     <div class="col-sm-3 head-table">Гонорари, трудові угоди</div>
@@ -737,7 +736,7 @@
                     </form>
                   </div>
 
-                 <div class="top-margin">
+                 <div class="top-margin" *ngIf= "getTotalInterviewEvaluation() > 0">
                   <div class="row general">
                       <div class="col head-table">Ім'я</div>
                       <div class="col head-table">Оцінка</div>
