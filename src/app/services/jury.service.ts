@@ -10,6 +10,7 @@ import { BudgetCalculations } from '../models/budgetCalculations';
 import { Budget } from '../models/budget';
 import { InterviewEvaluation } from '../models/interviewEvaluation';
 import { BASEURL, LOGIN, ID } from '../constants/projectConstants';
+import { User } from '../models/user';
 
 @Injectable()
 export class JuryService {
@@ -25,8 +26,10 @@ export class JuryService {
     return this.http.get(this.baseUrl + localStorage.getItem(LOGIN));
   }
 
+  getUserByLogin(login:String): Observable<any> {
+    return this.http.get(this.baseUrl +"/user/"+ login);
+  }
   getFileInfo(idFile:string): Observable<any> {
-    console.log(this.baseUrl + "file/" + idFile);
     return this.http.get(this.baseUrl + "file/" + idFile);
   }
 

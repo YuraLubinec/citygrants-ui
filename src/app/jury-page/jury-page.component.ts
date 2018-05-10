@@ -45,9 +45,7 @@ export class JuryPageComponent implements OnInit {
     this.projects        = projects as Array<ProjectApplJury>;
     this.dataSource      = new MatTableDataSource(this.projects);
     this.dataSource.sort = this.sort;
-
-    console.log(this.dataSource);
-
+    
     this.dataSource.sortingDataAccessor = (data: any, property: string) => {
       switch (property) {
         case 'requestedBudget': return +data.description.requestedBudget;

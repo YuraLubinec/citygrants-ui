@@ -49,6 +49,7 @@ export class DialogAdminProjectPageComponent {
     private dataProject          : ProjectAdm;
     private selectedUser         : User;
     private selectedValue        : Number;
+    private currentUser          : User;
 
     private requiredMessage    = "обов'язково для заповнення"
     private defaultMessage     = "помилка введення";
@@ -73,6 +74,7 @@ export class DialogAdminProjectPageComponent {
         this.step                  = 0;
         this.dataProject           = data;
 
+
         this.costItemCategories = [
           new CostItemCategory("FEE", "Гонорари, трудові угоди"),
           new CostItemCategory("TRANSPORT", "Транспортні витрати"),
@@ -84,6 +86,7 @@ export class DialogAdminProjectPageComponent {
           new CostItemCategory("OTHER", "Інші витрати")
         ];
 
+        this.adminService.getUserByLogin(localStorage.getItem(LOGIN)).subscribe(user => this.currentUser = user);
         this.calculations = this.adminService.calculateBudget(this.projectBudget);
         this.createDescriptionForm(data);
         this.createEmptyCostItemForm();
@@ -566,6 +569,7 @@ export class DialogAdminProjectPageComponent {
 
         const tempComment = new Comment(idComment,"", localStorage.getItem(LOGIN), this.commentText, new Date);
         this.adminService.saveCommentOfProject(this.id, tempComment);
+        tempComment.userName = this.currentUser.fullName;
         this.comments.push(tempComment);
         this.commentText = "";
     }

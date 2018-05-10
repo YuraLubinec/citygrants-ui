@@ -37,6 +37,7 @@ export class DialogJuryProjectPageComponent {
     private approvedToSecondStage : boolean;
     private interviewEvaluation   : InterviewEvaluation;
     private basUrl                = BASEURL;
+    private currentUser        : User;
 
     @ViewChildren('allArrComments') arrComments: QueryList<any>;
     
@@ -54,6 +55,10 @@ export class DialogJuryProjectPageComponent {
         this.interviewEvaluation   = data.interviewEvaluation;
 
         this.calculations = this.juryService.calculateBudget(this.projectBudget);
+        
+        this.juryService.getUserByLogin(localStorage.getItem(LOGIN)).subscribe(user =>{
+          this.currentUser = user;
+        })
     }
 
     ngAfterViewInit() {
@@ -73,7 +78,7 @@ export class DialogJuryProjectPageComponent {
     }
 
     saveInterviewEvaluation(){
-      this.interviewEvaluation.juryMemberName = localStorage.getItem(LOGIN);
+      this.interviewEvaluation.juryMemberName = this.currentUser.fullName;
 
       this.juryService.updateInterviewEvaluationOfProject(this.id, this.interviewEvaluation);
 
@@ -95,6 +100,7 @@ export class DialogJuryProjectPageComponent {
                                       + dateNow.getMilliseconds();
         const tempComment = new Comment(idComment,"", localStorage.getItem(LOGIN), this.commentText, new Date);
         this.juryService.saveCommentOfProject(this.id, tempComment);
+        tempComment.userName = this.currentUser.fullName;
         this.comments.push(tempComment);
         this.commentText = "";
       }
