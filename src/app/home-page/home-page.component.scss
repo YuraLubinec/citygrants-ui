@@ -1,0 +1,76 @@
+/*.home-page-content{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+*/
+.hom-conteiner {
+    min-width: 1491px;
+    width: 60%;
+    height: 50%;
+    padding: 10px;
+
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
+}
+
+.text-conteiner {
+    margin: auto;
+    width: 55%;
+    margin-bottom: 13px;
+}
+
+.button-row {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+.text-center {
+  text-align: center;
+}
+
+.smal-caps {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+.big-caps {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+    font-size: 85px;
+ }
+
+.hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    &:before {
+      content: "";
+      // use the linear-gradient for the fading effect
+      // use a solid background color for a solid bar
+      background: linear-gradient(to right, transparent, #818078, transparent);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+    &:after {
+      position: relative;
+      display: inline-block;
+      color: black;
+  
+      padding: 0 .5em;
+      line-height: 1.5em;
+      // this is really the only tricky part, you need to specify the background color of the container element...
+      color: #818078;
+      background-color: #fcfcfa;
+    }
+}
