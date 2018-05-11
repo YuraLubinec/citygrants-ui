@@ -20,7 +20,7 @@ export class AdminPageComponent implements OnInit {
   private pageSize   : Number;
   private pageEvent  : PageEvent;
   private pageSizeOptions  = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'organizationName', 'theme','goal','totalEvalFirstStage','totalEvalSecondStage','select','buttons'];
+  private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme','totalEvalFirstStage','totalEvalSecondStage','select','buttons'];
   private selection  : SelectionModel<ProjectAdm>;
   private positionTollTip = "above";
 
