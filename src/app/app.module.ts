@@ -25,6 +25,7 @@ import { MenuComponent } from './menu/menu.component';
 import { SharedService } from './services/sharedService';
 import { ManageUserPageComponent } from './manage-user-page/manage-user-page.component';
 import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-admin-user-page.component';
+import { DialogConfirmDeletePageComponent } from './dialog-confirm-delete-page/dialog-confirm-delete-page.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +40,9 @@ import { DialogAdminUserPageComponent } from './dialog-admin-user-page/dialog-ad
     HomePageComponent,
     MenuComponent,
     ManageUserPageComponent,
+    DialogConfirmDeletePageComponent,
   ],
-  entryComponents: [DialogJuryProjectPageComponent, DialogAdminProjectPageComponent, DialogAdminUserPageComponent],
+  entryComponents: [DialogJuryProjectPageComponent, DialogAdminProjectPageComponent, DialogAdminUserPageComponent, DialogConfirmDeletePageComponent],
   imports: [
     BrowserModule, MatTableModule, MatSortModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule, MatTabsModule,
     MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatToolbarModule, MatCardModule, MatListModule, MatSliderModule, MatExpansionModule,

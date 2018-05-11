@@ -7,7 +7,7 @@
     </div>
 
   <mat-table class="admin-table" #table [dataSource]="dataSource" matSort>
-    
+
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef> Керування проектом </mat-header-cell>
         <mat-cell *matCellDef="let row">
@@ -31,7 +31,7 @@
         <mat-cell *matCellDef="let element"> {{element.description.requestedBudget}} </mat-cell>
       </ng-container>
 
-      <!-- Organization name Column 
+      <!-- Organization name Column
       <ng-container matColumnDef="organizationName">
         <mat-header-cell *matHeaderCellDef> Назва організації </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.description.organizationName}} </mat-cell>
@@ -43,7 +43,7 @@
         <mat-cell *matCellDef="let element"> {{element.description.theme}} </mat-cell>
       </ng-container>
 
-      <!-- Goal Column 
+      <!-- Goal Column
       <ng-container matColumnDef="goal">
         <mat-header-cell *matHeaderCellDef> Мета проекту </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.description.goal}} </mat-cell>
@@ -65,7 +65,7 @@
           <mat-header-cell *matHeaderCellDef>Видалення</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <button mat-icon-button matTooltip="Видалити проект" [matTooltipPosition]="positionTollTip">
-                <mat-icon aria-label="Видалити проект" (click)="deleteProject(row)" color="warn">delete_forever</mat-icon>
+                <mat-icon aria-label="Видалити проект" (click)="openDialogConfirmRemove(row)" color="warn">delete_forever</mat-icon>
             </button>
           </mat-cell>
         </ng-container>
@@ -74,7 +74,7 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="showRow(row)"></mat-row>
   </mat-table>
   <mat-paginator class="admin-table-paginator" #paginator
-      [length]="length"    
+      [length]="length"
       [pageSize]="pageSize"
       [pageSizeOptions]="pageSizeOptions">
   </mat-paginator>

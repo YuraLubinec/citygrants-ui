@@ -5,6 +5,7 @@ import { ProjectAdm } from '../models/projectAdm';
 import {SelectionModel} from '@angular/cdk/collections';
 import { forEach } from '@angular/router/src/utils/collection';
 import { DialogAdminProjectPageComponent } from '../dialog-admin-project-page/dialog-admin-project-page.component';
+import {DialogConfirmDeletePageComponent} from "../dialog-confirm-delete-page/dialog-confirm-delete-page.component";
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AdminPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private adminService: AdminService, public dialog:MatDialog) {
+  constructor(private adminService: AdminService, public dialog:MatDialog, public dialogConfirm: MatDialog) {
     adminService.getAllProjects().subscribe(data => this.dataHandler(data),this.searchErrorHandler);
     this.selection = new SelectionModel<ProjectAdm>(true, []);
    }
@@ -54,6 +55,18 @@ export class AdminPageComponent implements OnInit {
 
     this.adminService.delete(row.id);
     this.dataHandler(this.projects);
+  }
+
+  openDialogConfirmRemove(row): void {
+    let dialogRef = this.dialogConfirm.open(DialogConfirmDeletePageComponent, {
+      width: '50%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      result =='confirm' ? this.deleteProject(row) : 'doNothing';
+    });
+
   }
 
   showRow(row) {
