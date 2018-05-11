@@ -221,38 +221,6 @@
         </mat-tab>
 
         <mat-tab label="Б'юджет">
-            <form [formGroup]="appCostItem" class="formBudget" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
-                <mat-form-field class="full-width">
-                    <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
-                    <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
-                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost" required>
-                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count" required>
-                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram" type="number" required>
-                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromProgram")}}</mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources"type="number" required>
-                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
-                    <mat-option disabled>Оберіть категорію витрат</mat-option>
-                    <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
-                </mat-form-field>
-
-                <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">Додати</button>
-            </form>
           <div class="top-margin" *ngIf="calculations.totalFromProgram + calculations.totalFromOtherSources > 0">
             <div *ngIf="projectBudget.costItemsFee.length > 0">
                 <div class="row general">
@@ -480,6 +448,40 @@
                 <div class="col-sm-1 head-table"></div>
             </div>
           </div>
+
+          <form [formGroup]="appCostItem" class="formBudget" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
+                <mat-option disabled>Оберіть категорію витрат</mat-option>
+                <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
+                <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
+                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost" required>
+                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count" required>
+                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram" type="number" required>
+                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromProgram")}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources"type="number" required>
+                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
+            </mat-form-field>
+
+            <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid"><mat-icon>add</mat-icon> Додати</button>
+        </form>
+
         </mat-tab>
     <mat-tab label="Оцінювання">
         <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
@@ -715,27 +717,6 @@
 -->
                 </mat-tab>
                 <mat-tab label="Другий етап">
-                  <div class="interview-eval-container top-margin">
-                    <form [formGroup]="evalSecondStageForm">
-                        <mat-form-field class="full-width">
-                            <mat-select placeholder="Жюрі" [(ngModel)]="selectedUser" name="user" formControlName="user">
-                            <mat-option *ngFor="let user of listUsers" [value]="user">
-                                {{user.fullName}}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <mat-select placeholder="Оцінка" [(ngModel)]="selectedValue" name="value" formControlName="evaluation">
-                            <mat-option *ngFor="let value of listValues" [value]="value">
-                                {{value}}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                        <button mat-raised-button color="primary" (click)="saveEvalSecondStage()">Добавити оцінку</button>
-                    </form>
-                  </div>
-
                  <div class="top-margin" *ngIf= "getTotalInterviewEvaluation() > 0">
                   <div class="row general">
                       <div class="col head-table">Ім'я</div>
@@ -752,6 +733,26 @@
                       <div class="col head-table">{{getTotalInterviewEvaluation()}}</div>
                       <div class="col head-table"></div>
                   </div>
+                </div>
+                <div class="interview-eval-container top-margin">
+                    <form [formGroup]="evalSecondStageForm">
+                        <mat-form-field class="full-width">
+                            <mat-select placeholder="Жюрі" [(ngModel)]="selectedUser" name="user" formControlName="user">
+                            <mat-option *ngFor="let user of listUsers" [value]="user">
+                                {{user.fullName}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-select placeholder="Оцінка" [(ngModel)]="selectedValue" name="value" formControlName="evaluation">
+                            <mat-option *ngFor="let value of listValues" [value]="value">
+                                {{value}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary" (click)="saveEvalSecondStage()"><mat-icon>add</mat-icon> Додати оцінку</button>
+                    </form>
                 </div>
 
 <!--
