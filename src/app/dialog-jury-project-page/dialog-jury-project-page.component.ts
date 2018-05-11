@@ -67,7 +67,8 @@ export class DialogJuryProjectPageComponent {
 
     saveEvaluation(){
 
-      this.evaluation.juryMemberName = localStorage.getItem(LOGIN);
+      this.evaluation.juryMemberLogin    = localStorage.getItem(LOGIN);
+      this.evaluation.juryMemberFullName = this.currentUser.fullName;
       this.juryService.updateEvaluationOfProject(this.id, this.evaluation);
 
       this.snackBar.open('Дякуємо за Ваше оцінювання !!!','', {

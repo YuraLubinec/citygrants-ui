@@ -1,7 +1,8 @@
 export class Evaluation{
 
     juryMemberId        :String;
-    juryMemberName      :String;
+    juryMemberLogin     :String;
+    juryMemberFullName  :String;
     evalActual          :Number;
     evalIntelligibility :Number;
     evalCompetence      :Number;
@@ -13,7 +14,8 @@ export class Evaluation{
 
     constructor(
         juryMemberId?        :String, 
-        juryMemberName?      :String,
+        juryMemberLogin?     :String,
+        juryMemberFullName?  :String,
         evalIntelligibility? :Number,
         evalActual?          :Number,
         evalCompetence?      :Number,
@@ -24,7 +26,8 @@ export class Evaluation{
         evalParticipation?   :Number){
 
         this.juryMemberId        = juryMemberId;
-        this.juryMemberName      = juryMemberName;
+        this.juryMemberLogin     = juryMemberLogin;
+        juryMemberFullName       = juryMemberFullName
         this.evalActual          = evalActual;
         this.evalIntelligibility = evalIntelligibility;
         this.evalCompetence      = evalCompetence;
