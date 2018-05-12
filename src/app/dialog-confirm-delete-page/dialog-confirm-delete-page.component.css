@@ -1,0 +1,12 @@
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-row {
+  text-align: center;
+}
+
+.dialog-container > * {
+  width: 100%;
+}
