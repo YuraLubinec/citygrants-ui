@@ -3,7 +3,6 @@ import { AdminService } from '../services/admin.service'
 import { MatPaginator, PageEvent, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { ProjectAdm } from '../models/projectAdm';
 import {SelectionModel} from '@angular/cdk/collections';
-import { forEach } from '@angular/router/src/utils/collection';
 import { DialogAdminProjectPageComponent } from '../dialog-admin-project-page/dialog-admin-project-page.component';
 import {DialogConfirmDeletePageComponent} from "../dialog-confirm-delete-page/dialog-confirm-delete-page.component";
 
@@ -40,7 +39,7 @@ export class AdminPageComponent implements OnInit {
 
    changeTourOfProject(row){
 
-     row.approvedToSecondStage = row.approvedToSecondStage == true ? false : true;
+     row.approvedToSecondStage = row.approvedToSecondStage == true;
 
      this.adminService.updateApprovedToSecondStage(row.id, row.approvedToSecondStage);
    }
@@ -59,7 +58,7 @@ export class AdminPageComponent implements OnInit {
 
   openDialogConfirmRemove(row): void {
     let dialogRef = this.dialogConfirm.open(DialogConfirmDeletePageComponent, {
-      width: '50%',
+      width: '60%',
     });
 
     dialogRef.afterClosed().subscribe(result => {
