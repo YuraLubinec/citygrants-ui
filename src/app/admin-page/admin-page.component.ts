@@ -73,7 +73,8 @@ export class AdminPageComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAdminProjectPageComponent, {
       data: row,
       height: '90%',
-      width:'90%'
+      minWidth:'95%'
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
