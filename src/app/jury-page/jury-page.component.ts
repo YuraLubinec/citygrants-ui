@@ -22,10 +22,10 @@ export class JuryPageComponent implements OnInit {
   private pageSizeOptions  = [5, 10, 25, 50];
   private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme','evalFirst','status'];
   private positionTollTip = "above";
-  
+
 
   constructor(private juryService: JuryService, public dialog:MatDialog) {
-   
+
   }
 
   ngOnInit(): void {
@@ -45,18 +45,18 @@ export class JuryPageComponent implements OnInit {
     this.projects        = projects as Array<ProjectApplJury>;
     this.dataSource      = new MatTableDataSource(this.projects);
     this.dataSource.sort = this.sort;
-    
+
     this.dataSource.sortingDataAccessor = (data: any, property: string) => {
       switch (property) {
         case 'requestedBudget': return +data.description.requestedBudget;
-        case 'evalFirst': return +data.evaluation.evalActual 
+        case 'evalFirst': return +data.evaluation.evalActual
                             + data.evaluation.evalAttracting
                             + data.evaluation.evalCompetence
                             + data.evaluation.evalEfficiency
                             + data.evaluation.evalInnovation
                             + data.evaluation.evalIntelligibility
                             + data.evaluation.evalParticipation
-                            + data.evaluation.evalStability;                
+                            + data.evaluation.evalStability;
         default: return '';
       }
     };
@@ -81,13 +81,13 @@ export class JuryPageComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogJuryProjectPageComponent, {
       data: row,
       height: '90%',
-      width:'80%'
+      minWidth:'95%'
     });
   }
-  
+
   private searchErrorHandler(error: any) {
     alert("Вході виконання програми виникла помилка, спробуйте пізніше");
   }
-  
+
 }
 
