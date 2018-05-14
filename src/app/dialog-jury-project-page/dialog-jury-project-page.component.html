@@ -341,7 +341,7 @@
             </button>
     </mat-tab> -->
 
-    <mat-tab label="Оцінювання">
+    <mat-tab *ngIf="!approvedToSecondStage" label="Оцінювання">
         <mat-accordion class="example-headers-align">
             <mat-card>
                 <mat-card-header>
@@ -539,6 +539,6 @@
             <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
         </h6>
       </div>
-      
+
     </div>
   </div>
