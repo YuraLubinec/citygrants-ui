@@ -113,14 +113,19 @@ a:active {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.img-logo-container {
-  margin-left: 25px;
-  margin-top: 10px;
-  width: 50px;
-  height: 120px;
+#banner {
+    margin-left: 25px;
+    margin-top: 10px;
+    display: block;
+  }
+  
+.images {
+    display: inline-block;
+    margin: 0 0.5%;
 }
 
-.img-logo-container img {
-  width: 100%;
-  height: auto;
+.images img {
+    width:150px
 }
+
+
