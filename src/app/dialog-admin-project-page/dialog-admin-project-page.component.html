@@ -1,830 +1,689 @@
 <mat-tab-group class="admin-project-dialog">
-        <mat-tab label="Опис">
-            <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Назва</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field class="full-width">
+  <mat-tab label="Опис">
+    <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm()" novalidate>
+      <div class="row general">
+        <div class="col-sm-12"><b>Назва</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
                             <textarea matInput maxlength="250" required formControlName="name" #name
-                                required matTextareaAutosize matAutosizeMaxRows>
+                                      required matTextareaAutosize matAutosizeMaxRows>
                             </textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Запитувана сума</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput formControlName="requestedBudget" required></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Назва організації або ініціативної групи</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="250" #organizationName
-                                formControlName="organizationName"
-                                required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Тематичний напрямок</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="250" #theme
-                            formControlName="theme"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Координатор/ка проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <input matInput maxlength="100" #coordinatorName
-                            formControlName="coordinatorName"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Координатор/ка проекту (моб.тел.)</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <input matInput formControlName="coordinatorPhone" required>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Координатор/ка проекту (електронна адреса)</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <input matInput maxlength="50" formControlName="coordinatorEmail" required>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Попередній досвід команди проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="2000" #expirienceDescription formControlName="expirienceDescription"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("expirienceDescription")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Адреса організації</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field class="full-width">
-                            <textarea matInput maxlength="250" #address formControlName="address"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("address")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Мета проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field class="full-width">
-                            <textarea matInput maxlength="1000" #goal formControlName="goal"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Актуальність проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field class="full-width">
-                            <textarea matInput maxlength="2000" #actuality formControlName="actuality"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("actuality")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>"Очікувані результати</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="2000" #expectedResults formControlName="expectedResults"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("expectedResults")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Опис проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="2000" #fullDescription
-                            formControlName="fullDescription"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Цільові групи</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="2000" #targetGroup formControlName="targetGroup"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("targetGroup")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Команда проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="1000"  #projectMembers formControlName="projectMembers"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("projectMembers")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Погодження та дозволи</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="1000" #requiredPermissions formControlName="requiredPermissions"
-                            required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredPermissions")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Партнери та спонсори</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <textarea matInput maxlength="1000" #partners formControlName="partners"
-                                matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
-                            <mat-error *ngIf="appDescForm">{{getErrorMessage("partners")}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row general">
-                    <div class="col-sm-12"><b>Термін втілення проекту</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <mat-form-field  class="full-width">
-                            <input matInput  formControlName="requiredTime">
-                        </mat-form-field>
-                    </div>
-                </div>
-            </form>
-        </mat-tab>
-
-        <mat-tab label="Б'юджет">
-          <div class="top-margin" *ngIf="calculations.totalFromProgram + calculations.totalFromOtherSources > 0">
-            <div *ngIf="projectBudget.costItemsFee.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Гонорари, трудові угоди</div>
-                    <div class="col-sm-2 head-table">Розмір винагороди</div>
-                    <div class="col-sm-2 head-table">Затрачений робочий час</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsFee; let i=index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[0].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalFeeFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalFeeFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsTransport.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Tранспортні витрати</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsTransport; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[1].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalTransportFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalTransportFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsNutrition.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Вартість харчування</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsNutrition; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[2].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalNutritionFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalNutritionFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsRent.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Вартість оренди</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsRent; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[3].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalRentFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalRentFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsAdministrative.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Вартість пунктів адміністрування</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsAdministrative; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[4].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalAdministrativeFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalAdministrativeFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsAdvertising.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Вартість пунктів адміністрування</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsAdvertising; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[5].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalAdvertisingFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalAdvertisingFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsMaterial.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Придбання (купівля витратних матеріалів, тощо)</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsMaterial; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[6].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalMaterialsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalMaterialsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-            <div *ngIf="projectBudget.costItemsOthers.length > 0">
-                <div class="row general">
-                    <div class="col-sm-3 head-table">Придбання (купівля витратних матеріалів, тощо)</div>
-                    <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
-                    <div class="col-sm-2 head-table">К-сть осіб</div>
-                    <div class="col-sm-2 head-table">з програми грн.</div>
-                    <div class="col-sm-2 head-table">з інших джерел грн.</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-                <div class="row" *ngFor="let item of projectBudget.costItemsOthers; let i = index">
-                    <div class="col-sm-3 head-table">{{item.description}}</div>
-                    <div class="col-sm-2 head-table">{{item.cost}}</div>
-                    <div class="col-sm-2 head-table">{{item.count}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"><button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[7].value)"><mat-icon>delete_forever</mat-icon></button></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 head-table"></div>
-                    <div class="col-sm-2 head-table"></div>
-                    <div class="col-sm-2 head-table"><b>Сума :</b></div>
-                    <div class="col-sm-2 head-table">{{calculations.totalOthersFromProgram}}</div>
-                    <div class="col-sm-2 head-table">{{calculations.totalOthersFromOtherSources}}</div>
-                    <div class="col-sm-1 head-table"></div>
-                </div>
-            </div>
-
-            <div class="row general">
-                <div class="col-sm-3 head-table"></div>
-                <div class="col-sm-2 head-table"></div>
-                <div class="col-sm-2 head-table"><b>Загальна сума: </b></div>
-                <div class="col-sm-2 head-table">{{calculations.totalFromProgram}} грн.</div>
-                <div class="col-sm-2 head-table">{{calculations.totalFromOtherSources}} грн.</div>
-                <div class="col-sm-1 head-table"></div>
-            </div>
-            <div class="row general">
-                <div class="col-sm-3 head-table"></div>
-                <div class="col-sm-2 head-table"></div>
-                <div class="col-sm-2 head-table"><b>Бюджет:</b></div>
-                <div class="col-sm-2 head-table">{{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</div>
-                <div class="col-sm-2 head-table"></div>
-                <div class="col-sm-1 head-table"></div>
-            </div>
-          </div>
-
-          <form [formGroup]="appCostItem" class="formBudget" #formDirective="ngForm" (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
-            <mat-form-field class="full-width">
-                <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
-                <mat-option disabled>Оберіть категорію витрат</mat-option>
-                <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
-                <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
-                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:" formControlName="cost" required>
-                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count" required>
-                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram" type="number" required>
-                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromProgram")}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources"type="number" required>
-                <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
-            </mat-form-field>
-
-            <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid"><mat-icon>add</mat-icon> Додати</button>
-        </form>
-
-        </mat-tab>
-    <mat-tab label="Оцінювання">
-        <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
-                <mat-card-content>
-                    <b>В даному проекті оцінки відсутні</b>
-                </mat-card-content>
-        </mat-card>
-
-        <mat-card class="card-evaluation">
-            <mat-tab-group>
-                <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
-
-                  <div class="row general top-margin">
-                    <div class="col-sm-3 head-table">Ім'я</div>
-                    <div class="col-sm-1 head-table">Актуальність</div>
-                    <div class="col-sm-1 head-table ">Зрозумілість</div>
-                    <div class="col-sm-1 head-table ">Компетент.</div>
-                    <div class="col-sm-1 head-table ">Стійкість</div>
-                    <div class="col-sm-1 head-table ">Витрати</div>
-                    <div class="col-sm-1 head-table ">Інноваційність</div>
-                    <div class="col-sm-1 head-table ">Залучення</div>
-                    <div class="col-sm-1 head-table ">Співпраця</div>
-                    <div class="col-sm-1 head-table ">Сума</div>
-                  </div>
-                  <div class="row" *ngFor="let evaluation of evaluations; let i = index;">
-                    <div class="col-border col-sm-3 head-table">{{evaluation.juryMemberFullName}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalActual}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalIntelligibility}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalCompetence}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalStability}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalEfficiency}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalInnovation}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalAttracting}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalParticipation}}</div>
-                    <div class="col-border col-sm-1 head-table">{{evaluation.evalActual
-                      + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
-                      + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}</div>
-                  </div>
-
-                  <div class="row general">
-                    <div class="col-sm-3 head-table">Підсумок</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalActual(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalIntelligibility(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalCompetence(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalStability(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalEfficiency(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalInnovation(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalAttracting(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalTotalParticipation(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getTotalEvalFirstStage(evaluations)}}</div>
-                  </div>
-                  <div class="row general-bottom">
-                    <div class="col-sm-3 head-table">Середній показник</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageActual(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageIntelligibility(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageCompetence(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageStability(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageEfficiency(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageInnovation(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageAttracting(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getEvalAverageParticipation(evaluations)}}</div>
-                    <div class="col-sm-1 head-table">{{getAverageEvalFirstStage(evaluations)}}</div>
-                  </div>
-
-<!--
-                    <mat-card>
-                        <mat-tab-group>
-                            <mat-tab label="{{evaluation.juryMemberName}}: {{evaluation.evalActual
-                                + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
-                                + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting + evaluation.evalParticipation}}" *ngFor="let evaluation of evaluations; let i = index;">
-                                <mat-accordion class="example-headers-align">
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Актуальність</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>наскільки проект необхідний і важливий для міста в сьогоднішніх умовах</li>
-                                            </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalActual">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Зрозумілість</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                                <ul>
-                                                    <li>чи є чітка механіка реалізації?</li>
-                                                    <li>чи логічно вибудувана послідовність реалізації проекту?</li>
-                                                    <li>чіткість визначення показників досягнення результату</li>
-                                                </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalIntelligibility">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Компетентність</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>кваліфікація виконавців, загальна адміністративна та технічна спроможність</li>
-                                            </ul>
-                                            <p></p>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalCompetence">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Стійкість</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>чи наявна модель самопідтримки?</li>
-                                                <li>як довго проект працюватиме/існуватиме?</li>
-                                            </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalStability">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Витрати/ефективність</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>обґрунтованість запланованих витрат та необхідних ресурсів у співвідношенні до очікуваних результатів</li>
-                                            </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalEfficiency">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Інноваційність</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>в чому інноваційність проекту: інновація цінності, технологічна  інновація, нова бізнес модель, і т.д.</li>
-                                                <li>чи існують схожі проекти? В чому унікальність проекту? </li>
-                                            </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalInnovation">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Залучення</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>спроможність запланованої діяльності активізувати участь безпосередніх отримувачів корисного ефекту проекту чи громадськості загалом</li>
-                                            </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalAttracting">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                    <mat-card>
-                                        <mat-card-header>
-                                            <mat-card-title><b>Співпраця</b></mat-card-title>
-                                        </mat-card-header>
-                                        <mat-card-content>
-                                            <ul>
-                                                <li>наскільки проект сприяє розвитку співпраці між жителями, організаціями, установами</li>
-                                            </ul>
-                                        </mat-card-content>
-                                        <mat-card-actions>
-                                            <mat-slider
-                                                [max]=10
-                                                [step]=1
-                                                [thumb-label]=true
-                                                [tick-interval]=2
-                                                [(ngModel)]="evaluation.evalParticipation">
-                                            </mat-slider>
-                                        </mat-card-actions>
-                                    </mat-card>
-                                </mat-accordion>
-                            </mat-tab>
-                        </mat-tab-group>
-                    </mat-card>
--->
-                </mat-tab>
-                <mat-tab label="Другий етап">
-                 <div class="top-margin" *ngIf= "getTotalInterviewEvaluation() > 0">
-                  <div class="row general">
-                      <div class="col head-table">Ім'я</div>
-                      <div class="col head-table">Оцінка</div>
-                      <div class="col head-table"></div>
-                  </div>
-                  <div class="row" *ngFor="let evaluation of interviewEvaluations; let i = index;">
-                      <div class="col head-table">{{evaluation.juryMemberName}}</div>
-                      <div class="col head-table">{{evaluation.evaluation}}</div>
-                      <div class="col head-table"><button mat-icon-button color="warn" (click)="removeInterviewEvaluation(i)"><mat-icon>delete_forever</mat-icon></button></div>
-                  </div>
-                  <div class="row general">
-                      <div class="col head-table">Підсумок</div>
-                      <div class="col head-table">{{getTotalInterviewEvaluation()}}</div>
-                      <div class="col head-table"></div>
-                  </div>
-                </div>
-                <div class="interview-eval-container top-margin">
-                    <form [formGroup]="evalSecondStageForm">
-                        <mat-form-field class="full-width">
-                            <mat-select placeholder="Жюрі" [(ngModel)]="selectedUser" name="user" formControlName="user">
-                            <mat-option *ngFor="let user of listUsers" [value]="user">
-                                {{user.fullName}}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <mat-select placeholder="Оцінка" [(ngModel)]="selectedValue" name="value" formControlName="evaluation">
-                            <mat-option *ngFor="let value of listValues" [value]="value">
-                                {{value}}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                        <button mat-raised-button color="primary" (click)="saveEvalSecondStage()"><mat-icon>add</mat-icon> Додати оцінку</button>
-                    </form>
-                </div>
-
-<!--
-
-                    <mat-card>
-                        <mat-tab-group>
-                            <mat-tab label="{{interviewEvaluation.juryMemberName}}: {{interviewEvaluation.evaluation}}" *ngFor="let interviewEvaluation of interviewEvaluations; let i = index;">
-                                <mat-card>
-                                    <mat-card-header>
-                                        <mat-card-title><b>Другий етап оцінювання</b></mat-card-title>
-                                    </mat-card-header>
-                                    <mat-card-content>
-                                        <ul>
-                                            <li>Оцінка після інтрев'ю</li>
-                                        </ul>
-                                    </mat-card-content>
-                                    <mat-card-actions>
-                                        <mat-slider
-                                            [max]=5
-                                            [step]=1
-                                            [thumb-label]=true
-                                            [tick-interval]=2
-                                            [(ngModel)]="interviewEvaluation.evaluation">
-                                        </mat-slider>
-                                    </mat-card-actions>
-                                </mat-card>
-                            </mat-tab>
-                        </mat-tab-group>
-                    </mat-card> -->
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Прикріплені файли">
-        <div class = "attach-doc-container">
-            <div *ngIf="filesInfo.length > 0">
-                <mat-list>
-                    <h3  mat-subheader>Документи для пеергляду</h3>
-                    <mat-list-item *ngFor="let fileInfo of filesInfo ">
-                    <mat-icon mat-list-icon>note</mat-icon>
-                    <p mat-line><a target="_blank"  href="{{basUrl}}admin/project/files/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
-                    </mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-            </div>
-            <div *ngIf="filesInfo.length == 0" >
-                    <p>Документи для перегляду відсутні</p>
-            </div>
-
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("name")}}</mat-error>
+          </mat-form-field>
         </div>
-    </mat-tab>
-  </mat-tab-group>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Запитувана сума</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+            <textarea matInput formControlName="requestedBudget" required></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Назва організації або ініціативної групи</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="250" #organizationName
+                                      formControlName="organizationName"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("organizationName")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Тематичний напрямок</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="250" #theme
+                                      formControlName="theme"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("theme")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Координатор/ка проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+            <input matInput maxlength="100" #coordinatorName
+                   formControlName="coordinatorName"
+                   required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorName")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Координатор/ка проекту (моб.тел.)</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="coordinatorPhone" required>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorPhone")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Координатор/ка проекту (електронна адреса)</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+            <input matInput maxlength="50" formControlName="coordinatorEmail" required>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("coordinatorEmail")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Попередній досвід команди проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="2000" #expirienceDescription
+                                      formControlName="expirienceDescription"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("expirienceDescription")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Адреса організації</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="250" #address formControlName="address"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("address")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Мета проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="1000" #goal formControlName="goal"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("goal")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Актуальність проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="2000" #actuality formControlName="actuality"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("actuality")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>"Очікувані результати</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="2000" #expectedResults formControlName="expectedResults"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("expectedResults")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Опис проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="2000" #fullDescription
+                                      formControlName="fullDescription"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("fullDescription")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Цільові групи</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="2000" #targetGroup formControlName="targetGroup"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("targetGroup")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Команда проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="1000" #projectMembers formControlName="projectMembers"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("projectMembers")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Погодження та дозволи</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="1000" #requiredPermissions
+                                      formControlName="requiredPermissions"
+                                      required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("requiredPermissions")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Партнери та спонсори</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+                            <textarea matInput maxlength="1000" #partners formControlName="partners"
+                                      matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6"></textarea>
+            <mat-error *ngIf="appDescForm">{{getErrorMessage("partners")}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-12"><b>Термін втілення проекту</b></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="requiredTime">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
 
-  <button  class="evluation-btn top-margin" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()" mat-raised-button color="primary"><mat-icon>cached</mat-icon> Оновити дані</button>
-
-  <div class="comment-send-container">
-    <mat-form-field>
-        <textarea matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6" [(ngModel)]="commentText" matInput placeholder="Коментар"></textarea>
-    </mat-form-field>
-    </div>
-    <button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
-        <mat-icon>send</mat-icon>
-    </button>
-
-    <div allArrComments *ngFor="let comment of comments.reverse()" class="comment-container">
-      <div class="card">
-          <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted comment-text">
-              <b>{{comment.userName}}</b>&nbsp;&nbsp;
-              {{comment.text}}
-              <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
-          </h6>
+  <mat-tab label="Б'юджет">
+    <div class="top-margin" *ngIf="calculations.totalFromProgram + calculations.totalFromOtherSources > 0">
+      <div *ngIf="projectBudget.costItemsFee.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Гонорари, трудові угоди</div>
+          <div class="col-sm-2 head-table">Розмір винагороди</div>
+          <div class="col-sm-2 head-table">Затрачений робочий час</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsFee; let i=index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[0].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalFeeFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalFeeFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsTransport.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Tранспортні витрати</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsTransport; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[1].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalTransportFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalTransportFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsNutrition.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Вартість харчування</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsNutrition; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[2].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalNutritionFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalNutritionFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsRent.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Вартість оренди</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsRent; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[3].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalRentFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalRentFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsAdministrative.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Вартість пунктів адміністрування</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsAdministrative; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[4].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalAdministrativeFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalAdministrativeFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsAdvertising.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Вартість пунктів адміністрування</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsAdvertising; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[5].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalAdvertisingFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalAdvertisingFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsMaterial.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Придбання (купівля витратних матеріалів, тощо)</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsMaterial; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[6].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalMaterialsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalMaterialsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+      <div *ngIf="projectBudget.costItemsOthers.length > 0">
+        <div class="row general">
+          <div class="col-sm-3 head-table">Придбання (купівля витратних матеріалів, тощо)</div>
+          <div class="col-sm-2 head-table">Вартість на одну особу / день</div>
+          <div class="col-sm-2 head-table">К-сть осіб</div>
+          <div class="col-sm-2 head-table">з програми грн.</div>
+          <div class="col-sm-2 head-table">з інших джерел грн.</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+        <div class="row" *ngFor="let item of projectBudget.costItemsOthers; let i = index">
+          <div class="col-sm-3 head-table">{{item.description}}</div>
+          <div class="col-sm-2 head-table">{{item.cost}}</div>
+          <div class="col-sm-2 head-table">{{item.count}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{item.consumptionsFromOtherSources}}</div>
+          <div class="col-sm-1 head-table">
+            <button mat-icon-button color="warn" (click)="removeCostItem(i,costItemCategories[7].value)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 head-table"></div>
+          <div class="col-sm-2 head-table"></div>
+          <div class="col-sm-2 head-table"><b>Сума :</b></div>
+          <div class="col-sm-2 head-table">{{calculations.totalOthersFromProgram}}</div>
+          <div class="col-sm-2 head-table">{{calculations.totalOthersFromOtherSources}}</div>
+          <div class="col-sm-1 head-table"></div>
+        </div>
+      </div>
+
+      <div class="row general">
+        <div class="col-sm-3 head-table"></div>
+        <div class="col-sm-2 head-table"></div>
+        <div class="col-sm-2 head-table"><b>Загальна сума: </b></div>
+        <div class="col-sm-2 head-table">{{calculations.totalFromProgram}} грн.</div>
+        <div class="col-sm-2 head-table">{{calculations.totalFromOtherSources}} грн.</div>
+        <div class="col-sm-1 head-table"></div>
+      </div>
+      <div class="row general">
+        <div class="col-sm-3 head-table"></div>
+        <div class="col-sm-2 head-table"></div>
+        <div class="col-sm-2 head-table"><b>Бюджет:</b></div>
+        <div class="col-sm-2 head-table">{{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.
+        </div>
+        <div class="col-sm-2 head-table"></div>
+        <div class="col-sm-1 head-table"></div>
       </div>
     </div>
+
+    <form [formGroup]="appCostItem" class="formBudget" #formDirective="ngForm"
+          (ngSubmit)="submitCostItemForm(formDirective)" novalidate>
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Оберіть категорію витрат:" formControlName="category" required>
+          <mat-option disabled>Оберіть категорію витрат</mat-option>
+          <mat-option *ngFor="let category of costItemCategories" [value]="category.value">{{category.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("category")}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput maxlength="250" #description placeholder="Пояснення" formControlName="description" required>
+        <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
+        <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("description")}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput maxlength="5" placeholder="Вартість за одиниицю часу/на одну особу, грн.:"
+               formControlName="cost" required>
+        <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("cost")}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput maxlength="5" placeholder="Кількість / затрачений час:" formControlName="count" required>
+        <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("count")}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Витрати з програми, грн.:" formControlName="consumptionsFromProgram" type="number"
+               required>
+        <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromProgram")}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Витарти з інших джерел, грн.:" formControlName="consumptionsFromOtherSources"
+               type="number" required>
+        <mat-error *ngIf="appCostItem">{{getErrorMessageCostForm("consumptionsFromOtherSources")}}</mat-error>
+      </mat-form-field>
+
+      <button class="evluation-btn" mat-raised-button color="primary" type="submit" [disabled]="!appCostItem.valid">
+        <mat-icon>add</mat-icon>
+        Додати
+      </button>
+    </form>
+
+  </mat-tab>
+  <mat-tab label="Оцінювання">
+    <mat-card *ngIf="evaluations.length == 0 && interviewEvaluations.length == 0 ">
+      <mat-card-content>
+        <b>В даному проекті оцінки відсутні</b>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card-evaluation">
+      <mat-tab-group>
+        <mat-tab label="Перший етап" *ngIf="evaluations.length > 0">
+
+          <div class="row general top-margin">
+            <div class="col-sm-3 head-table">Ім'я</div>
+            <div class="col-sm-1 head-table">Актуальність</div>
+            <div class="col-sm-1 head-table ">Зрозумілість</div>
+            <div class="col-sm-1 head-table ">Компетент.</div>
+            <div class="col-sm-1 head-table ">Стійкість</div>
+            <div class="col-sm-1 head-table ">Витрати</div>
+            <div class="col-sm-1 head-table ">Інноваційність</div>
+            <div class="col-sm-1 head-table ">Залучення</div>
+            <div class="col-sm-1 head-table ">Співпраця</div>
+            <div class="col-sm-1 head-table ">Сума</div>
+          </div>
+          <div class="row" *ngFor="let evaluation of evaluations; let i = index;">
+            <div class="col-border col-sm-3 head-table">{{evaluation.juryMemberFullName}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalActual}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalIntelligibility}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalCompetence}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalStability}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalEfficiency}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalInnovation}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalAttracting}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalParticipation}}</div>
+            <div class="col-border col-sm-1 head-table">{{evaluation.evalActual
+              + evaluation.evalIntelligibility + evaluation.evalCompetence + evaluation.evalStability
+              + evaluation.evalEfficiency + evaluation.evalInnovation + evaluation.evalAttracting +
+              evaluation.evalParticipation}}
+            </div>
+          </div>
+
+          <div class="row general">
+            <div class="col-sm-3 head-table">Підсумок</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalActual(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalIntelligibility(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalCompetence(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalStability(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalEfficiency(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalInnovation(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalAttracting(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalTotalParticipation(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getTotalEvalFirstStage(evaluations)}}</div>
+          </div>
+          <div class="row general-bottom">
+            <div class="col-sm-3 head-table">Середній показник</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageActual(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageIntelligibility(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageCompetence(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageStability(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageEfficiency(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageInnovation(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageAttracting(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getEvalAverageParticipation(evaluations)}}</div>
+            <div class="col-sm-1 head-table">{{getAverageEvalFirstStage(evaluations)}}</div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Другий етап">
+          <div class="top-margin" *ngIf="getTotalInterviewEvaluation() > 0">
+            <div class="row general">
+              <div class="col head-table">Ім'я</div>
+              <div class="col head-table">Оцінка</div>
+              <div class="col head-table"></div>
+            </div>
+            <div class="row" *ngFor="let evaluation of interviewEvaluations; let i = index;">
+              <div class="col head-table">{{evaluation.juryMemberName}}</div>
+              <div class="col head-table">{{evaluation.evaluation}}</div>
+              <div class="col head-table">
+                <button mat-icon-button color="warn" (click)="removeInterviewEvaluation(i)">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row general">
+              <div class="col head-table">Підсумок</div>
+              <div class="col head-table">{{getTotalInterviewEvaluation()}}</div>
+              <div class="col head-table"></div>
+            </div>
+          </div>
+          <div class="interview-eval-container top-margin">
+            <form [formGroup]="evalSecondStageForm">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Жюрі" [(ngModel)]="selectedUser" name="user" formControlName="user">
+                  <mat-option *ngFor="let user of listUsers" [value]="user">
+                    {{user.fullName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Оцінка" [(ngModel)]="selectedValue" name="value" formControlName="evaluation">
+                  <mat-option *ngFor="let value of listValues" [value]="value">
+                    {{value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button color="primary" (click)="saveEvalSecondStage()">
+                <mat-icon>add</mat-icon>
+                Додати оцінку
+              </button>
+            </form>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Прикріплені файли">
+    <div class="attach-doc-container">
+      <div *ngIf="filesInfo.length > 0">
+        <mat-list>
+          <h3 mat-subheader>Документи для пеергляду</h3>
+          <mat-list-item *ngFor="let fileInfo of filesInfo ">
+            <mat-icon mat-list-icon>note</mat-icon>
+            <p mat-line><a target="_blank"
+                           href="{{basUrl}}admin/project/files/{{fileInfo.id}}">{{fileInfo.filename}}</a></p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+      <div *ngIf="filesInfo.length == 0">
+        <p>Документи для перегляду відсутні</p>
+      </div>
+
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<button class="evluation-btn top-margin" [disabled]="!appDescForm.valid" (click)="submitDescriptionForm()"
+        mat-raised-button color="primary">
+  <mat-icon>cached</mat-icon>
+  Оновити дані
+</button>
+
+<div class="comment-send-container">
+  <mat-form-field>
+    <textarea matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows="6" [(ngModel)]="commentText" matInput
+              placeholder="Коментар"></textarea>
+  </mat-form-field>
+</div>
+<button (click)="saveComment()" [disabled]="isDisableCommentButton()" mat-raised-button color="primary">Відправити
+  <mat-icon>send</mat-icon>
+</button>
+
+<div allArrComments *ngFor="let comment of comments.reverse()" class="comment-container">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted comment-text">
+        <b>{{comment.userName}}</b>&nbsp;&nbsp;
+        {{comment.text}}
+        <div class="comment-date">{{comment.date |date: 'dd.MM.yyyy HH:mm:ss'}}</div>
+      </h6>
+    </div>
+  </div>
+</div>

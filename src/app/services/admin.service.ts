@@ -1,27 +1,25 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators';
-import { HttpRequest } from '@angular/common/http/src/request';
-import { User } from '../models/user';
-import { ProjectAdm } from '../models/projectAdm';
-import { Evaluation } from '../models/evaluation';
-import { Comment } from '../models/comment';
-import { BudgetCalculations } from '../models/budgetCalculations';
-import { Budget } from '../models/budget';
-import { CostItem } from '../models/costItem';
-import { BASEURL } from '../constants/projectConstants';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {catchError} from 'rxjs/operators';
+import {User} from '../models/user';
+import {ProjectAdm} from '../models/projectAdm';
+import {Evaluation} from '../models/evaluation';
+import {Comment} from '../models/comment';
+import {BudgetCalculations} from '../models/budgetCalculations';
+import {Budget} from '../models/budget';
+import {CostItem} from '../models/costItem';
+import {BASEURL} from '../constants/projectConstants';
 
 @Injectable()
 export class AdminService {
-
-  private baseUserUrl   : string;
+  private baseUserUrl: string;
   private baseProjectUrl: string;
 
   constructor(private http: HttpClient) {
 
-    this.baseUserUrl    = BASEURL + 'admin/user';
+    this.baseUserUrl = BASEURL + 'admin/user';
     this.baseProjectUrl = BASEURL + 'admin/project';
   }
 
@@ -59,32 +57,32 @@ export class AdminService {
     return this.http.put(this.baseProjectUrl, project);//.toPromise().catch(this.handleError);
   }
 
-  updateApprovedToSecondStage(id:string, isApproved:boolean){
-    this.http.put(this.baseProjectUrl + "/" + id + "/approved/" + isApproved,"").toPromise().catch(this.handleError);
+  updateApprovedToSecondStage(id: string, isApproved: boolean) {
+    this.http.put(this.baseProjectUrl + "/" + id + "/approved/" + isApproved, "").toPromise().catch(this.handleError);
   }
 
   delete(id: string) {
     this.http.delete(this.baseProjectUrl + "/" + id).toPromise().catch(this.handleHttpError);
   }
 
-  deleteCommentOfProject(idProject:string, idComment:string){
+  deleteCommentOfProject(idProject: string, idComment: string) {
     this.http.delete(this.baseProjectUrl + "/" + idProject + "/comment/" + idComment).toPromise().catch(this.handleHttpError);
   }
 
-  updateEvaluationOfProject(idProject:String, evaluation: Evaluation){
+  updateEvaluationOfProject(idProject: String, evaluation: Evaluation) {
     this.http.post(this.baseProjectUrl + "/" + idProject + "/evaluation", evaluation).toPromise().catch(this.handleError);
   }
 
-  saveCommentOfProject(idProject:String, comment: Comment){
+  saveCommentOfProject(idProject: String, comment: Comment) {
     this.http.post(this.baseProjectUrl + "/" + idProject + "/comment", comment).toPromise().catch(this.handleError);
   }
 
   /**
- * Handle Http operation that failed.
- * Let the app continue.
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -101,7 +99,6 @@ export class AdminService {
   }
 
   calculateBudget(budget: Budget): BudgetCalculations {
-
     let calculations = new BudgetCalculations;
 
     calculations.totalFeeFromOtherSources = budget.costItemsFee.reduce(this.accCallBackOtherSources, 0);

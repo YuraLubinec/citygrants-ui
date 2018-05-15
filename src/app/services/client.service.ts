@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Budget } from '../models/budget';
-import { BudgetCalculations } from '../models/budgetCalculations';
-import { CostItem } from '../models/costItem';
-import { ProjectApplication } from '../models/projectApplication';
+import {Injectable} from '@angular/core';
+import {Budget} from '../models/budget';
+import {BudgetCalculations} from '../models/budgetCalculations';
+import {CostItem} from '../models/costItem';
+import {ProjectApplication} from '../models/projectApplication';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { BASEURL } from '../constants/projectConstants';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {BASEURL} from '../constants/projectConstants';
 
 @Injectable()
 export class ClientService {
-
   private baseUrl: string;
-
 
   constructor(private http: HttpClient) {
 
@@ -40,7 +38,7 @@ export class ClientService {
     for (let i = 0; i < pdfs.length; i++) {
       formData.append('pdfDocs', pdfs[i]);
     }
-    return this.http.post(this.baseUrl + "/file", formData, { responseType: 'text' });
+    return this.http.post(this.baseUrl + "/file", formData, {responseType: 'text'});
   }
 
   calculateBudget(budget: Budget): BudgetCalculations {
@@ -94,11 +92,8 @@ export class ClientService {
 
   private handlePromiseError(err): Promise<any> {
 
-
     //TO-DO implement unique name validation error notification
     return Promise.reject(err);
   }
-
-
 
 }
