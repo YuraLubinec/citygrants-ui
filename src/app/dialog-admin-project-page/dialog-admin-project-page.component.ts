@@ -1,10 +1,9 @@
-import {OnInit, Component, Inject, ViewEncapsulation, Directive, ViewChildren, QueryList} from "@angular/core";
+import {Component, Inject, ViewEncapsulation, Directive, ViewChildren, QueryList} from "@angular/core";
 import {MAT_DIALOG_DATA, MatSnackBar, MatDialogRef} from "@angular/material";
 import {Evaluation} from "../models/evaluation";
 import {Description} from "../models/description";
 import {Budget} from "../models/budget";
 import {Comment} from "../models/comment";
-import {OnDestroy} from "@angular/core/src/metadata/lifecycle_hooks";
 import {FileInfo} from "../models/fileInfo";
 import {AdminService} from "../services/admin.service";
 import {ProjectAdm} from "../models/projectAdm";
@@ -73,7 +72,6 @@ export class DialogAdminProjectPageComponent {
     this.commentText = "";
     this.step = 0;
     this.dataProject = data;
-
 
     this.costItemCategories = [
       new CostItemCategory("FEE", "Гонорари, трудові угоди"),
@@ -147,7 +145,6 @@ export class DialogAdminProjectPageComponent {
 
     return total;
   }
-
 
   removeInterviewEvaluation(index: number) {
     this.interviewEvaluations.splice(index, 1);
@@ -380,7 +377,6 @@ export class DialogAdminProjectPageComponent {
         this.dialogProject.close(projectUpdate);
       },
       error => this.handlePromiseError(error));
-
   }
 
   callSnackBarMessage() {
@@ -417,7 +413,6 @@ export class DialogAdminProjectPageComponent {
     });
 
     return currentTotal;
-
   }
 
   getAverageEvalFirstStage(evaluations: Array<Evaluation>) {
@@ -564,7 +559,7 @@ export class DialogAdminProjectPageComponent {
       + dateNow.getHours()
       + dateNow.getMinutes()
       + dateNow.getMilliseconds();
-    +dateNow.getMilliseconds();
+      + dateNow.getMilliseconds();
 
     const tempComment = new Comment(idComment, "", localStorage.getItem(LOGIN), this.commentText, new Date);
     this.adminService.saveCommentOfProject(this.id, tempComment);
@@ -623,4 +618,5 @@ export class DialogAdminProjectPageComponent {
   isDisableCommentButton() {
     return this.commentText.length <= 0;
   }
+
 }

@@ -1,14 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { BASEURL, ROLE, LOGIN, AUTH_HEADER } from '../constants/projectConstants';
-import { User } from '../models/user';
-import { Observable } from 'rxjs/Observable';
-import { catchError } from 'rxjs/operators/catchError';
-import { of } from 'rxjs/observable/of';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {BASEURL, ROLE, AUTH_HEADER} from '../constants/projectConstants';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { LocalStorageService } from './locastorage.service';
-import { SharedService } from './sharedService';
+import {LocalStorageService} from './locastorage.service';
+import {SharedService} from './sharedService';
 
 const URLSUFFIXLOGIN: string = 'login';
 const URLSUFFIXAUTHORIZATION: string = 'authority';
@@ -21,7 +18,7 @@ const BODYPASSWORD: string = '&password=';
 export class LoginService {
   private authenticated: boolean;
 
-  constructor(private localStorageService: LocalStorageService, private sharedService:SharedService, private http: HttpClient, private router: Router) {
+  constructor(private localStorageService: LocalStorageService, private sharedService: SharedService, private http: HttpClient, private router: Router) {
 
   }
 
@@ -29,7 +26,7 @@ export class LoginService {
 
     this.localStorageService.clearLocalStorage();
     return this.http.post(BASEURL + URLSUFFIXLOGIN, BODYUSERNAME + login + BODYPASSWORD + password,
-      { headers: new HttpHeaders().append(HEADERCONTENTTYPE, HEADERVALUE), observe: 'response' })
+      {headers: new HttpHeaders().append(HEADERCONTENTTYPE, HEADERVALUE), observe: 'response'})
       .map((response: HttpResponse<any>) => {
         const token = response.headers.get(AUTH_HEADER);
         if (token) {

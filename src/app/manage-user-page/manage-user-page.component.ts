@@ -79,7 +79,6 @@ export class ManageUserPageComponent implements OnInit {
 
   }
 
-
   deleteUser(row) {
     for (let curUser = 0; curUser < this.users.length; curUser++) {
       if (row.id === this.users[curUser].id) {
