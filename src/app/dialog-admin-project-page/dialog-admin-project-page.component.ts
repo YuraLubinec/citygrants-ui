@@ -439,7 +439,7 @@ export class DialogAdminProjectPageComponent {
     getEvalAverageActual(evaluations:Array<Evaluation>){
       let total = this.getEvalTotalActual(evaluations);
 
-      return total / evaluations.length;
+      return Number(total / evaluations.length).toFixed(2);
     }
 
     getEvalTotalIntelligibility(evaluations:Array<Evaluation>){
