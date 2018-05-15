@@ -2,7 +2,7 @@
   <mat-step [stepControl]="appDescForm">
       <div class="client-form-container">
         <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm(stepper)" novalidate>
-          <ng-template matStepLabel>Заповни форму</ng-template>
+          <ng-template matStepLabel>Заповніть форму</ng-template>
           <mat-form-field class="full-width">
             <textarea matInput maxlength="250" #name placeholder="Назва проекту :" formControlName="name" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="6"></textarea>
             <mat-hint align="end">{{name.value.length}} / 250</mat-hint>
@@ -108,7 +108,7 @@
 
     <mat-step [stepControl]="appCostItem">
         <form [formGroup]="appCostItem"(ngSubmit)="submitCostItemForm()" novalidate>
-          <ng-template matStepLabel>Заповни кошторис</ng-template>
+          <ng-template matStepLabel>Заповніть кошторис</ng-template>
           <mat-form-field class="full-width">
             <mat-select placeholder="Оберіть категорію витрат:" formControlName="category">
               <mat-option disabled>Оберіть категорію витрат</mat-option>
@@ -187,7 +187,7 @@
                 <div class="col-sm-2">з інших джерел грн.</div>
                 <div class="col-sm-1"></div>
               </div>
-              
+
               <div class="row" *ngFor="let costItem of budget.costItemsTransport; let i = index">
                 <div class="col-sm-3">{{costItem.description}}</div>
                 <div class="col-sm-2">{{costItem.cost}}</div>
@@ -373,7 +373,7 @@
             <div class="row general">
               <div class="col-sm-3"></div>
               <div class="col-sm-2"></div>
-              <div class="col-sm-2"><b>Загальний бюджет проекту:</b></div>
+              <div class="col-sm-2"><b>Загальний бюджет:</b></div>
               <div class="col-sm-2">{{calculations.totalFromProgram + calculations.totalFromOtherSources}} грн.</div>
               <div class="col-sm-2"></div>
               <div class="col-sm-1"></div>
@@ -382,7 +382,7 @@
         </div>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Завантажити файли</ng-template>
+        <ng-template matStepLabel>Завантажте файли</ng-template>
         <div>
           <div class="button-row">
             Завантажте файли проекту, які будуть розглянуті членами жюрі. <br>
@@ -421,7 +421,7 @@
       </mat-step>
 
       <mat-step>
-          <ng-template matStepLabel>Відіслати заявку</ng-template>
+          <ng-template matStepLabel>Відішліть заявку</ng-template>
           <button mat-button matStepperNext mat-raised-button color="primary" (click)="confirmProjectApplication(stepper)">Відіслати для розгляду <mat-icon>mail_outline</mat-icon></button>
       </mat-step>
 </mat-horizontal-stepper>
