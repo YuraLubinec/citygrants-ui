@@ -151,7 +151,6 @@ export class DialogAdminProjectPageComponent {
 
   removeInterviewEvaluation(index: number) {
     this.interviewEvaluations.splice(index, 1);
-    //let index = this.interviewEvaluations.findIndex(e => e.juryMemberId === evaluation.juryMemberId);
   }
 
   submitCostItemForm(formDirective: FormGroupDirective) {
@@ -622,6 +621,6 @@ export class DialogAdminProjectPageComponent {
   }
 
   isDisableCommentButton() {
-    return this.commentText.length <= 0 ? true : false;
+    return this.commentText.length <= 0;
   }
 }
