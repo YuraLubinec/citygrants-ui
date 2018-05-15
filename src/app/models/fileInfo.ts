@@ -1,10 +1,10 @@
 export class FileInfo {
   id: String;
-  fileName: String;
+  filename: String;
 
-  constructor(id: String, fileName: String) {
+  constructor(id: String, filename: String) {
     this.id = id;
-    this.fileName = fileName;
+    this.filename = filename;
   }
 
 }
