@@ -1,6 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {DialogAdminUserPageComponent} from "../dialog-admin-user-page/dialog-admin-user-page.component";
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-dialog-confirm-delete-page',
@@ -9,7 +8,8 @@ import {DialogAdminUserPageComponent} from "../dialog-admin-user-page/dialog-adm
 })
 export class DialogConfirmDeletePageComponent implements OnInit {
 
-  constructor(public dialogConfirm: MatDialogRef<DialogConfirmDeletePageComponent>) { }
+  constructor(public dialogConfirm: MatDialogRef<DialogConfirmDeletePageComponent>) {
+  }
 
   ngOnInit() {
   }
