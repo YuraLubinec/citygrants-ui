@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-sm-12">
           <mat-form-field class="full-width">
-            <textarea matInput formControlName="requestedBudget" required></textarea>
+            <textarea matInput formControlName="requestedBudget" required matTextareaAutosize matAutosizeMinRows matAutosizeMaxRows></textarea>
             <mat-error *ngIf="appDescForm">{{getErrorMessage("requestedBudget")}}</mat-error>
           </mat-form-field>
         </div>
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div class="row general">
-        <div class="col-sm-12"><b>"Очікувані результати</b></div>
+        <div class="col-sm-12"><b>Очікувані результати</b></div>
       </div>
       <div class="row">
         <div class="col-sm-12">
