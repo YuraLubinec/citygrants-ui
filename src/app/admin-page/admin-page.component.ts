@@ -56,7 +56,8 @@ export class AdminPageComponent implements OnInit {
 
   openDialogConfirmRemove(row): void {
     let dialogRef = this.dialogConfirm.open(DialogConfirmDeletePageComponent, {
-      width: '60%',
+      width: '500px',
+      minWidth:'500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

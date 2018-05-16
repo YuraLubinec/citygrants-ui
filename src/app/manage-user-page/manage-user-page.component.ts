@@ -50,7 +50,6 @@ export class ManageUserPageComponent implements OnInit {
   }
 
   private dataHandler(users: any) {
-
     this.users = users as Array<User>;
     this.dataSource = new MatTableDataSource(this.users);
     this.length = this.users.length;
@@ -69,7 +68,8 @@ export class ManageUserPageComponent implements OnInit {
 
   openDialogConfirmRemove(row): void {
     let dialogRef = this.dialogConfirm.open(DialogConfirmDeletePageComponent, {
-      width: '60%',
+      width: '500px',
+      minWidth:'500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
