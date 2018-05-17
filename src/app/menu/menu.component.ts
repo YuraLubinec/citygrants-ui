@@ -1,4 +1,4 @@
-import {OnInit, Component} from "@angular/core";
+import {Component} from "@angular/core";
 import {AUTH_TOKEN, ROLE} from "../constants/projectConstants";
 import {SharedService} from "../services/sharedService";
 import {LoginService} from "../services/login.service";
@@ -11,11 +11,11 @@ import {LoginService} from "../services/login.service";
 })
 
 export class MenuComponent {
-  private isLogin = localStorage.getItem(AUTH_TOKEN) !== undefined;
-  private isAdmin = localStorage.getItem(ROLE) === 'ADMIN';
-  private isJury = localStorage.getItem(ROLE) === 'JURYMEMBER';
+  public isLogin = localStorage.getItem(AUTH_TOKEN) !== undefined;
+  public isAdmin = localStorage.getItem(ROLE) === 'ADMIN';
+  public isJury = localStorage.getItem(ROLE) === 'JURYMEMBER';
 
-  constructor(private sharedService: SharedService, private logService: LoginService) {
+  constructor(public sharedService: SharedService, public logService: LoginService) {
     this.sharedService.IsUserLoggedIn.subscribe(value => {
       this.isLogin = value;
     });

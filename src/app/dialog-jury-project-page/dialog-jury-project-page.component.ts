@@ -21,24 +21,24 @@ import {LOGIN, BASEURL} from "../constants/projectConstants";
 })
 
 export class DialogJuryProjectPageComponent {
-  private id: String;
-  private projectDescription: Description;
-  private projectBudget: Budget;
-  private evaluation: Evaluation;
-  private comments: Array<Comment>;
-  private comment: Comment;
-  private filesInfo: Array<FileInfo>;
-  private commentText: string;
-  private step = 0;
-  private calculations: BudgetCalculations;
-  private approvedToSecondStage: boolean;
-  private interviewEvaluation: InterviewEvaluation;
-  private basUrl = BASEURL;
-  private currentUser: User;
+  public id: String;
+  public projectDescription: Description;
+  public projectBudget: Budget;
+  public evaluation: Evaluation;
+  public comments: Array<Comment>;
+  public comment: Comment;
+  public filesInfo: Array<FileInfo>;
+  public commentText: string;
+  public step = 0;
+  public calculations: BudgetCalculations;
+  public approvedToSecondStage: boolean;
+  public interviewEvaluation: InterviewEvaluation;
+  public basUrl = BASEURL;
+  public currentUser: User;
 
   @ViewChildren('allArrComments') arrComments: QueryList<any>;
 
-  constructor(private juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(public juryService: JuryService, @Inject(MAT_DIALOG_DATA) public data: any,
               public snackBar: MatSnackBar, public dialogProject: MatDialogRef<DialogJuryProjectPageComponent>,) {
     this.id = data.id;
     this.projectDescription = data.description;

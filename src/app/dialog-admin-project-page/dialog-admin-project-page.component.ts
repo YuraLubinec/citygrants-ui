@@ -25,41 +25,41 @@ import {User} from "../models/user";
 })
 
 export class DialogAdminProjectPageComponent {
-  private id: string;
-  private projectDescription: Description;
-  private projectBudget: Budget;
-  private evaluations: Array<Evaluation>;
-  private interviewEvaluations: Array<InterviewEvaluation>;
-  private comments: Array<Comment>;
-  private listUsers: Array<User>;
-  private comment: Comment;
-  private filesInfo: Array<FileInfo>;
-  private commentText: string;
-  private approvedToSecondStage: boolean;
-  private step = 0;
-  private costItemCategories: Array<CostItemCategory>;
-  private appDescForm: FormGroup;
-  private appCostItem: FormGroup;
-  private evalSecondStageForm: FormGroup;
-  private calculations: BudgetCalculations;
-  private totalEvalFirstStage: Number;
-  private basUrl = BASEURL;
-  private notUniqNamelMessage: string;
-  private dataProject: ProjectAdm;
-  private selectedUser: User;
-  private selectedValue: Number;
-  private currentUser: User;
+  public id: string;
+  public projectDescription: Description;
+  public projectBudget: Budget;
+  public evaluations: Array<Evaluation>;
+  public interviewEvaluations: Array<InterviewEvaluation>;
+  public comments: Array<Comment>;
+  public listUsers: Array<User>;
+  public comment: Comment;
+  public filesInfo: Array<FileInfo>;
+  public commentText: string;
+  public approvedToSecondStage: boolean;
+  public step = 0;
+  public costItemCategories: Array<CostItemCategory>;
+  public appDescForm: FormGroup;
+  public appCostItem: FormGroup;
+  public evalSecondStageForm: FormGroup;
+  public calculations: BudgetCalculations;
+  public totalEvalFirstStage: Number;
+  public basUrl = BASEURL;
+  public notUniqNamelMessage: string;
+  public dataProject: ProjectAdm;
+  public selectedUser: User;
+  public selectedValue: Number;
+  public currentUser: User;
 
-  private requiredMessage = "обов'язково для заповнення"
-  private defaultMessage = "помилка введення";
-  private patternMessage = "не відповідає параметрам введення";
-  private patternEmail = "не вірний формат електронної пошти";
-  private listValues = [1, 2, 3, 4, 5];
+  public requiredMessage = "обов'язково для заповнення";
+  public defaultMessage = "помилка введення";
+  public patternMessage = "не відповідає параметрам введення";
+  public patternEmail = "не вірний формат електронної пошти";
+  public listValues = [1, 2, 3, 4, 5];
 
   @ViewChildren('allArrComments') arrComments: QueryList<any>;
 
-  constructor(private adminService: AdminService, public dialogProject: MatDialogRef<DialogAdminProjectPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-              public snackBar: MatSnackBar, private fb: FormBuilder) {
+  constructor(public adminService: AdminService, public dialogProject: MatDialogRef<DialogAdminProjectPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
+              public snackBar: MatSnackBar, public fb: FormBuilder) {
 
     this.id = data.id;
     this.approvedToSecondStage = data.approvedToSecondStage;
@@ -118,7 +118,7 @@ export class DialogAdminProjectPageComponent {
 
   saveEvalSecondStage() {
     let field = this.evalSecondStageForm.value;
-    var e = new InterviewEvaluation();
+    let e = new InterviewEvaluation();
     e.juryMemberId = field.user.id;
     e.juryMemberName = field.user.fullName;
     e.evaluation = field.evaluation;
@@ -158,7 +158,7 @@ export class DialogAdminProjectPageComponent {
     this.appCostItem.reset();
   }
 
-  private addCostItemByCategory(field: any) {
+  public addCostItemByCategory(field: any) {
     switch (field.category) {
       case this.costItemCategories[0].value: {
         this.projectBudget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
@@ -317,10 +317,6 @@ export class DialogAdminProjectPageComponent {
         return this.appDescForm.controls.requiredPermissions.hasError("required") ? this.requiredMessage :
           this.appDescForm.controls.requiredPermissions.hasError("pattern") ? this.patternMessage : this.defaultMessage;
       }
-      case "expectedResults": {
-        return this.appDescForm.controls.expectedResults.hasError("required") ? this.requiredMessage :
-          this.appDescForm.controls.expectedResults.hasError("pattern") ? this.patternMessage : this.defaultMessage;
-      }
       case "partners": {
         return this.appDescForm.controls.partners.hasError("required") ? this.requiredMessage :
           this.appDescForm.controls.partners.hasError("pattern") ? this.patternMessage : this.defaultMessage;
@@ -370,7 +366,7 @@ export class DialogAdminProjectPageComponent {
 
     this.adminService.updateProject(projectUpdate).subscribe(
       response => {
-        this.callSnackBarMessage()
+        this.callSnackBarMessage();
         projectUpdate.totalEvalFirstStage = this.getTotalEvalFirstStage(this.evaluations);
         projectUpdate.totalEvalSecondStage = this.getTotalEvalSecondStage(this.interviewEvaluations);
 
@@ -385,12 +381,12 @@ export class DialogAdminProjectPageComponent {
     });
   }
 
-  private handlePromiseError(err): void {
+  public handlePromiseError(err): void {
 
     err.status == '400' ? this.checkErrorGetMessage(err) : alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
   }
 
-  private checkErrorGetMessage(err: any) {
+  public checkErrorGetMessage(err: any) {
     if (err.status == '400') {
       this.notUniqNamelMessage = err.error.message;
       this.appDescForm.controls['name'].setErrors({'notUniqName': true});

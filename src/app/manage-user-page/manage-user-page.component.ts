@@ -16,21 +16,21 @@ import {DialogConfirmDeletePageComponent} from "../dialog-confirm-delete-page/di
 })
 
 export class ManageUserPageComponent implements OnInit {
-  private users: Array<User>;
-  private dataSource: any;
-  private length: Number;
-  private pageSize: Number;
-  private pageEvent: PageEvent;
-  private pageSizeOptions = [5, 10, 25, 50];
-  private displayedColumns = ['login', 'fullName', 'role', 'buttons'];
-  private selection: SelectionModel<User>;
-  private positionTollTip = "above";
-  private userRoles: Array<Roles>;
+  public users: Array<User>;
+  public dataSource: any;
+  public length: Number;
+  public pageSize: Number;
+  public pageEvent: PageEvent;
+  public pageSizeOptions = [5, 10, 25, 50];
+  public displayedColumns = ['login', 'fullName', 'role', 'buttons'];
+  public selection: SelectionModel<User>;
+  public positionTollTip = "above";
+  public userRoles: Array<Roles>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private adminService: AdminService, public dialog: MatDialog, public dialogConfirm: MatDialog) {
+  constructor(public adminService: AdminService, public dialog: MatDialog, public dialogConfirm: MatDialog) {
 
     this.userRoles = [
       new Roles("ADMIN", "адміністратор"),
@@ -49,7 +49,7 @@ export class ManageUserPageComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  private dataHandler(users: any) {
+  public dataHandler(users: any) {
     this.users = users as Array<User>;
     this.dataSource = new MatTableDataSource(this.users);
     this.length = this.users.length;
@@ -62,7 +62,7 @@ export class ManageUserPageComponent implements OnInit {
     this.paginator._intl.previousPageLabel = 'Попердня сторінка';
   }
 
-  private searchErrorHandler(error: any) {
+  public searchErrorHandler(error: any) {
     alert("Вході виконання програми виникла помилка, спробуйте пізніше");
   }
 

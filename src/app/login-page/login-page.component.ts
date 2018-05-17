@@ -9,12 +9,12 @@ import {LoginService} from '../services/login.service';
   providers: [LoginService]
 })
 export class LoginPageComponent implements OnInit {
-  private loginForm: FormGroup;
-  private errorOccured: Boolean;
-  private authenticationErrorMessage = 'Неправильний логін або пароль';
-  private defaultErrorMessage = 'Сталася невідома помилка, спробуйте пізніше';
+  public loginForm: FormGroup;
+  public errorOccured: Boolean;
+  public authenticationErrorMessage = 'Неправильний логін або пароль';
+  public defaultErrorMessage = 'Сталася невідома помилка, спробуйте пізніше';
 
-  constructor(private loginService: LoginService, private fb: FormBuilder) {
+  constructor(public loginService: LoginService, public fb: FormBuilder) {
   }
 
   ngOnInit() {

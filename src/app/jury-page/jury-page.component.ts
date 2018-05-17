@@ -12,16 +12,16 @@ import {ProjectApplJury} from '../models/projectApplJury';
 })
 
 export class JuryPageComponent implements OnInit {
-  private projects: Array<ProjectApplJury>;
-  private dataSource: any;
-  private length: Number;
-  private pageSize: Number;
-  private pageEvent: PageEvent;
-  private pageSizeOptions = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme', 'evalFirst', 'status'];
-  private positionTollTip = "above";
+  public projects: Array<ProjectApplJury>;
+  public dataSource: any;
+  public length: Number;
+  public pageSize: Number;
+  public pageEvent: PageEvent;
+  public pageSizeOptions = [5, 10, 25, 50];
+  public displayedColumns = ['nameOfProject', 'requestedBudget', 'theme', 'evalFirst', 'status'];
+  public positionTollTip = "above";
 
-  constructor(private juryService: JuryService, public dialog: MatDialog) {
+  constructor(public juryService: JuryService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class JuryPageComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  private dataHandler(projects: any) {
+  public dataHandler(projects: any) {
     this.projects = projects as Array<ProjectApplJury>;
     this.dataSource = new MatTableDataSource(this.projects);
     this.dataSource.sort = this.sort;
@@ -84,7 +84,7 @@ export class JuryPageComponent implements OnInit {
     });
   }
 
-  private searchErrorHandler(error: any) {
+  public searchErrorHandler(error: any) {
     alert("Вході виконання програми виникла помилка, спробуйте пізніше");
   }
 

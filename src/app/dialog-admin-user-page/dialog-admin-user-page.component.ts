@@ -18,16 +18,16 @@ import {Router} from "@angular/router";
 })
 
 export class DialogAdminUserPageComponent implements OnInit {
-  private userForm: FormGroup;
-  private userRoles: Array<Roles>;
-  private currUserRole: string;
-  private notUniqEmailMessage: string;
-  private requiredMessage = "обов'язково для заповнення"
-  private defaultMessage = "помилка введення";
-  private patternMessage = "не відповідає параметрам введення";
-  private patternEmail = "не вірний формат електронної пошти";
+  public userForm: FormGroup;
+  public userRoles: Array<Roles>;
+  public currUserRole: string;
+  public notUniqEmailMessage: string;
+  public requiredMessage = "обов'язково для заповнення"
+  public defaultMessage = "помилка введення";
+  public patternMessage = "не відповідає параметрам введення";
+  public patternEmail = "не вірний формат електронної пошти";
 
-  constructor(private adminService: AdminService, public dialogUser: MatDialogRef<DialogAdminUserPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router: Router,
+  constructor(public adminService: AdminService, public dialogUser: MatDialogRef<DialogAdminUserPageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public fb: FormBuilder, public router: Router,
               public snackBar: MatSnackBar) {
 
     this.userRoles = [
@@ -73,7 +73,7 @@ export class DialogAdminUserPageComponent implements OnInit {
     this.createOrUpdateUser(user);
   }
 
-  private createOrUpdateUser(user: User) {
+  public createOrUpdateUser(user: User) {
     if (user.id === undefined) {
       this.adminService.createUser(user).subscribe(
         response => {
@@ -102,19 +102,19 @@ export class DialogAdminUserPageComponent implements OnInit {
     });
   }
 
-  private handlePromiseError(err): void {
+  public handlePromiseError(err): void {
 
     err.status == '400' ? this.checkErrorGetMessage(err) : alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
   }
 
-  private checkErrorGetMessage(err: any) {
+  public checkErrorGetMessage(err: any) {
     if (err.status == '400') {
       this.notUniqEmailMessage = err.error.message;
       this.userForm.controls['login'].setErrors({'notUniqEmail': true});
     }
   }
 
-  private getErrorMessage(controlName: String) {
+  public getErrorMessage(controlName: String) {
     switch (controlName) {
       case "login": {
         return this.userForm.controls.login.hasError("required") ? this.requiredMessage

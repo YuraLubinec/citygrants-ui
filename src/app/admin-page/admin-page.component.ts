@@ -13,25 +13,25 @@ import {DialogConfirmDeletePageComponent} from "../dialog-confirm-delete-page/di
   providers: [AdminService]
 })
 export class AdminPageComponent implements OnInit {
-  private projects: Array<ProjectAdm>;
-  private dataSource: any;
-  private length: Number;
-  private pageSize: Number;
-  private pageEvent: PageEvent;
-  private pageSizeOptions = [5, 10, 25, 50];
-  private displayedColumns = ['nameOfProject', 'requestedBudget', 'theme', 'totalEvalFirstStage', 'totalEvalSecondStage', 'select', 'buttons'];
-  private selection: SelectionModel<ProjectAdm>;
-  private positionTollTip = "above";
+  public projects: Array<ProjectAdm>;
+  public dataSource: any;
+  public length: Number;
+  public pageSize: Number;
+  public pageEvent: PageEvent;
+  public pageSizeOptions = [5, 10, 25, 50];
+  public displayedColumns = ['nameOfProject', 'requestedBudget', 'theme', 'totalEvalFirstStage', 'totalEvalSecondStage', 'select', 'buttons'];
+  public selection: SelectionModel<ProjectAdm>;
+  public positionTollTip = "above";
 
-  private checked = true;
-  private tour1 = "1-ий тур"
-  private tour2 = "2-ий тур"
+  public checked = true;
+  public tour1 = "1-ий тур"
+  public tour2 = "2-ий тур"
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private adminService: AdminService, public dialog: MatDialog, public dialogConfirm: MatDialog) {
+  constructor(public adminService: AdminService, public dialog: MatDialog, public dialogConfirm: MatDialog) {
     adminService.getAllProjects().subscribe(data => this.dataHandler(data), this.searchErrorHandler);
     this.selection = new SelectionModel<ProjectAdm>(true, []);
   }
@@ -96,7 +96,7 @@ export class AdminPageComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  private dataHandler(projects: Array<ProjectAdm>) {
+  public dataHandler(projects: Array<ProjectAdm>) {
 
     this.projects = projects as Array<ProjectAdm>;
     this.dataSource = new MatTableDataSource(this.projects);
@@ -126,7 +126,7 @@ export class AdminPageComponent implements OnInit {
     this.paginator._intl.previousPageLabel = 'Попердня сторінка';
   }
 
-  private searchErrorHandler(error: any) {
+  public searchErrorHandler(error: any) {
     alert("Вході виконання програми виникла помилка, спробуйте пізніше");
   }
 
