@@ -1,4 +1,4 @@
-<mat-horizontal-stepper class="horisontal-stepper" [linear]="isLinear" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper class="horisontal-stepper" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="appDescForm">
       <div class="client-form-container">
         <form [formGroup]="appDescForm" (ngSubmit)="submitDescriptionForm(stepper)" novalidate>

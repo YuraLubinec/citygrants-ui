@@ -19,26 +19,26 @@ import {MatTableDataSource, MatSnackBar, MatStepper} from '@angular/material';
 })
 export class ClientPageComponent implements OnInit {
 
-  private appDescForm: FormGroup;
-  private appCostItem: FormGroup;
-  private evalSecondStageForm: FormGroup;
-  private projectApplication: ProjectApplication;
-  private budget: Budget;
-  private calculations: BudgetCalculations;
-  private description: Description;
-  private displayDescriptionForm: boolean;
-  private displayCostItemForm: boolean;
-  private displayDescription: boolean;
-  private costItemCategories: Array<CostItemCategory>;
-  private images: Array<File>;
-  private pdfDocs: Array<File>;
-  private requiredMessage = "обов'язково для заповнення"
-  private defaultMessage = "помилка введення";
-  private patternMessage = "не відповідає параметрам введення";
-  private patternEmail = "не вірний формат електронної пошти"
-  private positionTollTip = "above";
-  private notUniqNameMessage: string;
-  private isSavedValidDescForm = false;
+  public appDescForm: FormGroup;
+  public appCostItem: FormGroup;
+  public evalSecondStageForm: FormGroup;
+  public projectApplication: ProjectApplication;
+  public budget: Budget;
+  public calculations: BudgetCalculations;
+  public description: Description;
+  public displayDescriptionForm: boolean;
+  public displayCostItemForm: boolean;
+  public displayDescription: boolean;
+  public costItemCategories: Array<CostItemCategory>;
+  public images: Array<File>;
+  public pdfDocs: Array<File>;
+  public requiredMessage = "обов'язково для заповнення"
+  public defaultMessage = "помилка введення";
+  public patternMessage = "не відповідає параметрам введення";
+  public patternEmail = "не вірний формат електронної пошти"
+  public positionTollTip = "above";
+  public notUniqNameMessage: string;
+  public isSavedValidDescForm = false;
 
   constructor(private clientService: ClientService, private fb: FormBuilder, public snackBar: MatSnackBar) {
     this.displayDescriptionForm = true;
@@ -172,7 +172,7 @@ export class ClientPageComponent implements OnInit {
     this.appDescForm.valid ? stepper.next() : 'doNothing';
   }
 
-  private checkIsNotUniqNameProject(name: string, stepper: MatStepper) {
+  public checkIsNotUniqNameProject(name: string, stepper: MatStepper) {
     if (name) {
       this.clientService.isUniqNameProject(name).subscribe(
         response => {
@@ -188,7 +188,7 @@ export class ClientPageComponent implements OnInit {
     };
   }
 
-  private validDescriptionForm() {
+  public validDescriptionForm() {
     let field = this.appDescForm.value;
 
     this.appDescForm = this.fb.group({
@@ -216,7 +216,7 @@ export class ClientPageComponent implements OnInit {
     this.isSavedValidDescForm = this.appDescForm.valid;
   }
 
-  private validCostItemForm() {
+  public validCostItemForm() {
     let field = this.appCostItem.value;
 
     this.appCostItem = this.fb.group({
@@ -231,7 +231,7 @@ export class ClientPageComponent implements OnInit {
     this.appCostItem.markAsTouched();
   }
 
-  private addCostItemByCategory(field: any) {
+  public addCostItemByCategory(field: any) {
     switch (field.category) {
       case this.costItemCategories[0].value: {
         this.budget.costItemsFee.push(new CostItem(field.description, field.cost, field.count,
@@ -326,7 +326,7 @@ export class ClientPageComponent implements OnInit {
     this.calculations = this.clientService.calculateBudget(this.budget);
   }
 
-  private uploadAttachments(id: string): void {
+  public uploadAttachments(id: string): void {
     if (this.images.length > 0 || this.pdfDocs.length > 0) {
       this.clientService.uploadFiles(id, this.images, this.pdfDocs).subscribe(data => {
           this.images = new Array<File>();
@@ -380,15 +380,15 @@ export class ClientPageComponent implements OnInit {
     }
   }
 
-  sentApplicationToReview() {
+  public sentApplicationToReview() {
     this.projectApplication = new ProjectApplication(this.budget, this.description, false);
   }
 
-  private handlePromiseError(err): void {
+  public handlePromiseError(err): void {
     err.status == '400' ? this.checkErrorGetMessage(err) : alert('Щось пішло не так, повторіть спробу пізніше : ' + err.status);
   }
 
-  private checkErrorGetMessage(err: any) {
+  public checkErrorGetMessage(err: any) {
     if (err.status == '400') {
       this.notUniqNameMessage = err.error.message;
       this.appDescForm.controls['name'].setErrors({'notUniqName': true});
